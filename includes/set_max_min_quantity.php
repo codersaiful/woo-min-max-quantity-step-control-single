@@ -37,7 +37,7 @@ function wcmmq_set_min_for_single(){
 add_action('woocommerce_before_add_to_cart_quantity', function() {
     add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
 });
-
+add_filter('woocommerce_quantity_input_step','wcmmq_set_min_for_single');
 /**
  * for Min Qantity
  * 
@@ -58,10 +58,14 @@ add_action('woocommerce_before_add_to_cart_quantity', function() {
 
 
 
-add_action('woocommerce_before_shop_loop', function() {
-    add_filter('woocommerce_loop_add_to_cart_link','my_test_function',10,3);
-});
-function my_test_function($button,$product,$args){
+/**
+ * 
+ * @param type $button
+ * @param type $product
+ * @param type $args
+ * @return type
+ */
+function wc_mmq_set_min_qt_in_shop_loop($button,$product,$args){
     $post_id = get_the_ID();
     $min_quantity = get_post_meta($post_id, '_wcmmq_min_quantity', true);
     if( ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
@@ -76,8 +80,20 @@ function my_test_function($button,$product,$args){
 		esc_html( $product->add_to_cart_text() )
 	);
 }
+add_action('woocommerce_before_shop_loop', function() {
+    add_filter('woocommerce_loop_add_to_cart_link','wc_mmq_set_min_qt_in_shop_loop',10,3);
+});
 
+/**
+ * 
 
+function wc_mmq_add_js_file(){
+    //Custom CSS Style for Woo Product Table's Table (Universal-for all table) and (template-for defien-table)
+    wp_enqueue_script( 'wc_mmq', WC_MMQ_BASE_URL . '/includes/wc_increament_qt.js', __FILE__, 1.0, true );
+    
+}
+add_action('wp_enqueue_scripts','wc_mmq_add_js_file',99);
+ */
 
 
 

@@ -7,7 +7,7 @@
  * @since 1.0
  */
 function wcmmq_add_menu(){
-    add_submenu_page( 'woocommerce', 'WC Min Max Quantity', 'Min Max Quantity', 'manage_options', 'wc_min_max_quantity', 'wcmmq_faq_page_details' );
+    add_submenu_page( 'woocommerce', 'WC Min Max Quantity', 'Min Max Quantity', 'manage_options', 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
 }
 add_action( 'admin_menu','wcmmq_add_menu' );
 

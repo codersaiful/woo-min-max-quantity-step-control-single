@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WC Min Max Quantity
+ * Plugin Name: WC Min Max Quantity & Step
  * Plugin URI: https://codersaiful.net/woo-product-table-pro/
  * Description: WooCommerce Set Minimum and Maximum Quantity for Simple and Variations Type Products.
  * Author: Saiful Islam
@@ -66,6 +66,8 @@ class WC_MMQ {
             
             require_once $dir . '/admin/add_options_admin.php';
             require_once $dir . '/admin/set_menu_and_fac.php';
+            require_once $dir . '/admin/plugin_setting_link.php';
+            require_once $dir . '/admin/test.php';
         }
         require_once $dir . '/includes/set_max_min_quantity.php';
     }
