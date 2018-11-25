@@ -7,7 +7,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$qantity){
     //var_dump($max_quantity);exit;
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
-    
+    var_dump($qantity);
+    var_dump($max_quantity);
     if( $qantity <= $max_quantity && $qantity >= $min_quantity  ){
         return true;
     }elseif( $qantity < $min_quantity ){
@@ -67,9 +68,9 @@ function wcmmq_set_min_for_single(){
 }
 
 add_action('woocommerce_before_add_to_cart_quantity', function() {
-    add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
+    //add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
 });
-add_filter('woocommerce_quantity_input_step','wcmmq_set_min_for_single');
+//add_filter('woocommerce_quantity_input_step','wcmmq_set_min_for_single');
 
 
 /**
@@ -87,12 +88,12 @@ function wcmmq_set_step_for_single(){
     return 1;
 }
 add_action('woocommerce_before_add_to_cart_quantity', function() {
-    add_filter('woocommerce_quantity_input_step','wcmmq_set_step_for_single');
+    //add_filter('woocommerce_quantity_input_step','wcmmq_set_step_for_single');
 });
 
 //Testing for cart page
-function abc_test_mest($args, $product){
-    if(is_cart() ){
+function wcmmq_min_max_step_args_for_all( $args, $product ){
+    //if(is_cart() ){
     $product_id = $product->get_id();
     
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
@@ -103,16 +104,16 @@ function abc_test_mest($args, $product){
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::getOption( '_wcmmq_product_step' );
     
-    var_dump($step_quantity);
+    //var_dump($step_quantity);
 
     $args['max_value'] = $max_quantity; // Max quantity (default = -1)
     $args['min_value'] = $min_quantity; // Min quantity (default = 0)
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
 
-    }
+    //}
     return $args;
 }
-add_filter('woocommerce_quantity_input_args','abc_test_mest',10,2);
+add_filter('woocommerce_quantity_input_args','wcmmq_min_max_step_args_for_all',10,2);
 
 
 /**
@@ -131,7 +132,7 @@ function wcmmq_set_max_for_single(){
 }
 
 add_action('woocommerce_before_add_to_cart_quantity', function() {
-    add_filter('woocommerce_quantity_input_max','wcmmq_set_max_for_single');
+    //add_filter('woocommerce_quantity_input_max','wcmmq_set_max_for_single');
 });
 
 
