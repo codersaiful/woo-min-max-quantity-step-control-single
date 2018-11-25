@@ -15,6 +15,14 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  * Faq Page for WC Min Max Quantity
  */
 function wcmmq_faq_page_details(){
+    var_dump(WC_MMQ::getOptions());
+    /*
+    update_option( WC_MMQ::KEY, array(
+        '_wcmmq_min_quantity'   => 6,
+        '_wcmmq_max_quantity'   =>  21,
+        '_wcmmq_product_step'   => 3,
+    ));
+    */
     echo '<h2>WC Min Max Quantity</h2>'; 
     echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
     echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';

@@ -38,6 +38,25 @@ $WC_MMQ = WC_MMQ::getInstance();
  * Main Class for WC Min Max Quantity Plugin
  */
 class WC_MMQ {
+    
+    /**
+     * Default keyword for WCMMQ
+     * You will find this in wp_options table of database
+     */
+    const KEY = 'wcmmq_universal_minmaxstep';
+    
+    /*
+     * Set default value based on default keyword.
+     * All value will store in wp_options table based on Keyword wcmmq_universal_minmaxstep
+     * 
+     * @Sinc Version 1.0.0
+     */
+    private static $default_blank_values = array(
+        '_wcmmq_min_quantity'   => 1,
+        '_wcmmq_max_quantity'   =>  false,
+        '_wcmmq_product_step'   => false,
+    );
+
     /**
      * For Instance
      *
@@ -45,6 +64,7 @@ class WC_MMQ {
      * @since 1.0
      */
     private static $_instance;
+    
     /**
 
        public static function getInstance() {
@@ -64,10 +84,11 @@ class WC_MMQ {
         
         if( is_admin() ){
             
+            require_once $dir . '/admin/product_panel.php';
             require_once $dir . '/admin/add_options_admin.php';
             require_once $dir . '/admin/set_menu_and_fac.php';
             require_once $dir . '/admin/plugin_setting_link.php';
-            require_once $dir . '/admin/test.php';
+            //require_once $dir . '/admin/test.php';
         }
         require_once $dir . '/includes/set_max_min_quantity.php';
     }
@@ -85,7 +106,34 @@ class WC_MMQ {
      * @since 1.0
      */
     public static function install() {
+        $data = get_option( self::KEY ); //'wcmmq_universal_minmaxstep' Stored in constant
+        if( !isset( $data ) || empty( $data ) ){
+            update_option( self::KEY, self::$default_blank_values );
+        }
         //Nothing to do for now
+    }
+    
+    /**
+     * Getting Array of Options of wcmmq_universal_minmaxstep
+     * 
+     * @return Array Full Array of Options of wcmmq_universal_minmaxstep
+     * 
+     * @since 1.0.0
+     */
+    public static function getOptions(){
+        return get_option( self::KEY );
+    }
+    
+    /**
+     * Getting Array of Options of wcmmq_universal_minmaxstep
+     * 
+     * @return Array Full Array of Options of wcmmq_universal_minmaxstep
+     * 
+     * @since 1.0.0
+     */
+    public static function getOption( $kewword = false ){
+        $data = get_option( self::KEY );
+        return $kewword ? $data[$kewword] : false;
     }
     
     /**
