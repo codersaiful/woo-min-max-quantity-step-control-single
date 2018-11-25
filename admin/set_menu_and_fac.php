@@ -7,7 +7,7 @@
  * @since 1.0
  */
 function wcmmq_add_menu(){
-    add_submenu_page( 'woocommerce', 'WC Min Max Quantity', 'Min Max Quantity', 'manage_options', 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
+    add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', 'manage_options', 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
 }
 add_action( 'admin_menu','wcmmq_add_menu' );
 
@@ -16,13 +16,13 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  */
 function wcmmq_faq_page_details(){
     var_dump(WC_MMQ::getOptions());
-    /*
+    /**********************
     update_option( WC_MMQ::KEY, array(
-        '_wcmmq_min_quantity'   => 6,
-        '_wcmmq_max_quantity'   =>  21,
-        '_wcmmq_product_step'   => 3,
+        '_wcmmq_min_quantity'   => 2,
+        '_wcmmq_max_quantity'   =>  22,
+        '_wcmmq_product_step'   => 2,
     ));
-    */
+    //****************************/
     echo '<h2>WC Min Max Quantity</h2>'; 
     echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
     echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';

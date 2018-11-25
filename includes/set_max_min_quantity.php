@@ -1,19 +1,19 @@
 <?php
 
 //Cart Validation
-function wcmmq_min_max_valitaion($bool,$product_id,$qantity){
+function wcmmq_min_max_valitaion($bool,$product_id,$quantity){
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_max_quantity', true);
     //var_dump($max_quantity);exit;
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
     
-    if( $qantity <= $max_quantity && $qantity >= $min_quantity  ){
+    if( $quantity <= $max_quantity && $quantity >= $min_quantity  ){
         return true;
-    }elseif( $qantity < $min_quantity ){
+    }elseif( $quantity < $min_quantity ){
         wc_add_notice( __( "Minimum quantity should " . $min_quantity , 'wcmmq' ), 'error' );
         return;
-    }elseif( $qantity > $max_quantity ){
+    }elseif( $quantity > $max_quantity ){
         wc_add_notice( __( "Maximum quantity should " . $max_quantity, 'wcmmq' ), 'error' );
         return;
     }else{
@@ -31,18 +31,15 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
     
-     wc_add_notice( __( "QT " . $min_quantity, 'wcmmq' ), 'notice' );
+     //wc_add_notice( __( "QT " . $min_quantity, 'wcmmq' ), 'notice' );
     
-    if( ( $qantity <= $max_quantity && $qantity >= $min_quantity ) || $quantity == 0  ){
+    if( $quantity <= $max_quantity && $quantity >= $min_quantity ){
         return true;
-    }elseif( ( $qantity > $max_quantity ) || ( $qantity < $min_quantity ) ){
-        if( $qantity > $max_quantity ){
-            wc_add_notice( __( "&&Maximum quantity should " . $max_quantity . ' of ' . get_the_title( $product_id ), 'wcmmq' ), 'error' );
-        }
-        
-        if( $qantity < $min_quantity ){
-            wc_add_notice( __( "&&Minimum quantity should " . $min_quantity . ' of ' . get_the_title( $product_id ) , 'wcmmq' ), 'error' );
-        }
+    }elseif( $quantity > $max_quantity ){
+        wc_add_notice( __( "Maximum quantity should " . $max_quantity . ' of ' . get_the_title( $product_id ), 'wcmmq' ), 'error' );
+        return;
+    }elseif( $quantity < $min_quantity ){
+        wc_add_notice( __( "Minimum quantity should " . $min_quantity . ' of ' . get_the_title( $product_id ) , 'wcmmq' ), 'error' );
         return;
     }else{
         return true;
