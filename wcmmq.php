@@ -54,7 +54,7 @@ class WC_MMQ {
     private static $default_blank_values = array(
         '_wcmmq_min_quantity'   => 1,
         '_wcmmq_max_quantity'   =>  false,
-        '_wcmmq_product_step'   => false,
+        '_wcmmq_product_step'   => 1,//false,
     );
 
     /**
@@ -113,6 +113,16 @@ class WC_MMQ {
         //Nothing to do for now
     }
     
+    /**
+     * Getting default key and value 's array
+     * 
+     * @return Array getting default value for basic plugin
+     * @since 1.0
+     */
+    public static function getDefaults(){
+        return self::$default_blank_values;
+    }
+
     /**
      * Getting Array of Options of wcmmq_universal_minmaxstep
      * 

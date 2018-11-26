@@ -1,5 +1,24 @@
 <?php
-
+/*
+// Removes the WooCommerce filter, that is validating the quantity to be an int
+remove_filter('woocommerce_stock_amount', 'intval');
+ 
+// Add a filter, that validates the quantity to be a float
+add_filter('woocommerce_stock_amount', 'floatval');
+ 
+// Add unit price fix when showing the unit price on processed orders
+add_filter('woocommerce_order_amount_item_total', 'unit_price_fix', 10, 5);
+function unit_price_fix($price, $order, $item, $inc_tax = false, $round = true) {
+    $qty = (!empty($item['qty']) && $item['qty'] != 0) ? $item['qty'] : 1;
+    if($inc_tax) {
+        $price = ($item['line_total'] + $item['line_tax']) / $qty;
+    } else {
+        $price = $item['line_total'] / $qty;
+    }
+    $price = $round ? round( $price, 2 ) : $price;
+    return $price;
+}
+*/
 //Cart Validation
 function wcmmq_min_max_valitaion($bool,$product_id,$quantity){
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
@@ -8,9 +27,11 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity){
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
     
+    
     if( $quantity <= $max_quantity && $quantity >= $min_quantity  ){
         return true;
     }elseif( $quantity < $min_quantity ){
+        var_dump($quantity);exit;
         wc_add_notice( __( "Minimum quantity should " . $min_quantity , 'wcmmq' ), 'error' );
         return;
     }elseif( $quantity > $max_quantity ){
@@ -108,7 +129,7 @@ function wcmmq_quantity_input_args_for_cart($args, $product){
     }
     return $args;
 }
-add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args_for_cart',10,2);
+//add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args_for_cart',10,2);
 
 
 /**
@@ -148,7 +169,6 @@ function wc_mmq_set_min_qt_in_shop_loop($button,$product,$args){
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::getOption( '_wcmmq_product_step' );
-    
     
     
     if( ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){

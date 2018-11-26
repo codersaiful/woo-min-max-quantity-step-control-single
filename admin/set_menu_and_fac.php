@@ -15,7 +15,7 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  * Faq Page for WC Min Max Quantity
  */
 function wcmmq_faq_page_details(){
-    var_dump(WC_MMQ::getOptions());
+    
     /**********************
     update_option( WC_MMQ::KEY, array(
         '_wcmmq_min_quantity'   => 2,
@@ -23,6 +23,109 @@ function wcmmq_faq_page_details(){
         '_wcmmq_product_step'   => 2,
     ));
     //****************************/
+    if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
+        //Reset 
+        $data = WC_MMQ::getDefaults();
+        //var_dump($value);
+        update_option( WC_MMQ::KEY, $data );
+       
+    }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
+        //configure_submit
+        $values = ( is_array( $_POST['data'] ) ? $_POST['data'] : false );
+        $data = array();
+        if( is_array( $values ) && count( $values ) > 0 ){
+            foreach( $values as $key=>$value ){
+                if( empty( $value ) || $value < 0 ){
+                   $data[$key] = 0;//false; 
+                }else{
+                   $data[$key] = $value;  
+                }
+            }
+        }else{
+            $data = WC_MMQ::getDefaults();
+        }
+        
+        if( $data['_wcmmq_max_quantity'] <= $data['_wcmmq_min_quantity'] ){
+            $data['_wcmmq_max_quantity'] = $data['_wcmmq_min_quantity'] + 5;
+            echo '<div class="error notice"><p>Maximum Quantity can not be smaller, So we have added 5</p></div>';
+        }
+        if( $data['_wcmmq_product_step'] == '0' || $data['_wcmmq_product_step'] == 0 ){
+           $data['_wcmmq_product_step'] = 1; 
+        }
+        update_option( WC_MMQ::KEY, $data);
+    }
+    
+    
+    $saved_data = WC_MMQ::getOptions();
+    var_dump($saved_data);
+?>
+<div class="wrap wcmmq_wrap">
+    <div class="fieldwrap">
+        
+        <form action="" method="POST">
+            <div class="wcmmq_white_board">
+                <span class="configure_section_title">Settings (Universal)</span>
+                <table class="wcmmq_config_form">
+                    <tr>
+                        <th>Minimum Quantity</th>
+                        <td>
+                            <input name="data[_wcmmq_min_quantity]" value="<?php echo $saved_data['_wcmmq_min_quantity']; ?>"  type="number" step=any>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>Maximum Quantity</th>
+                        <td>
+                            <input name="data[_wcmmq_max_quantity]" value="<?php echo $saved_data['_wcmmq_max_quantity']; ?>"  type="number" step=any>
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <th>Quantity Step</th>
+                        <td>
+                            <input name="data[_wcmmq_product_step]" value="<?php echo $saved_data['_wcmmq_product_step']; ?>"  type="number" step=any>
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+            <br>
+            <button type="submit" name="configure_submit" class="button-primary primary button btn-info">Submit</button>
+            <button type="submit" name="reset_button" class="button">Reset</button>
+                    
+        </form>
+    </div>
+</div>  
+<style>
+span.configure_section_title {
+    font-size: 18px;
+    width: 102%;
+    background: #4CAF50;
+    color: #f3f3f3;
+    padding: 5px;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding-right: 0px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    display: block !important;
+}
+.wcmmq_config_form th {
+    width: 300px;
+    padding: 15px;
+    text-align: left;
+}
+.wcmmq_white_board {
+    display: block;
+    background: #ffffff;
+    padding: 0;
+    overflow: hidden;
+}
+</style>
+<?php
     echo '<h2>WC Min Max Quantity</h2>'; 
     echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
     echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';
