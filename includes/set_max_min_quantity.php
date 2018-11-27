@@ -19,29 +19,66 @@ function unit_price_fix($price, $order, $item, $inc_tax = false, $round = true) 
     return $price;
 }
 */
+
+/**
+ * Getting current quantity in cart of current product. I mean: we will check it by product ID.
+ * 
+ * @global type $woocommerce We have used $woocommerce variable.
+ * @param int $product_id Need Product_ID for check current quantity in cart
+ * @return int
+ */
+function wcmmq_check_quantity_in_cart($product_id) {
+    global $woocommerce;
+    foreach($woocommerce->cart->get_cart() as $key => $value ) {
+        if($product_id == $value['product_id']) {
+ 	    return $value['quantity'];
+        }
+    }
+    return 0;
+}
+
 //Cart Validation
-function wcmmq_min_max_valitaion($bool,$product_id,$quantity){
+function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = false, $variations = false){ //Right two parameters added
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_max_quantity', true);
     //var_dump($max_quantity);exit;
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( '_wcmmq_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::getOption( '_wcmmq_max_quantity' );
-    
-    
-    if( $quantity <= $max_quantity && $quantity >= $min_quantity  ){
+
+    /**
+     * Getting current Quantity from Cart
+     */
+    $current_qty_inCart = wcmmq_check_quantity_in_cart( $product_id );
+    $total_quantity = $current_qty_inCart + $quantity;
+
+    if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity  ){
+//        global $woocommerce;
+//        $salam = $woocommerce->cart->get_cart();
+//        var_dump($salam);
         return true;
-    }elseif( $quantity < $min_quantity ){
-        var_dump($quantity);exit;
+    }elseif( $total_quantity < $min_quantity ){
+        /*
+        echo "
+        <script>
+        alert('".__('Fail to filup Minimum Quanity Limit','wcmmq')."');
+        </script>";
+         */
         wc_add_notice( __( "Minimum quantity should " . $min_quantity , 'wcmmq' ), 'error' );
         return;
-    }elseif( $quantity > $max_quantity ){
+    }elseif( $total_quantity > $max_quantity ){
+        /*
+        echo "
+        <script>
+        alert('".__('Fail to filup Minimum Quanity Limit','wcmmq')."');
+        </script>";
+        */
         wc_add_notice( __( "Maximum quantity should " . $max_quantity, 'wcmmq' ), 'error' );
         return;
     }else{
-        return true;
+        return false;
     }
 }
-add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 3); //When add to cart
+add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
 
 function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity ) { 
     $product_id = $values['product_id'];

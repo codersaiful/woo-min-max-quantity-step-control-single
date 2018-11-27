@@ -156,6 +156,36 @@ class WC_MMQ {
     }
     
     /**
+    * Getting full Plugin data. We have used __FILE__ for the main plugin file.
+    * 
+    * @since V 1.0
+    * @return Array Returnning Array of full Plugin's data for This Woo Product Table plugin
+    */
+    public static function getPluginData(){
+       return get_plugin_data( __FILE__ );
+    }
+
+    /**
+    * Getting Version by this Function/Method
+    * 
+    * @return type static String
+    */
+    public static function getVersion() {
+       $data = self::getPluginData();
+       return $data['Version'];
+    }
+
+    /**
+    * Getting Version by this Function/Method
+    * 
+    * @return type static String
+    */
+    public static function getName() {
+       $data = self::getPluginData();
+       return $data['Name'];
+    }
+    
+    /**
      * For checking anything
      * Only for test, Nothing for anything else
      * 
