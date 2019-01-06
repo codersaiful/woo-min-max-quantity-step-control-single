@@ -15,7 +15,7 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  * Faq Page for WC Min Max Quantity
  */
 function wcmmq_faq_page_details(){
-    
+
     /**********************
     update_option( WC_MMQ::KEY, array(
         '_wcmmq_min_quantity'   => 2,
@@ -132,6 +132,7 @@ function wcmmq_faq_page_details(){
                         </td>
                     </tr>
                 </table>
+                <div class="wcmmq_waring_msg"><i>Important Note</i>: Don't change [<b>%s</b>], because it will work as like  variable. Here 1st [<b>%s</b>] will return Quantity(min/max) and second [<b>%s</b>] will return product's name.</div>
             </div>
             <br>
             <button type="submit" name="configure_submit" class="button-primary primary button btn-info">Submit</button>
@@ -140,75 +141,12 @@ function wcmmq_faq_page_details(){
         </form>
     </div>
 </div>  
-<style>
-span.configure_section_title {
-    font-size: 18px;
-    width: 102%;
-    background: #4CAF50;
-    color: #f3f3f3;
-    padding: 5px;
-    line-height: 18px;
-    text-transform: uppercase;
-    font-weight: normal;
-    padding-right: 0px;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-    display: block !important;
-}
-.wcmmq_config_form th {
-    width: 300px;
-    padding: 15px;
-    text-align: left;
-}
-.wcmmq_config_form_message tr td>input{width: 350px;}
-.wcmmq_white_board {
-    display: block;
-    background: #ffffff;
-    padding: 0;
-    overflow: hidden;
-}
-</style>
+
 <?php
-    //echo '<h2>WC Min Max Quantity</h2>'; 
-    //echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
-    //echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';
-/**
-    var_dump(WC_MMQ_PLUGIN_BASE_FOLDER);
-    var_dump(WC_MMQ_PLUGIN_BASE_FILE);
-    var_dump(WC_MMQ_BASE_URL);
-$abc = new WC_MMQ();
-    
-    echo '<h2>WC Min Max Quantity</h2>';
-    $args = array(
-        'posts_per_page'    =>  3,
-        'post_type'         =>  array('product'),
-        'post_status'       =>  'publish',  
-        'tax_query'         => array(
-            array(
-                'taxonomy' => 'product_cat',
-                'field' => 'id',
-                'terms' => array(17),
-                'operator' => 'IN'
-            ),
-        ),
-    );
-
-    $wcmmq_loop = new WP_Query( $args );
-
-    if( $wcmmq_loop->have_posts() ): while( $wcmmq_loop->have_posts() ): $wcmmq_loop->the_post();
-            $id = get_the_ID();
-            $wcmmq_product = wc_get_product($id);
-            //var_dump($wcmmq_product->get_data_keys());
-            //var_dump($wcmmq_product->get_data_store());
-            var_dump( get_post_meta( $id, '_wcmmq_min_quantity',true ) );
-            var_dump( get_post_meta( $id, '_wcmmq_max_quantity',true ) );
-            echo '<hr>';
-
-    endwhile;
-    wp_reset_query();
-    else: 
-        echo 'There is no Product';
-    endif;
-
- */
 }
 
+function wcmmq_load_custom_wp_admin_style() {
+        wp_register_style( 'wcmmq_css', WC_MMQ_BASE_URL . 'admin/wcmmq_style.css', false, WC_MMQ::getVersion() );
+        wp_enqueue_style( 'wcmmq_css' );
+}
+add_action( 'admin_enqueue_scripts', 'wcmmq_load_custom_wp_admin_style' );

@@ -205,6 +205,13 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
 	);
     endif;
 }
+
+/**
+ * Adding filter for Shop Page as well as Related product, which normally show in Single product page at bottom section
+ * 
+ * @link https://docs.woocommerce.com/document/override-loop-template-and-show-quantities-next-to-add-to-cart-buttons/ Details about: Override loop template and show quantities next to add to cart buttons.
+ * @since 1.0.14
+ */
 function wcmmq_add_filter_for_shop_n_related_loop(){
     add_filter('woocommerce_loop_add_to_cart_link','wcmmq_set_min_qt_in_shop_loop',10,3);
 }
