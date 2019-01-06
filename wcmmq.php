@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: WC Min Max Quantity & Step
+ * Plugin Name: WooCommerce Min Max Quantity & Step Control
  * Plugin URI: https://codersaiful.net/woo-product-table-pro/
  * Description: WooCommerce Set Minimum and Maximum Quantity for Simple and Variations Type Products.
  * Author: Saiful Islam
@@ -33,6 +33,21 @@ define( "WC_MMQ_BASE_DIR", str_replace( '\\', '/', wc_mmq_dir_base ) );
 
 $WC_MMQ = WC_MMQ::getInstance();
 
+/**
+ * Setting Default Quantity for Configuration page
+ * It will work for all product
+ * 
+ * @since 1.0
+ */
+WC_MMQ::$default_values = array(
+    '_wcmmq_min_quantity'   => 1,
+    '_wcmmq_max_quantity'   =>  false,
+    '_wcmmq_product_step'   => 1,//false,
+    '_wcmmq_msg_min_limit' => __( 'Minimum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+    '_wcmmq_msg_max_limit' => __( 'Maximum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+    '_wcmmq_msg_max_limit_with_already' => __( 'You have already %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+);
+
 
 /**
  * Main Class for WC Min Max Quantity Plugin
@@ -51,12 +66,8 @@ class WC_MMQ {
      * 
      * @Sinc Version 1.0.0
      */
-    private static $default_blank_values = array(
-        '_wcmmq_min_quantity'   => 1,
-        '_wcmmq_max_quantity'   =>  false,
-        '_wcmmq_product_step'   => 1,//false,
-    );
-
+    public static $default_values = array();
+    
     /**
      * For Instance
      *
@@ -106,11 +117,23 @@ class WC_MMQ {
      * @since 1.0
      */
     public static function install() {
-        $data = get_option( self::KEY ); //'wcmmq_universal_minmaxstep' Stored in constant
-        if( !isset( $data ) || empty( $data ) ){
-            update_option( self::KEY, self::$default_blank_values );
+        //check current value
+        $current_value = get_option( self::KEY );
+        $default_value = self::$default_values;
+        $changed_value = false;
+        //Set default value in Options
+        if($current_value){
+           foreach( $default_value as $key=>$value ){
+              if( isset($current_value[$key]) && $key != 'plugin_version' ){ //We will add Plugin version in future
+                 $changed_value[$key] = $current_value[$key];
+              }else{
+                  $changed_value[$key] = $value;
+              }
+           }
+           update_option(  self::KEY , $changed_value );
+        }else{
+           update_option(  self::KEY , $default_value );
         }
-        //Nothing to do for now
     }
     
     /**
@@ -120,7 +143,7 @@ class WC_MMQ {
      * @since 1.0
      */
     public static function getDefaults(){
-        return self::$default_blank_values;
+        return self::$default_values;
     }
 
     /**

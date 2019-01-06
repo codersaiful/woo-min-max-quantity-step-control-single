@@ -1,24 +1,4 @@
 <?php
-/*
-// Removes the WooCommerce filter, that is validating the quantity to be an int
-remove_filter('woocommerce_stock_amount', 'intval');
- 
-// Add a filter, that validates the quantity to be a float
-add_filter('woocommerce_stock_amount', 'floatval');
- 
-// Add unit price fix when showing the unit price on processed orders
-add_filter('woocommerce_order_amount_item_total', 'unit_price_fix', 10, 5);
-function unit_price_fix($price, $order, $item, $inc_tax = false, $round = true) {
-    $qty = (!empty($item['qty']) && $item['qty'] != 0) ? $item['qty'] : 1;
-    if($inc_tax) {
-        $price = ($item['line_total'] + $item['line_tax']) / $qty;
-    } else {
-        $price = $item['line_total'] / $qty;
-    }
-    $price = $round ? round( $price, 2 ) : $price;
-    return $price;
-}
-*/
 
 /**
  * Getting current quantity in cart of current product. I mean: we will check it by product ID.
@@ -37,7 +17,20 @@ function wcmmq_check_quantity_in_cart($product_id) {
     return 0;
 }
 
-//Cart Validation
+/**
+ * Setting minimum and maximum quantity validation when product adding to cart. 
+ * We also used current quantity [$current_qty_inCart] of cart for checking limitation.
+ * 
+ * @param type $bool
+ * @param type $product_id post Id
+ * @param type $quantity Quantity when will add to cart
+ * @param type $variation_id for Variable product
+ * @param type $variations Variations as Array
+ * @return boolean True or false
+ * 
+ * @link https://docs.woocommerce.com/wc-apidocs/source-class-WC_AJAX.html#365 Details
+ * @since 1.0
+ */
 function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = false, $variations = false){ //Right two parameters added
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_max_quantity', true);
@@ -50,29 +43,21 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = fal
      */
     $current_qty_inCart = wcmmq_check_quantity_in_cart( $product_id );
     $total_quantity = $current_qty_inCart + $quantity;
-
+    $product_name = get_the_title( $product_id );
+    
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity  ){
-//        global $woocommerce;
-//        $salam = $woocommerce->cart->get_cart();
-//        var_dump($salam);
         return true;
     }elseif( $total_quantity < $min_quantity ){
-        /*
-        echo "
-        <script>
-        alert('".__('Fail to filup Minimum Quanity Limit','wcmmq')."');
-        </script>";
-         */
-        wc_add_notice( __( "Minimum quantity should " . $min_quantity , 'wcmmq' ), 'error' );
+        $message = sprintf( WC_MMQ::getOption( '_wcmmq_msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        wc_add_notice( $message, 'error' );
         return;
     }elseif( $total_quantity > $max_quantity ){
-        /*
-        echo "
-        <script>
-        alert('".__('Fail to filup Minimum Quanity Limit','wcmmq')."');
-        </script>";
-        */
-        wc_add_notice( __( "Maximum quantity should " . $max_quantity, 'wcmmq' ), 'error' );
+        $message = false;
+        if( $current_qty_inCart > 0 ){
+            $message .= sprintf( WC_MMQ::getOption( '_wcmmq_msg_max_limit_with_already' ), $max_quantity, $product_name );
+        }
+        $message .= sprintf( WC_MMQ::getOption( '_wcmmq_msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        wc_add_notice( $message, 'error' );
         return;
     }else{
         return false;
@@ -80,6 +65,19 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = fal
 }
 add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
 
+/**
+ * Validation when you will update cart page of WooCommerce. Actually Minimum and maximum as well as step should be fixed
+ * on cart page. So that we have used this function by using filter 'woocommerce_update_cart_validation'
+ * 
+ * @param type $true
+ * @param type $cart_item_key
+ * @param type $values
+ * @param type $quantity
+ * @return boolean
+ * 
+ * @link https://docs.woocommerce.com/wc-apidocs/source-class-WC_Form_Handler.html#568 Details
+ * @since 1.0
+ */
 function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity ) { 
     $product_id = $values['product_id'];
     
@@ -105,11 +103,11 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 }; 
 add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
 
-
 /**
- * for Min Qantity
+ * Set limit on Single product page for Minimum Quantity of Product
  * 
  * @return void
+ * @since 1.0
  */
 function wcmmq_set_min_for_single(){
     $product_id = get_the_ID();
@@ -120,17 +118,20 @@ function wcmmq_set_min_for_single(){
     }
     return 1;
 }
-
+add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
+/*
+//Finally we have removed this part
 add_action('woocommerce_before_add_to_cart_quantity', function() {
     //add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
 });
-add_filter('woocommerce_quantity_input_min','wcmmq_set_min_for_single');
+ */
 
 
 /**
- * for Step
+ * Set limit on Single product page for Step of Quantity input field of Product
  * 
  * @return void
+ * @since 1.0
  */
 function wcmmq_set_step_for_single(){
     $product_id = get_the_ID();
@@ -141,12 +142,25 @@ function wcmmq_set_step_for_single(){
     }
     return 1;
 }
+add_filter('woocommerce_quantity_input_step','wcmmq_set_step_for_single');
+/*
+//Finally we have removed this part
 add_action('woocommerce_before_add_to_cart_quantity', function() {
     //add_filter('woocommerce_quantity_input_step','wcmmq_set_step_for_single');
 });
-add_filter('woocommerce_quantity_input_step','wcmmq_set_step_for_single');
+*/
 
-//Testing for cart page
+/**
+ * Getting quantity arguments on cart page, 
+ * Only for cart page
+ * 
+ * @param type $args Quantity arguments
+ * @param type $product Product's Object to get ID of product
+ * @return type Array
+ * 
+ * @since 1.0
+ * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_quantity_input.html#1234 Details of filter 'woocommerce_quantity_input_args'
+ */
 function wcmmq_quantity_input_args_for_cart($args, $product){
     if(is_cart() ){
     $product_id = $product->get_id();
@@ -170,9 +184,10 @@ add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args_for_cart
 
 
 /**
- * for Min Qantity
+ * Set limit on Single product page for Minimum Quantity
  * 
  * @return void
+ * @since 1.0
  */
 function wcmmq_set_max_for_single(){
     $product_id = get_the_ID();
@@ -183,11 +198,14 @@ function wcmmq_set_max_for_single(){
     }
     return;
 }
-
+add_filter('woocommerce_quantity_input_max','wcmmq_set_max_for_single');
+/*
+//Removed
 add_action('woocommerce_before_add_to_cart_quantity', function() {
     //add_filter('woocommerce_quantity_input_max','wcmmq_set_max_for_single');
 });
-add_filter('woocommerce_quantity_input_max','wcmmq_set_max_for_single');
+ */
+
 
 
 /**
