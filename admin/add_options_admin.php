@@ -1,5 +1,13 @@
 <?php
-function wcmmq_add_field_in_advanced(){
+
+/**
+ * Min Max & Step panel for each Product's edit page
+ * Field adding to Product Page
+ * 
+ * @since 1.0
+ * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
+ */
+function wcmmq_add_field_in_panel(){
     $args = false;
     $args[] = array(
         'id'        =>  '_wcmmq_min_quantity',
@@ -36,10 +44,7 @@ function wcmmq_add_field_in_advanced(){
     }
 }
 
-add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_advanced'); //Our custom action, which we have created to product_panel.php file
-//add_action('woocommerce_product_options_advanced','wcmmq_add_field_in_advanced');
-//add_action('woocommerce_product_options_general_product_data','wcmmq_add_field_in_general');
-//add_action('woocommerce_product_options_general_product_data','wcmmq_add_field_in_general');
+add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file
 
 /**
  * To save and update our Data.
@@ -47,6 +52,7 @@ add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_ad
  * In future we will add options, when can be change from options page
  * 
  * @param Int $post_id automatically come via woocommerce_process_product_meta as parameter.
+ * return void
  */
 function wcmmq_save_field_data( $post_id ){
     
@@ -64,14 +70,5 @@ function wcmmq_save_field_data( $post_id ){
     update_post_meta( $post_id, '_wcmmq_min_quantity', esc_attr( $_wcmmq_min_quantity ) ); 
     update_post_meta( $post_id, '_wcmmq_max_quantity', esc_attr( $_wcmmq_max_quantity ) ); 
     update_post_meta( $post_id, '_wcmmq_product_step', esc_attr( $_wcmmq_product_step ) ); 
-
-    
-
-    /*
-    $product = wc_get_product( $post_id );
-    $min_quantity = isset( $_POST['wcmmq_min_quantity'] ) ? $_POST['wcmmq_min_quantity'] : 1;
-    $product->save_meta_data('wcmmq_min_quantity',$min_quantity);
-    $product->save();
-    */
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_save_field_data' );

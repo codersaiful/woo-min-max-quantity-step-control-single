@@ -28,15 +28,15 @@ function wcmmq_faq_page_details(){
         $data = WC_MMQ::getDefaults();
         //var_dump($value);
         update_option( WC_MMQ::KEY, $data );
-       
+        echo '<div class="updated inline"><p>Reset Successfully</p></div>';
     }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
         //configure_submit
         $values = ( is_array( $_POST['data'] ) ? $_POST['data'] : false );
-        $data = array();
+        $data = $final_data = array();
         if( is_array( $values ) && count( $values ) > 0 ){
             foreach( $values as $key=>$value ){
-                if( empty( $value ) || $value < 0 ){
-                   $data[$key] = 0;//false; 
+                if( empty( $value ) ){
+                   $data[$key] = false; 
                 }else{
                    $data[$key] = $value;  
                 }
@@ -45,19 +45,31 @@ function wcmmq_faq_page_details(){
             $data = WC_MMQ::getDefaults();
         }
         
-        if( $data['_wcmmq_max_quantity'] <= $data['_wcmmq_min_quantity'] ){
+        if( !$data['_wcmmq_min_quantity'] && $data['_wcmmq_min_quantity'] != 0 &&  $data['_wcmmq_min_quantity'] !=1 && $data['_wcmmq_max_quantity'] <= $data['_wcmmq_min_quantity'] ){
             $data['_wcmmq_max_quantity'] = $data['_wcmmq_min_quantity'] + 5;
             echo '<div class="error notice"><p>Maximum Quantity can not be smaller, So we have added 5</p></div>';
         }
-        if( $data['_wcmmq_product_step'] == '0' || $data['_wcmmq_product_step'] == 0 ){
+        if( !$data['_wcmmq_product_step'] || $data['_wcmmq_product_step'] == '0' || $data['_wcmmq_product_step'] == 0 ){
            $data['_wcmmq_product_step'] = 1; 
         }
-        update_option( WC_MMQ::KEY, $data);
+        
+        if( !$data['_wcmmq_min_quantity'] || $data['_wcmmq_min_quantity'] == '0' || $data['_wcmmq_min_quantity'] == 0 ){
+           $data['_wcmmq_min_quantity'] = 1; 
+        }
+        
+        
+        if(is_array( $data ) && count( $data ) > 0 ){
+            foreach($data as $key=>$value){
+                $val = str_replace('\\', '', $value );
+                $final_data[$key] = $val;
+            }
+        }
+        update_option( WC_MMQ::KEY, $final_data);
+        echo '<div class="updated inline"><p>Successfully Updated</p></div>';
     }
     
     
     $saved_data = WC_MMQ::getOptions();
-    var_dump($saved_data);
 ?>
 <div class="wrap wcmmq_wrap">
     <div class="fieldwrap">
@@ -91,6 +103,35 @@ function wcmmq_faq_page_details(){
                     </tr>
 
                 </table>
+                <span class="configure_section_title">Messages</span>
+                <table class="wcmmq_config_form wcmmq_config_form_message">
+                    <tr>
+                        <th>Minimum Quantity Validation Message</th>
+                        <td>
+                            <input name="data[_wcmmq_msg_min_limit]" value="<?php echo esc_attr( $saved_data['_wcmmq_msg_min_limit'] ); ?>"  type="text">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>Maximum Quantity Validation Message</th>
+                        <td>
+                            <input name="data[_wcmmq_msg_max_limit]" value="<?php echo htmlentities( $saved_data['_wcmmq_msg_max_limit'] ); ?>"  type="text">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>Already in cart message</th>
+                        <td>
+                            <input name="data[_wcmmq_msg_max_limit_with_already]" value="<?php echo esc_attr( $saved_data['_wcmmq_msg_max_limit_with_already'] ); ?>"  type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Minimum Quantity message for shop page</th>
+                        <td>
+                            <input name="data[_wcmmq_min_qty_msg_in_loop]" value="<?php echo esc_attr( $saved_data['_wcmmq_min_qty_msg_in_loop'] ); ?>"  type="text">
+                        </td>
+                    </tr>
+                </table>
             </div>
             <br>
             <button type="submit" name="configure_submit" class="button-primary primary button btn-info">Submit</button>
@@ -118,6 +159,7 @@ span.configure_section_title {
     padding: 15px;
     text-align: left;
 }
+.wcmmq_config_form_message tr td>input{width: 350px;}
 .wcmmq_white_board {
     display: block;
     background: #ffffff;
@@ -126,9 +168,9 @@ span.configure_section_title {
 }
 </style>
 <?php
-    echo '<h2>WC Min Max Quantity</h2>'; 
-    echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
-    echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';
+    //echo '<h2>WC Min Max Quantity</h2>'; 
+    //echo '<p style="color: #d00;">Please see following Screenshot: just for getting help</p>';
+    //echo '<img style="clear:both;width:100%;height: auto;" src="' . WC_MMQ_BASE_URL .'/images/tips.png">';
 /**
     var_dump(WC_MMQ_PLUGIN_BASE_FOLDER);
     var_dump(WC_MMQ_PLUGIN_BASE_FILE);

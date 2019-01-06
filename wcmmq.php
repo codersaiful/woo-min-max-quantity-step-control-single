@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: WooCommerce Min Max Quantity & Step Control
- * Plugin URI: https://codersaiful.net/woo-product-table-pro/
- * Description: WooCommerce Set Minimum and Maximum Quantity for Simple and Variations Type Products.
+ * Plugin URI: https://codeastrology.com/wc-min-max-step/
+ * Description: WooCommerce Min Max Quantity & Step Control  plugin offers to display all products or specific products with minimum, maximum quantity. As well as with this plugin you will be able to set the increment or decrement step as much as you want.
  * Author: Saiful Islam
  * Author URI: https://codecanyon.net/user/codersaiful
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
@@ -42,15 +42,16 @@ $WC_MMQ = WC_MMQ::getInstance();
 WC_MMQ::$default_values = array(
     '_wcmmq_min_quantity'   => 1,
     '_wcmmq_max_quantity'   =>  false,
-    '_wcmmq_product_step'   => 1,//false,
+    '_wcmmq_product_step'   => 1,
     '_wcmmq_msg_min_limit' => __( 'Minimum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
     '_wcmmq_msg_max_limit' => __( 'Maximum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
-    '_wcmmq_msg_max_limit_with_already' => __( 'You have already %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+    '_wcmmq_msg_max_limit_with_already' => __( 'You have already %s item of "%s"', 'wcmmq' ), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
+    '_wcmmq_min_qty_msg_in_loop' => __( 'Minimum qty is', 'wcmmq' ),
 );
 
-
 /**
- * Main Class for WC Min Max Quantity Plugin
+ * Main Class for "WooCommerce Min Max Quantity & Step Control"
+ * We have included file from __constructor of this class [WC_MMQ]
  */
 class WC_MMQ {
     
