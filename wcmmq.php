@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: WooCommerce Min Max Quantity & Step Control
- * Plugin URI: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
- * Description: WooCommerce Min Max Quantity & Step Control  plugin offers to display all products or specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
+ * Plugin Name: WooCommerce Min Max Quantity & Step Control Single
+ * Plugin URI: https://codeastrology.com/wc-min-max-step/
+ * Description: WooCommerce Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step for all product individually. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
  * Author: Saiful Islam
- * Author URI: https://codecanyon.net/user/codersaiful
+ * Author URI: https://profiles.wordpress.org/codersaiful
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
  * Version: 1.0
@@ -23,15 +23,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Defining constant
  */
-define( 'WC_MMQ_PLUGIN_BASE_FOLDER', plugin_basename( dirname( __FILE__ ) ) );
-define( 'WC_MMQ_PLUGIN_BASE_FILE', plugin_basename( __FILE__ ) );
-define( "WC_MMQ_BASE_URL", WP_PLUGIN_URL . '/'. plugin_basename( dirname( __FILE__ ) ) . '/' );
-define( "wc_mmq_dir_base", dirname( __FILE__ ) . '/' );
-define( "WC_MMQ_BASE_DIR", str_replace( '\\', '/', wc_mmq_dir_base ) );
+define( 'WC_MMQ_S_PLUGIN_BASE_FOLDER', plugin_basename( dirname( __FILE__ ) ) );
+define( 'WC_MMQ_S_PLUGIN_BASE_FILE', plugin_basename( __FILE__ ) );
+define( "WC_MMQ_S_BASE_URL", WP_PLUGIN_URL . '/'. plugin_basename( dirname( __FILE__ ) ) . '/' );
+define( "wc_mmq_s_dir_base", dirname( __FILE__ ) . '/' );
+define( "WC_MMQ_S_BASE_DIR", str_replace( '\\', '/', wc_mmq_s_dir_base ) );
 
 
 
-$WC_MMQ = WC_MMQ::getInstance();
+$WC_MMQ_S = WC_MMQ_S::getInstance();
 
 /**
  * Setting Default Quantity for Configuration page
@@ -39,31 +39,31 @@ $WC_MMQ = WC_MMQ::getInstance();
  * 
  * @since 1.0
  */
-WC_MMQ::$default_values = array(
-    '_wcmmq_min_quantity'   => 1,
-    '_wcmmq_max_quantity'   =>  false,
-    '_wcmmq_product_step'   => 1,
-    '_wcmmq_msg_min_limit' => __( 'Minimum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
-    '_wcmmq_msg_max_limit' => __( 'Maximum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
-    '_wcmmq_msg_max_limit_with_already' => __( 'You have already %s item of "%s"', 'wcmmq' ), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
-    '_wcmmq_min_qty_msg_in_loop' => __( 'Minimum qty is', 'wcmmq' ),
+WC_MMQ_S::$default_values = array(
+    '_wcmmq_s_min_quantity'   => 1,
+    '_wcmmq_s_max_quantity'   =>  false,
+    '_wcmmq_s_product_step'   => 1,
+    '_wcmmq_s_msg_min_limit' => __( 'Minimum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+    '_wcmmq_s_msg_max_limit' => __( 'Maximum quantity should %s of "%s"', 'wcmmq' ), //First %s = Quantity and Second %s is Product Title
+    '_wcmmq_s_msg_max_limit_with_already' => __( 'You have already %s item of "%s"', 'wcmmq' ), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
+    '_wcmmq_s_min_qty_msg_in_loop' => __( 'Minimum qty is', 'wcmmq' ),
 );
 
 /**
  * Main Class for "WooCommerce Min Max Quantity & Step Control"
- * We have included file from __constructor of this class [WC_MMQ]
+ * We have included file from __constructor of this class [WC_MMQ_S]
  */
-class WC_MMQ {
+class WC_MMQ_S {
     
     /**
      * Default keyword for WCMMQ
      * You will find this in wp_options table of database
      */
-    const KEY = 'wcmmq_universal_minmaxstep';
+    const KEY = 'wcmmq_s_universal_minmaxstep';
     
     /*
      * Set default value based on default keyword.
-     * All value will store in wp_options table based on Keyword wcmmq_universal_minmaxstep
+     * All value will store in wp_options table based on Keyword wcmmq_s_universal_minmaxstep
      * 
      * @Sinc Version 1.0.0
      */
@@ -113,7 +113,7 @@ class WC_MMQ {
     }
     
     /**
-     * Installation function for Plugn WC_MMQ
+     * Installation function for Plugn WC_MMQ_S
      * 
      * @since 1.0
      */
@@ -148,9 +148,9 @@ class WC_MMQ {
     }
 
     /**
-     * Getting Array of Options of wcmmq_universal_minmaxstep
+     * Getting Array of Options of wcmmq_s_universal_minmaxstep
      * 
-     * @return Array Full Array of Options of wcmmq_universal_minmaxstep
+     * @return Array Full Array of Options of wcmmq_s_universal_minmaxstep
      * 
      * @since 1.0.0
      */
@@ -159,9 +159,9 @@ class WC_MMQ {
     }
     
     /**
-     * Getting Array of Options of wcmmq_universal_minmaxstep
+     * Getting Array of Options of wcmmq_s_universal_minmaxstep
      * 
-     * @return Array Full Array of Options of wcmmq_universal_minmaxstep
+     * @return Array Full Array of Options of wcmmq_s_universal_minmaxstep
      * 
      * @since 1.0.0
      */
@@ -223,5 +223,5 @@ class WC_MMQ {
     }
 }
 
-register_activation_hook(__FILE__, array( 'WC_MMQ','install' ) );
-register_deactivation_hook( __FILE__, array( 'WC_MMQ','uninstall' ) );
+register_activation_hook(__FILE__, array( 'WC_MMQ_S','install' ) );
+register_deactivation_hook( __FILE__, array( 'WC_MMQ_S','uninstall' ) );

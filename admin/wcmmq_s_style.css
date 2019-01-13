@@ -12,30 +12,30 @@ span.configure_section_title {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     display: block !important;
 }
-.wcmmq_config_form th {
+.wcmmq_s_config_form th {
     width: 300px;
     padding: 15px;
     text-align: left;
 }
-.wcmmq_config_form_message tr td>input{width: 350px;}
-.wcmmq_white_board {
+.wcmmq_s_config_form_message tr td>input{width: 350px;}
+.wcmmq_s_white_board {
     display: block;
     background: #ffffff;
     padding: 0;
     overflow: hidden;
 }
 /*****For Wanting message*****/
-.wcmmq_waring_msg {
+.wcmmq_s_waring_msg {
     padding: 10px;
     background: #ffffba;
 }
 
-.wcmmq_waring_msg>i {
+.wcmmq_s_waring_msg>i {
     font-weight: bold;
     color: #d00;
 }
 
-.wcmmq_waring_msg>b {
+.wcmmq_s_waring_msg>b {
     color: green;
     padding: 0 5px;
     background: #f5f5d2;
