@@ -12,31 +12,31 @@ function wcmmq_s_add_field_in_panel(){
     $args[] = array(
         'id'        =>  '_wcmmq_s_min_quantity',
         'name'        =>  '_wcmmq_s_min_quantity',
-        'label'     =>  'Min Quantity',
+        'label'     =>   __('Min Quantity','wcmmq'),
         'class'     =>  'wcmmq_s_input',
         'type'      =>  'number',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Minimum Quantity for this Product'
+        'description'=> __('Enter Minimum Quantity for this Product','wcmmq'),
     );
     
     $args[] = array(
         'id'        =>  '_wcmmq_s_max_quantity',
         'name'        =>  '_wcmmq_s_max_quantity',
-        'label'     =>  'Max Quantity',
+        'label'     =>  __('Max Quantity','wcmmq'),
         'class'     =>  'wcmmq_s_input',
         'type'      =>  'number',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Maximum Quantity for this Product'
+        'description'=> __('Enter Maximum Quantity for this Product','wcmmq'),
     );
     
     $args[] = array(
         'id'        =>  '_wcmmq_s_product_step',
         'name'        =>  '_wcmmq_s_product_step',
-        'label'     =>  'Quantity Step',
+        'label'     =>  __('Quantity Step','wcmmq'),
         'class'     =>  'wcmmq_s_input',
         'type'      =>  'number',
         'desc_tip'  =>  true,
-        'description'=> 'Enter quantity Step'
+        'description'=> __('Enter quantity Step','wcmmq'),
     );
     
     foreach($args as $arg){
@@ -48,7 +48,7 @@ add_action('woocommerce_product_options_wcmmq_s_minmaxstep','wcmmq_s_add_field_i
 
 /**
  * To save and update our Data.
- * We have fixed , if anybody mismathch with min and max. Than max will be automatically increase 5 for now
+ * We have fixed , if anybody mismatch with min and max. Than max will be automatically increase 5 for now
  * In future we will add options, when can be change from options page
  * 
  * @param Int $post_id automatically come via woocommerce_process_product_meta as parameter.
@@ -56,9 +56,9 @@ add_action('woocommerce_product_options_wcmmq_s_minmaxstep','wcmmq_s_add_field_i
  */
 function wcmmq_s_save_field_data( $post_id ){
     
-    $_wcmmq_s_min_quantity = isset( $_POST['_wcmmq_s_min_quantity'] ) && is_numeric($_POST['_wcmmq_s_min_quantity']) ? $_POST['_wcmmq_s_min_quantity'] : false;
-    $_wcmmq_s_max_quantity = isset( $_POST['_wcmmq_s_max_quantity'] ) && is_numeric($_POST['_wcmmq_s_max_quantity']) ? $_POST['_wcmmq_s_max_quantity'] : false;
-    $_wcmmq_s_product_step = isset( $_POST['_wcmmq_s_product_step'] ) && is_numeric($_POST['_wcmmq_s_product_step']) ? $_POST['_wcmmq_s_product_step'] : false;
+    $_wcmmq_s_min_quantity = isset( $_POST['_wcmmq_s_min_quantity'] ) && is_numeric($_POST['_wcmmq_s_min_quantity']) ? sanitize_text_field($_POST['_wcmmq_s_min_quantity']) : false;
+    $_wcmmq_s_max_quantity = isset( $_POST['_wcmmq_s_max_quantity'] ) && is_numeric($_POST['_wcmmq_s_max_quantity']) ? sanitize_text_field($_POST['_wcmmq_s_max_quantity']) : false;
+    $_wcmmq_s_product_step = isset( $_POST['_wcmmq_s_product_step'] ) && is_numeric($_POST['_wcmmq_s_product_step']) ? sanitize_text_field($_POST['_wcmmq_s_product_step']) : false;
     if($_wcmmq_s_min_quantity && $_wcmmq_s_max_quantity && $_wcmmq_s_min_quantity > $_wcmmq_s_max_quantity){
         $_wcmmq_s_max_quantity = $_wcmmq_s_min_quantity + 5;
     }

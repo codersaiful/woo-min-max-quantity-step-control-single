@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name: WooCommerce Min Max Quantity & Step Control Single
- * Plugin URI: https://codeastrology.com/wc-min-max-step/
- * Description: WooCommerce Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step for all product individually. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
+ * Plugin URI: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
+ * Description: WooCommerce Min Max Quantity & Step Control  plugin offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
  * Author: Saiful Islam
- * Author URI: https://profiles.wordpress.org/codersaiful
+ * Author URI: https://codecanyon.net/user/codersaiful
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
  * Version: 1.0
@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'WC_MMQ_S_PLUGIN_BASE_FOLDER', plugin_basename( dirname( __FILE__ ) ) );
 define( 'WC_MMQ_S_PLUGIN_BASE_FILE', plugin_basename( __FILE__ ) );
 define( "WC_MMQ_S_BASE_URL", WP_PLUGIN_URL . '/'. plugin_basename( dirname( __FILE__ ) ) . '/' );
-define( "wc_mmq_s_dir_base", dirname( __FILE__ ) . '/' );
-define( "WC_MMQ_S_BASE_DIR", str_replace( '\\', '/', wc_mmq_s_dir_base ) );
+define( "wc_mmq_dir_base", dirname( __FILE__ ) . '/' );
+define( "WC_MMQ_S_BASE_DIR", str_replace( '\\', '/', wc_mmq_dir_base ) );
 
 
 
@@ -100,7 +100,6 @@ class WC_MMQ_S {
             require_once $dir . '/admin/add_options_admin.php';
             require_once $dir . '/admin/set_menu_and_fac.php';
             require_once $dir . '/admin/plugin_setting_link.php';
-            //require_once $dir . '/admin/test.php';
         }
         require_once $dir . '/includes/set_max_min_quantity.php';
     }

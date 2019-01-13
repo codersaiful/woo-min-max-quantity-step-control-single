@@ -41,3 +41,21 @@ span.configure_section_title {
     background: #f5f5d2;
     font-weight: bold;
 }
+span.configure_instruction {
+    padding: 5px;
+    background: #333;
+    display: block;
+    color: #f3f3f3;
+    font-size: 18px;
+    margin: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.config_instruction_img{
+    widows: 80%;
+    margin: 0 auto;
+}
+.config_instruction_img {
+    width: 80%;
+    padding: 0 115px;
+}

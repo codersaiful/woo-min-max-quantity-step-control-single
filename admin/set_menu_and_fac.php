@@ -30,8 +30,21 @@ function wcmmq_s_faq_page_details(){
         update_option( WC_MMQ_S::KEY, $data );
         echo '<div class="updated inline"><p>Reset Successfully</p></div>';
     }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
+        //Confirm Manage option permission
+        if( !current_user_can('manage_options') ){
+            return;
+        }
+        //Nonce verify
+        if ( ! isset( $_POST['wcmmq_s_nonce'] ) ) { // Check if our nonce is set.
+			return;
+	}
+        // verify this came from the our screen and with proper authorization,
+        // because save_post can be triggered at other times
+        if( !wp_verify_nonce( $_POST['wcmmq_s_nonce'], plugin_basename(__FILE__) ) ) {
+                return;
+        }
         //configure_submit
-        $values = ( is_array( $_POST['data'] ) ? $_POST['data'] : false );
+        $values = ( isset($_POST['data']) && is_array( $_POST['data'] ) ? sanitize_text_field($_POST['data']) : false );
         $data = $final_data = array();
         if( is_array( $values ) && count( $values ) > 0 ){
             foreach( $values as $key=>$value ){
@@ -76,12 +89,10 @@ function wcmmq_s_faq_page_details(){
 <div class="wrap wcmmq_s_wrap">
     <div class="fieldwrap">
         <form action="" method="POST">
+             <input type="hidden" name="wcmmq_s_nonce" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) ) ?>" />
             <div class="wcmmq_s_white_board">
                 <span class="configure_section_title">Messages</span>
                 <table class="wcmmq_s_config_form wcmmq_s_config_form_message">
-                    <input name="data[_wcmmq_s_min_quantity]" value="<?php echo $saved_data['_wcmmq_s_min_quantity']; ?>"  type="hidden" step=any>
-                    <input name="data[_wcmmq_s_max_quantity]" value="<?php echo $saved_data['_wcmmq_s_max_quantity']; ?>"  type="hidden" step=any>
-                    <input name="data[_wcmmq_s_product_step]" value="<?php echo $saved_data['_wcmmq_s_product_step']; ?>"  type="hidden" step=any>
                     <tr>
                         <th>Minimum Quantity Validation Message</th>
                         <td>
@@ -92,7 +103,7 @@ function wcmmq_s_faq_page_details(){
                     <tr>
                         <th>Maximum Quantity Validation Message</th>
                         <td>
-                            <input name="data[_wcmmq_s_msg_max_limit]" value="<?php echo htmlentities( $saved_data['_wcmmq_s_msg_max_limit'] ); ?>"  type="text">
+                            <input name="data[_wcmmq_s_msg_max_limit]" value="<?php echo esc_attr( $saved_data['_wcmmq_s_msg_max_limit'] ); ?>"  type="text">
                         </td>
 
                     </tr>
@@ -110,13 +121,13 @@ function wcmmq_s_faq_page_details(){
                     </tr>
                 </table>
                 <div class="wcmmq_s_waring_msg"><i>Important Note</i>: Don't change [<b>%s</b>], because it will work as like  variable. Here 1st [<b>%s</b>] will return Quantity(min/max) and second [<b>%s</b>] will return product's name.</div>
-                <span class="configure_section_title">You will get the option to set Min Max Quantity of a proudct in the product data panel. Just Like This Screenshot.</span>
-                <img src="wcmmq-single-product-quantity" >
-            </div>
-            <br>
+                <br>
             <button type="submit" name="configure_submit" class="button-primary primary button btn-info">Submit</button>
             <button type="submit" name="reset_button" class="button">Reset</button>
-                    
+                <span class="configure_instruction">You will get the option to set Min Max Quantity of a proudct in the product data panel. Just Like This Screenshot.</span>
+                <img class="config_instruction_img" src="<?php echo WC_MMQ_S_BASE_URL; ?>admin/wcmmq-single-product-quantity" >
+            </div>
+            
         </form>
     </div>
 </div>  
