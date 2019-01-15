@@ -67,7 +67,7 @@
     </div>
     <div class="wcmmq_right_side_in_wrapper" style="padding: 10px;">
         <div class="rate_us_wrapper">
-            <a href="https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/reviews/?rate=5#new-post" target="_blank"><img class="rate_us_image" src="<?php echo WC_MMQ_S_BASE_URL; ?>images/rate_us.png"></a>
+            <a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews/?rate=5#new-post" target="_blank"><img class="rate_us_image" src="<?php echo WC_MMQ_S_BASE_URL; ?>images/rate_us.png"></a>
             <h1>It can take only 2 Minutes.</h1>
         </div>
     </div>
