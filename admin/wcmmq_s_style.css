@@ -41,23 +41,16 @@ span.configure_section_title {
     background: #f5f5d2;
     font-weight: bold;
 }
-span.configure_instruction {
-    padding: 5px;
-    background: #333;
-    display: block;
-    color: #f3f3f3;
-    font-size: 18px;
-    margin: 20px;
-    border-radius: 5px;
-    text-align: center;
+.wcmmq_fieldwrap {
     width: 75%;
+    float: left;
 }
-.config_instruction_img {
-    width: 75%;
-    margin: 0 auto;
-    padding: 0 20px;
+.wcmmq_rightside{
+    width: 25%;
+    float: left;
+    padding-top: 0px;
+    margin-top: -31px;
 }
-
 /****Admin section Right Side*****/
 div.wcmmq_rightside div.wcmmq_right_side_in_wrapper {
     padding: 10px;
@@ -116,4 +109,20 @@ h2.social_title>img {
 }
 .social_links>a:hover {
     background: #00000078;
+}
+span.configure_instruction {
+    padding: 5px;
+    background: #333;
+    display: block;
+    color: #f3f3f3;
+    font-size: 18px;
+    margin: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 75%;
+}
+.config_instruction_img {
+    width: 75%;
+    margin: 0 auto;
+    padding: 0 20px;
 }
