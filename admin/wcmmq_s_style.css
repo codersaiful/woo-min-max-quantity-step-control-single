@@ -50,12 +50,70 @@ span.configure_instruction {
     margin: 20px;
     border-radius: 5px;
     text-align: center;
-}
-.config_instruction_img{
-    widows: 80%;
-    margin: 0 auto;
+    width: 75%;
 }
 .config_instruction_img {
-    width: 80%;
-    padding: 0 115px;
+    width: 75%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/****Admin section Right Side*****/
+div.wcmmq_rightside div.wcmmq_right_side_in_wrapper {
+    padding: 10px;
+    margin-top: 16px;
+    background: #e5e5e5;
+    margin-left: 17px;
+    border: 1px solid #4caf50;
+}
+div.wcmmq_rightside img.rate_us_image {
+    max-width: 100%;
+}
+.rate_us_wrapper h1 {
+    color: #989898;
+}
+.wcmmq_rightside {
+    padding-top: 14px;
+}
+.need_help_wrapper h1 {
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 3em;
+}
+.need_help_wrapper a {
+    color: #9c9c9c;
+}
+.need_help_wrapper>span{display: block;}
+
+
+
+h2.social_title {
+    color: #ff6000;
+    margin: 6px 0 0 0;
+    position:  relative;
+    padding-left: 34px;
+}
+
+h2.social_title>img {
+    width:  30px;
+    position:  absolute;
+    top: -8px;
+    left:  0;
+}
+
+.social_title_wrapper p {
+    color: #0ba50b;
+    padding:  0;
+    margin:  0;
+    font-size: 14px;
+}
+.social_links>a {
+    text-decoration:  none;
+    display:  inline-block;
+    background: #ffffff78;
+    padding: 0 3px;
+    transition: .3s all;
+}
+.social_links>a:hover {
+    background: #00000078;
 }

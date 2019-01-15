@@ -44,7 +44,7 @@ function wcmmq_s_faq_page_details(){
                 return;
         }
         //configure_submit
-        $values = ( isset($_POST['data']) && is_array( $_POST['data'] ) ? sanitize_text_field($_POST['data']) : false );
+        $values = ( isset($_POST['data']) && is_array( $_POST['data'] ) ?$_POST['data'] : false );
         $data = $final_data = array();
         if( is_array( $values ) && count( $values ) > 0 ){
             foreach( $values as $key=>$value ){
@@ -87,7 +87,7 @@ function wcmmq_s_faq_page_details(){
     $saved_data = WC_MMQ_S::getOptions();
 ?>
 <div class="wrap wcmmq_s_wrap">
-    <div class="fieldwrap">
+    <div class="wcmmq_fieldwrap">
         <form action="" method="POST">
              <input type="hidden" name="wcmmq_s_nonce" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) ) ?>" />
             <div class="wcmmq_s_white_board">
@@ -130,6 +130,7 @@ function wcmmq_s_faq_page_details(){
             
         </form>
     </div>
+    <?php include_once 'includes/right_side.php'; ?>
 </div>  
 
 <?php
