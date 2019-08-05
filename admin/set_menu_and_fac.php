@@ -133,7 +133,7 @@ function wcmmq_s_faq_page_details(){
                  <br>
                  <hr>
                  <br>
-                 <h1>Pro Features - At a Glance</h1>
+                 <h1>Pro Features - At a Glance | <a href="https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198" target="_blank">Get Pro</a></h1>
                  
                  <ul class="wcmmq_s_pro_features_list">
                      <li>Decimal Min, Decimal Max, Decimal Step supported</li>
