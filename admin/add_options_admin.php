@@ -42,8 +42,11 @@ function wcmmq_s_add_field_in_panel(){
     foreach($args as $arg){
         woocommerce_wp_text_input($arg);
     }
+    echo ''
+        . '<div class="marketplace-suggestion-container showing-suggestion" style="padding: 1em 1.5em;"><div class="marketplace-suggestion-container-content"><h4 class="wcmmq_s_promo">If you need to setup <strong>Decimal</strong> quantity and <strong>Decimal</strong> steps AND if you want to set Min,Max,Step from one page, you can get that feature in our premium version.</h4></div></div>'
+        . '<div class="marketplace-suggestion-container-cta"><a class="button button-primary" style="margin-left: 19px !important;" href="https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198" target="_blank">Get Premium</a></div>';
 }
-
+ 
 add_action('woocommerce_product_options_wcmmq_s_minmaxstep','wcmmq_s_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file
 
 /**
@@ -72,3 +75,8 @@ function wcmmq_s_save_field_data( $post_id ){
     update_post_meta( $post_id, '_wcmmq_s_product_step', esc_attr( $_wcmmq_s_product_step ) ); 
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_s_save_field_data' );
+
+
+
+add_filter( 'body_class', 'wptf_adding_body_class' );
+

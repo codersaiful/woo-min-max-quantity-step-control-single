@@ -49,3 +49,29 @@ function wcmmq_s_product_tab_options(){
 <?php 
 }
 add_filter('woocommerce_product_data_panels','wcmmq_s_product_tab_options');
+
+
+
+/**
+ * Displaying Notice to our plugin for rating issue
+ * 
+ * @return Notice displaying a notice void
+ * @since 1.9
+ */
+function wcmmq_s_important_notice_for_users() {
+    if(!class_exists('WC_MMQ')){
+        $current_page = get_current_screen();
+        if($current_page->base == 'woocommerce_page_wcmmq_s_min_max_step'){
+        ob_start();
+        ?>
+        <div class="notice notice-success is-dismissible">
+            <p> <?php echo sprintf( esc_html__('We are working hard to serve BETTER Experience. If you like our %s %s WooCommerce Min Max  %s %s  plugin. Please leave a rating. It will inspire us to develop more features.','wptf_pro'), '<a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single" target="_blank">','<strong>','</strong>','</a>') ?></p>
+            <h3><a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews" target="_blank"><?php echo esc_html__('Yes ! You Deserve it.','wptf_pro') ?></a></h3>
+            
+        </div>
+        <?php 
+       echo ob_get_clean();
+        }
+   }
+}
+add_action('admin_notices','wcmmq_s_important_notice_for_users');

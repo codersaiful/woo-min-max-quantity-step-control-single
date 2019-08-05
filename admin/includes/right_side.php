@@ -57,6 +57,15 @@
             <span>Youtube: <a href="https://www.youtube.com/playlist?list=PL__UrUIHRxdzupiUk2KKJloistwDMP28t" target="_blank">Youtube Playlist - Video Tutorial</a></span>
         </div>
     </div>
+    
+    <div class="wcmmq_right_side_in_wrapper" style="padding: 10px;">
+        <div class="need_help_wrapper">
+            <h3 style="color:#ff6000">Get The Premium of Min Max & Step Quantity</h3>
+            <a style="display: block;" target="_blank" href="https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198">
+                <img style="max-width: 100%;"src="<?php echo WC_MMQ_S_BASE_URL; ?>images/cover_image-min-max.jpg">
+            </a>
+        </div>
+    </div>
     <div class="wcmmq_right_side_in_wrapper" style="padding: 10px;">
         <div class="need_help_wrapper">
             <h3>Popular WooCommerce Table plugin</h3>

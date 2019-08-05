@@ -49,11 +49,15 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
-= 1.0 =
-* Just Start First version.
+= 1.4 =
+* 0 quantity supported
+* Quanity Checking bug fix
+
+= 1.3 =
+* Cart's page Quantity issue fixed
 
 = 1.1 =
 * Bug Fix
 
-= 1.4 =
-* Cart's page Quantity issue fixed
+= 1.0 =
+* Just Start First version.

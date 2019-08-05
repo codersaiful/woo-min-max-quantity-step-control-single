@@ -87,6 +87,7 @@ function wcmmq_s_faq_page_details(){
     $saved_data = WC_MMQ_S::getOptions();
 ?>
 <div class="wrap wcmmq_s_wrap">
+    <h2>Form</h2>
     <div class="wcmmq_fieldwrap">
         <form action="" method="POST">
              <input type="hidden" name="wcmmq_s_nonce" value="<?php echo wp_create_nonce( plugin_basename(__FILE__) ) ?>" />
@@ -124,9 +125,23 @@ function wcmmq_s_faq_page_details(){
                 <br>
             <button type="submit" name="configure_submit" class="button-primary primary button btn-info">Submit</button>
             <button type="submit" name="reset_button" class="button">Reset</button>
-                <span class="configure_instruction">You will get the option to set Min Max Quantity of a proudct in the product data panel. Just Like This Screenshot.</span>
-                <img class="config_instruction_img" src="<?php echo WC_MMQ_S_BASE_URL; ?>admin/wcmmq-single-product-quantity" >
+                
             </div>
+             <div class="wcmmq_s_white_board">
+                 <span class="configure_instruction">You will get the option to set Min Max Quantity of a proudct in the product data panel. Just Like This Screenshot.</span>
+                 <img class="config_instruction_img" src="<?php echo WC_MMQ_S_BASE_URL; ?>admin/wcmmq-single-product-quantity.png" >
+                 <br>
+                 <hr>
+                 <br>
+                 <h1>Pro Features - At a Glance</h1>
+                 
+                 <ul class="wcmmq_s_pro_features_list">
+                     <li>Decimal Min, Decimal Max, Decimal Step supported</li>
+                     <li>Support Universal Min Max Step - where user will able to set min max step for One place</li>
+                     <li>And So on...</li>
+                 </ul>
+                 <img style="max-width: 100%;"src="<?php echo WC_MMQ_S_BASE_URL; ?>images/pro_features.png">
+             </div>
             
         </form>
     </div>
