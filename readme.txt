@@ -55,3 +55,5 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 = 1.1 =
 * Bug Fix
 
+= 1.4 =
+* Cart's page Quantity issue fixed

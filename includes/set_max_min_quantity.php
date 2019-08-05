@@ -141,7 +141,9 @@ function wcmmq_s_quantity_input_args($args, $product){
 
     $args['max_value'] = $args['max_qty'] = $max_quantity; // Max quantity (default = -1)
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
-    $args['input_value'] = $min_quantity; // Min quantity (default = 0)
+    if( !is_cart() ){
+        $args['input_value'] = $min_quantity; // Min quantity (default = 0)
+    }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
 
     //}

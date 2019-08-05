@@ -68,11 +68,11 @@ function wcmmq_s_faq_page_details(){
            $data['_wcmmq_s_product_step'] = 1; 
         }
         
+        */
         if( !$data['_wcmmq_s_min_quantity'] || $data['_wcmmq_s_min_quantity'] == '0' || $data['_wcmmq_s_min_quantity'] == 0 ){
-           $data['_wcmmq_s_min_quantity'] = 1; 
+           $data['_wcmmq_s_min_quantity'] = 0; 
         }
         
-        */
         if(is_array( $data ) && count( $data ) > 0 ){
             foreach($data as $key=>$value){
                 $val = str_replace('\\', '', $value );
