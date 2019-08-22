@@ -92,9 +92,11 @@ function wcmmq_s_update_cart_validation( $true, $cart_item_key, $values, $quanti
     $product_name = get_the_title( $product_id );
      //wc_add_notice( __( "QT " . $min_quantity, 'wcmmq' ), 'notice' );
     
-    if( $quantity <= $max_quantity && $quantity >= $min_quantity ){
+    if( (!empty($max_quantity) && $max_quantity > 0 && $quantity <= $max_quantity) && $quantity >= $min_quantity ){
         return true;
-    }elseif( $quantity > $max_quantity ){
+    }elseif(empty($max_quantity) && $quantity >= $min_quantity){
+        return true;
+    }elseif(!empty($max_quantity) && $max_quantity > 0 && $quantity > $max_quantity ){
         $message = sprintf( WC_MMQ_S::getOption( '_wcmmq_s_msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         wc_add_notice( $message, 'error' );
         return;
