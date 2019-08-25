@@ -77,6 +77,3 @@ function wcmmq_s_save_field_data( $post_id ){
 add_action( 'woocommerce_process_product_meta', 'wcmmq_s_save_field_data' );
 
 
-
-add_filter( 'body_class', 'wptf_adding_body_class' );
-
