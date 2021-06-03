@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: WC Min Max Quantity & Step Control Single
- * Plugin URI: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
- * Description: WooCommerce Min Max Quantity & Step Control  plugin offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
+ * Plugin Name: Min Max Quantity & Step Control Single
+ * Plugin URI: https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/
+ * Description: Min Max Quantity & Step Control plugin offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
  * Author: Saiful Islam
  * Author URI: https://codecanyon.net/user/codersaiful
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 1.7
+ * Version: 1.8
  * Requires at least:    4.0.0
  * Tested up to:         5.7.2
  * WC requires at least: 3.0.0

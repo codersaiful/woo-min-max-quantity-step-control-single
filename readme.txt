@@ -1,19 +1,19 @@
-=== WooCommerce Min Max Quantity & Step Control Single ===
+=== Min Max Quantity & Step Control Single ===
 Contributors: codersaiful,codeastrology
 Donate link: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 5.7.2
 Requires PHP: 5.6
-Stable tag: 4.3
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-WooCommerce Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step of each product individually.
+Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step of each product individually.
 
 == Description ==
 
-WooCommerce Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step of each product individually. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
+Min Max Quantity & Step Control Single  plugin offers to set product's minimum, maximum quantity and step of each product individually. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
 Also you can manage the validation of products quantity.
 == Go to Woocommerce -> Min Max Step Quantity == 
 You will have the option to edit messages.
@@ -49,6 +49,9 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 `/assets/screenshot-8.png`
 
 == Changelog ==
+
+= 1.8 =
+ * Cart Validation bug fix
 
 = 1.6 =
 * Cart Validation bug fix
