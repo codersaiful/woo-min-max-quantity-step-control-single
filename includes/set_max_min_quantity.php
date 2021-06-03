@@ -7,7 +7,7 @@
  * @param int $product_id Need Product_ID for check current quantity in cart
  * @return int
  */
-function wcmmq_s_check_quantity_in_cart($product_id,$variation_id = 0) {
+function wcmmq_s_check_quantity_in_cart( $product_id, $variation_id = 0 ) {
     global $woocommerce;
     foreach($woocommerce->cart->get_cart() as $key => $value ) {
         if( $product_id == $value['product_id'] && $variation_id == $value['variation_id'] ) {
@@ -33,8 +33,8 @@ function wcmmq_s_check_quantity_in_cart($product_id,$variation_id = 0) {
  * @since 1.0
  */
 function wcmmq_s_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, $variations = false){ //Right two parameters added
-    $min_quantity = get_post_meta($product_id, '_wcmmq_s_min_quantity', true);
-    $max_quantity = get_post_meta($product_id, '_wcmmq_s_max_quantity', true);
+    $min_quantity = get_post_meta( $product_id, '_wcmmq_s_min_quantity', true );
+    $max_quantity = get_post_meta( $product_id, '_wcmmq_s_max_quantity', true );
     //var_dump($max_quantity);exit;
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ_S::getOption( '_wcmmq_s_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ_S::getOption( '_wcmmq_s_max_quantity' );
@@ -81,7 +81,10 @@ add_filter('woocommerce_add_to_cart_validation', 'wcmmq_s_min_max_valitaion', 10
  * @since 1.0
  */
 function wcmmq_s_update_cart_validation( $true, $cart_item_key, $values, $quantity ) { 
-    $product_id = $values['product_id'];
+    if( ! isset( $values['product_id'] ) ){
+        return $true;
+    }
+    $product_id = $values['product_id']; //Already checked
     
     $min_quantity = get_post_meta($product_id, '_wcmmq_s_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_s_max_quantity', true);
@@ -127,7 +130,7 @@ function wcmmq_s_quantity_input_args($args, $product){
     //if(is_cart() ){
     
     $product_id = get_the_ID();
-    if(is_cart() ){
+    if( is_cart() ){
         if( $product->get_type() == 'variation' ){
             $product_id = $product->get_parent_id();
         }else{
@@ -144,7 +147,7 @@ function wcmmq_s_quantity_input_args($args, $product){
 
     $args['max_value'] = $args['max_qty'] = $max_quantity; // Max quantity (default = -1)
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
-    if( !is_cart() ){
+    if( ! is_cart() ){
         $args['input_value'] = $min_quantity; // Min quantity (default = 0)
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)

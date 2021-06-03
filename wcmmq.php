@@ -166,7 +166,7 @@ class WC_MMQ_S {
      */
     public static function getOption( $kewword = false ){
         $data = get_option( self::KEY );
-        return $kewword ? $data[$kewword] : false;
+        return $kewword && isset( $data[$kewword] ) ? $data[$kewword] : false;
     }
     
     /**

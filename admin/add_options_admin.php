@@ -70,9 +70,9 @@ function wcmmq_s_save_field_data( $post_id ){
     }
     
     //Updating Here
-    update_post_meta( $post_id, '_wcmmq_s_min_quantity', esc_attr( $_wcmmq_s_min_quantity ) ); 
-    update_post_meta( $post_id, '_wcmmq_s_max_quantity', esc_attr( $_wcmmq_s_max_quantity ) ); 
-    update_post_meta( $post_id, '_wcmmq_s_product_step', esc_attr( $_wcmmq_s_product_step ) ); 
+    update_post_meta( $post_id, '_wcmmq_s_min_quantity', $_wcmmq_s_min_quantity );  //XSS ok, Already santizied_text_field
+    update_post_meta( $post_id, '_wcmmq_s_max_quantity', $_wcmmq_s_max_quantity );  //XSS ok, Already santizied_text_field
+    update_post_meta( $post_id, '_wcmmq_s_product_step', $_wcmmq_s_product_step );  //XSS ok, Already santizied_text_field
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_s_save_field_data' );
 
