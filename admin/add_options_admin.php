@@ -8,7 +8,18 @@
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
  */
 function wcmmq_s_add_field_in_panel(){
-    $args = false;
+    $args = [];
+
+    $args[] = array(
+        'id'        =>  '_wcmmq_s_product_step',
+        'name'        =>  '_wcmmq_s_product_step',
+        'label'     =>  __('Quantity Step','wcmmq'),
+        'class'     =>  'wcmmq_s_input',
+        'type'      =>  'number',
+        'desc_tip'  =>  true,
+        'description'=> __('Enter quantity Step','wcmmq'),
+    );
+
     $args[] = array(
         'id'        =>  '_wcmmq_s_min_quantity',
         'name'        =>  '_wcmmq_s_min_quantity',
@@ -27,16 +38,6 @@ function wcmmq_s_add_field_in_panel(){
         'type'      =>  'number',
         'desc_tip'  =>  true,
         'description'=> __('Enter Maximum Quantity for this Product','wcmmq'),
-    );
-    
-    $args[] = array(
-        'id'        =>  '_wcmmq_s_product_step',
-        'name'        =>  '_wcmmq_s_product_step',
-        'label'     =>  __('Quantity Step','wcmmq'),
-        'class'     =>  'wcmmq_s_input',
-        'type'      =>  'number',
-        'desc_tip'  =>  true,
-        'description'=> __('Enter quantity Step','wcmmq'),
     );
     
     foreach($args as $arg){

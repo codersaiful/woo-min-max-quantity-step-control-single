@@ -9,35 +9,69 @@
  */
 function wcmmq_s_check_quantity_in_cart( $product_id, $variation_id = 0 ) {
     global $woocommerce;
-    foreach($woocommerce->cart->get_cart() as $key => $value ) {
+    foreach( $woocommerce->cart->get_cart() as $key => $value ) {
         if( $product_id == $value['product_id'] && $variation_id == $value['variation_id'] ) {
- 	    return $value['quantity'];
+ 	        return $value['quantity'];
         }
     }
     return 0;
 }
 
+/**
+ * Qty Validation based on Step
+ * Added on Version: 1.8.3
+ * 
+ * @param type $quantity
+ * @param type $min_quantity
+ * @param type $step
+ * @return boolean True for pass valid, false for Fail
+ */
+function wcmmq_qty_validation_by_step_modulous( $quantity = false, $min_quantity = false, $step = false, $specific_msge = false ){
+
+    if(!is_numeric( $quantity ) || !is_numeric( $step ))return false;
+    $consnt_value = 1000000;
+    $quantity_int = intval( $quantity * $consnt_value );
+    $min_quantity_int = intval( $min_quantity * $consnt_value );
+    $step_int = intval( $step * $consnt_value );
+    $final_qty = intval( $quantity_int - $min_quantity_int );
+    $module = $final_qty % $step_int;
+
+    if($module == 0) return true;
+    
+    $should_min = $quantity > $min_quantity ? ($quantity - ($module/$consnt_value)) : $min_quantity;
+    $should_next = $should_min + $step;
+    $message = sprintf( __( "Please enter a valid value. The two nearest valid values are %s and %s", 'wcmmq') . $specific_msge,$should_min,$should_next);
+    // $message = sprintf( WC_MMQ::getOption( '_wcmmq_step_error_valiation' ) . $specific_msge, $should_min, $should_next );
+    wc_add_notice( $message, 'error' );
+    return false;
+}
 
 /**
  * Setting minimum and maximum quantity validation when product adding to cart. 
  * We also used current quantity [$current_qty_inCart] of cart for checking limitation.
  * 
- * @param type $bool
- * @param type $product_id post Id
- * @param type $quantity Quantity when will add to cart
- * @param type $variation_id for Variable product
- * @param type $variations Variations as Array
+ * @param type bool
+ * @param type int post Id
+ * @param type int Quantity when will add to cart
+ * @param type int for Variable product
+ * @param type array Variations as Array
  * @return boolean True or false
  * 
  * @link https://docs.woocommerce.com/wc-apidocs/source-class-WC_AJAX.html#365 Details
  * @since 1.0
  */
-function wcmmq_s_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, $variations = false){ //Right two parameters added
+function wcmmq_s_min_max_valitaion( $bool, $product_id, $quantity, $variation_id = 0, $variations = false ){ //Right two parameters added
+    $product = wc_get_product( $product_id );
+    // if product is sold individually then we can immediately exit here
+    if( $product->is_sold_individually() ) return true;
+    
     $min_quantity = get_post_meta( $product_id, '_wcmmq_s_min_quantity', true );
     $max_quantity = get_post_meta( $product_id, '_wcmmq_s_max_quantity', true );
-    //var_dump($max_quantity);exit;
+    $step_quantity = get_post_meta( $product_id, '_wcmmq_s_product_step', true );
+    
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ_S::getOption( '_wcmmq_s_min_quantity' );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ_S::getOption( '_wcmmq_s_max_quantity' );
+    $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ_S::getOption( '_wcmmq_s_product_step' );
 
     /**
      * Getting current Quantity from Cart
@@ -46,9 +80,11 @@ function wcmmq_s_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0
     $total_quantity = $current_qty_inCart + $quantity;
     $product_name = get_the_title( $product_id );
     
-    if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity  ){
+    $modulous = wcmmq_qty_validation_by_step_modulous( $quantity, $min_quantity, $step_quantity );
+
+    if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous  ){
         return true;
-    }elseif($min_quantity && $total_quantity < $min_quantity ){
+    }elseif( $min_quantity && $total_quantity < $min_quantity ){
         $message = sprintf( WC_MMQ_S::getOption( '_wcmmq_s_msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         wc_add_notice( $message, 'error' );
         return;
@@ -60,7 +96,11 @@ function wcmmq_s_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0
         }
         $message .= sprintf( WC_MMQ_S::getOption( '_wcmmq_s_msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         wc_add_notice( $message, 'error' );
-        return;
+        return false;
+    }elseif( !$modulous ){
+        // $message = "Number should be ...";
+        // wc_add_notice( $message, 'error' );
+        return false;
     }else{
         return true;
     }
@@ -127,8 +167,10 @@ add_filter('woocommerce_update_cart_validation', 'wcmmq_s_update_cart_validation
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_quantity_input.html#1234 Details of filter 'woocommerce_quantity_input_args'
  */
 function wcmmq_s_quantity_input_args($args, $product){
-    //if(is_cart() ){
     
+    // return default if product is sold individually
+    if( $product->is_sold_individually() ) return $args;
+
     $product_id = get_the_ID();
     if( is_cart() ){
         if( $product->get_type() == 'variation' ){
@@ -145,14 +187,27 @@ function wcmmq_s_quantity_input_args($args, $product){
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ_S::getOption( '_wcmmq_s_max_quantity' );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ_S::getOption( '_wcmmq_s_product_step' );
 
-    $args['max_value'] = $args['max_qty'] = $max_quantity; // Max quantity (default = -1)
+    // Max quantity (default = -1)
+    // simple product
+    if( isset( $args['max_value'] ) && $args['max_value'] > -1){
+        // stock quantity already set
+        $args['max_value']  = $max_quantity && $max_quantity <= $args['max_value']   ? $max_quantity : $args['max_value'];
+
+    }elseif( !empty( $args['max_qty'] ) ){
+        // variable product
+        // stock quantity already set
+        $args['max_qty']    = $max_quantity && $max_quantity <= $args['max_qty']     ? $max_quantity : $args['max_qty'];
+    }else{
+        $args['max_value'] = $args['max_qty'] = $max_quantity;
+    }
+
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
     if( ! is_cart() ){
         $args['input_value'] = $min_quantity; // Min quantity (default = 0)
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
 
-    //}
+
     return $args;
 }
 add_filter('woocommerce_quantity_input_args','wcmmq_s_quantity_input_args',10,2);
@@ -164,16 +219,15 @@ add_filter('woocommerce_available_variation','wcmmq_s_quantity_input_args',10,2)
  * @return void
  * @since 1.0
  */
-function wcmmq_s_set_min_for_single(){
-    $product_id = get_the_ID();
-    $min_quantity = get_post_meta($product_id, '_wcmmq_s_min_quantity', true);
+function wcmmq_s_set_min_for_single( $quantity, $product ){
+    $min_quantity = get_post_meta( $product->get_id(), '_wcmmq_s_min_quantity', true);
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ_S::getOption( '_wcmmq_s_min_quantity' ); //Regenerate from Default
-    if( ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
+    if( !$product->is_sold_individually() && ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
        return $min_quantity; 
     }
     return 1;
 }
-add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single');
+add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 10, 2 );
 
 /**
  * Setting quantity in Loop of Shop Page
@@ -185,9 +239,9 @@ add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single');
  * @return type
  */
 function wcmmq_s_set_min_qt_in_shop_loop($button = false,$product = false,$args = false){
+
     if( $button && $product && $args ):
     $product_id = get_the_ID();
-    $product_name = get_the_title();
     $min_quantity = get_post_meta($product_id, '_wcmmq_s_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_s_max_quantity', true);
     $step_quantity = get_post_meta($product_id, '_wcmmq_s_product_step', true);
@@ -196,16 +250,16 @@ function wcmmq_s_set_min_qt_in_shop_loop($button = false,$product = false,$args 
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ_S::getOption( '_wcmmq_s_max_quantity' );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ_S::getOption( '_wcmmq_s_product_step' );
     
-    
+
     if( ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
-        $args['quantity'] = $min_quantity; 
-        $args['max_value'] = $max_quantity;
-         $args['min_value'] = $min_quantity;
-         $args['step'] = $step_quantity;
+        $args['quantity']   = $min_quantity; 
+        $args['max_value']  = $max_quantity;
+        $args['min_value']  = $min_quantity;
+        $args['step']       = $step_quantity;
     }
     return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" %s>%s</a>',
 		esc_url( $product->add_to_cart_url() ),
-                esc_attr( WC_MMQ_S::getOption( '_wcmmq_s_min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
+        esc_attr( WC_MMQ_S::getOption( '_wcmmq_s_min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
 		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
 		esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
 		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',

@@ -3,9 +3,9 @@ Contributors: codersaiful,codeastrology
 Donate link: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 5.7.2
+Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 1.8
+Stable tag: 1.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,6 +49,10 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 `/assets/screenshot-8.png`
 
 == Changelog ==
+
+= 1.9 =
+ * Version update
+ * Cart page fatal error solved
 
 = 1.8 =
  * Cart Validation bug fix

@@ -7,11 +7,11 @@
  * Author URI: https://codecanyon.net/user/codersaiful
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 1.8
+ * Version: 1.9
  * Requires at least:    4.0.0
- * Tested up to:         5.7.2
+ * Tested up to:         5.8
  * WC requires at least: 3.0.0
- * WC tested up to: 	 5.3.0
+ * WC tested up to: 	 5.5.2
  * 
  * Text Domain: wcmmq
  */
