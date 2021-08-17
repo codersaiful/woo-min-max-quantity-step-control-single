@@ -26,7 +26,7 @@ function wcmmq_s_check_quantity_in_cart( $product_id, $variation_id = 0 ) {
  * @param type $step
  * @return boolean True for pass valid, false for Fail
  */
-function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $quantity, $min_quantity, $step_quantity ){
+function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity ){
 
     if(!is_numeric( $quantity ) || !is_numeric( $step_quantity ))return false;
     $consnt_value = 1000000;
@@ -42,7 +42,8 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $quantit
     
     $should_min = $quantity > $min_quantity ? ($quantity - ($module/$consnt_value)) : $min_quantity;
     $should_next = $should_min + $step_quantity;
-    $modulous = apply_filters( 'wcmmq_last_step_checker_filter', $modulous, $product_id, $quantity, $min_quantity, $step_quantity );
+    // var_dump($module, $modulous);
+    $modulous = apply_filters( 'wcmmq_last_step_checker_filter', $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
     $specific_msge = false;
     wcmmq_step_error_message( $modulous, $specific_msge, $should_min, $should_next );
     return $modulous;
@@ -56,14 +57,17 @@ if( ! function_exists( 'wcmmq_step_error_message' ) ){
         wc_add_notice( $message, 'error' );
     }
 }
-add_filter( 'wcmmq_modulous_validation', 'wcmmq_qty_validation_by_step_modulous', 10, 5 );
-add_filter( 'wcmmq_last_step_checker_filter', 'wcmmq_last_step_checker', 10, 5 );
+add_filter( 'wcmmq_modulous_validation', 'wcmmq_qty_validation_by_step_modulous', 10, 6 );
+add_filter( 'wcmmq_last_step_checker_filter', 'wcmmq_last_step_checker', 10, 6 );
 if( ! function_exists( 'wcmmq_last_step_checker' ) ){
-    function wcmmq_last_step_checker( $modulous, $product_id, $quantity, $min_quantity, $step_quantity ){
+    function wcmmq_last_step_checker( $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity ){
 
         //Only if true
         if( $modulous ) return $modulous;
         $product = wc_get_product( $product_id );
+        if( $product->get_type() == 'variable' ){
+            $product = wc_get_product( $variation_id );
+        }
         //Only if stock manage
         if( ! $product->managing_stock() ) return $modulous;
 
@@ -74,7 +78,6 @@ if( ! function_exists( 'wcmmq_last_step_checker' ) ){
         if( $quantity < $last_v_stock) return $modulous;
         
         if( $quantity == ( $last_step + $last_v_stock ) ) return true;
-        
         
         return $modulous;
     
@@ -116,7 +119,8 @@ function wcmmq_s_min_max_valitaion( $bool, $product_id, $quantity, $variation_id
     $product_name = get_the_title( $product_id );
     
     // $modulous = wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $quantity, $min_quantity, $step_quantity );
-    $modulous = apply_filters( 'wcmmq_modulous_validation', false, $product_id, $quantity, $min_quantity, $step_quantity );
+    $modulous = apply_filters( 'wcmmq_modulous_validation', false, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
+    // var_dump( $modulous);
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous  ){
         return true;
     }elseif( $min_quantity && $total_quantity < $min_quantity ){
