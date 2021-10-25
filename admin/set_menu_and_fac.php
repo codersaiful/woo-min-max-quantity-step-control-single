@@ -499,12 +499,33 @@ jQuery(document).ready(function($){
 }
 
 function wcmmq_load_custom_wp_admin_style() {
+    
+    /**
+     * Select2 CSS file including. 
+     * 
+     * @since 1.0.3
+     */    
+    wp_enqueue_style( 'select2-css', WC_MMQ_BASE_URL . 'assets/css/select2.min.css' );
+
+    /**
+     * Select2 jQuery Plugin file including. 
+     * Here added min version. But also available regular version in same directory
+     * 
+     * @since 1.9
+     */
+    wp_enqueue_script( 'select2', WC_MMQ_BASE_URL . 'assets/js/select2.full.min.js', array( 'jquery' ), '4.0.5', true );
+
+    
+    wp_register_script( 'wcmmq-admin-script', WC_MMQ_BASE_URL . 'assets/js/admin.js', array( 'jquery','select2' ), WC_MMQ::getVersion(), true );
+    wp_enqueue_script( 'wcmmq-admin-script' );
+    
     wp_register_style( 'wcmmq_css', WC_MMQ_BASE_URL . 'assets/css/wcmmq_style.css', false, WC_MMQ::getVersion() );
     wp_enqueue_style( 'wcmmq_css' );
 
     wp_register_style( 'ultraaddons-common-css', WC_MMQ_BASE_URL . 'assets/css/admin-common.css', false, WC_MMQ::getVersion() );
     wp_enqueue_style( 'ultraaddons-common-css' );
 
+    
         
 }
 add_action( 'admin_enqueue_scripts', 'wcmmq_load_custom_wp_admin_style' );

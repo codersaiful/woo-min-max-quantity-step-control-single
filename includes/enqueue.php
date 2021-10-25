@@ -19,12 +19,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
      */
     function wcmmq_enqueue(){
 
-        /**
-         * Select2 CSS file including. 
-         * 
-         * @since 1.0.3
-         */    
-        wp_enqueue_style( 'select2', WC_MMQ_BASE_URL . 'assets/css/select2.min.css', array( 'jquery' ), '1.8.2' );
+        
 
         wp_register_style( 'wcmmq-front-style', WC_MMQ_BASE_URL . 'assets/wcmmq-front.css', false, '1.0.0' );
         wp_enqueue_style( 'wcmmq-front-style' );
@@ -38,14 +33,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
         wp_register_script( 'attrchange', WC_MMQ_BASE_URL . 'assets/js/attrchange.js', array( 'jquery' ), '1.0', true );
         wp_enqueue_script( 'attrchange' );
         
-        /**
-         * Select2 jQuery Plugin file including. 
-         * Here added min version. But also available regular version in same directory
-         * 
-         * @since 1.9
-         */
-        wp_enqueue_script( 'select2', WC_MMQ_BASE_URL . 'assets/js/select2.min.js', array( 'jquery' ), '4.0.5', true );
-
+        
         wp_register_script( 'wcmmq-script', WC_MMQ_BASE_URL . 'assets/variation-wcmmq.js', array( 'jquery' ), '1.0.0', true );
         wp_enqueue_script( 'wcmmq-script' );
         
