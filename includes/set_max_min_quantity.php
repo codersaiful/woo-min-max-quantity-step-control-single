@@ -698,20 +698,7 @@ EOF;
 add_action('wp_head','wcmmq_add_custom_css');
 
 
-/**
- * This feature should control from admin panel
- * I mean: when will activate, then bellow code will execute
- */
-add_action( 'init', 'wcmmq_float_stock_amount', PHP_INT_MAX );
-if ( ! function_exists( 'wcmmq_float_stock_amount' ) ) {
-	/**
-	 * wcmmq_float_stock_amount.
-	 */
-	function wcmmq_float_stock_amount() {
-		remove_filter( 'woocommerce_stock_amount', 'intval' );
-		add_filter(    'woocommerce_stock_amount', 'floatval' );
-	}
-}
+
 
 /**
  * To fix the issue with each quantity step
