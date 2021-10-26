@@ -1,5 +1,5 @@
 <?php
-
+//var_dump(defined('WC_MMQ_PRO_VERSION'));
 /**
  * Generate and convert Message and replace right value on selected keyword.
  * Suppose user want to show min_quantity in message, now user able to customize message and where user want to 
@@ -160,7 +160,7 @@ function wcmmq_replaced_msg( $text, $key_arr = array(), $val_arr = array() ){
  * @since 1.0
  */
 function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, $variations = false){ //Right two parameters added
-
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product = wc_get_product( $product_id );
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return true;
@@ -168,7 +168,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
     $max_quantity = get_post_meta($product_id, '_wcmmq_max_quantity', true);
     $step_quantity = get_post_meta($product_id, '_wcmmq_product_step', true); //Version 1.8.3
-     if($variation_id){
+     if($variation_id && $is_variable_support ){
          $v_min_qty = get_post_meta( $variation_id, '_wcmmq_min_quantity', true );
          $v_max_qty = get_post_meta( $variation_id, '_wcmmq_max_quantity', true );
          $v_step_quantity = get_post_meta( $variation_id, '_wcmmq_product_step', true );//Version 1.8.3
@@ -266,6 +266,7 @@ add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 
  * @since 1.0
  */
 function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity ) { 
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product_id = $values['product_id'];
     
     $min_quantity = get_post_meta($product_id, '_wcmmq_min_quantity', true);
@@ -273,7 +274,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     $step_quantity = get_post_meta($product_id, '_wcmmq_product_step', true); //Version 1.8.3
     
     $variation_id = $values['variation_id'];
-    if(isset( $variation_id ) && !empty( $variation_id )){
+    if( $is_variable_support && !empty( $variation_id ) ){
          $v_min_qty = get_post_meta( $variation_id, '_wcmmq_min_quantity', true );
          $v_max_qty = get_post_meta( $variation_id, '_wcmmq_max_quantity', true );
          $v_step_quantity = get_post_meta( $variation_id, '_wcmmq_product_step', true );//Version 1.8.3
@@ -358,6 +359,7 @@ add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation',
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_quantity_input.html#1234 Details of filter 'woocommerce_quantity_input_args'
  */
 function wcmmq_quantity_input_args( $args, $product){
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
     //if(is_cart() ){
@@ -380,7 +382,7 @@ function wcmmq_quantity_input_args( $args, $product){
     $max_quantity = get_post_meta($product_id, '_wcmmq_max_quantity', true);
     $step_quantity = get_post_meta($product_id, '_wcmmq_product_step', true);
     
-    if(!empty( $variation_id )){
+    if( $is_variable_support && ! empty( $variation_id )){
          $v_min_qty = get_post_meta( $variation_id, '_wcmmq_min_quantity', true );
          $v_max_qty = get_post_meta( $variation_id, '_wcmmq_max_quantity', true );
          $v_step_qty = get_post_meta( $variation_id, '_wcmmq_product_step', true );
