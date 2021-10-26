@@ -162,6 +162,12 @@ class WC_MMQ {
      */
     public function __construct() {
 
+        //Condition and check php verion and WooCommerce activation
+        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+            add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+            return;
+        }
+
         add_action('init', [$this, 'i18n']);
 
         $dir = dirname(__FILE__);
@@ -338,6 +344,18 @@ class WC_MMQ {
         echo '<div style="width:400px; margin: 30px 0 0 181px;">';
         var_dump($something);
         echo '</div>';
+    }
+
+    public function admin_notice_missing_main_plugin(){
+        if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+
+           $message = sprintf(
+                   esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'wcmmq' ),
+                   '<strong>' . esc_html__( 'Min Max Quantity & Step Control for WooCommerce', 'wcmmq' ) . '</strong>',
+                   '<strong><a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '" target="_blank">' . esc_html__( 'WooCommerce', 'wcmmq' ) . '</a></strong>'
+           );
+
+           printf( '<div class="notice notice-error is-dismissible"><p>%1$s</p></div>', $message );
     }
     
 
