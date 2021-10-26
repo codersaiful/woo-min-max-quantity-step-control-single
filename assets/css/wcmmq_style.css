@@ -215,7 +215,10 @@ ul.wcmmq_each_terms_header small {
 }
 
 .wrap.wcmmq_wrap.ultraaddons .wcmmq_config_form select,
-.wrap.wcmmq_wrap.ultraaddons span.select2.select2-container{width: auto;max-width: 500px;}
+.wrap.wcmmq_wrap.ultraaddons span.select2.select2-container{
+    width: 100% !important;
+    max-width: 500px;
+}
 .wrap.wcmmq_wrap.ultraaddons .ui-sortable-helper {
     background: white;
     padding: 10px;
@@ -373,4 +376,15 @@ ul.wcmmq_each_terms_header small {
 .wcmmq-nav ul li:hover a {
     background: #3f51b5;
     color: #fff;
+}
+
+.wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:after,
+.wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:before {
+    content: "";
+    display: block;
+    clear: both;
+}
+.wcmmq_config_form .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    display: flex;
+    padding: 4px 6px;
 }
