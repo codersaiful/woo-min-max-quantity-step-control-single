@@ -75,8 +75,8 @@ function wcmmq_faq_page_details(){
         //set default value false for _cat_ids
         $final_data['_cat_ids'] = isset( $final_data['_cat_ids'] ) ? $final_data['_cat_ids'] : false;
         update_option( WC_MMQ::KEY, $final_data);
-        echo '<div class="updated inline"><p>Successfully Updated</p></div>';
-        echo  !$data['_wcmmq_default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
+        echo '<div class="updated"><p>Successfully Updated</p></div>';
+        //echo  ! $data['_wcmmq_default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
         
     }
     
