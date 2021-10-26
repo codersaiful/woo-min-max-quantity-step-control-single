@@ -11,4 +11,4 @@ function wcmmq_add_action_links($links) {
     $wpt_links[] = '<a href="' . admin_url('admin.php?page=wcmmq_min_max_step') . '" title="Setting">Settings</a>';
     return array_merge($wpt_links, $links);
 }
-add_filter('plugin_action_links_WC_Min_Max_Quantity/wcmmq.php', 'wcmmq_add_action_links');
+add_filter('plugin_action_links_woo-min-max-quantity-step-control-single/wcmmq.php', 'wcmmq_add_action_links');
