@@ -11,14 +11,7 @@ function wcmmq_add_menu(){
     $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' );
     
     add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
-    
-    if( !isset( $admin_page_hooks['ultraaddons'] ) ){
-        $icon_url = WC_MMQ_BASE_URL . 'assets/images/icon.png';//Our Custom Icon will be add
-        add_menu_page( UltraAddons, UltraAddons, 'manage_woocommerce', 'ultraaddons', '__return_true', $icon_url, 35);
-    }
 
-    add_submenu_page( 'ultraaddons', 'WC Min Max Step Quantity', 'Min Max Step', $capability, 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
-    remove_submenu_page( 'ultraaddons', 'ultraaddons' );
 }
 add_action( 'admin_menu','wcmmq_add_menu' );
 
