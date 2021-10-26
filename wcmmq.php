@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Min Max Quantity & Step Control for WooCommerce
  * Plugin URI: https://min-max-quantity.codeastrology.com/
