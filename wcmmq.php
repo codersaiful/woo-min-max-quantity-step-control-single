@@ -23,9 +23,7 @@ if (!defined('ABSPATH')) {
 /**
  * Defining constant
  */
-if ( !defined( 'UltraAddons' ) ) {
-    define( 'UltraAddons', __( 'UltraAddons', 'wcmmq' ));
-}
+
 define('WC_MMQ__FILE__', __FILE__);
 define('WC_MMQ_VERSION', '1.9.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
