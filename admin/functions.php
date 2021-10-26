@@ -14,6 +14,7 @@ function wcmmq_before_form_free_content(){
         <li><a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews/#new-post" target="_blank">Rate Our Plugin on wordpress.org</a></li>
         <li><a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/" target="_blank">WordPress Forum</a></li>
         <li><a href="https://codeastrology.com/support/" target="_blank">Need Help? Contact with us</a></li>
+        <li><a href="https://github.com/codersaiful/woo-min-max-quantity-step-control/issues/new" target="_blank">Request New Features</a></li>
     </ul>
 </div>    
 <?php    
