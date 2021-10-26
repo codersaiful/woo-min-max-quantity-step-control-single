@@ -123,32 +123,15 @@ function wcmmq_faq_page_details(){
                             </td>
 
                         </tr>
+                        <?php
+                        /**
+                         * Obviously need tr and td here
+                         * 
+                         */
+                        do_action( 'wcmmq_setting_bottom_row', $saved_data );
+                        ?>
 
-
-                        <tr>
-                            <th><label for="wcmmq_cat_ids">Choose Category</label></th>
-                            <td>
-                                <?php
-                                $args = array(
-                                    'hide_empty'    => false, 
-                                    'orderby'       => 'count',
-                                    'order'         => 'DESC',
-                                );
-
-                                //WooCommerce Product Category Object as Array
-                                $cat_object = get_terms( 'product_cat', $args );
-                                $selected_cat_ids = isset( $saved_data['_cat_ids'] ) && !empty( $saved_data['_cat_ids'] ) ? $saved_data['_cat_ids'] : false;
-                                ?>
-                                <select name="data[_cat_ids][]" data-name="cat_ids" class="ua_input_select" id="wcmmq_cat_ids" multiple>
-                                    <?php
-                                    foreach ( $cat_object as $category ) {
-                                        echo "<option value='{$category->term_id}' " . ( is_array( $selected_cat_ids ) && in_array( $category->term_id, $selected_cat_ids ) ? 'selected' : false ) . ">{$category->name} - {$category->slug} ({$category->count})</option>";
-                                    }
-                                    ?>
-                                </select>
-                                <p style="color: #228b22;">For Multiple select, Press Ctrl + your Category. | to deselect, same way (Ctrl+selectedCat)</p>
-                            </td>
-                        </tr>
+                        
                     </table>
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button">Save All</button>
