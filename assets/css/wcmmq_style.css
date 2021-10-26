@@ -388,3 +388,9 @@ ul.wcmmq_each_terms_header small {
     display: flex;
     padding: 4px 6px;
 }
+
+.wrap.wcmmq_wrap.ultraaddons .with-background, .wrap.wcmmq_wrap.ultraaddons .ultraaddons-panel .with-background {
+    background: #007694;
+    color: white;
+
+}
