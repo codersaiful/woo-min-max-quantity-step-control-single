@@ -169,7 +169,16 @@ function wcmmq_faq_page_details(){
             <div class="ultraaddons-panel">
                 <h2 class="with-background black-background">Supported Terms</h2>
                 <?php
-$term_lists = get_object_taxonomies('product','objects');
+                
+$term_lists_temp = get_object_taxonomies('product','objects');
+
+$wcmmq_all_terms= apply_filters( 'wcmmq_all_terms', false, $term_lists_temp, $saved_data );
+if( $wcmmq_all_terms ){
+    $term_lists = $term_lists_temp;
+}else{
+    $term_lists['product_cat']=$term_lists_temp['product_cat'];
+}
+
 $supported_terms = isset( $saved_data['supported_terms'] ) ?$saved_data['supported_terms'] : array( 'product_cat' );
 $ourTermList = $select_option = false;
 if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
@@ -201,7 +210,15 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                     echo $select_option;
                                     ?>
                                 </select>
-                                <?php  ?>
+                                <p class="wcmmq_terms_promotion">
+                                <?php 
+                                    if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
+                                ?>
+                                    For Mulitple Terms, <a href="https://min-max-quantity.codeastrology.com">Upgrade to PRO</a>    
+                                <?php
+                                    };
+                                ?>
+                                </p>
                             </td>
 
                         </tr>
@@ -222,8 +239,10 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                 <div class="wcmmq-terms-wrapper">
 <?php
 
-//$term_lists = get_object_taxonomies('product','objects');
-$support_all_terms = apply_filters( 'wcmmq_all_terms', false, $saved_data );
+/**
+ * Automatically display all terms in Set on Terrms
+ */
+$support_all_terms = apply_filters( 'wcmmq_display_all_terms', false, $saved_data );
 if( $support_all_terms ){
     $term_lists = get_object_taxonomies('product','objects');
     //var_dump($term_lists);
