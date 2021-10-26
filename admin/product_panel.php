@@ -7,20 +7,20 @@
  * @param Array $product_data_tab
  * @return Array it will return Tabs Array
  */
-function wcmmq_s_product_edit_tab( $product_data_tab){
+function wcmmq_product_edit_tab( $product_data_tab){
     /*
-    $product_data_tab['wcmmq_s_min_max_step'] = array(
+    $product_data_tab['wcmmq_min_max_step'] = array(
             'label' => __('Min Max & Step','wcmmq'),
-            'target'   => 'wcmmq_s_min_max_step', //This is targetted div's id
+            'target'   => 'wcmmq_min_max_step', //This is targetted div's id
             'class'     => array('show_if_simple'),//array('hide_if_grouped','hide_if_downloadable'),
             );
     return $product_data_tab;
     */
 
-    $my_tab['wcmmq_s_min_max_step'] = array(
+    $my_tab['wcmmq_min_max_step'] = array(
         'label' => __('Min Max & Step','wcmmq'),
-        'target'   => 'wcmmq_s_min_max_step', //This is targetted div's id
-        'class'     => array('hide_if_grouped','hide_if_downloadable'),
+        'target'   => 'wcmmq_min_max_step', //This is targetted div's id
+        'class'     => array( 'hide_if_downloadable','hide_if_grouped' ), //'hide_if_grouped',
         );
 
     $position = 1; // Change this for desire position 
@@ -30,22 +30,22 @@ function wcmmq_s_product_edit_tab( $product_data_tab){
     return $tabs; //return $product_data_tab;
 
 }
-add_filter('woocommerce_product_data_tabs','wcmmq_s_product_edit_tab');
+add_filter('woocommerce_product_data_tabs','wcmmq_product_edit_tab');
 
 /**
  * For Tab options of Min Max Step
- * We also add a new action to this function name: woocommerce_product_options_wcmmq_s_minmaxstep
+ * We also add a new action to this function name: woocommerce_product_options_wcmmq_minmaxstep
  * To add options filed to here
  * 
  * @since 1.0.2
  */
-function wcmmq_s_product_tab_options(){
+function wcmmq_product_tab_options(){
 ?>
-    <div  id="wcmmq_s_min_max_step" class="panel woocommerce_options_panel">
+    <div  id="wcmmq_min_max_step" class="panel woocommerce_options_panel">
         <div class="options_group">
-            <?php do_action( 'woocommerce_product_options_wcmmq_s_minmaxstep' ); ?>
+            <?php do_action( 'woocommerce_product_options_wcmmq_minmaxstep' ); ?>
         </div>
     </div>
 <?php 
 }
-add_filter('woocommerce_product_data_panels','wcmmq_s_product_tab_options');
+add_filter('woocommerce_product_data_panels','wcmmq_product_tab_options');
