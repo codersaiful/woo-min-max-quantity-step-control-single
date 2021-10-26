@@ -82,12 +82,14 @@ function wcmmq_faq_page_details(){
     
     
     $saved_data = WC_MMQ::getOptions();
-    $plusMinus_checkbox = isset( $saved_data[ '_wcmmq_qty_plus_minus_btn' ] ) && $saved_data[ '_wcmmq_qty_plus_minus_btn' ] == '1' ? 'checked' : false;
+    
 ?>
 <div class="wrap wcmmq_wrap ultraaddons">
-    <h1 class="wp-heading-inline"><?php _e("Woocommerce Min Max Step Control", "wcmmq");?></h1>
+    <h1 class="wp-heading"><?php _e("Woocommerce Min Max Step Control", "wcmmq");?></h1>
     <div class="fieldwrap">
-
+        <?php
+        do_action( 'wcmmq_before_form' );
+        ?>
         <form action="" method="POST">
                 <div class="ultraaddons-panel">
                     <h2 class="with-background">Settings (Universal)</h2>
@@ -352,61 +354,15 @@ jQuery(document).ready(function($){
     });    
 });
 </script>
-
-            <div class="ultraaddons-panel">
-                <h2 class="with-background">Quantity Prefix/Suffix</h2>
-                <table class="wcmmq_config_form">
-                    <tr>
-                        <th>Quantity Button</th>
-                        <td>
-                            <label class="switch">
-                                <input 
-                                    value="1"  
-                                    name="data[_wcmmq_qty_plus_minus_btn]" 
-                                    <?php echo $plusMinus_checkbox; /* finding checked or null */ ?> 
-                                    type="checkbox" id="_wcmmq_qty_plus_minus_btn">
-                                <div class="slider round"><!--ADDED HTML -->
-                                    <span class="on">ON</span><span class="off">OFF</span><!--END-->
-                                </div>
-                            </label>
-                            
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <th>Prefix of Quantity</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_prefix_quantity]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_prefix_quantity'] ), 'wcmmq-prefix-quantity', $settings ); ?>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <th>Sufix Quantity</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_sufix_quantity]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_sufix_quantity'] ), 'wcmmq-sufix-quantity', $settings ); ?>
-                        </td>
-
-                    </tr>
-
-                </table>
-                <div class="ultraaddons-button-wrapper">
-                    <button name="configure_submit" class="button-primary primary button">Save All</button>
-                </div>
-            </div>
-
+                <?php 
+                
+                /**
+                 * @Hook Action: wcmmq_form_panel
+                 * To add new panel in Forms
+                 * @since 1.8.6
+                 */
+                do_action( 'wcmmq_form_panel_before_message', $saved_data );
+                ?>
             <div class="ultraaddons-panel">
                 <h2 class="with-background">Messages</h2>
                 <table class="wcmmq_config_form wcmmq_config_form_message">
@@ -481,6 +437,15 @@ jQuery(document).ready(function($){
                 </table>
 <!--                <div class="wcmmq_waring_msg"><i>Important Note</i>: Don't change [<b>%s</b>], because it will work as like  variable. Here 1st [<b>%s</b>] will return Quantity(min/max) and second [<b>%s</b>] will return product's name.</div>-->
             </div>
+                <?php 
+                
+                /**
+                 * @Hook Action: wcmmq_form_panel
+                 * To add new panel in Forms
+                 * @since 1.8.6
+                 */
+                do_action( 'wcmmq_form_panel_bottom', $saved_data );
+                ?>
             <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background">
                 <button name="configure_submit" class="button-primary primary button">Save Change</button>
                 <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">Reset Default</button>

@@ -174,12 +174,8 @@ class WC_MMQ {
             include_once $dir . '/admin/add_options_admin.php';
             include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
-            //include_once $dir . '/admin/updater.php'; //Don't Activate this line, Here still problem.
         }
         
-        if( $this->getOption( '_wcmmq_qty_plus_minus_btn' ) == '1'){
-            include_once $dir . '/includes/plus_minus_button.php';
-        }
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';
