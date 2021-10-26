@@ -1,27 +1,5 @@
 <?php
 
-function ssls_find_replace(...$args){
-    $ssss = 'this is a[product_name] message. this is a[max_quantity] message  with [min_quantity] and with other value.';
-    //([\[])\w+[\]]
-    $patern = "/\[\w+\]/";
-    $left_array = $right_array = array();
-    if(preg_match_all($patern, $ssss, $matches)){
-        $founded = isset( $matches[0] ) && is_array( $matches[0] ) ? $matches[0] : array();
-
-        foreach( $founded as $found ){
-            if( ! is_string( $found ) ) continue;
-
-            $left_array[] = $found;
-            $key = str_replace( array('[',']'),array('',''),$found );
-            $result = isset( $$key ) ? $$key : '';
-            $right_array[] = $result;
-        }
-
-    }
-    $replaced = str_replace($left_array,$right_array,$ssss);
-    return $replaced;
-}
-
 /**
  * Generate and convert Message and replace right value on selected keyword.
  * Suppose user want to show min_quantity in message, now user able to customize message and where user want to 
