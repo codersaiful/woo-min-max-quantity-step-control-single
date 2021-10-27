@@ -209,9 +209,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                         </tr>
 
                     </table>    
-                <div>
-                    <p>Terms list will update after save Once.</p>
-                </div>
+
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button">Save All</button>
                     </div>
