@@ -24,7 +24,7 @@ function wcmmq_faq_page_details(){
         //Reset 
         $data = WC_MMQ::getDefaults();
         //var_dump($value);
-        update_option( WC_MMQ::KEY, $data );
+        update_option( WC_MMQ_KEY, $data );
         echo '<div class="updated inline"><p>Reset Successfully</p></div>';
     }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
         //configure_submit
@@ -74,7 +74,7 @@ function wcmmq_faq_page_details(){
         
         //set default value false for _cat_ids
         $final_data['_cat_ids'] = isset( $final_data['_cat_ids'] ) ? $final_data['_cat_ids'] : false;
-        update_option( WC_MMQ::KEY, $final_data);
+        update_option( WC_MMQ_KEY, $final_data);
         echo '<div class="updated"><p>Successfully Updated</p></div>';
         //echo  ! $data['_wcmmq_default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
         

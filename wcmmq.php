@@ -38,6 +38,8 @@ define("WC_MMQ_BASE_URL", WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__
 define("wc_mmq_dir_base", dirname(__FILE__) . '/');
 define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
 
+//Keyword for option 
+define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
 
 //$WC_MMQ = WC_MMQ::getInstance();
 
@@ -73,13 +75,7 @@ WC_MMQ::$default_values = array(
  */
 class WC_MMQ {
 
-    /**
-     * It's need for Varification purchase code of CodeCanyon
-     *
-     * @var type int
-     */
-    public static $item_id = 22962198;
-    public static $options_name = 'wcmmq_codecanyon_purchase_code';
+    
 
     /**
      * Plugin Version
@@ -91,7 +87,7 @@ class WC_MMQ {
     const VERSION = WC_MMQ_VERSION;
 
     /**
-     * Minimum Elementor Version
+     * Minimum WooCommerce Version
      *
      * @since 1.0.0
      *
@@ -108,11 +104,6 @@ class WC_MMQ {
      */
     const MINIMUM_PHP_VERSION = '5.6';
 
-    /**
-     * Default keyword for WCMMQ
-     * You will find this in wp_options table of database
-     */
-    const KEY = 'wcmmq_universal_minmaxstep';
 
     /*
      * Set default value based on default keyword.
@@ -210,7 +201,7 @@ class WC_MMQ {
      */
     public static function install() {
         //check current value
-        $current_value = get_option(self::KEY);
+        $current_value = get_option(WC_MMQ_KEY);
         $default_value = self::$default_values;
         $changed_value = false;
         //Set default value in Options
@@ -222,9 +213,9 @@ class WC_MMQ {
                     $changed_value[$key] = $value;
                 }
             }
-            update_option(self::KEY, $changed_value);
+            update_option(WC_MMQ_KEY, $changed_value);
         } else {
-            update_option(self::KEY, $default_value);
+            update_option(WC_MMQ_KEY, $default_value);
         }
     }
 
@@ -246,7 +237,7 @@ class WC_MMQ {
      * @since 1.0.0
      */
     public static function getOptions() {
-        return get_option(self::KEY);
+        return get_option(WC_MMQ_KEY);
     }
 
     /**
@@ -257,12 +248,12 @@ class WC_MMQ {
      * @since 1.0.0
      */
     public static function getOption($kewword = false) {
-        $data = get_option(self::KEY);
+        $data = get_option( WC_MMQ_KEY );
         return $kewword && isset($data[$kewword]) ? $data[$kewword] : false;
     }
 
     public static function minMaxStep($kewword = false, $product_id = false) {
-        $data = get_option(self::KEY);
+        $data = get_option(WC_MMQ_KEY);
         $cat_ids = $data['_cat_ids'];
         //var_dump($cat_ids);
         $check_arr = false;
