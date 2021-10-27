@@ -10,8 +10,8 @@
 function wcmmq_add_field_in_panel(){
     $args = false;
     $args[] = array(
-        'id'        =>  '_wcmmq_min_quantity',
-        'name'        =>  '_wcmmq_min_quantity',
+        'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
+        'name'        =>  WC_MMQ_PREFIX. 'min_quantity',
         'label'     =>  'Min Quantity',
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
@@ -21,8 +21,8 @@ function wcmmq_add_field_in_panel(){
     );
     
     $args[] = array(
-        'id'        =>  '_wcmmq_default_quantity',
-        'name'        =>  '_wcmmq_default_quantity',
+        'id'        =>  WC_MMQ_PREFIX. 'default_quantity',
+        'name'        =>  WC_MMQ_PREFIX. 'default_quantity',
         'label'     =>  'Default Quantity (Optional)',
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
@@ -32,8 +32,8 @@ function wcmmq_add_field_in_panel(){
     );
     
     $args[] = array(
-        'id'        =>  '_wcmmq_max_quantity',
-        'name'        =>  '_wcmmq_max_quantity',
+        'id'        =>  WC_MMQ_PREFIX. 'max_quantity',
+        'name'        =>  WC_MMQ_PREFIX. 'max_quantity',
         'label'     =>  'Max Quantity',
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
@@ -43,8 +43,8 @@ function wcmmq_add_field_in_panel(){
     );
     
     $args[] = array(
-        'id'        =>  '_wcmmq_product_step',
-        'name'        =>  '_wcmmq_product_step',
+        'id'        =>  WC_MMQ_PREFIX. 'product_step',
+        'name'        =>  WC_MMQ_PREFIX. 'product_step',
         'label'     =>  'Quantity Step',
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
@@ -70,10 +70,10 @@ add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_pa
  */
 function wcmmq_save_field_data( $post_id ){
     
-    $_wcmmq_min_quantity = isset( $_POST['_wcmmq_min_quantity'] ) && is_numeric($_POST['_wcmmq_min_quantity']) ? $_POST['_wcmmq_min_quantity'] : false;
-    $_wcmmq_default_quantity = isset( $_POST['_wcmmq_default_quantity'] ) && is_numeric($_POST['_wcmmq_default_quantity']) ? $_POST['_wcmmq_default_quantity'] : false;
-    $_wcmmq_max_quantity = isset( $_POST['_wcmmq_max_quantity'] ) && is_numeric($_POST['_wcmmq_max_quantity']) ? $_POST['_wcmmq_max_quantity'] : false;
-    $_wcmmq_product_step = isset( $_POST['_wcmmq_product_step'] ) && is_numeric($_POST['_wcmmq_product_step']) ? $_POST['_wcmmq_product_step'] : false;
+    $_wcmmq_min_quantity = isset( $_POST[WC_MMQ_PREFIX. 'min_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'min_quantity']) ? $_POST[WC_MMQ_PREFIX . 'min_quantity'] : false;
+    $_wcmmq_default_quantity = isset( $_POST[WC_MMQ_PREFIX . 'default_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'default_quantity']) ? $_POST[WC_MMQ_PREFIX . 'default_quantity'] : false;
+    $_wcmmq_max_quantity = isset( $_POST[WC_MMQ_PREFIX . 'max_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'max_quantity']) ? $_POST[WC_MMQ_PREFIX . 'max_quantity'] : false;
+    $_wcmmq_product_step = isset( $_POST[WC_MMQ_PREFIX . 'product_step'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'product_step']) ? $_POST[WC_MMQ_PREFIX . 'product_step'] : false;
     if($_wcmmq_min_quantity && $_wcmmq_max_quantity && $_wcmmq_min_quantity > $_wcmmq_max_quantity){
         $_wcmmq_max_quantity = $_wcmmq_min_quantity + 5;
     }
@@ -85,10 +85,10 @@ function wcmmq_save_field_data( $post_id ){
     }
     
     //Updating Here
-    update_post_meta( $post_id, '_wcmmq_min_quantity', esc_attr( $_wcmmq_min_quantity ) ); 
-    update_post_meta( $post_id, '_wcmmq_default_quantity', esc_attr( $_wcmmq_default_quantity ) ); 
-    update_post_meta( $post_id, '_wcmmq_max_quantity', esc_attr( $_wcmmq_max_quantity ) ); 
-    update_post_meta( $post_id, '_wcmmq_product_step', esc_attr( $_wcmmq_product_step ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $_wcmmq_min_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $_wcmmq_default_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $_wcmmq_max_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'product_step', esc_attr( $_wcmmq_product_step ) ); 
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_save_field_data' );
 

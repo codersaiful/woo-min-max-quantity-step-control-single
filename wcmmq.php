@@ -38,8 +38,23 @@ define("WC_MMQ_BASE_URL", WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__
 define("wc_mmq_dir_base", dirname(__FILE__) . '/');
 define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
 
-//Keyword for option 
-define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
+/**
+ * Option key handle based on old user and new user
+ */
+$wcmmp_is_old = get_option('wcmmq_s_universal_minmaxstep') ? true : false;
+$wcmmp_is_old_pro = get_option('wcmmq_universal_minmaxstep') ? true : false;
+//var_dump(get_option('wcmmq_universal_minmaxstep'));
+if($wcmmp_is_old_pro){
+    define("WC_MMQ_PREFIX", '_wcmmq_');
+    define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
+}elseif( $wcmmp_is_old ){
+    define("WC_MMQ_PREFIX", '_wcmmq_s_');
+    define("WC_MMQ_KEY", 'wcmmq_s_universal_minmaxstep');
+}else{
+    define("WC_MMQ_PREFIX", '');
+    define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
+}
+//var_dump(WC_MMQ_PREFIX,WC_MMQ_KEY);
 
 //$WC_MMQ = WC_MMQ::getInstance();
 
@@ -53,22 +68,22 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
  * @since 1.0
  */
 WC_MMQ::$default_values = array(
-    '_wcmmq_min_quantity' => 1,
-    '_wcmmq_default_quantity' => false,
-    '_wcmmq_max_quantity' => false,
-    '_wcmmq_product_step' => 1,
-    '_wcmmq_prefix_quantity' => '',
-    '_wcmmq_sufix_quantity' => '',
-    '_wcmmq_qty_plus_minus_btn' => '1', //Added at 1.8.4 Version
-    '_wcmmq_step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'wcmmq' ),
-    '_wcmmq_msg_min_limit' => __('Minimum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
-    '_wcmmq_msg_max_limit' => __('Maximum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
-    '_wcmmq_msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
-    '_wcmmq_min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
+    WC_MMQ_PREFIX . 'min_quantity' => 1,
+    WC_MMQ_PREFIX . 'default_quantity' => false,
+    WC_MMQ_PREFIX . 'max_quantity' => false,
+    WC_MMQ_PREFIX . 'product_step' => 1,
+    WC_MMQ_PREFIX . 'prefix_quantity' => '',
+    WC_MMQ_PREFIX . 'sufix_quantity' => '',
+    WC_MMQ_PREFIX . 'qty_plus_minus_btn' => '1', //Added at 1.8.4 Version
+    WC_MMQ_PREFIX . 'step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'wcmmq' ),
+    WC_MMQ_PREFIX . 'msg_min_limit' => __('Minimum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
+    WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
     '_cat_ids' => false,
 );
 
-
+//var_dump(WC_MMQ::$default_values);
 /**
  * Main Class for "WooCommerce Min Max Quantity & Step Control"
  * We have included file from __constructor of this class [WC_MMQ]

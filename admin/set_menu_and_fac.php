@@ -43,21 +43,21 @@ function wcmmq_faq_page_details(){
             $data = WC_MMQ::getDefaults();
         }
         
-        if( !$data['_wcmmq_min_quantity'] && $data['_wcmmq_min_quantity'] != 0 &&  $data['_wcmmq_min_quantity'] !=1 && $data['_wcmmq_max_quantity'] <= $data['_wcmmq_min_quantity'] ){
-            $data['_wcmmq_max_quantity'] = $data['_wcmmq_min_quantity'] + 5;
+        if( !$data[WC_MMQ_PREFIX . 'min_quantity'] && $data[WC_MMQ_PREFIX . 'min_quantity'] != 0 &&  $data[WC_MMQ_PREFIX . 'min_quantity'] !=1 && $data[WC_MMQ_PREFIX . 'max_quantity'] <= $data[WC_MMQ_PREFIX . 'min_quantity'] ){
+            $data[WC_MMQ_PREFIX . 'max_quantity'] = $data[WC_MMQ_PREFIX . 'min_quantity'] + 5;
             echo '<div class="error notice"><p>Maximum Quantity can not be smaller, So we have added 5</p></div>';
         }
-        if( !$data['_wcmmq_product_step'] || $data['_wcmmq_product_step'] == '0' || $data['_wcmmq_product_step'] == 0 ){
-           $data['_wcmmq_product_step'] = 1; 
+        if( !$data[WC_MMQ_PREFIX . 'product_step'] || $data[WC_MMQ_PREFIX . 'product_step'] == '0' || $data[WC_MMQ_PREFIX . 'product_step'] == 0 ){
+           $data[WC_MMQ_PREFIX . 'product_step'] = 1; 
         }
         
-        if( !$data['_wcmmq_min_quantity'] || $data['_wcmmq_min_quantity'] == '0' || $data['_wcmmq_min_quantity'] == 0 ){
-           $data['_wcmmq_min_quantity'] = '0'; 
+        if( !$data[WC_MMQ_PREFIX . 'min_quantity'] || $data[WC_MMQ_PREFIX . 'min_quantity'] == '0' || $data[WC_MMQ_PREFIX . 'min_quantity'] == 0 ){
+           $data[WC_MMQ_PREFIX . 'min_quantity'] = '0'; 
         }
-        $data['_wcmmq_default_quantity'] = isset( $data['_wcmmq_default_quantity'] ) && $data['_wcmmq_default_quantity'] >= $data['_wcmmq_min_quantity'] && ( empty( $data['_wcmmq_max_quantity'] ) || $data['_wcmmq_default_quantity'] <= $data['_wcmmq_max_quantity'] ) ? $data['_wcmmq_default_quantity'] : false;
+        $data[WC_MMQ_PREFIX . 'default_quantity'] = isset( $data[WC_MMQ_PREFIX . 'default_quantity'] ) && $data[WC_MMQ_PREFIX . 'default_quantity'] >= $data[WC_MMQ_PREFIX . 'min_quantity'] && ( empty( $data[WC_MMQ_PREFIX . 'max_quantity'] ) || $data[WC_MMQ_PREFIX . 'default_quantity'] <= $data[WC_MMQ_PREFIX . 'max_quantity'] ) ? $data[WC_MMQ_PREFIX . 'default_quantity'] : false;
         
         //plus minus checkbox data fixer
-        $data[ '_wcmmq_qty_plus_minus_btn' ] = !isset( $data[ '_wcmmq_qty_plus_minus_btn' ] ) ? 0 : 1;
+        $data[ WC_MMQ_PREFIX . 'qty_plus_minus_btn' ] = !isset( $data[ WC_MMQ_PREFIX . 'qty_plus_minus_btn' ] ) ? 0 : 1;
         
         if(is_array( $data ) && count( $data ) > 0 ){
             foreach($data as $key=>$value){
@@ -76,7 +76,7 @@ function wcmmq_faq_page_details(){
         $final_data['_cat_ids'] = isset( $final_data['_cat_ids'] ) ? $final_data['_cat_ids'] : false;
         update_option( WC_MMQ_KEY, $final_data);
         echo '<div class="updated"><p>Successfully Updated</p></div>';
-        //echo  ! $data['_wcmmq_default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
+        //echo  ! $data[WC_MMQ_PREFIX . 'default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
         
     }
     
@@ -97,7 +97,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[_wcmmq_min_quantity]">Minimum Quantity</label></th>
                             <td>
-                                <input name="data[_wcmmq_min_quantity]" id="data[_wcmmq_min_quantity]" class="ua_input_number" value="<?php echo $saved_data['_wcmmq_min_quantity']; ?>"  type="number" step=any>
+                                <input name="data[_wcmmq_min_quantity]" id="data[_wcmmq_min_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -105,7 +105,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[_wcmmq_max_quantity]">Maximum Quantity</label></th>
                             <td>
-                                <input name="data[_wcmmq_max_quantity]" id="data[_wcmmq_max_quantity]" class="ua_input_number" value="<?php echo $saved_data['_wcmmq_max_quantity']; ?>"  type="number" step=any>
+                                <input name="data[_wcmmq_max_quantity]" id="data[_wcmmq_max_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -113,7 +113,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[_wcmmq_product_step]">Quantity Step</label></th>
                             <td>
-                                <input name="data[_wcmmq_product_step]" id="data[_wcmmq_product_step]" class="ua_input_number" value="<?php echo $saved_data['_wcmmq_product_step']; ?>"  type="number" step=any>
+                                <input name="data[_wcmmq_product_step]" id="data[_wcmmq_product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -121,7 +121,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[_wcmmq_default_quantity]">Default Quantity <span class="hightlighted_text">(Optional)</span></label></th>
                             <td>
-                                <input name="data[_wcmmq_default_quantity]" id="data[_wcmmq_default_quantity]" class="ua_input_number" value="<?php echo $saved_data['_wcmmq_default_quantity']; ?>"  type="number" step=any>
+                                <input name="data[_wcmmq_default_quantity]" id="data[_wcmmq_default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -376,7 +376,7 @@ jQuery(document).ready(function($){
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( esc_attr( $saved_data['_wcmmq_msg_min_limit'] ), 'wcmmq-msg-min-limit', $settings ); ?>
+                            wp_editor( esc_attr( $saved_data[WC_MMQ_PREFIX . 'msg_min_limit'] ), 'wcmmq-msg-min-limit', $settings ); ?>
                             <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
                         </td>
 
@@ -390,7 +390,7 @@ jQuery(document).ready(function($){
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_msg_max_limit'] ), 'wcmmq-msg-max-limit', $settings ); ?>
+                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit'] ), 'wcmmq-msg-max-limit', $settings ); ?>
                             <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
                         </td>
 
@@ -404,7 +404,7 @@ jQuery(document).ready(function($){
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_msg_max_limit_with_already'] ), 'wcmmq-msg-max-limit-with-already', $settings ); ?>
+                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit_with_already'] ), 'wcmmq-msg-max-limit-with-already', $settings ); ?>
                             <p>Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]</p>
                         </td>
                     </tr>
@@ -417,7 +417,7 @@ jQuery(document).ready(function($){
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_min_qty_msg_in_loop'] ), 'wcmmq-min-qty-msg-in-loop', $settings ); ?>
+                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'min_qty_msg_in_loop'] ), 'wcmmq-min-qty-msg-in-loop', $settings ); ?>
                             <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
                         </td>
                     </tr>
@@ -430,7 +430,7 @@ jQuery(document).ready(function($){
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( wp_kses_post( $saved_data['_wcmmq_step_error_valiation'] ), 'wcmmq-step-error-valiation', $settings ); ?>
+                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'step_error_valiation'] ), 'wcmmq-step-error-valiation', $settings ); ?>
                             <p>Available shortcode [should_min],[should_next]</p>
                         </td>
                     </tr>
