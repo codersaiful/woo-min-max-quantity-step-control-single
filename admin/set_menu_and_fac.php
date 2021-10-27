@@ -90,7 +90,7 @@ function wcmmq_faq_page_details(){
         <?php
         do_action( 'wcmmq_before_form' );
         ?>
-        <form action="" method="POST">
+        <form action="" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
                     <h2 class="with-background">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
@@ -190,7 +190,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                             <th><label for="">Choose Terms</label></th>
                             <td>
                                 <?php  ?>
-                                <select name="data[supported_terms][]" data-name="supported_terms" class="ua_input_select" id="" multiple>
+                                <select name="data[supported_terms][]" data-name="supported_terms" class="ua_input_select" id="wcmmq_supported_terms" multiple>
                                     <?php
                                     echo $select_option;
                                     ?>
@@ -213,7 +213,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                     <p>Terms list will update after save Once.</p>
                 </div>
                     <div class="ultraaddons-button-wrapper">
-                        <button name="configure_submit" class="button-primary primary button">Save All</button>
+                        <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button">Save All</button>
                     </div>
             </div>
             
