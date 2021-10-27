@@ -21,6 +21,19 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Compitabile
+ */
+if( class_exists( 'WC_MMQ' ) ){
+    add_action( 'admin_notices',function(){
+?>
+<div class="error error-notice notice">
+    <p>Please deactivate and delete your <strong>WooCommerce Min Max Quantity & Step Control</strong>(Pro) previous version and try with <strong>latest version</strong>. </p>
+</div>
+<?php
+    } );
+    return;
+}
+/**
  * Defining constant
  */
 
