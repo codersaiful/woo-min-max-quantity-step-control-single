@@ -269,8 +269,8 @@ class WC_MMQ {
 
     public static function minMaxStep($kewword = false, $product_id = false) {
         $data = get_option(WC_MMQ_KEY);
-        $cat_ids = $data['_cat_ids'];
-        //var_dump($cat_ids);
+        $cat_ids = isset( $data['_cat_ids'] ) ? $data['_cat_ids'] : false;
+
         $check_arr = false;
         if (isset($cat_ids) && is_array($cat_ids) && $product_id && !empty($product_id)) {
             $product_cat_ids = wc_get_product_cat_ids($product_id);
