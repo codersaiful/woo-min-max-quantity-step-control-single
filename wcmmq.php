@@ -9,9 +9,9 @@
  * 
  * Version: 2.0
  * Requires at least:    4.0.0
- * Tested up to:         5.8
+ * Tested up to:         5.8.1
  * WC requires at least: 3.0.0
- * WC tested up to: 	 5.6.2
+ * WC tested up to: 	 5.8
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -63,6 +63,8 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 /**
  * Setting Default Quantity for Configuration page
  * It will work for all product
+ * 
+ * @todo amra key gulor prefix remove korar jonno kaj korbo (using user consent/permission)
  * 
  * @since 1.0
  */

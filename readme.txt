@@ -50,6 +50,13 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
+= 2.0 =
+* Added: Modern user interface
+* Improved: Code optiomized
+* Added: Min max step control added for single and global
+* Added: Category / archive based min max step control 
+* Fixed: Bug fixed
+
 = 1.9 =
  * Version update
  * Cart page fatal error solved
