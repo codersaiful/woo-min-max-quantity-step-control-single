@@ -208,17 +208,10 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
 
                         </tr>
 
-                    </table>    
-
-                    <div class="ultraaddons-button-wrapper">
-                        <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button">Save All</button>
-                    </div>
-            </div>
-            
-            
-            
-            <div class="ultraaddons-panel">
-                <h2 class="with-background">Set on Terms</h2>
+                    </table> 
+                
+                <div class="ultraaddons-panel inside-panel">
+                <h2 class="with-background">Edit Terms</h2>
                 <div class="wcmmq-terms-wrapper">
 <?php
 
@@ -261,15 +254,20 @@ foreach( $_term_lists as $key => $each ){
 
 ?>                    
             </div><!-- /.wcmmq-terms-wrapper -->                
-                
-                
-                
-                
-                <div class="ultraaddons-button-wrapper">
-                    <button name="configure_submit" class="button-primary primary button">Save All</button>
-                </div>
-                
+
             </div>
+                
+                
+                
+
+                    <div class="ultraaddons-button-wrapper">
+                        <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button">Save All</button>
+                    </div>
+            </div>
+            
+            
+            
+            
             
             
 
