@@ -16,21 +16,15 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
 
         
 
-        wp_register_style( 'wcmmq-front-style', WC_MMQ_BASE_URL . 'assets/wcmmq-front.css', false, '1.0.0' );
+        wp_register_style( 'wcmmq-front-style', WC_MMQ_BASE_URL . 'assets/css/wcmmq-front.css', false, '1.0.0' );
         wp_enqueue_style( 'wcmmq-front-style' );
 
         /**
-         * A simple jQuery function that can add listeners on attribute change.
-         * http://meetselva.github.io/attrchange/
+         * attrchange js and variation-js file has transferred on pro version.
          * 
-         * @since 1.9
+         * where it was not working, so it's should not here
+         * so we have transferred in pro only.
          */
-        wp_register_script( 'attrchange', WC_MMQ_BASE_URL . 'assets/js/attrchange.js', array( 'jquery' ), '1.0', true );
-        wp_enqueue_script( 'attrchange' );
-        
-        
-        wp_register_script( 'wcmmq-script', WC_MMQ_BASE_URL . 'assets/variation-wcmmq.js', array( 'jquery' ), '1.0.0', true );
-        wp_enqueue_script( 'wcmmq-script' );
         
         $product_type = false;
         if( is_product() ){
