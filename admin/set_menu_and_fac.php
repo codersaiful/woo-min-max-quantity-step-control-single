@@ -477,7 +477,7 @@ function wcmmq_load_custom_wp_admin_style() {
     wp_register_script( 'wcmmq-admin-script', WC_MMQ_BASE_URL . 'assets/js/admin.js', array( 'jquery','select2' ), WC_MMQ::getVersion(), true );
     wp_enqueue_script( 'wcmmq-admin-script' );
     
-    wp_register_style( 'wcmmq_css', WC_MMQ_BASE_URL . 'assets/css/wcmmq_style.css', false, WC_MMQ::getVersion() );
+    wp_register_style( 'wcmmq_css', WC_MMQ_BASE_URL . 'assets/css/admin.css', false, WC_MMQ::getVersion() );
     wp_enqueue_style( 'wcmmq_css' );
 
     wp_register_style( 'ultraaddons-common-css', WC_MMQ_BASE_URL . 'assets/css/admin-common.css', false, WC_MMQ::getVersion() );
