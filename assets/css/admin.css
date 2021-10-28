@@ -378,6 +378,16 @@ ul.wcmmq_each_terms_header small {
     color: #fff;
 }
 
+.wcmmq-nav ul li.wcmmq-pro-buy-now a {
+    background: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+}
+.wcmmq-nav ul li.wcmmq-pro-buy-now a:hover {
+    background: #349338;
+    border: 1 px solid #349338;
+}
+
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:after,
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:before {
     content: "";
