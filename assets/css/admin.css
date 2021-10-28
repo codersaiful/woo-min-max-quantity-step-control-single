@@ -42,10 +42,12 @@ span.configure_section_title {
     font-weight: bold;
 }
 .hightlighted_text{
-    color: red;
+    color: #7e7b7b;
     font-weight: normal;
     padding: 4px;
-    border: 1px solid #ddd;    
+    border: none;
+    box-shadow: none !important;
+    font-size: 12px;    
 }
 table.wcmmq_config_form {
     width: 95%;
