@@ -417,3 +417,7 @@ ul.wcmmq_each_terms_header small {
 .wcmmq_config_form .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
     position: relative;
 }
+.wcmmq-premium img {
+    width: auto;
+    max-width: 100%;
+}

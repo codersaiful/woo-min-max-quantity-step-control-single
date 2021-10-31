@@ -370,7 +370,7 @@ jQuery(document).ready(function($){
                             
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_min_limit]',
+                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) . 'msg_min_limit]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -384,7 +384,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_max_limit]',
+                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -398,7 +398,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_max_limit_with_already]',
+                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit_with_already]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -411,7 +411,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_qty_msg_in_loop]',
+                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'min_qty_msg_in_loop]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -424,7 +424,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>step_error_valiation]',
+                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'step_error_valiation]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
