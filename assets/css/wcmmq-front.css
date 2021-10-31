@@ -30,25 +30,3 @@
 .qib-button .quantity input[type=number]{ 
 -moz-appearance:textfield; /* Firefox */
 }
-.single-product form.cart ul.wcmmq-c-qty {
-    padding: 0;
-    margin: 30px 0;
-    list-style: none;
-}
-.single-product form.cart input.wcmmq-radio-button {
-    width: 25px;
-    height: 25px;
-    /* background: #fff;
-    border: 1px solid #000;
-    display: inline-block; */
-    -webkit-appearance: auto;
-    -moz-appearance: auto;
-}
-.single-product form.cart input[type=radio].wcmmq-radio-button:after {
-    display: none;
-}
-.single-product form.cart ul.wcmmq-c-qty li {
-    display: inline-block;
-    margin-right: 20px;
-    line-height: 25px;
-}
