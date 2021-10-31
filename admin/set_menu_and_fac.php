@@ -20,7 +20,7 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  */
 function wcmmq_faq_page_details(){
 
-    var_dump(WC_MMQ_KEY,get_option('WC_MMQ_KEY'));
+
     if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
         //Reset 
         $data = WC_MMQ::getDefaults();
@@ -28,7 +28,7 @@ function wcmmq_faq_page_details(){
         update_option( WC_MMQ_KEY, $data );
         echo '<div class="updated inline"><p>Reset Successfully</p></div>';
     }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
-        var_dump($_POST['data']);
+
         //configure_submit
         $values = ( is_array( $_POST['data'] ) ? $_POST['data'] : false );
         
@@ -97,33 +97,33 @@ function wcmmq_faq_page_details(){
                     <h2 class="with-background">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
                         <tr>
-                            <th><label for="data[_wcmmq_min_quantity]">Minimum Quantity</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]">Minimum Quantity</label></th>
                             <td>
-                                <input name="data[_wcmmq_min_quantity]" id="data[_wcmmq_min_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
 
                         <tr>
-                            <th><label for="data[_wcmmq_max_quantity]">Maximum Quantity</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]">Maximum Quantity</label></th>
                             <td>
-                                <input name="data[_wcmmq_max_quantity]" id="data[_wcmmq_max_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
 
                         <tr>
-                            <th><label for="data[_wcmmq_product_step]">Quantity Step</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]">Quantity Step</label></th>
                             <td>
-                                <input name="data[_wcmmq_product_step]" id="data[_wcmmq_product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
 
                         <tr>
-                            <th><label for="data[_wcmmq_default_quantity]">Default Quantity <span class="hightlighted_text">(Optional)</span></label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]">Default Quantity <span class="hightlighted_text">(Optional)</span></label></th>
                             <td>
-                                <input name="data[_wcmmq_default_quantity]" id="data[_wcmmq_default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -370,7 +370,7 @@ jQuery(document).ready(function($){
                             
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_msg_min_limit]',
+                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_min_limit]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -384,7 +384,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_msg_max_limit]',
+                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_max_limit]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -398,7 +398,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_msg_max_limit_with_already]',
+                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>msg_max_limit_with_already]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -411,7 +411,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_min_qty_msg_in_loop]',
+                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_qty_msg_in_loop]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
@@ -424,7 +424,7 @@ jQuery(document).ready(function($){
                         <td>
                             <?php 
                             $settings = array(
-                                'textarea_name'     =>'data[_wcmmq_step_error_valiation]',
+                                'textarea_name'     =>'data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>step_error_valiation]',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
