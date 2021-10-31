@@ -20,6 +20,7 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  */
 function wcmmq_faq_page_details(){
 
+    var_dump(WC_MMQ_KEY,get_option('WC_MMQ_KEY'));
     if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
         //Reset 
         $data = WC_MMQ::getDefaults();
@@ -27,6 +28,7 @@ function wcmmq_faq_page_details(){
         update_option( WC_MMQ_KEY, $data );
         echo '<div class="updated inline"><p>Reset Successfully</p></div>';
     }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
+        var_dump($_POST['data']);
         //configure_submit
         $values = ( is_array( $_POST['data'] ) ? $_POST['data'] : false );
         
