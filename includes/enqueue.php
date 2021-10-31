@@ -25,17 +25,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
          * where it was not working, so it's should not here
          * so we have transferred in pro only.
          */
-        
-        $product_type = false;
-        if( is_product() ){
-            $product = wc_get_product( get_the_ID() );
-            $product_type = $product->get_type();
-        }
-        $WCMMQ_DATA = array( 
-            'product_type' => $product_type,
-            );
-        $WCMMQ_DATA = apply_filters( 'wcmmq_localize_data', $WCMMQ_DATA );
-        wp_localize_script( 'wcmmq-script', 'WCMMQ_DATA ', $WCMMQ_DATA );
+
     }
 }
 add_action( 'wp_enqueue_scripts', 'wcmmq_enqueue', 99 );
