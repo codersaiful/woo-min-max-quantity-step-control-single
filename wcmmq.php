@@ -81,10 +81,10 @@ WC_MMQ::$default_values = array(
     WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [min_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
-    WC_MMQ_PREFIX . 'msg_min_price_cart' => __('Your cart total amount must be equal or more of [cart_min_price]', 'wcmmq'),
-    WC_MMQ_PREFIX . 'msg_max_price_cart' => __('Your cart total amount must be equal or less of [cart_max_price]', 'wcmmq'),
-    WC_MMQ_PREFIX . 'msg_min_quantity_cart' => __('Your cart items total quantity must be equal or more of [cart_min_quantity]', 'wcmmq'),
-    WC_MMQ_PREFIX . 'msg_max_quantity_cart' => __('Your cart items total quantity must be equal or less of [cart_max_quantity]', 'wcmmq'),
+    'msg_min_price_cart' => __('Your cart total amount must be equal or more of [cart_min_price]', 'wcmmq'),
+    'msg_max_price_cart' => __('Your cart total amount must be equal or less of [cart_max_price]', 'wcmmq'),
+    'msg_min_quantity_cart' => __('Your cart items total quantity must be equal or more of [cart_min_quantity]', 'wcmmq'),
+    'msg_max_quantity_cart' => __('Your cart items total quantity must be equal or less of [cart_max_quantity]', 'wcmmq'),
     '_cat_ids' => false,
 );
 
