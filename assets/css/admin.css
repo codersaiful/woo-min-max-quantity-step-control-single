@@ -73,7 +73,7 @@ table.wcmmq_config_form {
 }
 .wcmmq_wrap .wp-editor-wrap {
     margin-right: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 0;
 }
 ul.wcmmq_each_terms_header small {
     padding: 0 15px;
