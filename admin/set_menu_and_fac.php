@@ -92,7 +92,7 @@ function wcmmq_faq_page_details(){
         <?php
         do_action( 'wcmmq_before_form' );
         ?>
-        <form action="" method="POST" id="wcmmq-main-configuration-form">
+        <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
                     <h2 class="with-background">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
@@ -153,7 +153,7 @@ function wcmmq_faq_page_details(){
                 ?>
             
         
-            <div class="ultraaddons-panel">
+            <div class="ultraaddons-panel" id="wcmmq-supported-terms">
                 <h2 class="with-background black-background">Supported Terms</h2>
                 <?php
                 

@@ -10,7 +10,7 @@
          */
         $(document.body).on('change','#wcmmq_supported_terms',function(){
             $('#wcmmq_form_submit_button').trigger('click');
-            //$('#wcmmq-main-configuration-form').submit(); //Didn't work this
+
         });
     });
 })(jQuery);
