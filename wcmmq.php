@@ -263,13 +263,13 @@ class WC_MMQ {
     /**
      * Getting Array of Options of wcmmq_universal_minmaxstep
      * 
-     * @return Array Full Array of Options of wcmmq_universal_minmaxstep
+     * @return String Full Array of Options of wcmmq_universal_minmaxstep
      * 
      * @since 1.0.0
      */
     public static function getOption($kewword = false) {
         $data = get_option( WC_MMQ_KEY );
-        return $kewword && isset($data[$kewword]) ? $data[$kewword] : false;
+        return $kewword && isset($data[$kewword]) ? (String) $data[$kewword] : false;
     }
 
     public static function minMaxStep($kewword = false, $product_id = false) {
