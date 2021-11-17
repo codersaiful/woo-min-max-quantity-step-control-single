@@ -78,8 +78,11 @@ function wcmmq_save_field_data( $post_id ){
         $_wcmmq_max_quantity = $_wcmmq_min_quantity + 5;
     }
     
-    $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity && $_wcmmq_default_quantity <= $_wcmmq_max_quantity ? $_wcmmq_default_quantity : false;
-    
+    if( $_wcmmq_max_quantity ){
+        $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity && $_wcmmq_default_quantity <= $_wcmmq_max_quantity ? $_wcmmq_default_quantity : false;
+    }else{
+        $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity ? $_wcmmq_default_quantity : false;
+    }
     if( !$_wcmmq_product_step ){
         $_wcmmq_product_step = $_wcmmq_min_quantity;
     }
