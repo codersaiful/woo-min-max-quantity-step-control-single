@@ -84,9 +84,6 @@ function wcmmq_save_field_data( $post_id ){
         $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity ? $_wcmmq_default_quantity : false;
     }
     
-    if( !$_wcmmq_product_step ){
-        $_wcmmq_product_step = $_wcmmq_min_quantity;
-    }
     
     //Updating Here
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $_wcmmq_min_quantity ) ); 
