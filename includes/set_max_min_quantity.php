@@ -168,6 +168,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true); //Version 1.8.3
+
      if($variation_id && $is_variable_support ){
          $v_min_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'min_quantity', true );
          $v_max_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'max_quantity', true );
@@ -206,7 +207,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id ); //Version 1.8.3
-    
+ 
     /**
      * Getting current Quantity from Cart
      */
@@ -226,7 +227,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
         'product_name'=> $product_name,
     );
     //wcmmq_message_convert_replace( $message, $args );
-    
+ 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
         return true;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
@@ -381,7 +382,7 @@ function wcmmq_quantity_input_args( $args, $product){
     $default_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'default_quantity', true);
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true);
-    
+ 
     if( $is_variable_support && ! empty( $variation_id )){
          $v_min_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'min_quantity', true );
          $v_max_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'max_quantity', true );
@@ -435,7 +436,6 @@ function wcmmq_quantity_input_args( $args, $product){
     $default_quantity = !empty( $default_quantity ) ? $default_quantity : $min_quantity;
     $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
     $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
-    
     // Max quantity (default = -1)
     // simple product
     if( isset( $args['max_value'] ) && $args['max_value'] > -1){
