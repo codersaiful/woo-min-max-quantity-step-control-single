@@ -42,10 +42,12 @@ span.configure_section_title {
     font-weight: bold;
 }
 .hightlighted_text{
-    color: red;
+    color: #7e7b7b;
     font-weight: normal;
     padding: 4px;
-    border: 1px solid #ddd;    
+    border: none;
+    box-shadow: none !important;
+    font-size: 12px;    
 }
 table.wcmmq_config_form {
     width: 95%;
@@ -71,7 +73,7 @@ table.wcmmq_config_form {
 }
 .wcmmq_wrap .wp-editor-wrap {
     margin-right: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 0;
 }
 ul.wcmmq_each_terms_header small {
     padding: 0 15px;
@@ -378,6 +380,16 @@ ul.wcmmq_each_terms_header small {
     color: #fff;
 }
 
+.wcmmq-nav ul li.wcmmq-pro-buy-now a {
+    background: #4caf50;
+    color: white;
+    border: 1px solid #4caf50;
+}
+.wcmmq-nav ul li.wcmmq-pro-buy-now a:hover {
+    background: #349338;
+    border: 1 px solid #349338;
+}
+
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:after,
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:before {
     content: "";
@@ -393,4 +405,19 @@ ul.wcmmq_each_terms_header small {
     background: #007694;
     color: white;
 
+}
+
+.ultraaddons-panel.inside-panel {
+    box-shadow: 0px 0px 20px 0 #00000036;
+}
+
+.ultraaddons-panel.inside-panel {}
+
+.ultraaddons-panel.inside-panel h2.with-background {padding-top: 22px;padding-bottom: 10px;background: #8f8f8f !important;}
+.wcmmq_config_form .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    position: relative;
+}
+.wcmmq-premium img {
+    width: auto;
+    max-width: 100%;
 }

@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 2.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,10 +13,54 @@ Min Max Quantity & Step Control for WooCommerce plugin offers to set product's m
 
 == Description ==
 
-*Min Max Quantity & Step Control for WooCommerce* plugin offers to set product's minimum, maximum quantity and step of each product individually. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled.
-Also you can manage the validation of products quantity.
-== Go to Woocommerce -> Min Max Step Quantity == 
-You will have the option to edit messages.
+*Min Max Quantity & Step Control for WooCommerce* plugin offers to set product’s 
+
+* Minimum Quantity
+* Maximum Quantity
+* Step Quantity
+* Default Quantity
+
+You can set values for all products globally. The same values will apply to all products. 
+You can set values by category. In this case min, max, and step values will apply only to chosen categories. 
+Also, you can set values for each product individually. Product label values will override global and categories values.
+
+*Go to Woocommerce -> Min Max Step Quantity*
+
+**Plugin Links**
+
+* [Demo](https://codeastrology.com/min-max-quantity/)
+* [Premium Version](https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198)  
+
+**FEATURES**
+
+* Set a default quantity for products. 
+* Set a minimum quantity value for products.
+* Set maximum quantity value for products.
+* Set quantity step for products. 
+* Set min, max, step values globally.
+* Set min, max, step values for each product individually.
+* Set values by category
+
+**PREMEIUM FEATURES**
+
+*Set values by TERMS*<br>
+You can set values by product tag, product visibility, shipping class, color, size Etc. 
+
+*Cart page condition*<br>
+You can set minimum and maximum price limits to checkout. Also, you can set a minimum or maximum quantity to checkout.
+
+*Quantity Prefix/Suffix*<br>
+Possible to set quantity prefix and suffix. 
+
+*Cart Page Notices*<br>
+You can customise the cart page notifications. 
+
+**OUR OTHER FREE WOOCOMMERCE PLUGINS**
+
+* [Product Table for WooCommerce (wooproducttable)](https://wordpress.org/plugins/woo-product-table/)
+* [UltraAddons Elementor Lite (Header & Footer Builder, Menu Builder, Cart Icon, Shortcode)](https://wordpress.org/plugins/ultraaddons-elementor-lite/)
+* [Quantity Plus Minus Button for WooCommerce](https://wordpress.org/plugins/wc-quantity-plus-minus-button/)
+* [Add to Cart Text Changer and Customize Button, Add Custom Icon](https://wordpress.org/plugins/woo-add-to-cart-text-change/)
 
 == Installation ==
 
@@ -39,16 +83,15 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Screenshots ==
 
-`/assets/screenshot-1.png`
-`/assets/screenshot-2.png`
-`/assets/screenshot-3.png`
-`/assets/screenshot-4.png`
-`/assets/screenshot-5.png`
-`/assets/screenshot-6.jpg`
-`/assets/screenshot-7.png`
-`/assets/screenshot-8.png`
 
 == Changelog ==
+
+= 2.0 =
+* Added: Modern user interface
+* Improved: Code optiomized
+* Added: Min max step control added for single and global
+* Added: Category / archive based min max step control 
+* Fixed: Bug fixed
 
 = 1.9 =
  * Version update
