@@ -9,7 +9,7 @@ function wcmmq_before_form_free_content(){
 ?>
 <div class="wcmmq-nav">
     <ul>
-        <li><a href="https://codeastrology.com/min-max-quantity/docs/" target="_blank">Documentation</a></li>
+        <li><a href="https://codeastrology.com/min-max-quantity/documentation/" target="_blank">Documentation</a></li>
         <li><a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews/#new-post" target="_blank">Rate on wordpress.org</a></li>
         <li><a href="https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/" target="_blank">WordPress Forum</a></li>
         <li><a href="https://codeastrology.com/support/" target="_blank">Need Help?</a></li>
