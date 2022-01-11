@@ -269,7 +269,7 @@ class WC_MMQ {
      */
     public static function getOption($kewword = false) {
         $data = get_option( WC_MMQ_KEY );
-        return $kewword && isset($data[$kewword]) ? (String) $data[$kewword] : false;
+        return $kewword && isset($data[$kewword]) ? $data[$kewword] : false;
     }
 
     public static function minMaxStep($kewword = false, $product_id = false) {
