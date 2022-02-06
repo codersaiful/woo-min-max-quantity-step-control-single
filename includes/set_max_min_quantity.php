@@ -553,16 +553,28 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
         $args['step'] = $step_quantity;
     }
     
-    
-    return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" data-product_id="%s" rel="nofollow" %s>%s</a>',
-		esc_url( $product->add_to_cart_url() ),
-        esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
-		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-		esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
-        $product_id,
-		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
-		esc_html( $product->add_to_cart_text() )
-	);
+
+    $arrr = array(
+        'product_id' => $product_id,
+        'rel' => 'nofollow',
+    );
+    $arrr = apply_filters( 'dkdkdkdkd', $arrr );
+    $add_to_btn = "<a";
+    if( isset( $arrr['product_id'] ) && ! empty( $arrr['product_id'] ) ){
+        $add_to_btn .= "data-product_id='{$arrr['product_id']}'";
+    }
+    $add_to_btn .= "></a>";
+
+    return $add_to_btn;
+    // return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" data-product_id="%s" rel="nofollow" %s>%s</a>',
+	// 	esc_url( $product->add_to_cart_url() ),
+    //     esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
+	// 	esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+	// 	esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
+    //     $product_id,
+	// 	isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+	// 	esc_html( $product->add_to_cart_text() )
+	// );
     endif;
 }
 
