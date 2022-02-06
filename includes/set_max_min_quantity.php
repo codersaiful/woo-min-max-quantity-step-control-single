@@ -500,10 +500,10 @@ add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_up
  * Setting quantity in Loop of Shop Page
  * Related page and Category And tag Loop Page
  * 
- * @param type $button
- * @param type $product
- * @param type $args
- * @return type
+ * @param string $button
+ * @param object $product
+ * @param array $args
+ * @return string
  */
 function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = false){
     if( $button && $product ):
@@ -552,30 +552,41 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
         $args['min_value'] = $min_quantity;
         $args['step'] = $step_quantity;
     }
-    
 
-    $arrr = array(
+    $cart_btn_attr = array(
+        'href' => esc_url( $product->add_to_cart_url() ),
+        'title' => esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ),
+        'quantity' => esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+        'class' => esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
         'product_id' => $product_id,
         'rel' => 'nofollow',
+        'attributes' => isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+        'text' => esc_html( $product->add_to_cart_text() ),
     );
-    $arrr = apply_filters( 'dkdkdkdkd', $arrr );
-    $add_to_btn = "<a";
-    if( isset( $arrr['product_id'] ) && ! empty( $arrr['product_id'] ) ){
-        $add_to_btn .= "data-product_id='{$arrr['product_id']}'";
-    }
-    $add_to_btn .= "></a>";
 
-    return $add_to_btn;
-    // return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" data-product_id="%s" rel="nofollow" %s>%s</a>',
-	// 	esc_url( $product->add_to_cart_url() ),
-    //     esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
-	// 	esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-	// 	esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
-    //     $product_id,
-	// 	isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
-	// 	esc_html( $product->add_to_cart_text() )
-	// );
+    $cart_btn_attr = apply_filters( 'wcmmq_cart_button_attr_in_loop', $cart_btn_attr );
+
+    $add_to_cart_btn = "<a ";
+    if( isset( $cart_btn_attr['href'] ) && ! empty( $cart_btn_attr['href'] ) ){
+        $add_to_cart_btn .= "href='{$cart_btn_attr['href']}'";
+    }if( isset( $cart_btn_attr['title'] ) && ! empty( $cart_btn_attr['title'] ) ){
+        $add_to_cart_btn .= "title='{$cart_btn_attr['title']}'";
+    }if( isset( $cart_btn_attr['quantity'] ) && ! empty( $cart_btn_attr['quantity'] ) ){
+        $add_to_cart_btn .= "data-quantity='{$cart_btn_attr['quantity']}'";
+    }if( isset( $cart_btn_attr['class'] ) && ! empty( $cart_btn_attr['class'] ) ){
+        $add_to_cart_btn .= "class='{$cart_btn_attr['class']}'";
+    }if( isset( $cart_btn_attr['rel'] ) && ! empty( $cart_btn_attr['rel'] ) ){
+        $add_to_cart_btn .= "rel='{$cart_btn_attr['rel']}'";
+    }if( isset( $cart_btn_attr['attributes'] ) && ! empty( $cart_btn_attr['attributes'] ) ){
+        $add_to_cart_btn .= "{$cart_btn_attr['attributes']}";
+    }
+    $add_to_cart_btn .= ">{$cart_btn_attr['text']}</a>";
+
+    return $add_to_cart_btn;
+
     endif;
+
+    return null;
 }
 
 /**
