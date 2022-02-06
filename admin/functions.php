@@ -15,7 +15,7 @@ function wcmmq_before_form_free_content(){
         <li><a href="https://codeastrology.com/support/" target="_blank">Need Help?</a></li>
         <li><a href="https://github.com/codersaiful/woo-min-max-quantity-step-control/issues/new" target="_blank">Request Features</a></li>
         <li class="wcmmq-checkout-pro-features"><a href="https://codeastrology.com/min-max-quantity/" target="_blank">Pro Features</a></li>
-        <li class="wcmmq-pro-buy-now"><a href="https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198" target="_blank">Buy Now</a></li>
+        <li class="wcmmq-pro-buy-now"><a href="https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198?irgwc=1&clickid=3L1xPnUAExyITQGx1W2KXyvAUkGUl7RcDRX6S00&iradid=275988&irpid=2800470&iradtype=ONLINE_TRACKING_LINK&irmptype=mediapartner&mp_value1=&utm_campaign=af_impact_radius_2800470&utm_medium=affiliate&utm_source=impact_radius" target="_blank">Buy Now</a></li>
     </ul>
 </div>    
 <?php    
