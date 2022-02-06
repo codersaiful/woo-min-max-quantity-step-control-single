@@ -552,14 +552,14 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
         $args['min_value'] = $min_quantity;
         $args['step'] = $step_quantity;
     }
-    //return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" %s>%s</a>',
-    //return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" data-product_id="%s" data-product_sku="woo-beanieddd" aria-label="Add “Beanie” to your cart" rel="nofollow">Add to cart</a>',
+    
+    
     return sprintf( '<a href="%s" title="%s" data-quantity="%s" class="%s" data-product_id="%s" rel="nofollow" %s>%s</a>',
 		esc_url( $product->add_to_cart_url() ),
-                esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
+        esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ), //"Minimum quantiy is {$args['quantity']}"
 		esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
 		esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
-                $product_id,
+        $product_id,
 		isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
 		esc_html( $product->add_to_cart_text() )
 	);
