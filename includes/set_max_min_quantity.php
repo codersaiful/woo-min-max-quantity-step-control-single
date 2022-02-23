@@ -105,8 +105,9 @@ function wcmmq_step_error_message( $bool = true, $specific_msge = '', $should_mi
         'should_min' => $should_min,
         'should_next'=> $should_next,
     );
-    //wcmmq_message_convert_replace( $message, $args );
+    
     $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ) . $specific_msge, $should_min, $should_next );
+    $message = wcmmq_message_convert_replace( $message, $args );
     wc_add_notice( $message, 'error' );
 }
 

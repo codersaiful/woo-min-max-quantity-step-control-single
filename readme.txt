@@ -86,6 +86,9 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
+= 2.3 =
+* Fixed: min quantity should message error fixed.
+
 = 2.0 =
 * Added: Modern user interface
 * Improved: Code optiomized
