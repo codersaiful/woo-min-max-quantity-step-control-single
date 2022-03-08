@@ -505,7 +505,7 @@ function wcmmq_step_set_step_quantity($quantity, $product){
     }
     return 1;
 }
-add_filter('woocommerce_quantity_input_step','wcmmq_step_set_product_step', 10, 2);
+add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 10, 2);
 
 /**
  * Setting quantity in Loop of Shop Page
