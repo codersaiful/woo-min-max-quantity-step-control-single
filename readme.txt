@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 2.2
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,6 +85,11 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 
 == Changelog ==
+
+= 2.4 =
+* Fixed: min quantity on mini cart and other plugins
+* Fixed: step quantity on mini cart and other plugins
+* Bug Fixed
 
 = 2.3 =
 * Fixed: min quantity should message error fixed.
