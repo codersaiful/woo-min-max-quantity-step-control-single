@@ -474,8 +474,8 @@ add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',10,2); 
  * @since 1.0
  */
 function wcmmq_s_set_min_for_single( $quantity, $product ){
-    $min_quantity = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 's_min_quantity', true);
-    $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( WC_MMQ_PREFIX . 's_min_quantity' ); //Regenerate from Default
+    $min_quantity = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'min_quantity', true);
+    $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_quantity' ); //Regenerate from Default
     if( !$product->is_sold_individually() && ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
        return $min_quantity; 
     }
@@ -495,7 +495,17 @@ function wcmmq_step_set_for_order_status_update($pp){
     //var_dump($product);
     return 0.01;
 }
-add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
+//add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
+
+function wcmmq_step_set_step_quantity($quantity, $product){
+    $product_step = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'product_step', true);
+    $product_step = !empty( $product_step ) ? $product_step : WC_MMQ::getOption( WC_MMQ_PREFIX . 'product_step' ); //Regenerate from Default
+    if( !$product->is_sold_individually() && ( !empty( $product_step ) || !$product_step ) && is_numeric($product_step) ){
+        return $product_step;
+    }
+    return 1;
+}
+add_filter('woocommerce_quantity_input_step','wcmmq_step_set_product_step', 10, 2);
 
 /**
  * Setting quantity in Loop of Shop Page
