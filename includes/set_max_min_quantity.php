@@ -495,7 +495,7 @@ function wcmmq_step_set_for_order_status_update($pp){
     //var_dump($product);
     return 0.01;
 }
-add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
+//add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
 
 function wcmmq_step_set_step_quantity($quantity, $product){
     $product_step = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'product_step', true);
