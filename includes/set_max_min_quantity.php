@@ -579,17 +579,17 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
 
     $add_to_cart_btn = "<a ";
     if( isset( $cart_btn_attr['href'] ) && ! empty( $cart_btn_attr['href'] ) ){
-        $add_to_cart_btn .= "href='{$cart_btn_attr['href']}'";
+        $add_to_cart_btn .= "href='{$cart_btn_attr['href']}' ";
     }if( isset( $cart_btn_attr['title'] ) && ! empty( $cart_btn_attr['title'] ) ){
-        $add_to_cart_btn .= "title='{$cart_btn_attr['title']}'";
+        $add_to_cart_btn .= "title='{$cart_btn_attr['title']}' ";
     }if( isset( $cart_btn_attr['quantity'] ) && ! empty( $cart_btn_attr['quantity'] ) ){
-        $add_to_cart_btn .= "data-quantity='{$cart_btn_attr['quantity']}'";
+        $add_to_cart_btn .= "data-quantity='{$cart_btn_attr['quantity']}' ";
     }if( isset( $cart_btn_attr['class'] ) && ! empty( $cart_btn_attr['class'] ) ){
-        $add_to_cart_btn .= "class='{$cart_btn_attr['class']}'";
+        $add_to_cart_btn .= "class='{$cart_btn_attr['class']}' ";
     }if( isset( $cart_btn_attr['rel'] ) && ! empty( $cart_btn_attr['rel'] ) ){
-        $add_to_cart_btn .= "rel='{$cart_btn_attr['rel']}'";
+        $add_to_cart_btn .= "rel='{$cart_btn_attr['rel']}' ";
     }if( isset( $cart_btn_attr['attributes'] ) && ! empty( $cart_btn_attr['attributes'] ) ){
-        $add_to_cart_btn .= "{$cart_btn_attr['attributes']}";
+        $add_to_cart_btn .= "{$cart_btn_attr['attributes']} ";
     }
     $add_to_cart_btn .= ">{$cart_btn_attr['text']}</a>";
 
