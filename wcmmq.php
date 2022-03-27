@@ -7,7 +7,7 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 2.4
+ * Version: 2.5
  * Requires at least:    4.0.0
  * Tested up to:         5.9.1
  * WC requires at least: 3.0.0
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '2.4.1');
+define('WC_MMQ_VERSION', '2.5.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
