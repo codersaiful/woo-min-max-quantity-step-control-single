@@ -1,6 +1,6 @@
 === Min Max Quantity & Step Control for WooCommerce ===
 Contributors: codersaiful,codeastrology
-Donate link: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
+Donate link: https://codeastrology.com/min-max-quantity/pricing/
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 5.9
@@ -29,7 +29,7 @@ Also, you can set values for each product individually. Product label values wil
 **Plugin Links**
 
 * [Demo](https://codeastrology.com/min-max-quantity/)
-* [Premium Version](https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198)  
+* [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
 
 **FEATURES**
 
