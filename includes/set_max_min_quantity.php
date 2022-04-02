@@ -150,11 +150,11 @@ function wcmmq_replaced_msg( $text, $key_arr = array(), $val_arr = array() ){
  * Setting minimum and maximum quantity validation when product adding to cart. 
  * We also used current quantity [$current_qty_inCart] of cart for checking limitation.
  * 
- * @param type $bool
- * @param type $product_id post Id
- * @param type $quantity Quantity when will add to cart
- * @param type $variation_id for Variable product
- * @param type $variations Variations as Array
+ * @param Boolean $bool
+ * @param Int $product_id post Id
+ * @param Int $quantity Quantity when will add to cart
+ * @param Int $variation_id for Variable product
+ * @param Array|Boolean $variations Variations as Array
  * @return boolean True or false
  * 
  * @link https://docs.woocommerce.com/wc-apidocs/source-class-WC_AJAX.html#365 Details
