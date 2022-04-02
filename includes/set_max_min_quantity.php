@@ -463,9 +463,9 @@ function wcmmq_quantity_input_args( $args, $product){
     //}
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
 }
-add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',10,2);
-add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',10,2);
-add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',10,2); //For Variable product
+add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2);
+add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',999,2);
+add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2); //For Variable product
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
