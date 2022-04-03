@@ -511,6 +511,12 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
 }
 add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 10, 2);
 
+$options = WC_MMQ::getOptions();
+$disable_order_page = isset( $options['disable_order_page'] ) ? $options['disable_order_page'] : false;
+if ($disable_order_page != false){
+    remove_filter( 'woocommerce_quantity_input_step', 'wcmmq_step_set_step_quantity' );
+}
+
 /**
  * Setting quantity in Loop of Shop Page
  * Related page and Category And tag Loop Page

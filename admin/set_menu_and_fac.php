@@ -127,6 +127,20 @@ function wcmmq_faq_page_details(){
                             </td>
 
                         </tr>
+                        <tr>
+                            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX_PRO . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]">Disable on order page</label></th>
+                            <td>
+                                <label class="switch">
+                                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
+                                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                                    <div class="slider round"><!--ADDED HTML -->
+                                        <span class="on">ON</span><span class="off">OFF</span><!--END-->
+                                    </div>
+                                </label>
+                            </td>
+
+                        </tr>
                         <?php
                         /**
                          * Obviously need tr and td here
