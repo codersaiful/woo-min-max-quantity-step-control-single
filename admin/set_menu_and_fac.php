@@ -96,10 +96,11 @@ function wcmmq_faq_page_details(){
                 <div class="ultraaddons-panel">
                     <h2 class="with-background">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
+
                         <tr>
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]">Minimum Quantity</label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -107,7 +108,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]">Maximum Quantity</label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
