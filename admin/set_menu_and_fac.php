@@ -129,7 +129,7 @@ function wcmmq_faq_page_details(){
                         </tr>
                         <tr>
                             <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX_PRO . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]">Disable on order page</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]">Order Page (Condition)</label></th>
                             <td>
                                 <label class="switch">
                                     <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
