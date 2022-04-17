@@ -23,6 +23,18 @@ function wcmmq_before_form_free_content(){
 }
 add_action( 'wcmmq_before_form','wcmmq_before_form_free_content' );
 
+
+function wcmmq_get_pro_discount_message(){
+    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+    $img = WC_MMQ_BASE_URL . 'assets/images/60percent.jpg';
+        
+    ?>
+    <a title="Special Discount for Limited Time." class="special_60_offer" href="https://codeastrology.com/min-max-quantity/pricing/" target="_blank">
+        <img style="border-radius: 0;width: 800px;max-width: 100%;" src="<?php echo esc_attr( $img ); ?>">
+    </a>    
+    <?php 
+}
+
 /**
  * Obviously need tr and td here
  */
