@@ -469,25 +469,40 @@ add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2);
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
- * 
- * @return void
  * @since 1.0
  */
 function wcmmq_s_set_min_for_single( $quantity, $product ){
-    $min_quantity = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'min_quantity', true);
-    $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_quantity' ); //Regenerate from Default
-    if( !$product->is_sold_individually() && ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
-       return $min_quantity; 
+    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) ) {
+        $min_quantity = get_post_meta($product->get_id(), WC_MMQ_PREFIX . 'min_quantity', true);
+        $min_quantity = !empty($min_quantity) ? $min_quantity : WC_MMQ::getOption(WC_MMQ_PREFIX . 'min_quantity'); //Regenerate from Default
+        if ( method_exists( $product, 'is_sold_individually' ) && ! $product->is_sold_individually() && (!empty($min_quantity) || !$min_quantity) && is_numeric($min_quantity)) {
+            return $min_quantity;
+        }
     }
     return 1;
 }
-add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 10, 2 );
+add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 99, 2 );
+
+/**
+ * Set limit on Single product page for Maximum Quantity of Product
+ * @since 1.0
+ */
+function wcmmq_s_set_max_for_single( $quantity, $product ){
+    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) ) {
+        $max_quantity = get_post_meta($product->get_id(), WC_MMQ_PREFIX . 'max_quantity', true);
+        $max_quantity = !empty($max_quantity) ? $max_quantity : WC_MMQ::getOption(WC_MMQ_PREFIX . 'max_quantity'); //Regenerate from Default
+        if ( method_exists( $product, 'is_sold_individually' ) && ! $product->is_sold_individually() && (!empty($max_quantity) || !$max_quantity) && is_numeric($max_quantity)) {
+            return $max_quantity;
+        }
+    }
+    return 1;
+}
+add_filter('woocommerce_quantity_input_max','wcmmq_s_set_max_for_single', 99, 2 );
 
 /**
  * For Order Status update
  * 
  * @param type $pp Post ID, Not using now
- * @return real
  */
 function wcmmq_step_set_for_order_status_update($pp){
     if( is_admin() )
@@ -497,6 +512,10 @@ function wcmmq_step_set_for_order_status_update($pp){
 }
 //add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
 
+/**
+ * Set limit on Single product page for Step Quantity of Product
+ * @since 1.0
+ */
 function wcmmq_step_set_step_quantity( $quantity, $product ){
 
     if( is_object( $product ) &&  method_exists( $product, 'get_id' ) ){
@@ -513,7 +532,7 @@ add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99,
 
 $options = WC_MMQ::getOptions();
 $disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
-if ( $disable_order_page ){
+if ( get_post_type('shop_order') && $disable_order_page ){
     remove_filter('woocommerce_quantity_input_step', 'wcmmq_step_set_step_quantity');
 }
 
