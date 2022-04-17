@@ -510,8 +510,8 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
 add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99, 2);
 
 $options = WC_MMQ::getOptions();
-$disable_order_page = isset( $options['disable_order_page'] ) ? $options['disable_order_page'] : false;
-if ($disable_order_page != false){
+$disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
+if ( $disable_order_page ){
     remove_filter('woocommerce_quantity_input_step', 'wcmmq_step_set_step_quantity');
 }
 
