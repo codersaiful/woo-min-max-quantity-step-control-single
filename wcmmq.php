@@ -173,9 +173,15 @@ class WC_MMQ {
      */
     public function __construct() {
 
-        //Condition and check php verion and WooCommerce activation
-        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+        /**
+         * Including CA_Framework
+         * 
+         * @since 3.1.3.1
+         * @author Saiful <codersaiful@gmail.com>
+         */
+        require_once WC_MMQ_BASE_DIR . '/framework/handle.php';
+
+        if( WCMMQ_Required::fail() ){
             return;
         }
 
