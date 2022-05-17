@@ -181,6 +181,7 @@ class WC_MMQ {
          */
         require_once WC_MMQ_BASE_DIR . '/framework/handle.php';
 
+        // var_dump(boolval(WCMMQ_Required::fail()));
         if( WCMMQ_Required::fail() ){
             return;
         }

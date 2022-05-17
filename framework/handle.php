@@ -28,7 +28,7 @@ if( ! class_exists( 'WCMMQ_Required' ) ){
             $req_wc = new Require_Control($r_slug,$t_slug);
             $req_wc->set_args(['Name'=>'WooCommerce'])
             ->set_download_link('https://wordpress.org/plugins/woocommerce/')
-            ->set_this_download_link('https://wordpress.org/plugins/woo-product-table/')
+            ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/')
             // ->set_message("this sis is  sdisd sdodso")
             ->set_required()
             ->run();

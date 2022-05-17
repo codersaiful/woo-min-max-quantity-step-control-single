@@ -8,7 +8,7 @@
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
  */
 function wcmmq_add_field_in_panel(){
-    $args = false;
+    $args = array();
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'min_quantity',
