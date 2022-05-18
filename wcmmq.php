@@ -181,12 +181,9 @@ class WC_MMQ {
          * @author Saiful <codersaiful@gmail.com>
          */
         require_once WC_MMQ_BASE_DIR . '/framework/handle.php';
-
-        // var_dump(boolval(WCMMQ_Required::fail()));
         if( WCMMQ_Required::fail() ){
             return;
         }
-        var_dump(333333);
 
         add_action('init', [$this, 'i18n']);
 
@@ -202,7 +199,7 @@ class WC_MMQ {
             include_once $dir . '/admin/plugin_setting_link.php';
         }
         
-        include_once $dir . '/modules/module-controller.php';
+        // include_once $dir . '/modules/module-controller.php';
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';
