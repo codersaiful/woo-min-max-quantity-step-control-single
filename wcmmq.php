@@ -173,6 +173,7 @@ class WC_MMQ {
      */
     public function __construct() {
 
+        
         /**
          * Including CA_Framework
          * 
@@ -185,6 +186,7 @@ class WC_MMQ {
         if( WCMMQ_Required::fail() ){
             return;
         }
+        var_dump(333333);
 
         add_action('init', [$this, 'i18n']);
 
@@ -200,6 +202,7 @@ class WC_MMQ {
             include_once $dir . '/admin/plugin_setting_link.php';
         }
         
+        include_once $dir . '/modules/module-controller.php';
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';
