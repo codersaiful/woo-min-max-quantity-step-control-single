@@ -1,13 +1,14 @@
 <?php 
+namespace WC_MMQ\Framework;
 
 use CA_Framework\App\Notice as Notice;
 use CA_Framework\App\Require_Control as Require_Control;
 
 include_once __DIR__ . '/ca-framework/framework.php';
 
-if( ! class_exists( 'WCMMQ_Required' ) ){
+if( ! class_exists( 'Plugin_Required' ) ){
 
-    class WCMMQ_Required
+    class Plugin_Required
     {
         public static $stop_next = 0;
         public function __construct()

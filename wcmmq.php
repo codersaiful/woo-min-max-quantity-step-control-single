@@ -172,16 +172,11 @@ class WC_MMQ {
       }
      */
     public function __construct() {
-
         
-        /**
-         * Including CA_Framework
-         * 
-         * @since 3.1.3.1
-         * @author Saiful <codersaiful@gmail.com>
-         */
-        require_once WC_MMQ_BASE_DIR . '/framework/handle.php';
-        if( WCMMQ_Required::fail() ){
+        require_once __DIR__ . '/autoloader.php';
+        
+        
+        if( WC_MMQ\Framework\Plugin_Required::fail() ){
             return;
         }
 
@@ -199,7 +194,7 @@ class WC_MMQ {
             include_once $dir . '/admin/plugin_setting_link.php';
         }
         
-        // include_once $dir . '/modules/module-controller.php';
+        WC_MMQ\Modules\Module_Controller::instance();
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';

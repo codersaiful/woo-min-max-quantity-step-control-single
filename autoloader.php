@@ -1,8 +1,8 @@
 <?php
 
-namespace CA_Framework;
+namespace WC_MMQ;
 
-if( ! class_exists( 'CA_Framework\Loader' ) ){
+if( ! class_exists( 'WC_MMQ\Autoloader' ) ){
 
     /**
      * Autoloader: All class will call from here by AutoLoader
@@ -12,7 +12,7 @@ if( ! class_exists( 'CA_Framework\Loader' ) ){
      * @package CA Framework
      * @link https://www.php.net/manual/en/language.oop5.autoload.php Autoloader Function
      */
-    class Loader
+    class Autoloader
     {
         
 
@@ -65,6 +65,6 @@ if( ! class_exists( 'CA_Framework\Loader' ) ){
 
     }
 
-    Loader::run();
+    Autoloader::run();
 }
 
