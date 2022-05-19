@@ -94,7 +94,7 @@ if( ! class_exists( 'CA_Framework\Require_Control' ) ){
                 return;
             };
 
-            //Check Admin User // Return null, If already our required plugin is installed.
+            //Check Admin User
             if( ! is_admin() ){ 
                 return;
             }
