@@ -3,7 +3,7 @@ namespace WC_MMQ\Modules;
 class Module_Controller
 {
 
-    public $prefix = 'wcmmqs_';
+    public $prefix = 'swcmmqs_';
 
     public $parent_menu = 'options-general.php';
     private $option_key = 'disable_modules';
@@ -50,46 +50,66 @@ class Module_Controller
     {
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
-        $modules_data = array(
+        $module_item = array(
+            'gutten_block' => array(
+                'key'   => 'gutten_block',
+                'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
+                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                'status'=>  'on',
+                'dir'   =>  __DIR__,
+            ),
+            'elementor_blok' => array(
+                'key'   => 'elementor_blok',
+                'name'  =>  __( 'Elementor Block', 'wcmmq' ),
+                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                'status'=>  'on',
+            ) 
+        );
+        $module_item = apply_filters( 'wcmmq_module_item', $module_item );
+
+        
+        
+        $this->modules = apply_filters( 'wcmmq_module_arr', array(
             'data'      => array(
                 'default' => 'on',
             ),
-            'items'     => array(
-                'gutten_block' => array(
-                    'key'   => 'gutten_block',
-                    'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
-                    'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-                    'status'=>  'on',
-                    'dir'   =>  __DIR__,
-                ),
-                'elementor_blok' => array(
-                    'key'   => 'elementor_blok',
-                    'name'  =>  __( 'Elementor Block', 'wcmmq' ),
-                    'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-                    'status'=>  'on',
-                ) 
-            )
-        );
-
-        
-        $this->modules = apply_filters( 'wcmmq_module_arr', $modules_data );
-        $this->get_active_modules();
+            'items'     => $module_item
+        ) );
         
 
         $this->option_key = $this->prefix . $this->option_key;
         $this->active_module_key = $this->prefix . $this->active_module_key;
         add_action( 'admin_menu', [$this, 'admin_menu'] );
+
+       foreach( $this->get_active_modules() as $key_modl=>$modl ){
+           $file_dir = ! empty( $modl['dir'] ) ? $modl['dir'] : $this->dir;
+           $file_dir = trailingslashit($file_dir);
+           $file_name = $key_modl;
+           $file = $file_dir . 'files/' . $file_name .'.php'; // '/'. $file_name . 
+           if( is_file( $file ) ){
+            include_once $file; 
+           }
+           
+       }
+        
     }
 
 
     public function update( $values = array() )
     {
+        // var_dump( $values, $this->get_option() );
         if( empty( $values ) ){
             $values = array_map( function($arr){
                 return 'off';
             },$this->get_option() );
         }
         update_option($this->option_key,$values);
+        // $active_module = array();
+        // foreach( $this->get_module_list() as $key => $module ){
+        //     if( $module['status'] === 'on' ){
+        //         $active_module[$key] = $module;
+        //     }
+        // }
         // $this->purefy_module();
         // var_dump( $this->get_module_list(), $this->options );
         return $this;
@@ -139,9 +159,14 @@ class Module_Controller
         return $this->modules['items'] ?? array();
     }
 
+
     public function get_active_modules()
     {
-        var_dump($this->get_option()); //$this->get_module_list()
+        $active = array_filter($this->get_module_list(),function($arr){
+            if( $arr['status'] == 'on' ) return $arr;
+        });
+
+        return is_array( $active ) ? $active : array();
     }
     
     public function get_module_info()
