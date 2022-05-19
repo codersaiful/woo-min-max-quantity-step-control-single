@@ -46,6 +46,3 @@ foreach( $modules_list as $key=>$modl ){
 </div>
 
 </form>
-<?php 
-// var_dump($this->options,$modules_list,$module_datas);
- ?>

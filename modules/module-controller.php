@@ -3,7 +3,7 @@ namespace WC_MMQ\Modules;
 class Module_Controller
 {
 
-    public $prefix = 'swcmmqs_';
+    public $prefix = 'wcmmq_';
 
     public $parent_menu = 'options-general.php';
     private $option_key = 'disable_modules';
