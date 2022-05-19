@@ -40,17 +40,22 @@ class Module_Controller
     {
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         $modules = array(
-            'gutten_block' => array(
-                'key'   => 'gutten_block',
-                'name'  =>  __( 'Min Max in Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-                'status'=>  'on',
+            'data'      => array(
+                'default' => 'on',
             ),
-            'gutten_blocks' => array(
-                'key'   => 'gutten_block',
-                'name'  =>  __( 'Min Max in Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-            ),  'status'=>  'on',
+            'items'     => array(
+                'gutten_block' => array(
+                    'key'   => 'gutten_block',
+                    'name'  =>  __( 'Min Max in Block', 'wcmmq' ),
+                    'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                    'status'=>  'on',
+                ),
+                'gutten_blocks' => array(
+                    'key'   => 'gutten_block',
+                    'name'  =>  __( 'Min Max in Block', 'wcmmq' ),
+                    'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                ),  'status'=>  'on',
+            )
         );
         $this->modules = apply_filters( 'wcmmq_module_arr', $modules );
 
