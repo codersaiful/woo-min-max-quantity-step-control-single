@@ -3,6 +3,8 @@ namespace WC_MMQ\Modules;
 class Module_Controller
 {
     public $parent_menu = 'options-general.php';
+    public $option_key = 'wcmmq_disable_modules';
+
     public $menu_title;
     private $modules = array();
 
