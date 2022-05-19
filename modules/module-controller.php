@@ -51,6 +51,13 @@ class Module_Controller
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
         $module_item = array(
+            'variation_control' => array(
+                'key'   => 'variation_control',
+                'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
+                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                'status'=>  'on',
+
+            ),
             'gutten_block' => array(
                 'key'   => 'gutten_block',
                 'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
