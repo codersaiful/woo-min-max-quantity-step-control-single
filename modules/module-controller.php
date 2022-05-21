@@ -57,25 +57,12 @@ class Module_Controller
                 'desc'  =>  __( 'Specially for Shop page and related proucts loop. Enable and Disable on Shop Page as well as on Related product Section.', 'wcmmq' ),
                 'status'=>  'on',
             ),
-            'gutten_block' => array(
-                'key'   => 'gutten_block',
-                'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+            'guttenberg-block' => array(
+                'key'   => 'guttenberg-block',
+                'name'  =>  __( 'Min Max Step in Guttenberg Block', 'wcmmq' ),
+                'desc'  =>  __( 'For Gutenberg block shop page loop, Enable disable.', 'wcmmq' ),
                 'status'=>  'on',
                 'dir'   =>  __DIR__,
-            ),
-            'elementor_blok' => array(
-                'key'   => 'elementor_blok',
-                'name'  =>  __( 'Elementor Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-                'status'=>  'on',
-            ),
-            
-            'elementor_bloks' => array(
-                'key'   => 'elementor_bloks',
-                'name'  =>  __( 'ssssssssElementor Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
-                'status'=>  'on',
             ),
 
         );
@@ -111,12 +98,16 @@ class Module_Controller
 
     public function update( $values = array() )
     {
+        $off_values = array_map( function($arr){
+            return 'off';
+        },$this->get_default_option() );
 
-        if( empty( $values ) ){
-            $values = array_map( function($arr){
-                return 'off';
-            },$this->get_default_option() );
+        if( ! empty( $values ) && is_array( $values ) && is_array( $off_values ) ){
+            $values = array_merge( $off_values, $values ); 
+        }else{
+            $values = $off_values;
         }
+
         update_option($this->option_key,$values);
         return $this;
 
@@ -128,7 +119,7 @@ class Module_Controller
         $option = get_option( $this->option_key );
         if( ! empty( $option ) && is_array( $option ) ) return $option;
         
-        return $this->get_default_option;
+        return $this->get_default_option();
 
     }
     
@@ -153,6 +144,7 @@ class Module_Controller
         foreach( $this->modules['items'] as $key=>$val ){
         $deflt_option = $this->get_default_option();
             $def_status = $deflt_option[$key] ?? 'off';
+            // var_dump($def_status);
             $this->modules['items'][$key]['status'] = $this->options[$key] ?? $def_status;
         }
 

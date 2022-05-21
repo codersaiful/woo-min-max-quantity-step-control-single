@@ -8,7 +8,7 @@ if( isset( $_POST['ca-module-submit'] ) && filter_input_array(INPUT_POST) ){
 }
 $module_datas = $this->modules;
 $modules_list = $this->get_module_list();
-
+// var_dump($modules_list);
 ?>
 <form action="" method="POST">
 
