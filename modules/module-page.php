@@ -21,7 +21,7 @@ foreach( $modules_list as $key=>$modl ){
     $name = $modl['name'] ?? '';
     $desc = $modl['desc'] ?? '';
     $status = $modl['status'] ?? '';
-    $checkbox = $status == 'on' ? 'checked' : '';
+    $checkbox = $status == 'off' ? '' : 'checked';
     
 
 ?>

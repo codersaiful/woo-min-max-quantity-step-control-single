@@ -69,7 +69,15 @@ class Module_Controller
                 'name'  =>  __( 'Elementor Block', 'wcmmq' ),
                 'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
                 'status'=>  'on',
-            ) 
+            ),
+            
+            'elementor_bloks' => array(
+                'key'   => 'elementor_bloks',
+                'name'  =>  __( 'ssssssssElementor Block', 'wcmmq' ),
+                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+                'status'=>  'on',
+            ),
+
         );
         $module_item = apply_filters( 'wcmmq_module_item', $module_item );
 
@@ -98,27 +106,18 @@ class Module_Controller
            }
            
        }
-        
     }
 
 
     public function update( $values = array() )
     {
-        // var_dump( $values, $this->get_option() );
+
         if( empty( $values ) ){
             $values = array_map( function($arr){
                 return 'off';
-            },$this->get_option() );
+            },$this->get_default_option() );
         }
         update_option($this->option_key,$values);
-        // $active_module = array();
-        // foreach( $this->get_module_list() as $key => $module ){
-        //     if( $module['status'] === 'on' ){
-        //         $active_module[$key] = $module;
-        //     }
-        // }
-        // $this->purefy_module();
-        // var_dump( $this->get_module_list(), $this->options );
         return $this;
 
     }
@@ -128,6 +127,13 @@ class Module_Controller
 
         $option = get_option( $this->option_key );
         if( ! empty( $option ) && is_array( $option ) ) return $option;
+        
+        return $this->get_default_option;
+
+    }
+    
+    public function get_default_option()
+    {
         $def_option = array_map(function($arr){
             return $arr['status'];
         }, $this->modules['items']);
@@ -135,14 +141,19 @@ class Module_Controller
 
     }
 
+
     public function purefy_module()
     {
         $this->options = $this->get_option();
         
         if( empty( $this->modules['items'] ) || ! is_array( $this->modules['items'] ) ) return;
+        $deflt_option = $this->get_default_option();
 
+        // var_dump($deflt_option,$this->options,$this->modules['items']);
         foreach( $this->modules['items'] as $key=>$val ){
-            $this->modules['items'][$key]['status'] = $this->options[$key] ?? 'off';
+        $deflt_option = $this->get_default_option();
+            $def_status = $deflt_option[$key] ?? 'off';
+            $this->modules['items'][$key]['status'] = $this->options[$key] ?? $def_status;
         }
 
         return $this;
@@ -170,7 +181,7 @@ class Module_Controller
     public function get_active_modules()
     {
         $active = array_filter($this->get_module_list(),function($arr){
-            if( $arr['status'] == 'on' ) return $arr;
+            if( $arr['status'] !== 'off' ) return $arr;
         });
 
         return is_array( $active ) ? $active : array();
