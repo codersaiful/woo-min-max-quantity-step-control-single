@@ -51,12 +51,11 @@ class Module_Controller
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
         $module_item = array(
-            'variation_control' => array(
-                'key'   => 'variation_control',
-                'name'  =>  __( 'Guttenberg Block', 'wcmmq' ),
-                'desc'  =>  __( 'For Qutenberge Block product require it. If not used. Deactivate this Module.', 'wcmmq' ),
+            'loop-template-button' => array(
+                'key'   => 'loop-template-button',
+                'name'  =>  __( 'Button Template for Loop', 'wcmmq' ),
+                'desc'  =>  __( 'Specially for Shop page and related proucts loop. Enable and Disable on Shop Page as well as on Related product Section.', 'wcmmq' ),
                 'status'=>  'on',
-
             ),
             'gutten_block' => array(
                 'key'   => 'gutten_block',
@@ -93,6 +92,7 @@ class Module_Controller
            $file_dir = trailingslashit($file_dir);
            $file_name = $key_modl;
            $file = $file_dir . 'files/' . $file_name .'.php'; // '/'. $file_name . 
+           
            if( is_file( $file ) ){
             include_once $file; 
            }
