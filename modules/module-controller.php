@@ -14,6 +14,8 @@ class Module_Controller
     private $active_module_key = 'active_modules';
     private $active_module = array();
 
+    private $folder_name = 'module';
+
 
 
     private $dir = __DIR__;
@@ -86,7 +88,7 @@ class Module_Controller
            $file_dir = ! empty( $modl['dir'] ) ? $modl['dir'] : $this->dir;
            $file_dir = trailingslashit($file_dir);
            $file_name = $key_modl;
-           $file = $file_dir . 'module/' . $file_name .'.php'; // '/'. $file_name . 
+           $file = $file_dir . $this->folder_name . '/' . $file_name .'.php'; // '/'. $file_name . 
            
            if( is_file( $file ) ){
             include_once $file; 
