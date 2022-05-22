@@ -1,5 +1,4 @@
 <?php 
-var_dump(888888888888888888);
 /**
  * Min or Default Qty fix for Gutenburg Block
  *
