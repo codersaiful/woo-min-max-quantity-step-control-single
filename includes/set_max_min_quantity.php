@@ -414,7 +414,14 @@ function wcmmq_quantity_input_args( $args, $product){
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
-            $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
+
+            $product_term_list = get_the_terms( $product_id, $term_key );
+            $product_term_list = is_array( $product_term_list ) ? $product_term_list : array();
+            
+            $product_term_list = array_map(function($arr){
+                return $arr->term_id;
+            },$product_term_list);
+
             foreach ( $product_term_list as $product_term_id ){
 
                 $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
