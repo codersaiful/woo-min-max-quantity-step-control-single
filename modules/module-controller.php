@@ -16,8 +16,6 @@ class Module_Controller
 
     private $folder_name = 'module';
 
-    private $module_item = array();
-
 
 
     private $dir = __DIR__;
@@ -54,7 +52,7 @@ class Module_Controller
     {
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
-        $this->module_item = array(
+        $module_item = array(
             'loop-template-button' => array(
                 'key'   => 'loop-template-button',
                 'name'  =>  __( 'Button Template for Loop', 'wcmmq' ),
@@ -70,10 +68,7 @@ class Module_Controller
             ),
 
         );
-
-        add_filter( 'wcmmq_module_item', [$this, 'apply_module_item']);
-
-        $module_items = apply_filters( 'wcmmq_module_item', array() );
+        $module_item = apply_filters( 'wcmmq_module_item', $module_item );
 
         
         
@@ -81,7 +76,7 @@ class Module_Controller
             'data'      => array(
                 'default' => 'on',
             ),
-            'items'     => $module_items
+            'items'     => $module_item
         ) );
         
 
@@ -120,12 +115,6 @@ class Module_Controller
 
     }
 
-    public function apply_module_item($module_item)
-    {
-        if( is_array( $module_item ) ) return array_merge( $this->module_item, $module_item );
-        return array();
-    }
-
     public function get_option()
     {
 
@@ -148,7 +137,6 @@ class Module_Controller
 
     public function purefy_module()
     {
-        
         $this->options = $this->get_option();
         
         if( empty( $this->modules['items'] ) || ! is_array( $this->modules['items'] ) ) return;
