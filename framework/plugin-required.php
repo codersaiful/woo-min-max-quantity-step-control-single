@@ -59,7 +59,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * 
                  */
 
-                // $small_notc = new Notice('small1');
+                // $small_notc = new Notice('small2');
                 // $small_notc->set_message(sprintf( __( '<b>Product Table for Woocommerce (Woo Product Table)</b>: lots of special feature waiting for you. %s.', 'wpt_pro' ), "<a href='https://wooproducttable.com/pricing/'>Get Premium</a>" ));
                 // $small_notc->set_diff_limit(7);
                 // $small_notc->show();
@@ -70,13 +70,13 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * 
                  * 
                  */
-                $my_message = '<a href="https://codeastrology.com/min-max-quantity/">Min Max Quantity and Step Control</a> has providing Upto 60% discount. <a href="https://codeastrology.com/min-max-quantity/pricing/">Purchase Now</a>';
-                $offerNc = new Notice('wcmmqapr22');
-                $offerNc->set_title( 'Eid Offer: Upto 60% OFF' )
-                ->set_diff_limit(3)
-                ->set_type('primary')
-                ->set_message( $my_message )
-                ->show();
+                // $my_message = '<a href="https://codeastrology.com/min-max-quantity/">Min Max Quantity and Step Control</a> has providing Upto 60% discount. <a href="https://codeastrology.com/min-max-quantity/pricing/">Purchase Now</a>';
+                // $offerNc = new Notice('wcmmqapr22');
+                // $offerNc->set_title( 'Eid Offer: Upto 60% OFF' )
+                // ->set_diff_limit(3)
+                // ->set_type('primary')
+                // ->set_message( $my_message )
+                // ->show();
                 
                 
 
