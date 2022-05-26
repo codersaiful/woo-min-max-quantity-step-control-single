@@ -619,3 +619,17 @@ function wcmmq_qty_step_issue_fix(){
 EOT;
     wp_add_inline_script( 'woocommerce', $output );
 }
+
+add_filter('hannan_noman','change_title', 10, 2);
+function change_title($tit, $tag){
+    if($tag == 'h1'){
+        $final = "Welcome to Bangladesh";
+    }else{
+        $final = "Hello World";
+    }
+    return $final;
+}
+add_filter('han_nom_heading_tag','change_heading');
+function change_heading(){
+    return "h1";
+}

@@ -30,3 +30,13 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
 }
 add_action( 'wp_enqueue_scripts', 'wcmmq_enqueue', 99 );
 
+add_action('get_header','sksjkdjkdjd');
+function sksjkdjkdjd(){
+
+    $heading_tag = apply_filters("han_nom_heading_tag", 'h2');
+
+    $title = "hello world header";
+    $title = apply_filters("hannan_noman", $title,$heading_tag);
+    
+    echo "<$heading_tag>$title</$heading_tag>";
+}
