@@ -461,7 +461,7 @@ function wcmmq_quantity_input_args( $args, $product){
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
     global $wp_query;
     $wcmmq_query = $wp_query->query_vars;
-    if( is_product() || ( isset( $wcmmq_query['wc-ajax'] ) && $wcmmq_query['wc-ajax'] !== 'get_refreshed_fragments' ) ){
+    if( is_product() || isset( $wcmmq_query['woo_product_table'] ) || ( isset( $wcmmq_query['wc-ajax'] ) && $wcmmq_query['wc-ajax'] !== 'get_refreshed_fragments' ) ){
         $args['input_value'] = $default_quantity; // set Custom Default Quantity
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
