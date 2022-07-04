@@ -53,6 +53,19 @@ function wcmmq_add_field_in_panel(){
         'data_type' => 'decimal'
     );
 
+    /**
+     * @Hook wcmmq_field_args_in_panel 
+     * Sample use of this hook:
+add_filter('wcmmq_field_args_in_panel' , function($args){
+    
+    $args = array_map(function($my_arr){
+        array_pop($my_arr);
+        return $my_arr;
+    },$args);  
+    return $args;
+});
+     * 
+     */
     $args = apply_filters('wcmmq_field_args_in_panel', $args);
 
     foreach($args as $arg){
@@ -62,14 +75,7 @@ function wcmmq_add_field_in_panel(){
 
 add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file
 
-add_filter('wcmmq_field_args_in_panel' , function($args){
-    array_pop($args);
-    echo "<pre>";
-    var_dump($args);
-    echo "</pre>";
-    
-    return $args;
-  });
+
 /**
  * To save and update our Data.
  * We have fixed , if anybody mismathch with min and max. Than max will be automatically increase 5 for now
