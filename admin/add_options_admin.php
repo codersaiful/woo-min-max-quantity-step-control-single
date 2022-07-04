@@ -52,7 +52,9 @@ function wcmmq_add_field_in_panel(){
         'description'=> 'Enter quantity Step',
         'data_type' => 'decimal'
     );
-    
+
+    $args = apply_filters('wcmmq_field_args_in_panel', $args);
+
     foreach($args as $arg){
         woocommerce_wp_text_input($arg);
     }
