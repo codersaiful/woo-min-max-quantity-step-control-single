@@ -70,19 +70,19 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  */
                 $target = 'https://codeastrology.com/min-max-quantity//?discount=OfferAug&campaign=OfferAug&utm_source=Offer_LINK';
                 $demo_link = 'https://codeastrology.com/min-max-quantity/product/album/?campaign=OfferAug&utm_source=Offer_LINK';
-                $my_message = 'Have you enjoyed using <b>SSSSProduct Table for WooCommerce (Woo Product Table)</b> Plugin? Get up to 60% OFF your purchase. [FOR LIMITED TIME]';
+                $my_message = 'Have you enjoyed using <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin? Get up to 60% OFF your purchase. [FOR LIMITED TIME] <a class="ca-button" href="https://codeastrology.com/min-max-quantity//?discount=OfferAug&amp;campaign=OfferAug&amp;utm_source=Offer_LINK" target="_blank">Get Discount &rarr;</a>';
                 $offerNc = new Notice('offerJuly27');
-                $offerNc->set_title( 'SSSSSSSSWOO Product Table ::: Discount UPTO 60%' )
+                $offerNc->set_title( 'Min Max Quantity & Step Control for WooCommerce ::: Discount UPTO 60%' )
                 ->set_diff_limit(10)
                 ->set_type('offer')
-                ->set_img( WC_MMQ_BASE_URL. 'assets/images/offer/offerjuly.jpg')
+                ->set_img( WC_MMQ_BASE_URL. 'assets/images/offer/discount.png')
                 ->set_img_target( $target )
                 ->set_message( $my_message )
-                ->add_button([
-                    'text' => 'Claim Discount',
+               /*  ->add_button([
+                    'text' => 'Get Discount',
                     'type' => 'primary',
                     'link' => $target,
-                ]);
+                ]) */;
                 if( method_exists($offerNc, 'set_location') ){
                     $offerNc->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
                 }

@@ -3,7 +3,7 @@ Contributors: codersaiful,codeastrology
 Donate link: https://codeastrology.com/min-max-quantity/pricing/
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 5.9
+Tested up to: 6.0.1
 Requires PHP: 5.6
 Stable tag: 2.9
 License: GPLv2 or later
@@ -85,6 +85,11 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 
 == Changelog ==
+
+= 2.9 =
+* Check in latest WordPress and WooCommerce version
+* Bug Fix
+* Minor issues check
 
 = 2.8 =
 * Check in latest WordPress and WooCommerce version
