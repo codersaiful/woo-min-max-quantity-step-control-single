@@ -25,6 +25,8 @@ add_action( 'wcmmq_before_form','wcmmq_before_form_free_content' );
 
 
 function wcmmq_get_pro_discount_message(){
+    return;
+
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
     $img = WC_MMQ_BASE_URL . 'assets/images/60percent.jpg';
         

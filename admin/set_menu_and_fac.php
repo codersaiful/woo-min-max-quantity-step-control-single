@@ -152,7 +152,7 @@ function wcmmq_faq_page_details(){
 
                         
                     </table>
-                    <?php wcmmq_get_pro_discount_message(); ?>
+                    <?php do_action( 'wcmmq_offer_here' ); ?>
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button">Save All</button>
                     </div>

@@ -44,6 +44,7 @@ function wcmmq_product_tab_options(){
     <div  id="wcmmq_min_max_step" class="panel woocommerce_options_panel">
         <div class="options_group">
             <?php do_action( 'woocommerce_product_options_wcmmq_minmaxstep' ); ?>
+            <?php do_action( 'wpt_offer_here' );  ?>
         </div>
     </div>
 <?php 

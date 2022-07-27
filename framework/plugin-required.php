@@ -66,17 +66,28 @@ if( ! class_exists( 'Plugin_Required' ) ){
 
 
                 /**
-                 * Eid Offer Discount
-                 * 
-                 * 
+                 * Offer Hanndle
                  */
-                // $my_message = '<a href="https://codeastrology.com/min-max-quantity/">Min Max Quantity and Step Control</a> has providing Upto 60% discount. <a href="https://codeastrology.com/min-max-quantity/pricing/">Purchase Now</a>';
-                // $offerNc = new Notice('wcmmqapr22');
-                // $offerNc->set_title( 'Eid Offer: Upto 60% OFF' )
-                // ->set_diff_limit(3)
-                // ->set_type('primary')
-                // ->set_message( $my_message )
-                // ->show();
+                $target = 'https://codeastrology.com/min-max-quantity//?discount=OfferAug&campaign=OfferAug&utm_source=Offer_LINK';
+                $demo_link = 'https://codeastrology.com/min-max-quantity/product/album/?campaign=OfferAug&utm_source=Offer_LINK';
+                $my_message = 'Have you enjoyed using <b>SSSSProduct Table for WooCommerce (Woo Product Table)</b> Plugin? Get up to 60% OFF your purchase. [FOR LIMITED TIME]';
+                $offerNc = new Notice('offerJuly27');
+                $offerNc->set_title( 'SSSSSSSSWOO Product Table ::: Discount UPTO 60%' )
+                ->set_diff_limit(10)
+                ->set_type('offer')
+                ->set_img( WC_MMQ_BASE_URL. 'assets/images/offer/offerjuly.jpg')
+                ->set_img_target( $target )
+                ->set_message( $my_message )
+                ->add_button([
+                    'text' => 'Claim Discount',
+                    'type' => 'primary',
+                    'link' => $target,
+                ]);
+                if( method_exists($offerNc, 'set_location') ){
+                    $offerNc->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
+                }
+                $offerNc->show();
+                
                 
                 
 
