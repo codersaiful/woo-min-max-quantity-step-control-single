@@ -56,7 +56,7 @@ if($wcmmp_is_old_pro){
     define("WC_MMQ_KEY", 'wcmmq_minmaxstep');
 }
 
-
+var_dump(WC_MMQ_KEY,WC_MMQ_PREFIX);
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
 

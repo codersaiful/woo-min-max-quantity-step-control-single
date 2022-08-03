@@ -266,6 +266,8 @@ foreach( $_term_lists as $key => $each ){
     $term_obj = get_terms( $term_key, $args );
 
     $selected_term_ids = isset( $saved_data['terms'][$term_key] ) && !empty( $saved_data['terms'][$term_key] ) ? $saved_data['terms'][$term_key] : false;
+    $selected_term_ids = wcmmq_term_ids_wpml( $selected_term_ids, $key );
+
     include 'includes/terms_condition.php';
 }
 

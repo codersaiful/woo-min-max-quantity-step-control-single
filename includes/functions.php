@@ -26,6 +26,29 @@ function wcmmq_tems_based_wpml( $terms_data ){
     return $temp_term;
 }
 
+/**
+ * Single dimension array of tems 
+ * to wpml supported term ids
+ * convertion
+ * 
+ * I have made it for Admin part actually for first time,
+ * but it can be use in front-end later, thats why
+ * I have make this function to frontEnd functions.php file
+ *
+ * @param array $term_ids Array of terms ids
+ * @param array $taxonomy_name tame of taxonomy key such: product_cat,product_tag etc
+ * @return array
+ */
+function wcmmq_term_ids_wpml( $term_ids, $taxonomy_name ){
+    $term_temp_ids = array();
+    foreach( $term_ids as $k=>$val ){
+        
+        $id = apply_filters( 'wpml_object_id', $k, $taxonomy_name, TRUE);
+        $term_temp_ids[$id] =$val;
+    }
+    return $term_temp_ids;
+}
+
 function wcmmq_get_term_data_wpml(){
     $terms_data = WC_MMQ::getOption( 'terms' );
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
