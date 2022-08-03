@@ -391,21 +391,7 @@ function wcmmq_quantity_input_args( $args, $product){
         $step_quantity = !empty($v_step_qty) ? $v_step_qty : $step_quantity;
         $default_quantity = !empty($v_default_qty) ? $v_default_qty : $default_quantity;
     }
-    /*
-    $termname = end( $supported_terms );
-    $sss = wp_get_post_terms( $product_id, $termname, array( 'fields' => 'ids' ));
-    var_dump($sss);exit;
-    $my_term_value = end( $terms_data );
     
-    exit;
-    $min_quantity = empty( $min_quantity ) ? $my_term_value['_min'] : $min_quantity;
-    $default_quantity = empty( $default_quantity ) ? $my_term_value['_default'] : $default_quantity;
-    $max_quantity = empty( $max_quantity ) ? $my_term_value['_max'] : $max_quantity;
-    $step_quantity = empty( $step_quantity ) ? $my_term_value['_step'] : $step_quantity;
-
-*/
-
-    //var_dump(end( $terms_data ),end( $supported_terms ), wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' )));
     $terms_data = wcmmq_get_term_data_wpml();
 
     if(is_array($terms_data) ){
@@ -509,8 +495,6 @@ function wcmmq_s_set_max_for_single( $quantity, $product ){
  */
 function wcmmq_step_set_for_order_status_update($pp){
     if( is_admin() )
-        //var_dump($pp,get_the_ID());
-        //var_dump($product);
         return 0.01;
 }
 //add_filter('woocommerce_quantity_input_step','wcmmq_step_set_for_order_status_update',888,1);
