@@ -181,9 +181,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
 
 
-    $terms_data = WC_MMQ::getOption( 'terms' );
-    $terms_data = is_array( $terms_data ) ? $terms_data : array();
-    $terms_data = wcmmq_tems_based_wpml( $terms_data );
+    $terms_data = wcmmq_get_term_data_wpml();
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
@@ -286,9 +284,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         $step_quantity = !empty($v_step_quantity) ? $v_step_quantity : $step_quantity;//Version 1.8.3
     }
 
-    $terms_data = WC_MMQ::getOption( 'terms' );
-    $terms_data = is_array( $terms_data ) ? $terms_data : array();
-    $terms_data = wcmmq_tems_based_wpml( $terms_data );
+    $terms_data = wcmmq_get_term_data_wpml();
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
@@ -367,9 +363,7 @@ function wcmmq_quantity_input_args( $args, $product){
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
     //if(is_cart() ){
-    $terms_data = WC_MMQ::getOption( 'terms' );
-    $terms_data = is_array( $terms_data ) ? $terms_data : array();
-    $terms_data = wcmmq_tems_based_wpml( $terms_data );
+    $terms_data = wcmmq_get_term_data_wpml();
 
     $variation_id = false;
     $product_id = $id = $product->get_id();
@@ -412,9 +406,7 @@ function wcmmq_quantity_input_args( $args, $product){
 */
 
     //var_dump(end( $terms_data ),end( $supported_terms ), wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' )));
-    $terms_data = WC_MMQ::getOption( 'terms' );
-    $terms_data = is_array( $terms_data ) ? $terms_data : array();
-    $terms_data = wcmmq_tems_based_wpml( $terms_data );
+    $terms_data = wcmmq_get_term_data_wpml();
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
