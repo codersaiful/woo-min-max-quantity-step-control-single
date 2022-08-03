@@ -54,3 +54,19 @@ function wcmmq_get_term_data_wpml(){
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
     return wcmmq_tems_based_wpml( $terms_data );
 }
+
+function wcmmq_get_message( $keyword ){
+    $f_keyword = WC_MMQ_PREFIX . $keyword; //'msg_min_limit'
+
+
+    $lang = apply_filters( 'wpml_current_language', NULL );
+    $default_lang = apply_filters('wpml_default_language', NULL );
+
+    $f_key_ex = '';
+    if( $lang !== $default_lang ){
+
+    }
+
+                            
+    return WC_MMQ::getOption( $f_keyword );
+}
