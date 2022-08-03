@@ -44,7 +44,7 @@ define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
  */
 $wcmmp_is_old = get_option('wcmmq_s_universal_minmaxstep') ? true : false;
 $wcmmp_is_old_pro = get_option('wcmmq_universal_minmaxstep') ? true : false;
-//var_dump(get_option('wcmmq_universal_minmaxstep'));
+
 if($wcmmp_is_old_pro){
     define("WC_MMQ_PREFIX", '_wcmmq_');
     define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
