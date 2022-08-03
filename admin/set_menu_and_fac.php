@@ -84,6 +84,7 @@ function wcmmq_faq_page_details(){
     
     
     $saved_data = WC_MMQ::getOptions();
+    var_dump($saved_data);
     
 ?>
 <div class="wrap wcmmq_wrap ultraaddons">
@@ -378,78 +379,103 @@ jQuery(document).ready(function($){
                  * @since 1.8.6
                  */
                 do_action( 'wcmmq_form_panel_before_message', $saved_data );
+                $messages_contrl = [
+                    'msg_min_limit' => [
+                        'title' => 'Minimum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                    ],
+                    
+                    'msg_max_limit' => [
+                        'title' => 'Maximum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'msg_max_limit_with_already' => [
+                        'title' => 'Maximum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'min_qty_msg_in_loop' => [
+                        'title' => 'Minimum Quantity message for shop page',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'step_error_valiation' => [
+                        'title' => 'Step validation error message',
+                        'desc'  => 'Available shortcode [should_min],[should_next]',
+                    ],
+
+                ];
+
                 ?>
             <div class="ultraaddons-panel">
                 <h2 class="with-background">Messages</h2>
                 <table class="wcmmq_config_form wcmmq_config_form_message">
+                    <?php
+                    
+                    foreach( $messages_contrl as $key_name => $messages ){
+                        
+                        extract($messages);
+                        $f_key_name = WC_MMQ_PREFIX . $key_name;
+                        $value = $saved_data[$f_key_name] ?? '';
+                    ?>
                     <tr>
-                        <th>Minimum Quantity Validation Message</th>
+                        <th><?php echo esc_html( $title ); ?></th>
                         <td>
                             
                             <?php 
+
                             $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) . 'msg_min_limit]',
+                                'textarea_name'     =>'data['. $f_key_name . ']',
                                 'textarea_rows'     => 3,
                                 'teeny'             => true,
                                 );
-                            wp_editor( esc_attr( $saved_data[WC_MMQ_PREFIX . 'msg_min_limit'] ), 'wcmmq-msg-min-limit', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
+                            wp_editor( esc_attr( $value ), $f_key_name, $settings ); ?>
+                            <p><?php echo esc_html( $desc ); ?></p>
+
+                            <?php
+                            $lang = apply_filters('wpml_default_language', NULL );
+                            $active_langs = apply_filters( 'wpml_active_languages', array(), 'orderby=id&order=desc' );
+                            if( isset( $active_langs[$lang] )){
+                                unset($active_langs[$lang]);
+                            }
+                            if( empty( $active_langs ) || ! is_array( $active_langs ) ) continue;
+                            
+                            ?>
+
+                            <div class="language-area" style="border-bottom: 4px solid black;">
+                            <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wpt_pro' ); ?></p>
+                            <?php
+                            foreach( $active_langs as $active_lang ){
+                    
+                                $code = $active_lang['code'];
+                                $english_name = $active_lang['translated_name'];
+                                $native_name = $active_lang['native_name'];
+                                $lang_name = $english_name . "({$native_name})";
+                                
+                                $flag = $active_lang['country_flag_url'];
+                            ?>
+                            <p class="wpt-each-input">
+                                <lable><img src="<?php echo esc_url( $flag ); ?>" class="wpt-wpml-admin-flag"> <?php echo esc_html( $lang_name ); ?></lable>
+                            <?php
+                            $wpml_key_name = $f_key_name . '_' . $code;
+                            $value = $saved_data[$wpml_key_name] ?? $value;
+                            $settings = array(
+                                'textarea_name'     =>'data['. $wpml_key_name . ']',
+                                'textarea_rows'     => 3,
+                                'teeny'             => true,
+                                );
+                            wp_editor( esc_attr( $value ), $wpml_key_name, $settings ); 
+                            ?>
+                                
+                            </p>
+                            <?php }
+                            ?>
+                            </div>
                         </td>
 
                     </tr>
-                    <tr>
-                        <th>Maximum Quantity Validation Message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit'] ), 'wcmmq-msg-max-limit', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <th>Already in cart message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit_with_already]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit_with_already'] ), 'wcmmq-msg-max-limit-with-already', $settings ); ?>
-                            <p>Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Minimum Quantity message for shop page</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'min_qty_msg_in_loop]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'min_qty_msg_in_loop'] ), 'wcmmq-min-qty-msg-in-loop', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Step validation error message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'step_error_valiation]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'step_error_valiation'] ), 'wcmmq-step-error-valiation', $settings ); ?>
-                            <p>Available shortcode [should_min],[should_next]</p>
-                        </td>
-                    </tr>
+                    <?php 
+                    }
+                    ?>
+                    
                 </table>
 <!--                <div class="wcmmq_waring_msg"><i>Important Note</i>: Don't change [<b>%s</b>], because it will work as like  variable. Here 1st [<b>%s</b>] will return Quantity(min/max) and second [<b>%s</b>] will return product's name.</div>-->
             </div>
