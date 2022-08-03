@@ -230,17 +230,17 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
         return true;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
-        $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args );
         wc_add_notice( $message, 'error' );
         return;
     }elseif( $max_quantity && $total_quantity > $max_quantity ){
         $message = false;
         if( $current_qty_inCart > 0 ){
-            $message .= sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'msg_max_limit_with_already' ), $current_qty_inCart, $product_name );
+            $message .= sprintf( wcmmq_get_message( 'msg_max_limit_with_already' ), $current_qty_inCart, $product_name );
             $message .= " <br>";
         }
-        $message .= sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message .= sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args );
         wc_add_notice( $message, 'error' );
         return;

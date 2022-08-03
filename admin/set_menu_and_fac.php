@@ -84,7 +84,6 @@ function wcmmq_faq_page_details(){
     
     
     $saved_data = WC_MMQ::getOptions();
-    var_dump($saved_data);
     
 ?>
 <div class="wrap wcmmq_wrap ultraaddons">

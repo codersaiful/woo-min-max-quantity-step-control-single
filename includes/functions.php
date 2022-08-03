@@ -62,11 +62,10 @@ function wcmmq_get_message( $keyword ){
     $lang = apply_filters( 'wpml_current_language', NULL );
     $default_lang = apply_filters('wpml_default_language', NULL );
 
-    $f_key_ex = '';
+    
     if( $lang !== $default_lang ){
-
+        $f_keyword .= '_' . $lang;
     }
-
-                            
+                      
     return WC_MMQ::getOption( $f_keyword );
 }
