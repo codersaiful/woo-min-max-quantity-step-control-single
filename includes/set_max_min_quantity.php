@@ -327,12 +327,12 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     }elseif( empty($max_quantity) && $quantity >= $min_quantity && $modulous ){
         return true;
     }elseif(!empty($max_quantity) && $max_quantity > 0 && $quantity > $max_quantity ){
-        $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args );
         wc_add_notice( $message, 'error' );
         return;
     }elseif( $quantity < $min_quantity ){
-        $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args );
         wc_add_notice( $message, 'error' );
         return;
