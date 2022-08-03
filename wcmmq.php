@@ -184,6 +184,15 @@ class WC_MMQ {
 
         $dir = dirname(__FILE__);
 
+        /**
+         * Common Functions file,
+         * where will stay function for both side
+         * admin and front-end
+         * 
+         * @since 2.9.0
+         */
+        include_once $dir . '/includes/functions.php';
+
         if ( is_admin() ) {
      
 
@@ -195,6 +204,7 @@ class WC_MMQ {
         }
         
         WC_MMQ\Modules\Module_Controller::instance();
+        
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';

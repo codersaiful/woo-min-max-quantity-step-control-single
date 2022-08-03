@@ -183,6 +183,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
     $terms_data = WC_MMQ::getOption( 'terms' );
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
+    $terms_data = wcmmq_tems_based_wpml( $terms_data );
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
@@ -287,6 +288,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
     $terms_data = WC_MMQ::getOption( 'terms' );
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
+    $terms_data = wcmmq_tems_based_wpml( $terms_data );
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
@@ -346,6 +348,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 }
 add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
 
+
 /**
  * Getting quantity arguments for All,
  * This quantity arguments will work for type product ande page.
@@ -366,8 +369,8 @@ function wcmmq_quantity_input_args( $args, $product){
     //if(is_cart() ){
     $terms_data = WC_MMQ::getOption( 'terms' );
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
-    //var_dump($terms_data,$supported_terms);
-//    var_dump($terms_data,$supported_terms);
+    $terms_data = wcmmq_tems_based_wpml( $terms_data );
+
     $variation_id = false;
     $product_id = $id = $product->get_id();
     if( is_cart() ){
@@ -411,6 +414,7 @@ function wcmmq_quantity_input_args( $args, $product){
     //var_dump(end( $terms_data ),end( $supported_terms ), wp_get_post_terms( $product_id, 'product_cat', array( 'fields' => 'ids' )));
     $terms_data = WC_MMQ::getOption( 'terms' );
     $terms_data = is_array( $terms_data ) ? $terms_data : array();
+    $terms_data = wcmmq_tems_based_wpml( $terms_data );
 
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){

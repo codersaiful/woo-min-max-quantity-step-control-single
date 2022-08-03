@@ -24,6 +24,7 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
         // Checking terms here
         $terms_data = WC_MMQ::getOption( 'terms' );
         $terms_data = is_array( $terms_data ) ? $terms_data : array();
+        $terms_data = wcmmq_tems_based_wpml( $terms_data );
 
         if(is_array($terms_data) ){
             foreach( $terms_data as $term_key => $values ){
