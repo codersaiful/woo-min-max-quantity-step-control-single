@@ -121,19 +121,19 @@ add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
  * @param Array $saved_data It's a saved data as well as it will come from defaults value
  * @return void
  */
-function wcmmq_message_field_generator( $fields_arr, $saved_data ){
+function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title = 'Message', $prefix = WC_MMQ_PREFIX ){
                 
     
     ?>
 <div class="ultraaddons-panel">
-    <h2 class="with-background">Messages</h2>
+    <h2 class="with-background"><?php echo esc_html( $section_title ); ?></h2>
     <table class="wcmmq_config_form wcmmq_config_form_message">
         <?php
         
         foreach( $fields_arr as $key_name => $messages ){
             
             extract($messages);
-            $f_key_name = WC_MMQ_PREFIX . $key_name;
+            $f_key_name = $prefix . $key_name;
             $value = $saved_data[$f_key_name] ?? '';
         ?>
         <tr>
