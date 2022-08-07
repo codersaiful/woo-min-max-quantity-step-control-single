@@ -56,8 +56,8 @@ function wcmmq_get_term_data_wpml(){
     return wcmmq_tems_based_wpml( $terms_data );
 }
 
-function wcmmq_get_message( $keyword ){
-    $f_keyword = WC_MMQ_PREFIX . $keyword; //'msg_min_limit'
+function wcmmq_get_message( $keyword, $prefix = WC_MMQ_PREFIX ){
+    $f_keyword = $prefix . $keyword; //'msg_min_limit'
 
 
     $lang = apply_filters( 'wpml_current_language', NULL );
