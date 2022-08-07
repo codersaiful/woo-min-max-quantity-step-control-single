@@ -99,6 +99,108 @@ $image_link = WC_MMQ_BASE_URL . 'assets/images/features/cart-page-notices-settin
 }
 add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
 
+/**
+ * Message Field of Form Genrator
+ * In this part
+ * I added also WPML field added
+ * Example of Field Array:
+                $fields_arr = [
+                    'msg_min_limit' => [
+                        'title' => 'Minimum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                    ],
+                    
+                    'msg_max_limit' => [
+                        'title' => 'Maximum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                    ],
+                ];
+ * 
+ *
+ * @param Array $fields_arr Should be an Array
+ * @param Array $saved_data
+ * @return void
+ */
+function wcmmq_message_field_generator($fields_arr, $saved_data){
+                
+    
+    ?>
+<div class="ultraaddons-panel">
+    <h2 class="with-background">Messages</h2>
+    <table class="wcmmq_config_form wcmmq_config_form_message">
+        <?php
+        
+        foreach( $fields_arr as $key_name => $messages ){
+            
+            extract($messages);
+            $f_key_name = WC_MMQ_PREFIX . $key_name;
+            $value = $saved_data[$f_key_name] ?? '';
+        ?>
+        <tr>
+            <th><?php echo esc_html( $title ); ?></th>
+            <td>
+                
+                <?php 
+
+                $settings = array(
+                    'textarea_name'     =>'data['. $f_key_name . ']',
+                    'textarea_rows'     => 3,
+                    'teeny'             => true,
+                    );
+                wp_editor( esc_attr( $value ), $f_key_name, $settings ); ?>
+                <p><?php echo esc_html( $desc ); ?></p>
+
+                <?php
+                $lang = apply_filters('wpml_default_language', NULL );
+                $active_langs = apply_filters( 'wpml_active_languages', array(), 'orderby=id&order=desc' );
+                if( isset( $active_langs[$lang] )){
+                    unset($active_langs[$lang]);
+                }
+                if( empty( $active_langs ) || ! is_array( $active_langs ) ) continue;
+                
+                ?>
+
+                <div class="language-area" style="border-bottom: 4px solid black;">
+                <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wpt_pro' ); ?></p>
+                <?php
+                foreach( $active_langs as $active_lang ){
+        
+                    $code = $active_lang['code'];
+                    $english_name = $active_lang['translated_name'];
+                    $native_name = $active_lang['native_name'];
+                    $lang_name = $english_name . "({$native_name})";
+                    
+                    $flag = $active_lang['country_flag_url'];
+                ?>
+                <p class="wpt-each-input">
+                    <lable><img src="<?php echo esc_url( $flag ); ?>" class="wpt-wpml-admin-flag"> <?php echo esc_html( $lang_name ); ?></lable>
+                <?php
+                $wpml_key_name = $f_key_name . '_' . $code;
+                $value = $saved_data[$wpml_key_name] ?? $value;
+                $settings = array(
+                    'textarea_name'     =>'data['. $wpml_key_name . ']',
+                    'textarea_rows'     => 3,
+                    'teeny'             => true,
+                    );
+                wp_editor( esc_attr( $value ), $wpml_key_name, $settings ); 
+                ?>
+                    
+                </p>
+                <?php }
+                ?>
+                </div>
+            </td>
+
+        </tr>
+        <?php 
+        }
+        ?>
+        
+    </table>
+
+</div>
+    <?php 
+}
 
 
 
