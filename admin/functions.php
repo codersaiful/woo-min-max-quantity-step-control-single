@@ -118,10 +118,10 @@ add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
  * 
  *
  * @param Array $fields_arr Should be an Array
- * @param Array $saved_data
+ * @param Array $saved_data It's a saved data as well as it will come from defaults value
  * @return void
  */
-function wcmmq_message_field_generator($fields_arr, $saved_data){
+function wcmmq_message_field_generator( $fields_arr, $saved_data ){
                 
     
     ?>
