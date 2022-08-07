@@ -40,6 +40,7 @@ function wcmmq_tems_based_wpml( $terms_data ){
  * @return array
  */
 function wcmmq_term_ids_wpml( $term_ids, $taxonomy_name ){
+    if( ! is_array( $term_ids ) ) return $term_ids;
     $term_temp_ids = array();
     foreach( $term_ids as $k=>$val ){
         
