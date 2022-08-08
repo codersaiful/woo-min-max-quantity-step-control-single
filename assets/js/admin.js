@@ -52,7 +52,7 @@
     if(configFormElement.length < 1) return;
 
     let conPass = bodyHeight - screenHeight - 100 - targetElement.height();
-    let leftWill = configFormElement.width() - targetElement.width() - 220;
+    let leftWill = configFormElement.width() - targetElement.width() - 20;
     
 
     targetElement.css({
