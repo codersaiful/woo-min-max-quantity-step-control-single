@@ -51,8 +51,8 @@
     let configFormElement = $('form#wcmmq-main-configuration-form');
     if(configFormElement.length < 1) return;
 
-    let conPass = bodyHeight - screenHeight - 300 - targetElement.height();
-    let leftWill = configFormElement.width() - targetElement.width() - 20;
+    let conPass = bodyHeight - screenHeight - 100 - targetElement.height();
+    let leftWill = configFormElement.width() - targetElement.width() - 220;
     
 
     targetElement.css({
@@ -60,9 +60,9 @@
         right: 'unset'
     });
     if(scrollTop < conPass){
-        targetElement.attr('id','stick_on_scroll-on');
+        targetElement.addClass('stick_on_scroll-on');
     }else{
-        targetElement.removeAttr('id');
+        targetElement.removeClass('stick_on_scroll-on');
     }
     
     if(scrollTop > 100 && colSetsLen > 0){

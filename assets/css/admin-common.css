@@ -458,8 +458,6 @@ h1.with-background.dark-background {}
         float: right;
     }
 }
-form#wcmmq-main-configuration-form .float-section .stick_on_scroll#stick_on_scroll-on, 
-form#wcmmq-main-configuration-form .float-section .stick_on_scroll-on, 
 form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     position: fixed;
     bottom: 33px;
@@ -470,4 +468,8 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     font-weight: normal;
     border-radius:unset;
     z-index: 99999;
+    display: none;
+}
+form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{
+    display: block;
 }
