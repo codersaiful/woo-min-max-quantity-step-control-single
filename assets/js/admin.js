@@ -33,7 +33,7 @@
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 
-    var colSetsLen = $('#wcmmq-supported-terms').length;
+    var colSetsLen = $('form#wcmmq-main-configuration-form').length;
     if( colSetsLen > 0 ){
         $('#wcmmq-main-configuration-form').append(btnHtml);
     } 
@@ -48,7 +48,7 @@
     let scrollTop = $(this).scrollTop();
     let screenHeight = $(this).height();
 
-    let configFormElement = $('#wcmmq-supported-terms');
+    let configFormElement = $('form#wcmmq-main-configuration-form');
     if(configFormElement.length < 1) return;
 
     let conPass = bodyHeight - screenHeight - 300 - targetElement.height();
