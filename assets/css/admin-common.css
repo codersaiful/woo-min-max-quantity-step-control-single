@@ -468,6 +468,6 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     padding: 12px 36px;
     font-size: 16px;
     font-weight: normal;
-    border-radius:none;
+    border-radius:unset;
     z-index: 99999;
 }
