@@ -238,9 +238,14 @@ ul.wcmmq_each_terms_header small {
 .ua_config_form.showing{display: block;}
 .wcmmq_terms_promotion{}
 .wcmmq-premium {
-    opacity: .6;
+    opacity: .8;
     position: relative;
+    cursor:not-allowed;
 }
+.wcmmq-premium {
+    opacity: 1;
+}
+
 
 .wcmmq-premium>*:first-child:before {content: "Pro";background: #ff0000c2;padding: 3px 7px;color: white;border-radius: 8px;font-size: 10px;position: absolute;top: 0;left: 0;}
 

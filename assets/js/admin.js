@@ -1,7 +1,7 @@
 (function($){
     'use strict';
     $(document).ready(function(){
-        //alert(22);
+        
         $('.ua_input_select,.wcmmq_select_terms').select2();
         
         /**
@@ -10,6 +10,13 @@
          */
          $(document.body).on('change','#wcmmq_supported_terms',function(){
             $('#wcmmq_form_submit_button').trigger('click');
+        });
+        
+        $(document.body).on('click','.wcmmq-premium',function(){
+            // alert(45454);
+            var link = 'https://codeastrology.com/min-max-quantity/pricing/';
+            window.open(link,'_blank');
+            // window.location.href = 'https://codeastrology.com/min-max-quantity/pricing/';
         });
         
         $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (){

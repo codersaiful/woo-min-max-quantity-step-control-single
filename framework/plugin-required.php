@@ -71,7 +71,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 $target = 'https://codeastrology.com/min-max-quantity//?discount=OfferAug&campaign=OfferAug&utm_source=Offer_LINK';
                 $demo_link = 'https://codeastrology.com/min-max-quantity/product/album/?campaign=OfferAug&utm_source=Offer_LINK';
                 $my_message = 'Have you enjoyed using <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin? Get up to 60% OFF your purchase. [FOR LIMITED TIME] <a class="ca-button" href="https://codeastrology.com/min-max-quantity//?discount=OfferAug&amp;campaign=OfferAug&amp;utm_source=Offer_LINK" target="_blank">Get Discount &rarr;</a>';
-                $offerNc = new Notice('offerJuly27');
+                $offerNc = new Notice('offerAug22');
                 $offerNc->set_title( 'Min Max Quantity & Step Control for WooCommerce ::: Discount UPTO 60%' )
                 ->set_diff_limit(10)
                 ->set_type('offer')

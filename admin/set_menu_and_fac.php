@@ -217,7 +217,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                 <?php 
                                     if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
                                 ?>
-                                    For Mulitple Terms, <a href="https://min-max-quantity.codeastrology.com">Upgrade to PRO</a>    
+                                    For Mulitple Terms, <a href="https://codeastrology.com/min-max-quantity/pricing/">Upgrade to PRO</a>    
                                 <?php
                                     };
                                 ?>
