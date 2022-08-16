@@ -161,7 +161,7 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
                 ?>
 
                 <div class="language-area" style="border-bottom: 4px solid black;">
-                <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wpt_pro' ); ?></p>
+                <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wcmmq_pro' ); ?></p>
                 <?php
                 foreach( $active_langs as $active_lang ){
         
@@ -202,5 +202,36 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
     <?php 
 }
 
-
+if( !function_exists( 'wcmmq_admin_body_class' ) ){
+    /**
+     * set class for Admin Body tag
+     * 
+     * @param type $classes
+     * @return String
+     */
+    function wcmmq_admin_body_class( $class_string ){
+        global $current_screen;
+        $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
+        if( strpos( $s_id, 'wcmmq') !== false ){
+        ?>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/628f5d4f7b967b1179915ad7/1g4009033';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+// s0.parentNode.insertBefore(s1,s0);
+// console.log('HHHHHHHHHHHHHHH',s0,s1);
+})();
+</script>
+<!--End of Tawk.to Script-->        
+        <?php
+        }
+        
+    }
+}
+add_filter( 'admin_head', 'wcmmq_admin_body_class', 999 );
 
