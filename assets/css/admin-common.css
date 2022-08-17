@@ -473,3 +473,10 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
 form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{
     display: block;
 }
+button.add_terms_button.primary.button.button-primary{
+    background: #007694!important;
+    color: #fff;
+}
+button.add_terms_button.primary.button.button-primary:hover{
+    background: #375F6B!important; 
+}
