@@ -223,11 +223,10 @@ s1.async=true;
 s1.src='https://embed.tawk.to/628f5d4f7b967b1179915ad7/1g4009033';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
-// s0.parentNode.insertBefore(s1,s0);
-// console.log('HHHHHHHHHHHHHHH',s0,s1);
+s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->        
+<!--End of Tawk.to Script-->      
         <?php
         }
         
