@@ -202,14 +202,14 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
     <?php 
 }
 
-if( !function_exists( 'wcmmq_admin_body_class' ) ){
+if( !function_exists( 'wcmmq_tawkto_code_header' ) ){
     /**
      * set class for Admin Body tag
      * 
      * @param type $classes
      * @return String
      */
-    function wcmmq_admin_body_class( $class_string ){
+    function wcmmq_tawkto_code_header( $class_string ){
         global $current_screen;
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
         if( strpos( $s_id, 'wcmmq') !== false ){
@@ -232,5 +232,5 @@ s0.parentNode.insertBefore(s1,s0);
         
     }
 }
-add_filter( 'admin_head', 'wcmmq_admin_body_class', 999 );
+add_filter( 'admin_head', 'wcmmq_tawkto_code_header', 999 );
 
