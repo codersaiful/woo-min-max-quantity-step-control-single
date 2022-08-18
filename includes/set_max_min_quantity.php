@@ -228,7 +228,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     //wcmmq_message_convert_replace( $message, $args );
 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
-        return true;
+        return $bool;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $args );
@@ -247,7 +247,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     }elseif(!$modulous){
         return;
     }else{
-        return true;
+        return $bool;
     }
 }
 add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
