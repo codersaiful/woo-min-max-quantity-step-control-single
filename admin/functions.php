@@ -135,6 +135,8 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
             extract($messages);
             $f_key_name = $prefix . $key_name;
             $value = $saved_data[$f_key_name] ?? '';
+            $default_value = WC_MMQ::$default_values[$f_key_name] ?? '';
+            $value = ! empty( $value ) ? $value : $default_value;
         ?>
         <tr>
             <th><?php echo esc_html( $title ); ?></th>
