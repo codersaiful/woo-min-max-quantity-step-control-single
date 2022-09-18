@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.0.1
 Requires PHP: 5.6
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,10 +86,14 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
-= 3.0.1 =
+= 3.1 =
 * Quantity steps changing to big value - problem has been fixed. 
 * Bug Fix
 * Minor issues check
+
+= 3.0 =
+* Bug Fix
+* * Minor issues check
 
 = 2.9 =
 * Check in latest WordPress and WooCommerce version
