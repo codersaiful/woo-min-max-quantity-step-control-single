@@ -86,6 +86,11 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
+= 3.0.1 =
+* Quantity steps changing to big value - problem has been fixed. 
+* Bug Fix
+* Minor issues check
+
 = 2.9 =
 * Check in latest WordPress and WooCommerce version
 * Bug Fix
