@@ -564,38 +564,3 @@ EOF;
 }
 add_action('wp_head','wcmmq_add_custom_css');
 
-
-
-
-/**
- * To fix the issue with each quantity step
- *
- * @since 1.8.6
- */
-add_action( 'wp_enqueue_scripts', 'wcmmq_qty_step_issue_fix' );
-function wcmmq_qty_step_issue_fix(){
-    $output = <<<EOT
-	jQuery(document).ready(function($){
-		function CheckDecimal(inputtxt) { 
-			if(!/^[-+]?[0-9]+\.[0-9]+$/.test(inputtxt)) { 
-				return true;
-			} else { 
-				return false;
-			}
-		}
-		var qty_box, qty_value, formatted_value;
-		qty_box = $('.single-product input.input-text, .woocommerce-cart .product-quantity input.input-text');
-		qty_box.on('change', function(){
-			qty_value = $(this).val();
-			if(!CheckDecimal(qty_value)){
-				formatted_value = parseFloat(qty_value).toFixed(2);
-				$(this).val(formatted_value);
-			}else{
-				formatted_value = parseFloat(qty_value).toFixed(0);
-				$(this).val(formatted_value);
-			}
-		});	
-	});
-EOT;
-    wp_add_inline_script( 'woocommerce', $output );
-}
