@@ -1,6 +1,6 @@
 === Min Max Quantity & Step Control for WooCommerce ===
 Contributors: codersaiful,codeastrology
-Donate link: https://codeastrology.com/min-max-quantity/pricing/
+Donate link: https://codeastrology.com/min-max-quantity/pricing/?ref=CodeAstrology&utm=Donate_Link
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 6.0.1
@@ -61,6 +61,15 @@ You can customise the cart page notifications.
 * [UltraAddons Elementor Lite (Header & Footer Builder, Menu Builder, Cart Icon, Shortcode)](https://wordpress.org/plugins/ultraaddons-elementor-lite/)
 * [Quantity Plus Minus Button for WooCommerce](https://wordpress.org/plugins/wc-quantity-plus-minus-button/)
 * [Add to Cart Text Changer and Customize Button, Add Custom Icon](https://wordpress.org/plugins/woo-add-to-cart-text-change/)
+
+**👷 HONORABLE CONTRIBUTOR - [GitHub](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/graphs/contributors) 👷**<br>
+
+* [codersaiful](https://github.com/codersaiful) (77 commits 19,078++ And Pro: 50+ commits )
+* [fazlebari](https://github.com/fazlebari) (Pro: 10+ commits )
+* 👉 [You can join here](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork)
+
+**🥇 CONTRIBUTE 🥇**<br>
+You are welcome to contribute  to this project. Join with us [Fork Github repository](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork). If you contribute 1 commit, We will add your name to our plugin's Contributor table/list of WordPress Plugin too.
 
 == Installation ==
 
