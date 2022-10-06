@@ -1,17 +1,17 @@
 <?php
 /**
  * Plugin Name: Min Max Quantity & Step Control for WooCommerce
- * Plugin URI: https://min-max-quantity.codeastrology.com/
+ * Plugin URI: https://codeastrology.com/min-max-quantity/
  * Description: Min Max Quantity & Step Control plugin offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled. for any issue: codersaiful@gmail.com
- * Author: CodeAstrology
+ * Author: CodeAstrology Team
  * Author URI: https://codeastrology.com
- * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
+ * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 2.1.0
+ * Version: 3.1
  * Requires at least:    4.0.0
- * Tested up to:         5.8.2
+ * Tested up to:         6.0.2
  * WC requires at least: 3.0.0
- * WC tested up to: 	 5.9.0
+ * WC tested up to: 	 6.9.4
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '2.1.0');
+define('WC_MMQ_VERSION', '3.1.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -44,7 +44,7 @@ define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
  */
 $wcmmp_is_old = get_option('wcmmq_s_universal_minmaxstep') ? true : false;
 $wcmmp_is_old_pro = get_option('wcmmq_universal_minmaxstep') ? true : false;
-//var_dump(get_option('wcmmq_universal_minmaxstep'));
+
 if($wcmmp_is_old_pro){
     define("WC_MMQ_PREFIX", '_wcmmq_');
     define("WC_MMQ_KEY", 'wcmmq_universal_minmaxstep');
@@ -55,7 +55,6 @@ if($wcmmp_is_old_pro){
     define("WC_MMQ_PREFIX", '');
     define("WC_MMQ_KEY", 'wcmmq_minmaxstep');
 }
-
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
@@ -172,16 +171,26 @@ class WC_MMQ {
       }
      */
     public function __construct() {
-
-        //Condition and check php verion and WooCommerce activation
-        if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-            add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+        
+        require_once __DIR__ . '/autoloader.php';
+        
+        
+        if( WC_MMQ\Framework\Plugin_Required::fail() ){
             return;
         }
 
         add_action('init', [$this, 'i18n']);
 
         $dir = dirname(__FILE__);
+
+        /**
+         * Common Functions file,
+         * where will stay function for both side
+         * admin and front-end
+         * 
+         * @since 2.9.0
+         */
+        include_once $dir . '/includes/functions.php';
 
         if ( is_admin() ) {
      
@@ -192,6 +201,8 @@ class WC_MMQ {
             include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
         }
+        
+        WC_MMQ\Modules\Module_Controller::instance();
         
         
         include_once $dir . '/includes/enqueue.php';
@@ -269,7 +280,7 @@ class WC_MMQ {
      */
     public static function getOption($kewword = false) {
         $data = get_option( WC_MMQ_KEY );
-        return $kewword && isset($data[$kewword]) ? (String) $data[$kewword] : false;
+        return $kewword && isset($data[$kewword]) ? $data[$kewword] : false;
     }
 
     public static function minMaxStep($kewword = false, $product_id = false) {

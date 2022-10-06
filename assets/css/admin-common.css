@@ -458,3 +458,25 @@ h1.with-background.dark-background {}
         float: right;
     }
 }
+form#wcmmq-main-configuration-form  #stick_on_scroll-on {
+    position: fixed;
+    bottom: 33px;
+    right: 50px;
+    box-shadow: 0px 10px 30px 0 #00000061;
+    padding: 12px 36px;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius:unset;
+    z-index: 99999;
+    display: none;
+}
+form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{
+    display: block;
+}
+button.add_terms_button.primary.button.button-primary{
+    background: #007694!important;
+    color: #fff;
+}
+button.add_terms_button.primary.button.button-primary:hover{
+    background: #375F6B!important; 
+}

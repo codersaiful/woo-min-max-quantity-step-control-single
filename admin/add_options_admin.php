@@ -8,7 +8,7 @@
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
  */
 function wcmmq_add_field_in_panel(){
-    $args = false;
+    $args = array();
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'min_quantity',
@@ -52,13 +52,29 @@ function wcmmq_add_field_in_panel(){
         'description'=> 'Enter quantity Step',
         'data_type' => 'decimal'
     );
+
+    /**
+     * @Hook wcmmq_field_args_in_panel 
+     * Sample use of this hook:
+add_filter('wcmmq_field_args_in_panel' , function($args){
     
+    $args = array_map(function($my_arr){
+        array_pop($my_arr);
+        return $my_arr;
+    },$args);  
+    return $args;
+});
+     * 
+     */
+    $args = apply_filters('wcmmq_field_args_in_panel', $args);
+
     foreach($args as $arg){
         woocommerce_wp_text_input($arg);
     }
 }
 
 add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file
+
 
 /**
  * To save and update our Data.

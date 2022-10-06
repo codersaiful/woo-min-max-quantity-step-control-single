@@ -20,7 +20,7 @@
                 <select class="wcmmq_select_terms <?php echo esc_attr( $term_key ); ?> ua_select" id="wcmmq_term_ids">
                     <?php echo $options_item; ?>
                 </select>
-                <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button button button-primary">+</button>    
+                <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button primary button button-primary">+ Add Terms</button>    
                 <?php    
                 }else{
                     echo "No item for {$term_name}";

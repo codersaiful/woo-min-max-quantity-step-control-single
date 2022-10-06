@@ -96,10 +96,11 @@ function wcmmq_faq_page_details(){
                 <div class="ultraaddons-panel">
                     <h2 class="with-background">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
+
                         <tr>
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]">Minimum Quantity</label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -107,7 +108,7 @@ function wcmmq_faq_page_details(){
                         <tr>
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]">Maximum Quantity</label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
                             </td>
 
                         </tr>
@@ -127,6 +128,20 @@ function wcmmq_faq_page_details(){
                             </td>
 
                         </tr>
+                        <tr>
+                            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]">Order Page (Condition)</label></th>
+                            <td>
+                                <label class="switch">
+                                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
+                                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                                    <div class="slider round"><!--ADDED HTML -->
+                                        <span class="on">ON</span><span class="off">OFF</span><!--END-->
+                                    </div>
+                                </label>
+                            </td>
+
+                        </tr>
                         <?php
                         /**
                          * Obviously need tr and td here
@@ -137,6 +152,7 @@ function wcmmq_faq_page_details(){
 
                         
                     </table>
+                    <?php do_action( 'wcmmq_offer_here' ); ?>
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button">Save All</button>
                     </div>
@@ -201,7 +217,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                 <?php 
                                     if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
                                 ?>
-                                    For Mulitple Terms, <a href="https://min-max-quantity.codeastrology.com">Upgrade to PRO</a>    
+                                    For Mulitple Terms, <a href="https://codeastrology.com/min-max-quantity/pricing/">Upgrade to PRO</a>    
                                 <?php
                                     };
                                 ?>
@@ -250,6 +266,8 @@ foreach( $_term_lists as $key => $each ){
     $term_obj = get_terms( $term_key, $args );
 
     $selected_term_ids = isset( $saved_data['terms'][$term_key] ) && !empty( $saved_data['terms'][$term_key] ) ? $saved_data['terms'][$term_key] : false;
+    $selected_term_ids = wcmmq_term_ids_wpml( $selected_term_ids, $key );
+
     include 'includes/terms_condition.php';
 }
 
@@ -360,82 +378,33 @@ jQuery(document).ready(function($){
                  * @since 1.8.6
                  */
                 do_action( 'wcmmq_form_panel_before_message', $saved_data );
-                ?>
-            <div class="ultraaddons-panel">
-                <h2 class="with-background">Messages</h2>
-                <table class="wcmmq_config_form wcmmq_config_form_message">
-                    <tr>
-                        <th>Minimum Quantity Validation Message</th>
-                        <td>
-                            
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) . 'msg_min_limit]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( esc_attr( $saved_data[WC_MMQ_PREFIX . 'msg_min_limit'] ), 'wcmmq-msg-min-limit', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
-                        </td>
 
-                    </tr>
-                    <tr>
-                        <th>Maximum Quantity Validation Message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit'] ), 'wcmmq-msg-max-limit', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <th>Already in cart message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'msg_max_limit_with_already]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'msg_max_limit_with_already'] ), 'wcmmq-msg-max-limit-with-already', $settings ); ?>
-                            <p>Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Minimum Quantity message for shop page</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'min_qty_msg_in_loop]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'min_qty_msg_in_loop'] ), 'wcmmq-min-qty-msg-in-loop', $settings ); ?>
-                            <p>Available shortcode [min_quantity],[max_quantity],[product_name]</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Step validation error message</th>
-                        <td>
-                            <?php 
-                            $settings = array(
-                                'textarea_name'     =>'data['. esc_attr( WC_MMQ_PREFIX ) .'step_error_valiation]',
-                                'textarea_rows'     => 3,
-                                'teeny'             => true,
-                                );
-                            wp_editor( wp_kses_post( $saved_data[WC_MMQ_PREFIX . 'step_error_valiation'] ), 'wcmmq-step-error-valiation', $settings ); ?>
-                            <p>Available shortcode [should_min],[should_next]</p>
-                        </td>
-                    </tr>
-                </table>
-<!--                <div class="wcmmq_waring_msg"><i>Important Note</i>: Don't change [<b>%s</b>], because it will work as like  variable. Here 1st [<b>%s</b>] will return Quantity(min/max) and second [<b>%s</b>] will return product's name.</div>-->
-            </div>
-                <?php 
+                $fields_arr = [
+                    'msg_min_limit' => [
+                        'title' => 'Minimum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                    ],
+                    
+                    'msg_max_limit' => [
+                        'title' => 'Maximum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'msg_max_limit_with_already' => [
+                        'title' => 'Maximum Quantity Validation Message',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'min_qty_msg_in_loop' => [
+                        'title' => 'Minimum Quantity message for shop page',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                    ],
+                    'step_error_valiation' => [
+                        'title' => 'Step validation error message',
+                        'desc'  => 'Available shortcode [should_min],[should_next]',
+                    ],
+            
+                ];
+            
+                wcmmq_message_field_generator($fields_arr, $saved_data);
                 
                 /**
                  * @Hook Action: wcmmq_form_panel

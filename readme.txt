@@ -1,11 +1,11 @@
 === Min Max Quantity & Step Control for WooCommerce ===
 Contributors: codersaiful,codeastrology
-Donate link: https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198
+Donate link: https://codeastrology.com/min-max-quantity/pricing/?ref=CodeAstrology&utm=Donate_Link
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 5.8
+Tested up to: 6.0.1
 Requires PHP: 5.6
-Stable tag: 2.1.0
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ Also, you can set values for each product individually. Product label values wil
 **Plugin Links**
 
 * [Demo](https://codeastrology.com/min-max-quantity/)
-* [Premium Version](https://codecanyon.net/item/woocommerce-min-max-quantity-step-control/22962198)  
+* [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
 
 **FEATURES**
 
@@ -62,6 +62,15 @@ You can customise the cart page notifications.
 * [Quantity Plus Minus Button for WooCommerce](https://wordpress.org/plugins/wc-quantity-plus-minus-button/)
 * [Add to Cart Text Changer and Customize Button, Add Custom Icon](https://wordpress.org/plugins/woo-add-to-cart-text-change/)
 
+**👷 HONORABLE CONTRIBUTOR - [GitHub](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/graphs/contributors) 👷**<br>
+
+* [codersaiful](https://github.com/codersaiful) (77 commits 19,078++ And Pro: 50+ commits )
+* [fazlebari](https://github.com/fazlebari) (Pro: 10+ commits )
+* 👉 [You can join here](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork)
+
+**🥇 CONTRIBUTE 🥇**<br>
+You are welcome to contribute  to this project. Join with us [Fork Github repository](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork). If you contribute 1 commit, We will add your name to our plugin's Contributor table/list of WordPress Plugin too.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/WC_Min_Max_Quantity_Single` directory, or install the plugin through the WordPress plugins screen directly.
@@ -85,6 +94,38 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 
 == Changelog ==
+
+= 3.1 =
+* Quantity steps changing to big value - problem has been fixed. 
+* Bug Fix
+* Minor issues check
+
+= 3.0 =
+* Bug Fix
+* * Minor issues check
+
+= 2.9 =
+* Check in latest WordPress and WooCommerce version
+* Bug Fix
+* Minor issues check
+
+= 2.8 =
+* Check in latest WordPress and WooCommerce version
+* Bug Fix
+
+= 2.5 =
+ * Fix: Ajax issue fix
+ * Integrate with thirdparty plugin 
+ * Bug Fix
+
+= 2.4 =
+* Fixed: min quantity on mini cart and other plugins
+* Fixed: step quantity on mini cart and other plugins
+* Bug Fixed
+
+= 2.3 =
+* Fixed: min quantity should message error fixed.
+* Bug Fixed
 
 = 2.0 =
 * Added: Modern user interface
