@@ -1,5 +1,5 @@
 === Min Max Quantity & Step Control for WooCommerce ===
-Contributors: codersaiful,codeastrology
+Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://codeastrology.com/min-max-quantity/pricing/?ref=CodeAstrology&utm=Donate_Link
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
@@ -64,8 +64,10 @@ You can customise the cart page notifications.
 
 **👷 HONORABLE CONTRIBUTOR - [GitHub](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/graphs/contributors) 👷**<br>
 
-* [codersaiful](https://github.com/codersaiful) (77 commits 19,078++ And Pro: 50+ commits )
-* [fazlebari](https://github.com/fazlebari) (Pro: 10+ commits )
+* [codersaiful](https://github.com/codersaiful) (161 commits 22,681 ++ 5,794 -- And Pro: 50+ commits )
+* [unikforceit](https://github.com/unikforceit) (14 commits 315 ++ And Pro: 10+ commits )
+* [fazlebarisn](https://github.com/fazlebarisn) (9 commits 71 ++ And Pro: 10+ commits )
+* [rafiul](https://github.com/rafiul) (7 commits 1,718 ++  )
 * 👉 [You can join here](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork)
 
 **🥇 CONTRIBUTE 🥇**<br>
