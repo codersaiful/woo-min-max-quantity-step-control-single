@@ -382,24 +382,24 @@ jQuery(document).ready(function($){
                 $fields_arr = [
                     'msg_min_limit' => [
                         'title' => 'Minimum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     
                     'msg_max_limit' => [
                         'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'msg_max_limit_with_already' => [
                         'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'min_qty_msg_in_loop' => [
                         'title' => 'Minimum Quantity message for shop page',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'step_error_valiation' => [
                         'title' => 'Step validation error message',
-                        'desc'  => 'Available shortcode [should_min],[should_next]',
+                        'desc'  => 'Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]',
                     ],
             
                 ];

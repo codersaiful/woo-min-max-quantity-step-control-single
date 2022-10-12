@@ -98,6 +98,13 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 == Changelog ==
 
 = 3.1 =
+* Added: [step_quantity] New Shortcode for Error/Success message for all Message
+* Added: [variation_name] New Shortcode for Error/Success message for all Message
+* Added:  [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity] for Step validation error message
+* Fixed: msg_max_limit error message default message fix.
+* Bug Fix
+
+= 3.1 =
 * Quantity steps changing to big value - problem has been fixed. 
 * Bug Fix
 * Minor issues check
