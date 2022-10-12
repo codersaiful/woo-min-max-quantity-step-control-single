@@ -441,10 +441,14 @@ function wcmmq_quantity_input_args( $args, $product){
     }
 
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
-    global $wp_query;
-    $wcmmq_query = $wp_query->query_vars;
-    if( is_product() || isset( $wcmmq_query['woo_product_table'] ) || ( isset( $wcmmq_query['wc-ajax'] ) && $wcmmq_query['wc-ajax'] !== 'get_refreshed_fragments' ) ){
-        $args['input_value'] = $default_quantity; // set Custom Default Quantity
+    /**
+     * Our Customer has given me this solution and It's awesome.
+     * Working property.
+     * Really great it. Thanks to that user.
+     * 
+     */
+    if( ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+        $args['input_value'] = $default_quantity;
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
