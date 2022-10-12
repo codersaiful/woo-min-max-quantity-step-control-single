@@ -32,6 +32,7 @@ function wcmmq_message_convert_replace( $message, $args ){
         'current_quantity'=> false,
     );
     $args = wp_parse_args( $args, $defaults );
+    $args = apply_filters( 'wcmmq_message_replaced_shortcode_args', $args );
     $arr_keys = array_keys($args);
     $find_arr = array_map(function($val){
         return "[$val]";
