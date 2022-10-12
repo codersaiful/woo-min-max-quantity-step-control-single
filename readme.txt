@@ -97,7 +97,7 @@ Very easy. Just add a new product or edit existing prouduct . You will see a tab
 
 == Changelog ==
 
-= 3.1 =
+= 3.2 =
 * Added: New filter hook `wcmmq_message_replaced_shortcode_args` added for Error Message replace shortcode arguments.
 * Added: [step_quantity] New Shortcode for Error/Success message for all Message
 * Added: [variation_name] New Shortcode for Error/Success message for all Message
