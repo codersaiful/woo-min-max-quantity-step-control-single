@@ -68,6 +68,7 @@ You can customise the cart page notifications.
 * [unikforceit](https://github.com/unikforceit) (14 commits 315 ++ And Pro: 10+ commits )
 * [fazlebarisn](https://github.com/fazlebarisn) (9 commits 71 ++ And Pro: 10+ commits )
 * [rafiul](https://github.com/rafiul) (7 commits 1,718 ++  )
+* [zbandhan](https://github.com/zbandhan) (1 commits  )
 * 👉 [You can join here](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork)
 
 **🥇 CONTRIBUTE 🥇**<br>
