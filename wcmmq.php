@@ -200,6 +200,8 @@ class WC_MMQ {
             include_once $dir . '/admin/add_options_admin.php';
             include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
+
+            new WC_MMQ\Admin\Admin_Loader();
         }
         
         WC_MMQ\Modules\Module_Controller::instance();
