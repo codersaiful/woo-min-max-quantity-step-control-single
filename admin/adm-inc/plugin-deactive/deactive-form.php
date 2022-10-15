@@ -1,11 +1,21 @@
 <?php
-
-namespace WC_MMQ\Admin\Adm_Inc;
-
-use WC_MMQ\Core\Base;
+namespace WC_MMQ\Admin\Adm_Inc\Plugin_Deactive;
 
 /**
  * Plugin Deactivation form
+ * 
+ * UPDATE SOME PROPERTY:
+ * ---------------------
+ * 1. plugin_slug
+ * 2. prefix
+ * 3. text_domain
+ * 4. localize_name VERY IMPORTANT AND NEED TO CHANGE FROM message.js file inside same folder
+ * 
+ * **UPDATE**
+ * ----------------------
+ * Now no need Base Class, I have all created to this class
+ * 
+ * 
  * REMEMBER:
  * ----------------------
  * 1. JS/CSS file stored at assets/cssOrjs folder
@@ -17,7 +27,7 @@ use WC_MMQ\Core\Base;
  * 
  * @author Saiful Islam <codersaiful@gmail.com>
  */
-class Deactive_Form extends Base
+class Deactive_Form
 {
     
 
@@ -73,12 +83,15 @@ class Deactive_Form extends Base
      * @var array
      */
     protected $radio_buttons = [];
+    public $base_url;
     protected $js_file;
     protected $css_file;
     protected $assignScreen = false;
     protected $screen;
     protected $screenID;
+    public $dev_version = '1.0.0';
 
+    protected $form_top_message;
 
     /**
      * To set any Property Value, We can use this method.
@@ -96,12 +109,10 @@ class Deactive_Form extends Base
 
     public function run()
     {
-        /**
-         * If you don't habe Base Class where available assets_url,
-         * Fix at bellow.
-         */
-        $this->js_file = $this->assets_url . 'js/message.js';
-        $this->css_file = $this->assets_url . 'css/message.css';
+        $this->base_url = plugins_url() . '/'. plugin_basename( dirname( __FILE__ ) ) . '/';
+        
+        
+        
 
         $this->radio_buttons = [
             [
@@ -118,7 +129,7 @@ class Deactive_Form extends Base
             
             [
                 'id'        =>  'temporarily',
-                'value'     =>  "I'm only deactivating temporarily",
+                'value'     =>  "I m only deactivating temporarily",
                 'target_display'=> false,
             ],
             
@@ -203,7 +214,7 @@ class Deactive_Form extends Base
 ?>
         <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form-wrap" class="ca-survey-form-wrap">
             <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form" class="ca-survey-form">
-            <p class="motivational-speek"><?php echo esc_html( $this->form_top_message ); ?></p>
+                <p class="motivational-speek"><?php echo esc_html( $this->form_top_message ); ?></p>
                 <form method="POST" class="ca-deactive-form">
                     <input name="Plugin" type="hidden" class="plugin_name" placeholder="Plugin" value="<?php echo esc_attr( $plugin_name ); ?>" required>
                     <input name="Token" type="hidden" class="token_number" placeholder="Plugin" value="<?php echo esc_attr( $token ); ?>" required>
@@ -307,8 +318,32 @@ class Deactive_Form extends Base
         $this->screen = get_current_screen();
         $this->screenID = $this->screen->id;
 
-        if (!empty($this->screenID)) {
+        if ( ! empty($this->screenID ) ) {
+
+            $this->js_file = $this->base_url . 'message.js';
+            $this->css_file = $this->base_url . 'message.css';
+
             $this->assignScreen = true;
         }
+    }
+
+    /**
+     * For non-exist property
+     *
+     * @param string $name
+     * @return [any]|string|null|boolean|bool|object|int|float|this|null
+     */
+    public function __get( $name ){
+        return $this->data_packed[$name] ?? null;
+    }
+
+    /**
+     * For non exist property
+     *
+     * @param string $name
+     * @param [any]|string|null|boolean|bool|object|int|float|this|null $value
+     */
+    public function __set($name, $value){
+        $this->data_packed[$name] = $value;
     }
 }
