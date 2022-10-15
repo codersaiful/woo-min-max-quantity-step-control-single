@@ -84,9 +84,16 @@ if( ! class_exists( 'Plugin_Required' ) ){
                     'link' => $target,
                 ]) */;
                 if( method_exists($offerNc, 'set_location') ){
-                    $offerNc->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
+                    // $offerNc->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
                 }
-                $offerNc->show();
+                // $offerNc->show();
+                /**
+                 * If u want to set offer again, need to change Message text
+                 * and alos need to fix CSS for inner Offer Nottice.
+                 * 
+                 * @author Saiful Islam <codersaiful@gmail.com>
+                 * @since 3.2.1
+                 */
                 
                 
                 

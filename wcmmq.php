@@ -194,7 +194,7 @@ class WC_MMQ {
 
         if ( is_admin() ) {
      
-
+            WC_MMQ\Framework\Recommeded::check();
             include_once $dir . '/admin/functions.php';
             include_once $dir . '/admin/product_panel.php';
             include_once $dir . '/admin/add_options_admin.php';

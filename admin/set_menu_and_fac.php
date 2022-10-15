@@ -87,7 +87,7 @@ function wcmmq_faq_page_details(){
     
 ?>
 <div class="wrap wcmmq_wrap ultraaddons">
-    <h1 class="wp-heading"><?php _e("Woocommerce Min Max Step Control", "wcmmq");?></h1>
+    <h1 class="wp-heading"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
