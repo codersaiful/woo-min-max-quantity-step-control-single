@@ -513,3 +513,6 @@ ul.wcmmq_each_terms_header small {
     padding: 5px 12px;
     background: #ff9800;
 }
+.ca-reuire-plugin-notice.anwwhere-notice button.ca-notice-dismiss {
+    display: none;
+}
