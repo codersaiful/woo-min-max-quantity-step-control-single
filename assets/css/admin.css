@@ -516,3 +516,9 @@ ul.wcmmq_each_terms_header small {
 .ca-reuire-plugin-notice.anwwhere-notice button.ca-notice-dismiss {
     display: none;
 }
+.wrap.wcmmq_wrap .wcmmq-submit-button {
+    margin-top: 15px;
+}
+.wpmmq-form-bottom .ca-reuire-plugin-notice.anwwhere-notice {
+    background: white;
+}

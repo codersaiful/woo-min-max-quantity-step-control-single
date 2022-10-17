@@ -413,12 +413,15 @@ jQuery(document).ready(function($){
                  */
                 do_action( 'wcmmq_form_panel_bottom', $saved_data );
                 ?>
-            <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background">
+            <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background wcmmq-submit-button">
                 <button name="configure_submit" class="button-primary primary button">Save Change</button>
                 <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">Reset Default</button>
             </div>
                     
         </form>
+        <div class="wpmmq-form-bottom">
+        <?php do_action( 'wcmmq_form_bottom', $saved_data ); ?>
+        </div>
     </div>
 </div>  
 
