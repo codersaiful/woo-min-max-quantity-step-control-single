@@ -18,7 +18,9 @@ class Recommeded
         $req_mmp->set_args( ['Name' => 'Product Table for WooCoomerce by CodeAstrology'] )
         ->set_download_link('https://wordpress.org/plugins/woo-product-table/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
-        $mmp_message = __('(Woo Product Table) Product Table plugin helps you to display your WooCommerce products in a searchable table layout with filters. Add a table on any page or post via a shortcode. You can create tables as many as you want.','wcmmq');
+        $mmp_message = __('%s Product Table plugin helps you to display your WooCommerce products in a searchable table layout with filters. Add a table on any page or post via a shortcode. You can create tables as many as you want.','wcmmq');
+        $wpt_link = "<a href='https://wooproducttable.com/' target='_blank'>(Woo Product Table)</a>";
+        $mmp_message = sprintf($mmp_message, $wpt_link);
         $req_mmp->set_message($mmp_message);
         $req_mmp->get_full_this_plugin_name($this_plugin);
         // var_dump(method_exists($req_mmp, 'set_location'),$req_mmp);
