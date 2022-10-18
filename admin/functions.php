@@ -236,3 +236,40 @@ s0.parentNode.insertBefore(s1,s0);
 }
 add_filter( 'admin_head', 'wcmmq_tawkto_code_header', 999 );
 
+function wcmmq_social_links(){
+    ?>
+    <div class="codeastrogy-social-area-wrapper">
+        <?php
+        $img_folder = WC_MMQ_BASE_URL . 'assets/images/brand/social/';
+        $codeastrology = [
+            'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
+            'wpt'   => ['url' => 'https://wooproducttable.com/?utm=Plugin_Social', 'title' => 'Woo Product Table'],
+            'youtube'   => ['url' => 'https://www.youtube.com/c/codeastrology'],
+            'facebook'   => ['url' => 'https://www.facebook.com/codeAstrology'],
+            'twitter'   => ['url' => 'https://www.twitter.com/codeAstrology'],
+            'skype'   => ['url' => '#codersaiful', 'title' => 'codersaiful'],
+        ];
+        foreach($codeastrology as $key=>$cLogy){
+            $image_name = $key . '.png';
+            $image_file = $img_folder . $image_name;
+            $url = $cLogy['url'] ?? '#';
+            $title = $cLogy['title'] ?? false;
+            $alt = ! empty( $title ) ? $title : $key;
+            $title_available = ! empty( $title ) ? 'title-available' : '';
+            
+        ?>
+        <a class="ca-social-link ca-social-<?php echo esc_attr( $key ); ?> ca-<?php echo esc_attr( $title_available ); ?>" href="<?php echo esc_url( $url ); ?>" target="_blank">
+            <img src="<?php echo esc_url( $image_file ); ?>" alt="<?php echo esc_attr( $alt ); ?>"> 
+            <span><?php echo esc_html( $title ); ?></span>
+        </a>
+        <?php 
+            
+    
+        }
+        ?>
+
+    </div>
+    
+    <?php
+}
+

@@ -87,14 +87,15 @@ function wcmmq_faq_page_details(){
     
 ?>
 <div class="wrap wcmmq_wrap ultraaddons">
-    <h1 class="wp-heading"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
+    <h1 class="wp-heading ca-main-header-branding"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
+        wcmmq_social_links();
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
-                    <h2 class="with-background">Settings (Universal)</h2>
+                    <h2 class="with-background ca-branding-header">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
 
                         <tr>
