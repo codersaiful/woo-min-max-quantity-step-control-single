@@ -86,12 +86,13 @@ function wcmmq_faq_page_details(){
     $saved_data = WC_MMQ::getOptions();
     
 ?>
+
 <div class="wrap wcmmq_wrap ultraaddons">
-    <h1 class="wp-heading ca-main-header-branding"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
+    <h1 class="wp-heading "></h1>
+    <h1 class="ca-main-header-branding"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
-        wcmmq_social_links();
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
@@ -421,7 +422,13 @@ jQuery(document).ready(function($){
                     
         </form>
         <div class="wpmmq-form-bottom">
-        <?php do_action( 'wcmmq_form_bottom', $saved_data ); ?>
+        <?php 
+        /**
+         * Added Recommendation plugin notice over here
+         */
+        do_action( 'wcmmq_form_bottom', $saved_data );
+        wcmmq_social_links();
+         ?>
         </div>
     </div>
 </div>  

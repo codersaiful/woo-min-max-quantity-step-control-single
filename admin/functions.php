@@ -244,6 +244,7 @@ function wcmmq_social_links(){
         $codeastrology = [
             'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
             'wpt'   => ['url' => 'https://wooproducttable.com/?utm=Plugin_Social', 'title' => 'Woo Product Table'],
+            'linkedin'   => ['url' => 'https://www.linkedin.com/company/codeastrology'],
             'youtube'   => ['url' => 'https://www.youtube.com/c/codeastrology'],
             'facebook'   => ['url' => 'https://www.facebook.com/codeAstrology'],
             'twitter'   => ['url' => 'https://www.twitter.com/codeAstrology'],
