@@ -561,7 +561,7 @@ button.add_terms_button.primary.button.button-primary:hover{
 }
 .codeastrogy-social-area-wrapper a.ca-social-link.ca-title-available {
     background: #fff;
-    border: 1px solid transparent;
+    border: 1px solid #4a4a4a17;
     transition: .2s all;
 }
 .codeastrogy-social-area-wrapper a.ca-social-link.ca-title-available:hover {
