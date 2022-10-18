@@ -249,15 +249,15 @@ ul.wcmmq_each_terms_header small {
 .wcmmq-premium>*:first-child:before {
     content: "Pro";
     background: #ff0000c2;
-    padding: 7px 7px;
+    padding: 7px 15px;
     color: white;
     border-radius: 8px;
     font-size: 20px;
     position: absolute;
     top: 22px;
-    left: 50%;
+    left: 70%;
+    z-index: 1;
 }
-
 
 /*******For Radio Button And Checkbox***********/
 .ultraaddons .switch {
@@ -382,13 +382,13 @@ ul.wcmmq_each_terms_header small {
 .wcmmq-nav ul  li.wcmmq-pro-buy-now.wcmmq-get-pro-now a {
     background: #ff5722;
     border: 1px solid #ff5722;
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
 .wcmmq-nav ul li.wcmmq-pro-buy-now a:hover,.wcmmq-nav ul  li.wcmmq-pro-buy-now.wcmmq-get-pro-now a:hover {
     background: #349338;
-    border: 1 px solid #349338 !important;
+    border: 1px solid #349338 !important;
 }
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:after,
 .wcmmq_config_form .select2-container .select2-selection--multiple .select2-selection__rendered:before {

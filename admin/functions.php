@@ -42,7 +42,7 @@ function wcmmq_get_pro_discount_message(){
  */
 function wcmmq_category_choose_image($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
-$image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.jpg'
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.png'
 ?>
 <tr class="wcmmq-premium">
     <td colspan="2">
@@ -53,6 +53,36 @@ $image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.jpg'
 
 }
 add_action( 'wcmmq_setting_bottom_row','wcmmq_category_choose_image' );
+
+function wcmmq_quantity_prefix_supported_terms($saved_data){
+    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/supported terms.png'
+?>
+<div class="wcmmq-premium">
+    <div>
+        <img src="<?php echo esc_url($image_link); ?>">
+    </div>
+</div>
+
+<?php    
+
+}
+add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_supported_terms' );
+
+function wcmmq_quantity_prefix_sufix_feautre($saved_data){
+    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/quantity-prefix-sufix.png'
+?>
+<div class="wcmmq-premium">
+    <div>
+        <img src="<?php echo esc_url($image_link); ?>">
+    </div>
+</div>
+
+<?php    
+
+}
+add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_sufix_feautre' );
 
 function wcmmq_cart_page_condition_feautre($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
@@ -69,20 +99,7 @@ $image_link = WC_MMQ_BASE_URL . 'assets/images/features/min-max-on-cart-page.png
 }
 add_action( 'wcmmq_form_panel_before_message','wcmmq_cart_page_condition_feautre' );
 
-function wcmmq_quantity_prefix_sufix_feautre($saved_data){
-    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
-$image_link = WC_MMQ_BASE_URL . 'assets/images/features/quantity-prefix-sufix.jpg'
-?>
-<div class="wcmmq-premium">
-    <div>
-        <img src="<?php echo esc_url($image_link); ?>">
-    </div>
-</div>
 
-<?php    
-
-}
-add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_sufix_feautre' );
 
 function wcmmq_cart_page_notices($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
