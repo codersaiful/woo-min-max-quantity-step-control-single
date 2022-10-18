@@ -550,6 +550,14 @@ ul.wcmmq_each_terms_header small {
 }
 .codeastrogy-social-area-wrapper a.ca-title-available span{padding-right: 10px;}
 /**Social AREA **/
+
+.wpmmq-form-bottom.wpmmq-plugin-recommended-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3px;
+    margin-bottom: 10px;
+}
+
 h1.ca-main-header-branding {
     color: #39c2cb;
     background: #02142a url('../images/brand/animated-logo.gif') no-repeat center right;

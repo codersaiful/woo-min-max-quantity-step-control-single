@@ -421,15 +421,16 @@ jQuery(document).ready(function($){
             </div>
                     
         </form>
-        <div class="wpmmq-form-bottom">
+        <div class="wpmmq-form-bottom wpmmq-plugin-recommended-wrapper">
         <?php 
         /**
          * Added Recommendation plugin notice over here
          */
         do_action( 'wcmmq_form_bottom', $saved_data );
-        wcmmq_social_links();
+        
          ?>
         </div>
+        <?php wcmmq_social_links(); ?>
     </div>
 </div>  
 
