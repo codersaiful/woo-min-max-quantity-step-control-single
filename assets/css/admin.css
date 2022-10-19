@@ -604,6 +604,7 @@ button.add_terms_button.primary.button.button-primary:hover{
     justify-content: flex-start;
     flex-direction: row;
     gap: 10px;
+    flex-wrap: wrap;
 }
 .wrap.wcmmq_wrap img.wcmmq-brand-logo {
     height: 32px;
