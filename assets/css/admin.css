@@ -559,6 +559,10 @@ button.add_terms_button.primary.button.button-primary:hover{
     padding: 0;
     box-shadow: -3px 2px 3px #00000006;
 }
+.codeastrogy-social-area-wrapper a.ca-social-link>img {
+    background: white;
+    border-radius: 5px;
+}
 .codeastrogy-social-area-wrapper a.ca-social-link.ca-title-available {
     background: #fff;
     border: 1px solid #4a4a4a17;
@@ -584,11 +588,11 @@ button.add_terms_button.primary.button.button-primary:hover{
     margin-bottom: 10px;
 }
 
-h1.ca-main-header-branding {
+.wrap.wcmmq_wrap h1.ca-main-header-branding {
     color: #39c2cb;
     background: #02142a url('../images/brand/animated-logo.gif') no-repeat center right;
     width: calc(100% - 50px);
-    display: flex;
+    display: flex !important;
     padding: 15px;
     /* margin: 0; */
     line-height: 25px;
@@ -596,6 +600,16 @@ h1.ca-main-header-branding {
     font-weight: 400;
     margin-top: 20px;
     background-size: auto 40px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 10px;
+}
+.wrap.wcmmq_wrap img.wcmmq-brand-logo {
+    height: 32px;
+    box-shadow: 0px 0px 5px 0px #39c2cb;
+    background: white;
+    border-radius: 8px;
 }
 .ultraaddons .with-background, .ultraaddons-panel .with-background {
     width: unset;

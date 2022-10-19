@@ -85,11 +85,15 @@ function wcmmq_faq_page_details(){
     
     $saved_data = WC_MMQ::getOptions();
     
+    $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
 ?>
 
 <div class="wrap wcmmq_wrap ultraaddons">
     <h1 class="wp-heading "></h1>
-    <h1 class="ca-main-header-branding"><?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?></h1>
+    <h1 class="ca-main-header-branding">
+        <img src="<?php echo esc_url( $min_max_img ); ?>" class="wcmmq-brand-logo">
+        <?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?>
+    </h1>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
