@@ -292,7 +292,10 @@ function wcmmq_social_links(){
     <?php
 }
 
-
+/**
+ * This function will display submiting issue section
+ * @author Fazle Bari [ fazlebarisn@gmail.com ]
+ */
 function wcmmq_submit_issue_link(){
     ?>
     <p class="wpt-issue-submit">
