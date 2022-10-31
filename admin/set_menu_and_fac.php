@@ -434,7 +434,10 @@ jQuery(document).ready(function($){
         
          ?>
         </div>
-        <?php wcmmq_social_links(); ?>
+        <?php 
+            wcmmq_social_links(); 
+            wcmmq_submit_issue_link();
+        ?>
     </div>
 </div>  
 
