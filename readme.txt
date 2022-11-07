@@ -214,6 +214,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 == Changelog ==
 
+= 3.3 =
+* Loop quantity box min max issue fix.
+* But fixed 
+* Minor change.
+
 = 3.2 =
 * Added: New filter hook `wcmmq_message_replaced_shortcode_args` added for Error Message replace shortcode arguments.
 * Added: [step_quantity] New Shortcode for Error/Success message for all Message
