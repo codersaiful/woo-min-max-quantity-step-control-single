@@ -84,6 +84,9 @@ WC_MMQ::$default_values = array(
     'msg_max_price_cart' => __('Your cart total amount must be equal or less of [cart_max_price]', 'wcmmq'),
     'msg_min_quantity_cart' => __('Your cart items total quantity must be equal or more of [cart_min_quantity]', 'wcmmq'),
     'msg_max_quantity_cart' => __('Your cart items total quantity must be equal or less of [cart_max_quantity]', 'wcmmq'),
+    'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'wcmmq'),
+    'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'wcmmq'),
+    'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'wcmmq'),
     '_cat_ids' => false,
 );
 
