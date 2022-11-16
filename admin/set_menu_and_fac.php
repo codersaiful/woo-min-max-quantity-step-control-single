@@ -85,16 +85,22 @@ function wcmmq_faq_page_details(){
     
     $saved_data = WC_MMQ::getOptions();
     
+    $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
 ?>
+
 <div class="wrap wcmmq_wrap ultraaddons">
-    <h1 class="wp-heading"><?php _e("Woocommerce Min Max Step Control", "wcmmq");?></h1>
+    <h1 class="wp-heading "></h1>
+    <h1 class="ca-main-header-branding">
+        <img src="<?php echo esc_url( $min_max_img ); ?>" class="wcmmq-brand-logo">
+        <?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?>
+    </h1>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
-                    <h2 class="with-background">Settings (Universal)</h2>
+                    <h2 class="with-background ca-branding-header">Settings (Universal)</h2>
                     <table class="wcmmq_config_form">
 
                         <tr>
@@ -156,6 +162,20 @@ function wcmmq_faq_page_details(){
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button">Save All</button>
                     </div>
+                    <?php
+                    $time = time();
+                    $tar_time = strtotime('11/25/2022');
+                    if($time < $tar_time){
+                        $img = WC_MMQ_BASE_URL . 'assets/images/offer/black-friday-notice.png';
+                        ?>
+                        <a class="sort-time-offer-wcmmq" href="https://codeastrology.com/coupons/">
+                            <img src="<?php echo esc_attr( $img ); ?>" style="max-width: 100%;height:auto;width:auto;" target="_blank">
+                        </a>
+                        <?php
+                    }
+                    
+                    // if()
+                    ?>
                 </div>
             
                 <?php 
@@ -382,24 +402,24 @@ jQuery(document).ready(function($){
                 $fields_arr = [
                     'msg_min_limit' => [
                         'title' => 'Minimum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     
                     'msg_max_limit' => [
                         'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'msg_max_limit_with_already' => [
                         'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'min_qty_msg_in_loop' => [
                         'title' => 'Minimum Quantity message for shop page',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name]',
+                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
                     ],
                     'step_error_valiation' => [
                         'title' => 'Step validation error message',
-                        'desc'  => 'Available shortcode [should_min],[should_next]',
+                        'desc'  => 'Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]',
                     ],
             
                 ];
@@ -413,12 +433,25 @@ jQuery(document).ready(function($){
                  */
                 do_action( 'wcmmq_form_panel_bottom', $saved_data );
                 ?>
-            <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background">
+            <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background wcmmq-submit-button">
                 <button name="configure_submit" class="button-primary primary button">Save Change</button>
                 <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">Reset Default</button>
             </div>
                     
         </form>
+        <div class="wpmmq-form-bottom wpmmq-plugin-recommended-wrapper">
+        <?php 
+        /**
+         * Added Recommendation plugin notice over here
+         */
+        do_action( 'wcmmq_form_bottom', $saved_data );
+        
+         ?>
+        </div>
+        <?php 
+            wcmmq_social_links(); 
+            wcmmq_submit_issue_link();
+        ?>
     </div>
 </div>  
 

@@ -42,7 +42,7 @@ function wcmmq_get_pro_discount_message(){
  */
 function wcmmq_category_choose_image($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
-$image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.jpg'
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.png'
 ?>
 <tr class="wcmmq-premium">
     <td colspan="2">
@@ -53,6 +53,36 @@ $image_link = WC_MMQ_BASE_URL . 'assets/images/features/setting-bottom.jpg'
 
 }
 add_action( 'wcmmq_setting_bottom_row','wcmmq_category_choose_image' );
+
+function wcmmq_quantity_prefix_supported_terms($saved_data){
+    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/supported terms.png'
+?>
+<div class="wcmmq-premium">
+    <div>
+        <img src="<?php echo esc_url($image_link); ?>">
+    </div>
+</div>
+
+<?php    
+
+}
+add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_supported_terms' );
+
+function wcmmq_quantity_prefix_sufix_feautre($saved_data){
+    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+$image_link = WC_MMQ_BASE_URL . 'assets/images/features/quantity-prefix-sufix.png'
+?>
+<div class="wcmmq-premium">
+    <div>
+        <img src="<?php echo esc_url($image_link); ?>">
+    </div>
+</div>
+
+<?php    
+
+}
+add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_sufix_feautre' );
 
 function wcmmq_cart_page_condition_feautre($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
@@ -69,20 +99,7 @@ $image_link = WC_MMQ_BASE_URL . 'assets/images/features/min-max-on-cart-page.png
 }
 add_action( 'wcmmq_form_panel_before_message','wcmmq_cart_page_condition_feautre' );
 
-function wcmmq_quantity_prefix_sufix_feautre($saved_data){
-    if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
-$image_link = WC_MMQ_BASE_URL . 'assets/images/features/quantity-prefix-sufix.jpg'
-?>
-<div class="wcmmq-premium">
-    <div>
-        <img src="<?php echo esc_url($image_link); ?>">
-    </div>
-</div>
 
-<?php    
-
-}
-add_action( 'wcmmq_form_panel_before_message','wcmmq_quantity_prefix_sufix_feautre' );
 
 function wcmmq_cart_page_notices($saved_data){
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
@@ -235,4 +252,62 @@ s0.parentNode.insertBefore(s1,s0);
     }
 }
 add_filter( 'admin_head', 'wcmmq_tawkto_code_header', 999 );
+
+function wcmmq_social_links(){
+    ?>
+    <div class="codeastrogy-social-area-wrapper">
+        <?php
+        $img_folder = WC_MMQ_BASE_URL . 'assets/images/brand/social/';
+        $codeastrology = [
+            'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
+            'wpt'   => ['url' => 'https://wooproducttable.com/?utm=Plugin_Social', 'title' => 'Woo Product Table'],
+            'min-max'   => ['url' => 'https://codeastrology.com/min-max-quantity/?utm=Plugin_Social', 'title' => 'CodeAstrology Min Max Step'],
+            'linkedin'   => ['url' => 'https://www.linkedin.com/company/codeastrology'],
+            'youtube'   => ['url' => 'https://www.youtube.com/c/codeastrology'],
+            'facebook'   => ['url' => 'https://www.facebook.com/codeAstrology'],
+            'twitter'   => ['url' => 'https://www.twitter.com/codeAstrology'],
+            'skype'   => ['url' => '#codersaiful', 'title' => 'codersaiful'],
+        ];
+        foreach($codeastrology as $key=>$cLogy){
+            $image_name = $key . '.png';
+            $image_file = $img_folder . $image_name;
+            $url = $cLogy['url'] ?? '#';
+            $title = $cLogy['title'] ?? false;
+            $alt = ! empty( $title ) ? $title : $key;
+            $title_available = ! empty( $title ) ? 'title-available' : '';
+            
+        ?>
+        <a class="ca-social-link ca-social-<?php echo esc_attr( $key ); ?> ca-<?php echo esc_attr( $title_available ); ?>" href="<?php echo esc_url( $url ); ?>" target="_blank">
+            <img src="<?php echo esc_url( $image_file ); ?>" alt="<?php echo esc_attr( $alt ); ?>"> 
+            <span><?php echo esc_html( $title ); ?></span>
+        </a>
+        <?php 
+            
+    
+        }
+        ?>
+
+    </div>
+    
+    <?php
+}
+
+/**
+ * This function will display submiting issue section
+ * @author Fazle Bari [ fazlebarisn@gmail.com ]
+ */
+function wcmmq_submit_issue_link(){
+    ?>
+    <p class="wpt-issue-submit">
+<?php
+$content_of_mail = __( 'I have found an issue with your Min Max and Step Control plugin. I will explain here with screenshot.Issues And Screenshots:', 'wcmmq' );
+?>
+        <b>ISSUE SUBMIT:</b> If you founded any issue, Please inform us. That will be very helpful for us to Fix.
+        <a href="https://github.com/codersaiful/woo-min-max-quantity-step-control-single/issues/new" target="_blank">SUBMIT ISSUE</a> or 
+        <a href="mailto:contact@codeastrology.com">contact@codeastrology.com</a> or 
+        <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&su=<?php echo urlencode("Found issue on your Min Max and Step Control Plugin, see screenshot of issue"); ?>&body=<?php echo esc_attr( $content_of_mail ); ?>&ui=2&tf=1&to=codersaiful@gmail.com,contact@codeastrology.com" target="_blank">Gmail Me</a> or
+        <a href="https://www.facebook.com/groups/wphelps" target="_blank">Facebook Group</a>
+    </p>
+    <?php
+}
 

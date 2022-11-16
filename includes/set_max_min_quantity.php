@@ -32,6 +32,7 @@ function wcmmq_message_convert_replace( $message, $args ){
         'current_quantity'=> false,
     );
     $args = wp_parse_args( $args, $defaults );
+    $args = apply_filters( 'wcmmq_message_replaced_shortcode_args', $args );
     $arr_keys = array_keys($args);
     $find_arr = array_map(function($val){
         return "[$val]";
@@ -83,7 +84,16 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
     $should_next = $should_min + $step_quantity;
     $modulous = apply_filters( 'wcmmq_last_step_checker_filter', $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
     $specific_msge = false;
-    wcmmq_step_error_message( $modulous, $specific_msge, $should_min, $should_next );
+    $other_data = [
+        'should_min'    => $should_min,
+        'should_next'   => $should_next,
+        'product_id'    => $product_id,
+        'variation_id'    => $variation_id,
+        'quantity'      => $quantity,
+        'min_quantity'  => $min_quantity,
+        'step_quantity' => $step_quantity,
+    ];
+    wcmmq_step_error_message( $modulous, $other_data );
 
     return $modulous;
 }
@@ -98,15 +108,28 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
  * @param [int] $should_next
  * @return void
  */
-function wcmmq_step_error_message( $bool = true, $specific_msge = '', $should_min = '', $should_next = '' ){
+function wcmmq_step_error_message( $bool = true, $other_data = [] ){
     if( $bool ) return;
 
-    $args = array(
-        'should_min' => $should_min,
-        'should_next'=> $should_next,
-    );
+    $product_id = $other_data['product_id'] ?? 0;
+    $product_name = ! empty( $product_id ) ? get_the_title( $product_id ) : '';
+    $variation_id = $other_data['variation_id'] ?? 0;
+    $variation_name = ! empty( $variation_id ) ? get_the_title( $variation_id ) : '';
 
-    $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ) . $specific_msge, $should_min, $should_next );
+    
+    $args = [
+        'should_min'    => $other_data['should_min'] ?? '',
+        'should_next'   => $other_data['should_next'] ?? '',
+        'product_name'  => $product_name,
+        'variation_name'=> $variation_name,
+        'quantity'      => $other_data['quantity'] ?? '',
+        'min_quantity'  => $other_data['min_quantity'] ?? '',
+        'step_quantity' => $other_data['step_quantity'] ?? '',
+    ];
+    
+    $should_min = $args['should_min'] ?? '';
+    $should_next = $args['should_next'] ?? '';
+    $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ), $should_min, $should_next );
     $message = wcmmq_message_convert_replace( $message, $args );
     wc_add_notice( $message, 'error' );
 }
@@ -164,7 +187,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product = wc_get_product( $product_id );
     // if product is sold individually then we can immediately exit here
-    if( $product->is_sold_individually() ) return true;
+    if( method_exists( $product, 'is_sold_individually' ) && $product->is_sold_individually() ) return true;
 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
@@ -213,6 +236,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $current_qty_inCart = wcmmq_check_quantity_in_cart( $product_id, $variation_id );
     $total_quantity = $current_qty_inCart + $quantity;
     $product_name = get_the_title( $product_id );
+    $variation_name = ! empty( $variation_id ) ? get_the_title( $variation_id ) : '';
+
 
     // $modulous = wcmmq_qty_validation_by_step_modulous( $quantity, $min_quantity, $step_quantity);
     $modulous = apply_filters( 'wcmmq_modulous_validation', false, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
@@ -222,8 +247,10 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $args = array(
         'min_quantity' => $min_quantity,
         'max_quantity' => $max_quantity,
+        'step_quantity' => $step_quantity,
         'current_quantity' => $current_qty_inCart,
         'product_name'=> $product_name,
+        'variation_name'=> $variation_name,
     );
     //wcmmq_message_convert_replace( $message, $args );
 
@@ -311,6 +338,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
 
     $product_name = get_the_title( $product_id );
+    $variation_name = ! empty( $variation_id ) ? get_the_title( $variation_id ) : '';
     $error_msg = " : " . $product_name;
     // $modulous = wcmmq_qty_validation_by_step_modulous( $quantity, $min_quantity, $step_quantity, $error_msg );
     $modulous = apply_filters( 'wcmmq_modulous_validation', false, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
@@ -319,6 +347,9 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         'min_quantity' => $min_quantity,
         'max_quantity' => $max_quantity,
         'product_name'=> $product_name,
+        'step_quantity' => $step_quantity,
+        'product_name'=> $product_name,
+        'variation_name'=> $variation_name,
     );
     //wcmmq_message_convert_replace( $message, $args );
 
@@ -441,10 +472,14 @@ function wcmmq_quantity_input_args( $args, $product){
     }
 
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
-    global $wp_query;
-    $wcmmq_query = $wp_query->query_vars;
-    if( is_product() || isset( $wcmmq_query['woo_product_table'] ) || ( isset( $wcmmq_query['wc-ajax'] ) && $wcmmq_query['wc-ajax'] !== 'get_refreshed_fragments' ) ){
-        $args['input_value'] = $default_quantity; // set Custom Default Quantity
+    /**
+     * Our Customer has given me this solution and It's awesome.
+     * Working property.
+     * Really great it. Thanks to that user.
+     * 
+     */
+    if( ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+        $args['input_value'] = $default_quantity;
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
