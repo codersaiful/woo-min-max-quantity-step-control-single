@@ -162,6 +162,20 @@ function wcmmq_faq_page_details(){
                     <div class="ultraaddons-button-wrapper">
                         <button name="configure_submit" class="button-primary primary button">Save All</button>
                     </div>
+                    <?php
+                    $time = time();
+                    $tar_time = strtotime('11/25/2022');
+                    if($time < $tar_time){
+                        $img = WC_MMQ_BASE_URL . 'assets/images/offer/black-friday-notice.png';
+                        ?>
+                        <a class="sort-time-offer-wcmmq" href="https://codeastrology.com/coupons/">
+                            <img src="<?php echo esc_attr( $img ); ?>" style="max-width: 100%;height:auto;width:auto;" target="_blank">
+                        </a>
+                        <?php
+                    }
+                    
+                    // if()
+                    ?>
                 </div>
             
                 <?php 

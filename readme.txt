@@ -214,6 +214,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 == Changelog ==
 
+= 3.4 =
+* Fixed: Issue - Call to a member function is_sold_individually() raise a 505 error in ajax ajax. Fixed by [@dibix](https://wordpress.org/support/topic/call-to-a-member-function-is_sold_individually-raise-a-505-error-in-ajax-ajax/)
+* Compatibility Checked @WC 7.1
+
 = 3.3 =
 * Loop quantity box min max issue fix.
 * But fixed 

@@ -646,3 +646,9 @@ p.wpt-issue-submit a:hover {
     background: black;
     color: #4caf50;
 }
+.sort-time-offer-wcmmq {
+    background: #202020 url('../images/brand/animated-logo.gif') no-repeat center right;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+}

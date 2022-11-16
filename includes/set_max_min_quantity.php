@@ -187,7 +187,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product = wc_get_product( $product_id );
     // if product is sold individually then we can immediately exit here
-    if( $product->is_sold_individually() ) return true;
+    if( method_exists( $product, 'is_sold_individually' ) && $product->is_sold_individually() ) return true;
 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
