@@ -168,8 +168,8 @@ function wcmmq_faq_page_details(){
                     if($time < $tar_time){
                         $img = WC_MMQ_BASE_URL . 'assets/images/offer/black-friday-notice.png';
                         ?>
-                        <a class="sort-time-offer-wcmmq" href="https://codeastrology.com/coupons/">
-                            <img src="<?php echo esc_attr( $img ); ?>" style="max-width: 100%;height:auto;width:auto;" target="_blank">
+                        <a class="sort-time-offer-wcmmq" href="https://codeastrology.com/coupons/" target="_blank">
+                            <img src="<?php echo esc_attr( $img ); ?>" style="max-width: 100%;height:auto;width:auto;">
                         </a>
                         <?php
                     }
