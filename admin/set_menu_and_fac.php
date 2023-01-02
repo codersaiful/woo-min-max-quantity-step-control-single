@@ -104,7 +104,7 @@ function wcmmq_faq_page_details(){
                     <table class="wcmmq_config_form">
 
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]">Minimum Quantity</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
                             </td>
@@ -112,7 +112,7 @@ function wcmmq_faq_page_details(){
                         </tr>
 
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]">Maximum Quantity</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
                             </td>
@@ -120,7 +120,7 @@ function wcmmq_faq_page_details(){
                         </tr>
 
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]">Quantity Step</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
                             </td>
@@ -128,7 +128,7 @@ function wcmmq_faq_page_details(){
                         </tr>
 
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]">Default Quantity <span class="hightlighted_text">(Optional)</span></label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
                             </td>
@@ -136,13 +136,13 @@ function wcmmq_faq_page_details(){
                         </tr>
                         <tr>
                             <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]">Order Page (Condition)</label></th>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
                             <td>
                                 <label class="switch">
                                     <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
                                         <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
                                     <div class="slider round"><!--ADDED HTML -->
-                                        <span class="on">ON</span><span class="off">OFF</span><!--END-->
+                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                                     </div>
                                 </label>
                             </td>
@@ -160,7 +160,7 @@ function wcmmq_faq_page_details(){
                     </table>
                     <?php do_action( 'wcmmq_offer_here' ); ?>
                     <div class="ultraaddons-button-wrapper">
-                        <button name="configure_submit" class="button-primary primary button">Save All</button>
+                        <button name="configure_submit" class="button-primary primary button"><?php echo esc_html__('Save All','wcmmq');?></button>
                     </div>
                     <?php
                     $time = time();
@@ -190,7 +190,7 @@ function wcmmq_faq_page_details(){
             
         
             <div class="ultraaddons-panel" id="wcmmq-supported-terms">
-                <h2 class="with-background black-background">Supported Terms</h2>
+                <h2 class="with-background black-background"> <?php echo esc_html__('Supported Terms','wcmmq');?></h2>
                 <?php
                 
 $term_lists_temp = get_object_taxonomies('product','objects');
@@ -225,7 +225,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
 ?>
                     <table class="wcmmq_config_form">
                         <tr>
-                            <th><label for="">Choose Terms</label></th>
+                            <th><label for=""><?php echo esc_html__('Choose Terms','wcmmq');?></label></th>
                             <td>
                                 <?php  ?>
                                 <select name="data[supported_terms][]" data-name="supported_terms" class="ua_input_select" id="wcmmq_supported_terms" multiple>
@@ -237,7 +237,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                 <?php 
                                     if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
                                 ?>
-                                    For Mulitple Terms, <a href="https://codeastrology.com/min-max-quantity/pricing/">Upgrade to PRO</a>    
+                                     <?php echo esc_html__('For Mulitple Terms,','wcmmq');?> <a href="https://codeastrology.com/min-max-quantity/pricing/"><?php echo esc_html__('Upgrade to PRO','wcmmq');?></a>    
                                 <?php
                                     };
                                 ?>
@@ -249,7 +249,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                     </table> 
                 
                 <div class="ultraaddons-panel inside-panel">
-                <h2 class="with-background">Edit Terms</h2>
+                <h2 class="with-background"> <?php echo esc_html__('Edit Terms','wcmmq');?></h2>
                 <div class="wcmmq-terms-wrapper">
 <?php
 
@@ -301,7 +301,7 @@ foreach( $_term_lists as $key => $each ){
                 
 
                     <div class="ultraaddons-button-wrapper">
-                        <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button">Save All</button>
+                        <button name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button"> <?php echo esc_html__('Save All','wcmmq');?></button>
                     </div>
             </div>
             
@@ -434,7 +434,7 @@ jQuery(document).ready(function($){
                 do_action( 'wcmmq_form_panel_bottom', $saved_data );
                 ?>
             <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background wcmmq-submit-button">
-                <button name="configure_submit" class="button-primary primary button">Save Change</button>
+                <button name="configure_submit" class="button-primary primary button"> <?php echo esc_html__('Save Change','wcmmq');?></button>
                 <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">Reset Default</button>
             </div>
                     
