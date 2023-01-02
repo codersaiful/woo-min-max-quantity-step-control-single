@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-02 10:12+0000\n"
-"PO-Revision-Date: 2023-01-02 10:28+0000\n"
+"PO-Revision-Date: 2023-01-02 10:48+0000\n"
 "Last-Translator: \n"
-"Language-Team: Bengali (Bangladesh)\n"
+"Language-Team: বাংলা\n"
 "Language: bn_BD\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: wcmmq.php:79
 msgid "Minimum quantity should [min_quantity] of \"[product_name]\""
-msgstr ""
+msgstr "পন্য [product_name] এর পরিমান হওয়া উচিত কমপক্ষে [min_quantity] টি"
 
 #: wcmmq.php:88
 msgid ""
