@@ -226,8 +226,8 @@ class WC_MMQ {
      * @access public
      */
     public function i18n() {
-        load_plugin_textdomain('wcmmq');
-        // load_plugin_textdomain('wcmmq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
+        // load_plugin_textdomain('wcmmq');
+        load_plugin_textdomain('wcmmq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
     }
 
 

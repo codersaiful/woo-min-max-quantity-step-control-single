@@ -25,6 +25,7 @@ var_dump(wcmmq_message_convert_replace($message, $args));
  * @return String
  */
 function wcmmq_message_convert_replace( $message, $args ){
+    $message = __( $message, 'wcmmq' );
     $defaults = array(
         'min_quantity' => false,
         'max_quantity' => false,
@@ -131,7 +132,6 @@ function wcmmq_step_error_message( $bool = true, $other_data = [] ){
     $should_next = $args['should_next'] ?? '';
     $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ), $should_min, $should_next );
     $message = wcmmq_message_convert_replace( $message, $args );
-    $message = __( $message, 'wcmmq' );
     wc_add_notice( $message, 'error' );
 }
 
