@@ -100,7 +100,7 @@ function wcmmq_faq_page_details(){
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
-                    <h2 class="with-background ca-branding-header">Settings (Universal)</h2>
+                    <h2 class="with-background ca-branding-header"><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h2>
                     <table class="wcmmq_config_form">
 
                         <tr>

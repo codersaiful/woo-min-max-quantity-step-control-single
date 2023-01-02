@@ -227,6 +227,7 @@ class WC_MMQ {
      */
     public function i18n() {
         load_plugin_textdomain('wcmmq');
+        // load_plugin_textdomain('wcmmq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
     }
 
 
