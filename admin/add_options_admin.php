@@ -12,44 +12,44 @@ function wcmmq_add_field_in_panel(){
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'min_quantity',
-        'label'     =>  'Min Quantity',
+        'label'     =>  __( 'Minimum Quantity', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Minimum Quantity for this Product',
+        'description'=> __( 'Enter Minimum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'default_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'default_quantity',
-        'label'     =>  'Default Quantity (Optional)',
+        'label'     =>  __( 'Default Quantity (Optional)', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity',
+        'description'=> __( 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'max_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'max_quantity',
-        'label'     =>  'Max Quantity',
+        'label'     =>  __( 'Maximum Quantity', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Maximum Quantity for this Product',
+        'description'=> __( 'Enter Maximum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'product_step',
         'name'        =>  WC_MMQ_PREFIX. 'product_step',
-        'label'     =>  'Quantity Step',
+        'label'     =>  __( 'Quantity Step', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter quantity Step',
+        'description'=> __( 'Enter quantity Step', 'wcmmq' ),
         'data_type' => 'decimal'
     );
 

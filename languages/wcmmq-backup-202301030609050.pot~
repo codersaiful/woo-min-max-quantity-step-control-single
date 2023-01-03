@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-03 04:35+0000\n"
+"POT-Creation-Date: 2023-01-03 04:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -134,6 +134,10 @@ msgstr ""
 msgid ""
 "Maximum variation quantity total of \"[product_name]\" should be or less "
 "then [vari_total_max_qty]"
+msgstr ""
+
+#: admin/functions.php:142
+msgid "Message"
 msgstr ""
 
 #: admin/product_panel.php:21

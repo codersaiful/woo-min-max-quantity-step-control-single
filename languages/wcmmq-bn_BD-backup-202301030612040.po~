@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-02 10:12+0000\n"
-"PO-Revision-Date: 2023-01-03 04:45+0000\n"
+"PO-Revision-Date: 2023-01-03 06:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: বাংলা\n"
 "Language: bn_BD\n"
@@ -85,6 +85,10 @@ msgstr "CodeAstrology Team"
 msgid "Default Quantity"
 msgstr "স্বাভাবিক পরিমান"
 
+#: admin/add_options_admin.php:26
+msgid "Default Quantity (Optional)"
+msgstr ""
+
 #: admin/set_menu_and_fac.php:339 admin/includes/terms_condition.php:49
 msgid "Delete"
 msgstr "মুছুন"
@@ -96,6 +100,18 @@ msgstr "সম্পাদন"
 #: admin/set_menu_and_fac.php:252
 msgid "Edit Terms"
 msgstr "টার্মস এডিট"
+
+#: admin/add_options_admin.php:41
+msgid "Enter Maximum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:19
+msgid "Enter Minimum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:52
+msgid "Enter quantity Step"
+msgstr ""
 
 #: modules/module-controller.php:65
 msgid "For Gutenberg block shop page loop, Enable disable."
@@ -121,8 +137,14 @@ msgstr ""
 "I have found an issue with your Min Max and Step Control plugin. I will "
 "explain here with screenshot.Issues And Screenshots:"
 
-#: admin/set_menu_and_fac.php:115 admin/set_menu_and_fac.php:348
-#: admin/includes/terms_condition.php:64
+#: admin/add_options_admin.php:30
+msgid ""
+"It is an optional Number, If do not set, Product default quantity will come "
+"from Minimum Quantity"
+msgstr ""
+
+#: admin/add_options_admin.php:37 admin/set_menu_and_fac.php:115
+#: admin/set_menu_and_fac.php:348 admin/includes/terms_condition.php:64
 msgid "Maximum Quantity"
 msgstr "সর্বোচ্ছ পরিমান"
 
@@ -153,7 +175,7 @@ msgstr ""
 
 #: admin/functions.php:142
 msgid "Message"
-msgstr ""
+msgstr "মেসেজ সমুহ"
 
 #: admin/product_panel.php:21
 msgid "Min Max & Step"
@@ -194,8 +216,8 @@ msgstr "Min Max Step in Guttenberg Block"
 msgid "Minimum qty is"
 msgstr "সর্বনিম্ন পরিমান হলো"
 
-#: admin/set_menu_and_fac.php:107 admin/set_menu_and_fac.php:344
-#: admin/includes/terms_condition.php:54
+#: admin/add_options_admin.php:15 admin/set_menu_and_fac.php:107
+#: admin/set_menu_and_fac.php:344 admin/includes/terms_condition.php:54
 msgid "Minimum Quantity"
 msgstr "সর্বনিম্ন পরিমান"
 
@@ -238,7 +260,7 @@ msgstr ""
 "দয়াকরে ভ্যালিড ভ্যালু দিন। কাছাকাছি দুটি ভ্যালিড ভ্যালু হচ্ছে [should_min] "
 "এবং [should_next]।"
 
-#: admin/set_menu_and_fac.php:123
+#: admin/add_options_admin.php:48 admin/set_menu_and_fac.php:123
 msgid "Quantity Step"
 msgstr "পরিমানের ধাপ"
 
