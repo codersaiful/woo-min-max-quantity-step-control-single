@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-02 10:13+0000\n"
+"POT-Creation-Date: 2023-01-03 04:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Loco-Version: 2.6.3; wp-6.1.1\n"
 "X-Domain: wcmmq"
 
-#: wcmmq.php:380
+#: wcmmq.php:381
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
 msgstr ""
@@ -29,26 +29,79 @@ msgid ""
 "shortcode. You can create tables as many as you want."
 msgstr ""
 
+#: admin/set_menu_and_fac.php:131
+msgid "(Optional)"
+msgstr ""
+
+#: admin/includes/terms_condition.php:23
+msgid "Add Terms"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:410 admin/set_menu_and_fac.php:414
+msgid ""
+"Available shortcode [current_quantity][min_quantity],[max_quantity],"
+"[product_name],[step_quantity],[variation_name]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:405 admin/set_menu_and_fac.php:418
+msgid ""
+"Available shortcode [min_quantity],[max_quantity],[product_name],"
+"[step_quantity],[variation_name]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:422
+msgid ""
+"Available shortcode [should_min],[should_next],[product_name],"
+"[variation_name],[quantity],[min_quantity],[step_quantity]"
+msgstr ""
+
 #: modules/module-controller.php:58
 msgid "Button Template for Loop"
 msgstr ""
 
+#: admin/includes/terms_condition.php:6
+#, php-format
+msgid "Choose a %s"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:228
+msgid "Choose Terms"
+msgstr ""
+
 #. Author of the plugin
-msgctxt "CodeAstrology Team"
 msgid "CodeAstrology Team"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:356
+#: admin/includes/terms_condition.php:84
+msgid "Default Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:339 admin/includes/terms_condition.php:49
+msgid "Delete"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:338 admin/includes/terms_condition.php:48
+msgid "Edit"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:252
+msgid "Edit Terms"
 msgstr ""
 
 #: modules/module-controller.php:65
 msgid "For Gutenberg block shop page loop, Enable disable."
 msgstr ""
 
+#: admin/set_menu_and_fac.php:240
+msgid "For Mulitple Terms,"
+msgstr ""
+
 #. Author URI of the plugin
-msgctxt "https://codeastrology.com"
 msgid "https://codeastrology.com"
 msgstr ""
 
 #. URI of the plugin
-msgctxt "https://codeastrology.com/min-max-quantity/"
 msgid "https://codeastrology.com/min-max-quantity/"
 msgstr ""
 
@@ -58,8 +111,17 @@ msgid ""
 "explain here with screenshot.Issues And Screenshots:"
 msgstr ""
 
+#: admin/set_menu_and_fac.php:115 admin/set_menu_and_fac.php:348
+#: admin/includes/terms_condition.php:64
+msgid "Maximum Quantity"
+msgstr ""
+
 #: wcmmq.php:80
 msgid "Maximum quantity should [max_quantity] of \"[product_name]\""
+msgstr ""
+
+#: admin/set_menu_and_fac.php:409 admin/set_menu_and_fac.php:413
+msgid "Maximum Quantity Validation Message"
 msgstr ""
 
 #: wcmmq.php:89
@@ -83,7 +145,7 @@ msgid "Min Max Modules"
 msgstr ""
 
 #. Name of the plugin
-#: wcmmq.php:381
+#: wcmmq.php:382
 msgid "Min Max Quantity & Step Control for WooCommerce"
 msgstr ""
 
@@ -108,8 +170,21 @@ msgstr ""
 msgid "Minimum qty is"
 msgstr ""
 
+#: admin/set_menu_and_fac.php:107 admin/set_menu_and_fac.php:344
+#: admin/includes/terms_condition.php:54
+msgid "Minimum Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:417
+msgid "Minimum Quantity message for shop page"
+msgstr ""
+
 #: wcmmq.php:79
 msgid "Minimum quantity should [min_quantity] of \"[product_name]\""
+msgstr ""
+
+#: admin/set_menu_and_fac.php:404
+msgid "Minimum Quantity Validation Message"
 msgstr ""
 
 #: wcmmq.php:88
@@ -118,10 +193,42 @@ msgid ""
 "then [vari_total_min_qty]"
 msgstr ""
 
+#: admin/set_menu_and_fac.php:145
+msgid "OFF"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:145
+msgid "ON"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:139
+msgid "Order Page (Condition)"
+msgstr ""
+
 #: wcmmq.php:78
 msgid ""
 "Please enter a valid value. The two nearest valid values are [should_min] "
 "and [should_next]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:123
+msgid "Quantity Step"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:438
+msgid "Reset Default"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:163 admin/set_menu_and_fac.php:304
+msgid "Save All"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:437
+msgid "Save Change"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:103
+msgid "Settings (Universal)"
 msgstr ""
 
 #: modules/module-controller.php:59
@@ -130,7 +237,23 @@ msgid ""
 "Page as well as on Related product Section."
 msgstr ""
 
-#: wcmmq.php:382
+#: admin/set_menu_and_fac.php:352 admin/includes/terms_condition.php:74
+msgid "Step Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:421
+msgid "Step validation error message"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:193
+msgid "Supported Terms"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:240
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: wcmmq.php:383
 msgid "WooCommerce"
 msgstr ""
 

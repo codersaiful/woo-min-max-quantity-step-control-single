@@ -335,25 +335,25 @@ jQuery(document).ready(function($){
         html += '<div id="wcmmq_terms_' + term_key + '_' + id + '" class="wcmmq_each_terms"  data-term_key="' + term_key + '" data-term_id="' + id + '">\n\
                  <ul class="wcmmq_each_terms_header" data-target="term_table_' + id + '">\n\
                     <li class="label">' + term_name + '<small>' + term_key + '</small></li>\n\
-                    <li class="edit" data-target="term_table_' + id + '">Edit</li>\n\
-                    <li class="delete">Delete</li>\n\
+                    <li class="edit" data-target="term_table_' + id + '"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>\n\
+                    <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>\n\
                  </ul>\n\
                  <div class="product_cat">';
         html += '<table id="term_table_' + id + '">';
         html += tr + th; 
-        html += '<label>Minimum Quantity</label>';
+        html += '<label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_min]" value=""  type="number" step=any>';
         html += tdC + trC + tr + th; 
-        html += '<label>Maximum Quantity</label>';
+        html += '<label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_max]" value=""  type="number" step=any>';
         html += tdC + trC + tr + th;
-        html += '<label>Step Quantity</label>';
+        html += '<label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_step]" value=""  type="number" step=any>';
         html += tdC + trC + tr + th;
-        html += '<label>Default Quantity</label>';
+        html += '<label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>';
         html += thC + td;
         html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_default]" value=""  type="number" step=any>';
         html += tdC + trC;
@@ -401,25 +401,25 @@ jQuery(document).ready(function($){
 
                 $fields_arr = [
                     'msg_min_limit' => [
-                        'title' => 'Minimum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
+                        'title' => __('Minimum Quantity Validation Message','wcmmq' ),
+                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
                     ],
                     
                     'msg_max_limit' => [
-                        'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
+                        'title' => __('Maximum Quantity Validation Message','wcmmq' ),
+                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
                     ],
                     'msg_max_limit_with_already' => [
-                        'title' => 'Maximum Quantity Validation Message',
-                        'desc'  => 'Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
+                        'title' => __('Maximum Quantity Validation Message','wcmmq' ),
+                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
                     ],
                     'min_qty_msg_in_loop' => [
-                        'title' => 'Minimum Quantity message for shop page',
-                        'desc'  => 'Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]',
+                        'title' => __('Minimum Quantity message for shop page','wcmmq' ),
+                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
                     ],
                     'step_error_valiation' => [
-                        'title' => 'Step validation error message',
-                        'desc'  => 'Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]',
+                        'title' => __('Step validation error message','wcmmq' ),
+                        'desc'  => __('Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]','wcmmq' ),
                     ],
             
                 ];
@@ -435,7 +435,7 @@ jQuery(document).ready(function($){
                 ?>
             <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background wcmmq-submit-button">
                 <button name="configure_submit" class="button-primary primary button"> <?php echo esc_html__('Save Change','wcmmq');?></button>
-                <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">Reset Default</button>
+                <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');"><?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?></button>
             </div>
                     
         </form>
