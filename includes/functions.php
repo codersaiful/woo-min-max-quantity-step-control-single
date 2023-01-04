@@ -70,3 +70,13 @@ function wcmmq_get_message( $keyword, $prefix = WC_MMQ_PREFIX ){
                       
     return WC_MMQ::getOption( $f_keyword );
 }
+
+// add_action('woocommerce_single_product_summary','skdkslsl_skslsl');
+
+// function skdkslsl_skslsl(){
+//     $aaa = wc_format_localized_price('145.33');
+//     // $aaa = wc_get_price_decimal_separator();
+
+//     var_dump(wc_get_price_decimals());
+//     // var_dump(wc_format_decimal('124,22'));
+// }

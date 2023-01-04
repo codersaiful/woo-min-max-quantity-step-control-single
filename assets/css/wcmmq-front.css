@@ -30,3 +30,26 @@
 .qib-button .quantity input[type=number]{ 
 -moz-appearance:textfield; /* Firefox */
 }
+
+.quantity.wcmmq-coma-separator-activated,
+.wqpmb_quantity.wcmmq-coma-separator-activated,
+.quantity.wqpmb_quantity.wcmmq-coma-separator-activated
+{
+    position: relative;
+}
+.qib-button-wrapper .quantity input.input-text.qty.text.wcmmq-main-input-box, 
+div.quantity .wcmmq-main-input-box, 
+div.quantity.wqpmb_quantity .wcmmq-main-input-box, 
+input.wcmmq-main-input-box {
+    height: 2px !important;
+    background: transparent !important;
+    border: 0 none;
+    width: 2px !important;
+    overflow: hidden !important;
+    position: absolute;
+    transform: translateX(50%);
+    bottom: 0;
+    left: 50%;
+    outline: 0 none !important;
+    outline-offset: 0 !important;
+}

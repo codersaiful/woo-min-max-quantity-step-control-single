@@ -90,6 +90,12 @@ function wcmmq_save_field_data( $post_id ){
     $default_quantity = $_POST[WC_MMQ_PREFIX . 'default_quantity'] ?? false;// isset( $_POST[WC_MMQ_PREFIX . 'default_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'default_quantity']) ? $_POST[WC_MMQ_PREFIX . 'default_quantity'] : false;
     $max_quantity = $_POST[WC_MMQ_PREFIX . 'max_quantity'] ?? false;//isset( $_POST[WC_MMQ_PREFIX . 'max_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'max_quantity']) ? $_POST[WC_MMQ_PREFIX . 'max_quantity'] : false;
     $product_step = $_POST[WC_MMQ_PREFIX . 'product_step'] ?? false;//isset( $_POST[WC_MMQ_PREFIX . 'product_step'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'product_step']) ? $_POST[WC_MMQ_PREFIX . 'product_step'] : false;
+    
+    $min_quantity = wc_format_decimal( $min_quantity );
+    $default_quantity = wc_format_decimal( $default_quantity );
+    $max_quantity = wc_format_decimal( $max_quantity );
+    $product_step = wc_format_decimal( $product_step );
+    
     if($min_quantity && $max_quantity && $min_quantity > $max_quantity){
         $max_quantity = $min_quantity + 5;
     }
