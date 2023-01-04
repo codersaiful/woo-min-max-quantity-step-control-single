@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-02 10:12+0000\n"
-"PO-Revision-Date: 2023-01-03 06:12+0000\n"
+"PO-Revision-Date: 2023-01-04 08:47+0000\n"
 "Last-Translator: \n"
-"Language-Team: বাংলা\n"
+"Language-Team: Bengali (Bangladesh)\n"
 "Language: bn_BD\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -310,7 +310,7 @@ msgstr "WooCommerce"
 
 #: wcmmq.php:81
 msgid "You have already [current_quantity] item of \"[product_name]\""
-msgstr "ইতিমধ্যে \"[product_name]\" এর[current_quantity] টি কার্টে আছে।"
+msgstr "ইতিমধ্যে \"[product_name]\" এর [current_quantity] টি কার্টে আছে।"
 
 #: wcmmq.php:86
 msgid ""

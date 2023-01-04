@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-02 10:12+0000\n"
-"PO-Revision-Date: 2023-01-03 06:09+0000\n"
+"PO-Revision-Date: 2023-01-03 06:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: বাংলা\n"
 "Language: bn_BD\n"
@@ -87,7 +87,7 @@ msgstr "স্বাভাবিক পরিমান"
 
 #: admin/add_options_admin.php:26
 msgid "Default Quantity (Optional)"
-msgstr ""
+msgstr "স্বাভাবিক পরিমান (ঐচ্ছিক)"
 
 #: admin/set_menu_and_fac.php:339 admin/includes/terms_condition.php:49
 msgid "Delete"
@@ -103,15 +103,15 @@ msgstr "টার্মস এডিট"
 
 #: admin/add_options_admin.php:41
 msgid "Enter Maximum Quantity for this Product"
-msgstr ""
+msgstr "এই পন্যের জন্য সর্বোচ্চ পরিমান দিন।"
 
 #: admin/add_options_admin.php:19
 msgid "Enter Minimum Quantity for this Product"
-msgstr ""
+msgstr "এই পন্যের জন্য সর্বনিম্ন পরিমান দিন।"
 
 #: admin/add_options_admin.php:52
 msgid "Enter quantity Step"
-msgstr ""
+msgstr "পরিমানের ধাপ কত হবে দিন"
 
 #: modules/module-controller.php:65
 msgid "For Gutenberg block shop page loop, Enable disable."
@@ -142,6 +142,8 @@ msgid ""
 "It is an optional Number, If do not set, Product default quantity will come "
 "from Minimum Quantity"
 msgstr ""
+"এটা একটা ঐচ্ছিক অপশন, যদি  না দেন তাহলে এটা আসবে মিনিমান  বা সর্বনিম্ন "
+"পরিমান থেকে।"
 
 #: admin/add_options_admin.php:37 admin/set_menu_and_fac.php:115
 #: admin/set_menu_and_fac.php:348 admin/includes/terms_condition.php:64
