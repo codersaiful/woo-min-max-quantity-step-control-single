@@ -49,6 +49,7 @@
                 qty_value = $(this).val();
                 if(!CheckDecimal(qty_value)){
                     formatted_value = parseFloat(qty_value).toFixed(decimal_count);
+                    formatted_value = formatted_value.replace(/0+$/,"");
                     $(this).val(formatted_value);
                 }else{
                     formatted_value = parseFloat(qty_value).toFixed(0);
@@ -57,7 +58,7 @@
 
                 if( decimal_separator === ',' ){
                     var val_with_coma = qty_value.replace(/\./g, ',');
-                    var parentQuantity = $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
+                    $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
 
                 }
             });	
