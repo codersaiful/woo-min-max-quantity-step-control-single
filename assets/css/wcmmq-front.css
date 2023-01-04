@@ -53,3 +53,7 @@ input.wcmmq-main-input-box {
     outline: 0 none !important;
     outline-offset: 0 !important;
 }
+
+input.input-text.qty.text.wcmmq-main-input-box {
+    opacity: 0;
+}
