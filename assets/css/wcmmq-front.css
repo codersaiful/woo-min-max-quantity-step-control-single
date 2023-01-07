@@ -57,3 +57,6 @@ input.wcmmq-main-input-box {
 input.input-text.qty.text.wcmmq-main-input-box {
     opacity: 0;
 }
+input.wcmmq-second-input-box{
+    max-width: 94px;
+}
