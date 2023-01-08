@@ -1,25 +1,48 @@
 (function($) {
     'use strict';
-    
+    function addCustomInputBox(){
+        var decimal_separator = WCMMQ_DATA.decimal_separator;
+        var decimal_count = WCMMQ_DATA.decimal_count;
+        
+        if(typeof decimal_count !== 'undefined'){
+            decimal_count = parseInt(decimal_count);
+        }else{
+            decimal_count = 2;
+        }
+
+        if( decimal_separator === ',' ){
+            $('input.input-text.qty.text').not('.wcmmq-second-input-box,.wcmmq-main-input-box').each(function(){
+                
+                $(this).addClass('wcmmq-main-input-box');
+                var input_val = $(this).val();
+                var val_with_coma = input_val.replace(/\./g, ',');
+                var parentQuantity = $(this).parents('.quantity');
+                parentQuantity.addClass('wcmmq-coma-separator-activated');
+                parentQuantity.append('<input type="text" value="' + val_with_coma + '" class="wcmmq-second-input-box input-text qty text" id="wcmmq-second-input-id">');
+            });
+        }
+    }
+    $(document).ajaxComplete(function () {
+        setTimeout(addCustomInputBox,1200);
+    });
     $(document).ready(function () {
         var decimal_separator = WCMMQ_DATA.decimal_separator;
         var decimal_count = WCMMQ_DATA.decimal_count;
         
         if(typeof decimal_count !== 'undefined'){
-            alert
             decimal_count = parseInt(decimal_count);
         }else{
             decimal_count = 2;
         }
         
         if( decimal_separator === ',' ){
-            $('input.input-text.qty.text').each(function(){
+            $('input.input-text.qty.text').not('.wcmmq-second-input-box,.wcmmq-main-input-box').each(function(){
                 $(this).addClass('wcmmq-main-input-box');
                 var input_val = $(this).val();
                 var val_with_coma = input_val.replace(/\./g, ',');
                 var parentQuantity = $(this).parents('.quantity');
                 parentQuantity.addClass('wcmmq-coma-separator-activated');
-                parentQuantity.append('<input type="text" value="' + val_with_coma + '" class="wcmmq-second-input-box" id="wcmmq-second-input-id">');
+                parentQuantity.append('<input type="text" value="' + val_with_coma + '" class="wcmmq-second-input-box input-text qty text" id="wcmmq-second-input-id">');
             });
 
             /**
