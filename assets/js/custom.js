@@ -47,19 +47,12 @@
             qty_box = $('.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]');
             qty_box.on('change', function(){
                 qty_value = $(this).val();
-                if(!CheckDecimal(qty_value)){
-                    formatted_value = parseFloat(qty_value).toFixed(decimal_count);
-                    formatted_value = formatted_value.replace(/0+$/,"");
-                    $(this).val(formatted_value);
-                }else{
-                    formatted_value = parseFloat(qty_value).toFixed(0);
-                    $(this).val(formatted_value);
-                }
 
-                if( decimal_separator === ',' ){
+                if( decimal_separator === ',' && CheckDecimal(qty_value) ){
                     var val_with_coma = qty_value.replace(/\./g, ',');
                     $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
-
+                }else{
+                    return;
                 }
             });	
         });
