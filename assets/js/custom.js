@@ -48,7 +48,7 @@
             qty_box.on('change', function(){
                 qty_value = $(this).val();
 
-                if( decimal_separator === ',' && CheckDecimal(qty_value) ){
+                if( decimal_separator === ',' && !CheckDecimal(qty_value) ){
                     var val_with_coma = qty_value.replace(/\./g, ',');
                     $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
                 }else{
