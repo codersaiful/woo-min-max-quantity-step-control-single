@@ -138,28 +138,27 @@
         qty_box_selector = '.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]';
         $(document.body).on('change',qty_box_selector,function(){
             qty_value = $(this).val();
-
+            
             if( decimal_separator === ',' && !CheckDecimal(qty_value) ){
-                var val_with_coma = qty_value.replace(/\./g, ',');
-                $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
-            }else{
-                return;
+                qty_value = qty_value.replace(/\./g, ',');
             }
+
+            $(this).parents('.quantity').find('.wcmmq-second-input-box').val(qty_value);
         });
         
         // this may not work. we need to check the classs 
-        // qty_box = $('.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]');
+        qty_box = $('.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]');
         
         // qty_box.on('change', function(){
         //     qty_value = $(this).val();
 
         //     if( decimal_separator === ',' && !CheckDecimal(qty_value) ){
-        //         var val_with_coma = qty_value.replace(/\./g, ',');
-        //         $(this).parents('.quantity').find('.wcmmq-second-input-box').val(val_with_coma);
-        //     }else{
-        //         return;
+        //         qty_value = qty_value.replace(/\./g, ',');
+        //         // $(this).parents('.quantity').find('.wcmmq-second-input-box').val(qty_value);
         //     }
-        // });	
+
+        //     $(this).parents('.quantity').find('.wcmmq-second-input-box').val(qty_value);
+        // });
         
     });
 
