@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-03 06:09+0000\n"
-"PO-Revision-Date: 2023-01-04 09:37+0000\n"
+"PO-Revision-Date: 2023-01-09 09:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -28,7 +28,7 @@ msgid ""
 "shortcode. You can create tables as many as you want."
 msgstr ""
 
-#: admin/set_menu_and_fac.php:131
+#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:143
 msgid "(Optional)"
 msgstr ""
 
@@ -36,19 +36,19 @@ msgstr ""
 msgid "Add Terms"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:410 admin/set_menu_and_fac.php:414
+#: admin/set_menu_and_fac.php:428 admin/set_menu_and_fac.php:432
 msgid ""
 "Available shortcode [current_quantity][min_quantity],[max_quantity],"
 "[product_name],[step_quantity],[variation_name]"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:405 admin/set_menu_and_fac.php:418
+#: admin/set_menu_and_fac.php:423 admin/set_menu_and_fac.php:436
 msgid ""
 "Available shortcode [min_quantity],[max_quantity],[product_name],"
 "[step_quantity],[variation_name]"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:422
+#: admin/set_menu_and_fac.php:440
 msgid ""
 "Available shortcode [should_min],[should_next],[product_name],"
 "[variation_name],[quantity],[min_quantity],[step_quantity]"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Choose a %s"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:228
+#: admin/set_menu_and_fac.php:246
 msgid "Choose Terms"
 msgstr ""
 
@@ -71,7 +71,11 @@ msgstr ""
 msgid "CodeAstrology Team"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:356
+#: admin/set_menu_and_fac.php:147
+msgid "Comma (,)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:374
 #: admin/includes/terms_condition.php:84
 msgid "Default Quantity"
 msgstr ""
@@ -80,15 +84,19 @@ msgstr ""
 msgid "Default Quantity (Optional)"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:339 admin/includes/terms_condition.php:49
+#: admin/set_menu_and_fac.php:357 admin/includes/terms_condition.php:49
 msgid "Delete"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:338 admin/includes/terms_condition.php:48
+#: admin/set_menu_and_fac.php:146
+msgid "Dot (.)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:356 admin/includes/terms_condition.php:48
 msgid "Edit"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:252
+#: admin/set_menu_and_fac.php:270
 msgid "Edit Terms"
 msgstr ""
 
@@ -108,7 +116,7 @@ msgstr ""
 msgid "For Gutenberg block shop page loop, Enable disable."
 msgstr ""
 
-#: admin/set_menu_and_fac.php:240
+#: admin/set_menu_and_fac.php:258
 msgid "For Mulitple Terms,"
 msgstr ""
 
@@ -133,7 +141,7 @@ msgid ""
 msgstr ""
 
 #: admin/add_options_admin.php:37 admin/set_menu_and_fac.php:115
-#: admin/set_menu_and_fac.php:348 admin/includes/terms_condition.php:64
+#: admin/set_menu_and_fac.php:366 admin/includes/terms_condition.php:64
 msgid "Maximum Quantity"
 msgstr ""
 
@@ -141,7 +149,7 @@ msgstr ""
 msgid "Maximum quantity should [max_quantity] of \"[product_name]\""
 msgstr ""
 
-#: admin/set_menu_and_fac.php:409 admin/set_menu_and_fac.php:413
+#: admin/set_menu_and_fac.php:427 admin/set_menu_and_fac.php:431
 msgid "Maximum Quantity Validation Message"
 msgstr ""
 
@@ -196,11 +204,11 @@ msgid "Minimum qty is"
 msgstr ""
 
 #: admin/add_options_admin.php:15 admin/set_menu_and_fac.php:107
-#: admin/set_menu_and_fac.php:344 admin/includes/terms_condition.php:54
+#: admin/set_menu_and_fac.php:362 admin/includes/terms_condition.php:54
 msgid "Minimum Quantity"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:417
+#: admin/set_menu_and_fac.php:435
 msgid "Minimum Quantity message for shop page"
 msgstr ""
 
@@ -208,7 +216,7 @@ msgstr ""
 msgid "Minimum quantity should [min_quantity] of \"[product_name]\""
 msgstr ""
 
-#: admin/set_menu_and_fac.php:404
+#: admin/set_menu_and_fac.php:422
 msgid "Minimum Quantity Validation Message"
 msgstr ""
 
@@ -218,15 +226,15 @@ msgid ""
 "then [vari_total_min_qty]"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:145
+#: admin/set_menu_and_fac.php:163
 msgid "OFF"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:145
+#: admin/set_menu_and_fac.php:163
 msgid "ON"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:139
+#: admin/set_menu_and_fac.php:157
 msgid "Order Page (Condition)"
 msgstr ""
 
@@ -236,19 +244,23 @@ msgid ""
 "and [should_next]"
 msgstr ""
 
+#: admin/set_menu_and_fac.php:143
+msgid "Quantity Decimal Separator"
+msgstr ""
+
 #: admin/add_options_admin.php:48 admin/set_menu_and_fac.php:123
 msgid "Quantity Step"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:438
+#: admin/set_menu_and_fac.php:456
 msgid "Reset Default"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:163 admin/set_menu_and_fac.php:304
+#: admin/set_menu_and_fac.php:181 admin/set_menu_and_fac.php:322
 msgid "Save All"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:437
+#: admin/set_menu_and_fac.php:455
 msgid "Save Change"
 msgstr ""
 
@@ -262,19 +274,19 @@ msgid ""
 "Page as well as on Related product Section."
 msgstr ""
 
-#: admin/set_menu_and_fac.php:352 admin/includes/terms_condition.php:74
+#: admin/set_menu_and_fac.php:370 admin/includes/terms_condition.php:74
 msgid "Step Quantity"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:421
+#: admin/set_menu_and_fac.php:439
 msgid "Step validation error message"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:193
+#: admin/set_menu_and_fac.php:211
 msgid "Supported Terms"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:240
+#: admin/set_menu_and_fac.php:258
 msgid "Upgrade to PRO"
 msgstr ""
 
@@ -288,18 +300,20 @@ msgstr ""
 
 #: wcmmq.php:86
 msgid ""
-"Your cart items total quantity must be equal or less of [cart_max_quantity]"
+"Your cart item's total quantity must be equal to or less than "
+"[cart_max_quantity]"
 msgstr ""
 
 #: wcmmq.php:85
 msgid ""
-"Your cart items total quantity must be equal or more of [cart_min_quantity]"
+"Your cart item's total quantity must be equal to or more than "
+"[cart_min_quantity]"
 msgstr ""
 
 #: wcmmq.php:84
-msgid "Your cart total amount must be equal or less of [cart_max_price]"
+msgid "Your cart total amount must be equal to or less than [cart_max_price]"
 msgstr ""
 
 #: wcmmq.php:83
-msgid "Your cart total amount must be equal or more of [cart_min_price]"
+msgid "Your cart total amount must be equal to or more of [cart_min_price]"
 msgstr ""

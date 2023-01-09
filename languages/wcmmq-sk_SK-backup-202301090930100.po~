@@ -1,14 +1,14 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-03 04:45+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2023-01-03 06:09+0000\n"
+"PO-Revision-Date: 2023-01-04 09:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: Slovak\n"
+"Language: sk_SK\n"
+"Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
+"2;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -77,6 +77,10 @@ msgstr ""
 msgid "Default Quantity"
 msgstr ""
 
+#: admin/add_options_admin.php:26
+msgid "Default Quantity (Optional)"
+msgstr ""
+
 #: admin/set_menu_and_fac.php:339 admin/includes/terms_condition.php:49
 msgid "Delete"
 msgstr ""
@@ -87,6 +91,18 @@ msgstr ""
 
 #: admin/set_menu_and_fac.php:252
 msgid "Edit Terms"
+msgstr ""
+
+#: admin/add_options_admin.php:41
+msgid "Enter Maximum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:19
+msgid "Enter Minimum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:52
+msgid "Enter quantity Step"
 msgstr ""
 
 #: modules/module-controller.php:65
@@ -111,8 +127,14 @@ msgid ""
 "explain here with screenshot.Issues And Screenshots:"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:115 admin/set_menu_and_fac.php:348
-#: admin/includes/terms_condition.php:64
+#: admin/add_options_admin.php:30
+msgid ""
+"It is an optional Number, If do not set, Product default quantity will come "
+"from Minimum Quantity"
+msgstr ""
+
+#: admin/add_options_admin.php:37 admin/set_menu_and_fac.php:115
+#: admin/set_menu_and_fac.php:348 admin/includes/terms_condition.php:64
 msgid "Maximum Quantity"
 msgstr ""
 
@@ -174,8 +196,8 @@ msgstr ""
 msgid "Minimum qty is"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:107 admin/set_menu_and_fac.php:344
-#: admin/includes/terms_condition.php:54
+#: admin/add_options_admin.php:15 admin/set_menu_and_fac.php:107
+#: admin/set_menu_and_fac.php:344 admin/includes/terms_condition.php:54
 msgid "Minimum Quantity"
 msgstr ""
 
@@ -215,7 +237,7 @@ msgid ""
 "and [should_next]"
 msgstr ""
 
-#: admin/set_menu_and_fac.php:123
+#: admin/add_options_admin.php:48 admin/set_menu_and_fac.php:123
 msgid "Quantity Step"
 msgstr ""
 
