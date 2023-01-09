@@ -139,7 +139,7 @@
         $(document.body).on('change',qty_box_selector,function(){
             qty_value = $(this).val();
             
-            if( decimal_separator === ',' && !CheckDecimal(qty_value) ){
+            if( decimal_separator === ',' ){
                 qty_value = qty_value.replace(/\./g, ',');
             }
 
@@ -152,7 +152,7 @@
         // qty_box.on('change', function(){
         //     qty_value = $(this).val();
 
-        //     if( decimal_separator === ',' && !CheckDecimal(qty_value) ){
+        //     if( decimal_separator === ',' ){
         //         qty_value = qty_value.replace(/\./g, ',');
         //         // $(this).parents('.quantity').find('.wcmmq-second-input-box').val(qty_value);
         //     }
