@@ -214,6 +214,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 == Changelog ==
 
+= 3.5 =
+* New Option added to change Quantity Separator for WooCommerce Quantity Box.
+* Deciaml Separator issue fixed for comma separator.
+* Javascript script Optimized.
+* Compatibility Checked and tested @WC 7.2.2 and @WP 6.1.1
+
 = 3.4 =
 * Fixed: Issue - Call to a member function is_sold_individually() raise a 505 error in ajax ajax. Fixed by [@dibix](https://wordpress.org/support/topic/call-to-a-member-function-is_sold_individually-raise-a-505-error-in-ajax-ajax/)
 * Compatibility Checked @WC 7.1
