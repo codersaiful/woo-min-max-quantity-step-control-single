@@ -134,6 +134,24 @@ function wcmmq_faq_page_details(){
                             </td>
 
                         </tr>
+                        <?php if( wc_get_price_decimal_separator() == ',' ){ ?>
+                        <tr>
+                            <?php
+                            
+                            $decimal_separator = $saved_data['decimal_separator'] ?? '.';
+                            ?>
+                            <th><label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
+                            <td>
+                                <select name="data[decimal_separator]" id="data[decimal_separator]" class="ua_select">
+                                    <option value="." <?php echo esc_attr( $decimal_separator == '.' ? 'selected' : '' ); ?> ><?php echo esc_html__( 'Dot (.)', 'wcmmq' ); ?></option>
+                                    <option value="," <?php echo esc_attr( $decimal_separator == ',' ? 'selected' : '' ); ?>><?php echo esc_html__( 'Comma (,)', 'wcmmq' ); ?></option>
+                                </select>
+                                
+                            </td>
+
+                        </tr>
+                        <?php } ?>
+                        
                         <tr>
                             <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>

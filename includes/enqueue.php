@@ -42,10 +42,14 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
             'site_url'       => site_url(),
             'cart_url'       => wc_get_cart_url(),
             'priceFormat'    => get_woocommerce_price_format(),
-            'decimal_separator'=> wc_get_price_decimal_separator(),
+            'decimal_separator'=> '.',
             'decimal_count'=> wc_get_price_decimals(),
-            // 'others'        => wc_format_localized_decimal(),
             );
+
+        if(wc_get_price_decimal_separator() == ','){
+            $options = WC_MMQ::getOptions();
+            $WCMMQ_DATA['decimal_separator'] = ! empty( $options['decimal_separator'] ) ? $options['decimal_separator'] : '.' ;
+        }
         $WCMMQ_DATA = apply_filters( 'wcmmq_localize_data', $WCMMQ_DATA );
         wp_localize_script( 'wcmmq-custom-script', 'WCMMQ_DATA', $WCMMQ_DATA );
     }
