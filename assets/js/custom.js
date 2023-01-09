@@ -147,7 +147,7 @@
         });
         
         // this may not work. we need to check the classs 
-        qty_box = $('.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]');
+        // qty_box = $('.qib-button-wrapper .quantity input.input-text.qty.text, .single-product div.product form.cart .quantity input[type=number], .single-product div.product form.cart .quantity input[type=number]');
         
         // qty_box.on('change', function(){
         //     qty_value = $(this).val();
