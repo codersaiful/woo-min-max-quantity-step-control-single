@@ -80,10 +80,10 @@ WC_MMQ::$default_values = array(
     WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [max_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
-    'msg_min_price_cart' => __('Your cart total amount must be equal or more of [cart_min_price]', 'wcmmq'),
-    'msg_max_price_cart' => __('Your cart total amount must be equal or less of [cart_max_price]', 'wcmmq'),
-    'msg_min_quantity_cart' => __('Your cart items total quantity must be equal or more of [cart_min_quantity]', 'wcmmq'),
-    'msg_max_quantity_cart' => __('Your cart items total quantity must be equal or less of [cart_max_quantity]', 'wcmmq'),
+    'msg_min_price_cart' => __('Your cart total amount must be equal to or more of [cart_min_price]', 'wcmmq'),
+    'msg_max_price_cart' => __('Your cart total amount must be equal to or less than [cart_max_price]', 'wcmmq'),
+    'msg_min_quantity_cart' => __("Your cart item's total quantity must be equal to or more than [cart_min_quantity]", 'wcmmq'),
+    'msg_max_quantity_cart' => __("Your cart item's total quantity must be equal to or less than [cart_max_quantity]", 'wcmmq'),
     'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'wcmmq'),
     'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'wcmmq'),
     'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'wcmmq'),
