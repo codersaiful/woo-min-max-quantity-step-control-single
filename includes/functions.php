@@ -82,6 +82,28 @@ function wcmmq_get_message( $keyword, $prefix = WC_MMQ_PREFIX ){
 // }
 
 /**
+ * ei part tuku ami korechilam,
+ * woocommerce er setting page a new tab add korar option khujar jonno.
+ * 
+ * ekhono paini.
+ */
+// add_filter('woocommerce_get_settings_pages','wcmmq_woocommerce_settings_tabs_array');
+// function wcmmq_woocommerce_settings_tabs_array($arr)
+// {
+//     var_dump($arr);
+//     return $arr;
+// }
+
+// add_filter('woocommerce_product_tabs','wcmmq_woocommerce_settings_tabs_array');
+// add_filter('woocommerce_settings_tabs_array','wcmmq_woocommerce_settings_tabs_array');
+// function wcmmq_woocommerce_settings_tabs_array($arr)
+// {
+//     var_dump($arr);
+//     return $arr;
+// }
+
+
+/**
 * start the customisation
 */
 // add_action('woocommerce_before_shop_loop', function() {
