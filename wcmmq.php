@@ -11,7 +11,7 @@
  * Requires at least:    4.0.0
  * Tested up to:         6.1.1
  * WC requires at least: 3.0.0
- * WC tested up to: 	 7.2.2
+ * WC tested up to: 	 7.2.3
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
