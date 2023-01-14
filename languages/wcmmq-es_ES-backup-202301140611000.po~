@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-03 06:09+0000\n"
-"PO-Revision-Date: 2023-01-14 06:14+0000\n"
+"PO-Revision-Date: 2023-01-14 06:10+0000\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Spain)\n"
 "Language: es_ES\n"
@@ -158,16 +158,12 @@ msgid ""
 "Maximum variation count total of \"[product_name]\" should be or less then "
 "[vari_count_total]"
 msgstr ""
-"La variación máxima de la suma total de \"[product_name]\" debe ser igual o "
-"menor que [vari_count_total]"
 
 #: wcmmq.php:87
 msgid ""
 "Maximum variation quantity total of \"[product_name]\" should be or less "
 "then [vari_total_max_qty]"
 msgstr ""
-"La variación máxima sobre la cantidad total de \"[product_name]\" debe ser "
-"igual o inferior a [vari_total_max_qty]"
 
 #: admin/functions.php:142
 msgid "Message"
@@ -229,8 +225,6 @@ msgid ""
 "Minimum variation quantity total of \"[product_name]\" should be or greater "
 "then [vari_total_min_qty]"
 msgstr ""
-"La variación mínima sobre la cantidad total de \"[product_name]\" debe ser "
-"igual o superior a [vari_total_min_qty]"
 
 #: admin/set_menu_and_fac.php:163
 msgid "OFF"
@@ -311,16 +305,12 @@ msgid ""
 "Your cart item's total quantity must be equal to or less than "
 "[cart_max_quantity]"
 msgstr ""
-"El total de items en tu carrito debe ser igual o menor que "
-"[cart_max_quantity]"
 
 #: wcmmq.php:85
 msgid ""
 "Your cart item's total quantity must be equal to or more than "
 "[cart_min_quantity]"
 msgstr ""
-"El total de items en tu carrito debe ser igual o mayor que "
-"[cart_min_quantity]"
 
 #: wcmmq.php:84
 msgid "Your cart total amount must be equal to or less than [cart_max_price]"
