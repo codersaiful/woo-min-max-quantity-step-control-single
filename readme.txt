@@ -228,7 +228,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 * Added: Spanish(Español) translated file added for frontend.
 * Added: Russian (Русский) translated file added for frontend.
 * Added: French (Français) translated file added for frontend.
-* New Option added to change Quantity Separator for WooCommerce Quantity Box.
+* Added: New Option added to change Quantity Separator for WooCommerce Quantity Box.
 * Deciaml Separator issue fixed for comma separator.
 * Javascript script Optimized.
 * Compatibility Checked and tested @WC 7.2.2 and @WP 6.1.1
