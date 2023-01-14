@@ -135,6 +135,14 @@ Also, you can set values for each product individually. Product label values wil
 **🚩FAST, SECURE AND EASY 🚩**
 *With a Min Max Quantity & Step Control, you can be confident that your business processes will go quickly and easily. User-friendly and adaptable to all popular themes.
 
+**Translation**<br>
+
+* French (Français) - fr_FR
+* Bengali (বাংলা) - bn_BD
+* Russian (Русский) - ru_RU
+* Ukrainian(Українська) - uk
+* Spanish(Español) - es_ES
+
 **🔅OUR OTHER FREE WOOCOMMERCE PLUGINS🔅**
 
 * [Product Table for WooCommerce (wooproducttable)](https://wordpress.org/plugins/woo-product-table/)
@@ -215,6 +223,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 == Changelog ==
 
 = 3.5 =
+* 4 new translated Language file added. 
+* Added: Ukrainian(Українська) translated file added for frontend.
+* Added: Spanish(Español) translated file added for frontend.
+* Added: Russian (Русский) translated file added for frontend.
+* Added: French (Français) translated file added for frontend.
 * New Option added to change Quantity Separator for WooCommerce Quantity Box.
 * Deciaml Separator issue fixed for comma separator.
 * Javascript script Optimized.
