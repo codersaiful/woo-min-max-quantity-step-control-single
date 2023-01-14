@@ -159,8 +159,6 @@ msgid ""
 "Maximum variation count total of \"[product_name]\" should be or less then "
 "[vari_count_total]"
 msgstr ""
-"Le nombre de variation max du produit \"[product_name]\" doit être égale ou "
-"moins à [vari_count_total]"
 
 #: wcmmq.php:87
 msgid ""
