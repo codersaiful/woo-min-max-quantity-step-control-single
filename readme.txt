@@ -222,12 +222,17 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 == Changelog ==
 
+= 3.6 =
+* Quanity Box added for Archive or Taxonomy page. Like: Category, Tag page.
+* Code Optimized 
+* Bug Fixed
+
 = 3.5 =
 * 4 new translated Language file added. 
-* Added: Ukrainian(Українська) translated file added for frontend.
+* Added: Ukrainian(Українська) translated file added for frontend. helped by *Lucas*.
 * Added: Spanish(Español) translated file added for frontend.
-* Added: Russian (Русский) translated file added for frontend.
-* Added: French (Français) translated file added for frontend.
+* Added: Russian (Русский) translated file added for frontend. Helped us [Vasiliy Kotov](https://www.linkedin.com/in/vasiliy-kotov-10542b47/) to translate Russian Language.
+* Added: French (Français) translated file added for frontend. Helped us [ozapp.app](https://ozapp.app/) to translate French Language.
 * Added: New Option added to change Quantity Separator for WooCommerce Quantity Box.
 * Deciaml Separator issue fixed for comma separator.
 * Javascript script Optimized.

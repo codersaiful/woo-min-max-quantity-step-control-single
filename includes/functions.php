@@ -103,43 +103,36 @@ function wcmmq_get_message( $keyword, $prefix = WC_MMQ_PREFIX ){
 // }
 
 
-/**
-* start the customisation
-*/
-// add_action('woocommerce_before_shop_loop', function() {
-//     add_filter('woocommerce_loop_add_to_cart_link', 'wcmmq_add_to_cart', 10, 3);
-// });
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+function woocommerce_ajax_add_to_cart()
+{
+    $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
+    $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
+    $variation_id = absint($_POST['variation_id']);
+    $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+    $product_status = get_post_status($product_id);
 
-/**
-* customise Add to Cart link/button for product loop
-* @param string $button
-* @param object $product
-* @param array $link
-* @return string
-*/
-function wcmmq_add_to_cart($button, $product, $link) {
-    $product_type = $product->get_type();
-    var_dump(get_option('woocommerce_enable_ajax_add_to_cart'));
-    // return $button;
-    // not for variable, grouped or external products
-    if (!in_array($product_type, array('variable', 'grouped', 'external'))) {
-        // only if can be purchased
-        if ($product->is_purchasable()) {
-            // show qty +/- with button
-            ob_start();
-            woocommerce_simple_add_to_cart();
-            $button = ob_get_clean();
+    if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity, $variation_id) && 'publish' === $product_status) {
+
+        do_action('woocommerce_ajax_added_to_cart', $product_id);
+
+        if ('yes' === get_option('woocommerce_cart_redirect_after_add')) {
+            wc_add_to_cart_message(array($product_id => $quantity), true);
         }
-    }elseif( $product_type == 'variable' ){
-        if ($product->is_purchasable()) {
-            //woocommerce_template_single_add_to_cart
-            //woocommerce_template_loop_add_to_cart
-            // show qty +/- with button
-            ob_start();
-            woocommerce_template_single_add_to_cart();
-            $button = ob_get_clean();
-        }
+
+        WC_AJAX::get_refreshed_fragments();
+    } else {
+
+        $data = array(
+            'error' => true,
+            'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id)
+        );
+
+        echo wp_send_json($data);
     }
 
-    return $button;
+    wp_die();
 }
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
