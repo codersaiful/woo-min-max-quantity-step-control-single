@@ -134,5 +134,3 @@ function woocommerce_ajax_add_to_cart()
 
     wp_die();
 }
-add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
-add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');

@@ -21,6 +21,8 @@ class Quantiy_Archive
     public function run(){
         $this->dissupport_arr = apply_filters( 'wcmmq_archive_qty_dissupport_arr', ['variable','grouped', 'external'] );
         add_action( 'woocommerce_before_shop_loop', [$this, 'customize_shop_loop'] );
+
+        add_action( 'wp_enqueue_scripts', [$this, 'wp_enqueue_scripts'], 99 );
     }
 
     /**
@@ -78,5 +80,11 @@ class Quantiy_Archive
          */
 
         return $button;
+    }
+
+    public function wp_enqueue_scripts()
+    {
+        wp_register_script( 'wcmmq-ajax-add-to-cart', WC_MMQ_BASE_URL . 'assets/js/ajax-add-to-cart.js', array( 'jquery' ), '1.0.0', true );
+        wp_enqueue_script( 'wcmmq-ajax-add-to-cart' );
     }
 }
