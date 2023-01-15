@@ -1,5 +1,9 @@
 /**
- * Specially making ajax add to cart on 
+ * Specially making ajax add to cart for min max plugin.
+ * 
+ * Taking help from https://quadmenu.com/add-to-cart-with-woocommerce-and-ajax-step-by-step/
+ * 
+ * @since 3.6.0
  */
 (function ($) {
     $(document).ready(function () {
@@ -24,7 +28,7 @@
             };
 
             $(document.body).trigger('adding_to_cart', [$thisbutton, data]);
-
+            console.log(wc_add_to_cart_params);
             $.ajax({
                 type: 'post',
                 url: wc_add_to_cart_params.ajax_url,
@@ -36,11 +40,15 @@
                     $thisbutton.addClass('added').removeClass('loading');
                 },
                 success: function (response) {
-
+                    console.log(response);
                     if (response.error && response.product_url) {
                         window.location = response.product_url;
                         return;
                     } else {
+                        //Go to cart page, If enable from WooCommerce->Settings->Products->General->Add to cart behaviour
+                        if(wc_add_to_cart_params.cart_redirect_after_add === 'yes'){
+                            window.location = wc_add_to_cart_params.cart_url;
+                        }
                         $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $thisbutton]);
                     }
                 },

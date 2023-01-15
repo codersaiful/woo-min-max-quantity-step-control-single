@@ -182,6 +182,10 @@ function wcmmq_faq_page_details(){
                                         <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                                     </div>
                                 </label>
+                                <p style="color: #228b22;">
+                                For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->General->Add to cart behaviour</strong>.<br>
+                                For Variable product Quantity Box with Variation change box. Need premium version.
+                                </p>
                             </td>
 
                         </tr>
