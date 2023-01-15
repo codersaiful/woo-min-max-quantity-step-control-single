@@ -73,6 +73,7 @@ WC_MMQ::$default_values = array(
     WC_MMQ_PREFIX . 'max_quantity' => false,
     WC_MMQ_PREFIX . 'product_step' => 1,
     WC_MMQ_PREFIX . 'prefix_quantity' => '',
+    'quantiy_box_archive' => '',//If we want enable by default, set 1 for this item
     WC_MMQ_PREFIX . 'sufix_quantity' => '',
     WC_MMQ_PREFIX . 'qty_plus_minus_btn' => '1', //Added at 1.8.4 Version
     WC_MMQ_PREFIX . 'step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'wcmmq' ),
@@ -206,7 +207,7 @@ class WC_MMQ {
 
             new WC_MMQ\Admin\Admin_Loader();
         }
-        
+        WC_MMQ\Includes\Feature_Loader::run();
         WC_MMQ\Modules\Module_Controller::instance();
         
         
