@@ -9,7 +9,15 @@
     $(document).ready(function () {
         
         $(document.body).on('click', '.single_add_to_cart_button', function (e) {
-            
+
+            /**
+             * Actually if .disabled class found 
+             * or .wc-variation-selection-needed class found
+             * we don't do anything.
+             */
+            if($(this).hasClass('disabled') || $(this).hasClass('wc-variation-selection-needed')){
+                return;
+            }
             e.preventDefault();
 
             var $thisbutton = $(this),
