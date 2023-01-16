@@ -86,6 +86,7 @@ function wcmmq_faq_page_details(){
     $saved_data = WC_MMQ::getOptions();
     
     $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
+    wcmmq_social_links();
 ?>
 
 <div class="wrap wcmmq_wrap ultraaddons">
@@ -97,6 +98,7 @@ function wcmmq_faq_page_details(){
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
+        
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
