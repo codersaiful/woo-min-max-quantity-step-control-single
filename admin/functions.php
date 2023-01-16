@@ -257,6 +257,7 @@ function wcmmq_social_links(){
     ?>
     <div class="codeastrogy-social-area-wrapper">
         <?php
+        
         $img_folder = WC_MMQ_BASE_URL . 'assets/images/brand/social/';
         $codeastrology = [
             'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
