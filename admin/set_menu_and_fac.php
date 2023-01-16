@@ -152,26 +152,13 @@ function wcmmq_faq_page_details(){
                         </tr>
                         <?php } ?>
                         
-                        <tr>
-                            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
-                            <td>
-                                <label class="switch">
-                                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
-                                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
-                                    <div class="slider round"><!--ADDED HTML -->
-                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
-                                    </div>
-                                </label>
-                            </td>
 
-                        </tr>
                         <!-- 
                             * Will add quantity box on archive pages
                             * @ since 3.6.0
                             * @ Author Fazle Bari 
                          -->
-                        <tr>
+                         <tr>
                             <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
                             <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label></th>
                             <td>
@@ -190,6 +177,22 @@ function wcmmq_faq_page_details(){
                             </td>
 
                         </tr>
+
+                        <tr>
+                            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
+                            <td>
+                                <label class="switch">
+                                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
+                                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                                    <div class="slider round"><!--ADDED HTML -->
+                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                    </div>
+                                </label>
+                            </td>
+
+                        </tr>
+                        
                         <?php
                         /**
                          * Obviously need tr and td here
