@@ -79,14 +79,12 @@ function wcmmq_faq_page_details(){
         update_option( WC_MMQ_KEY, $final_data);
         echo '<div class="updated"><p>Successfully Updated</p></div>';
         //echo  ! $data[WC_MMQ_PREFIX . 'default_quantity'] ? '<div class="error warning"><p>But Default Quanity should gatter then Min Quantity And less then Max Quantity. <b>Only is you set Default Quantity</b></p></div>' : false;
-        
     }
-    
     
     $saved_data = WC_MMQ::getOptions();
     
     $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
-    wcmmq_social_links();
+    
 ?>
 
 <div class="wrap wcmmq_wrap ultraaddons">
@@ -95,6 +93,10 @@ function wcmmq_faq_page_details(){
         <img src="<?php echo esc_url( $min_max_img ); ?>" class="wcmmq-brand-logo">
         <?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?>
     </h1>
+    <?php 
+        wcmmq_social_links(); 
+        wcmmq_submit_issue_link();
+    ?>
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
