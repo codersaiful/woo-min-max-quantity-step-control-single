@@ -95,7 +95,6 @@ function wcmmq_faq_page_details(){
     </h1>
     <?php 
         wcmmq_social_links(); 
-        wcmmq_submit_issue_link();
     ?>
     <div class="fieldwrap">
         <?php
