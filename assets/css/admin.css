@@ -652,3 +652,8 @@ p.wpt-issue-submit a:hover {
     display: block;
     margin-top: 10px;
 }
+
+a.ca-social-link.ca-social-ticket.ca-title-available {
+    background: #42b9cc;
+    color: white;
+}
