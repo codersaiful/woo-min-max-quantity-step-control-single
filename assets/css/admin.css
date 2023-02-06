@@ -657,3 +657,9 @@ a.ca-social-link.ca-social-ticket.ca-title-available {
     background: #42b9cc;
     color: white;
 }
+a.wpt-doc-lick {
+    text-decoration: none;
+    padding: 5px;
+    color: #42b9cc;
+    font-style: oblique;
+}

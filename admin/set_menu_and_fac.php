@@ -110,6 +110,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -118,6 +119,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -126,6 +128,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
+                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -134,6 +137,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
+                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -280,7 +284,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                     <?php
                                     echo $select_option;
                                     ?>
-                                </select>
+                                </select><?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/'); ?>
                                 <p class="wcmmq_terms_promotion">
                                 <?php 
                                     if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
