@@ -12,44 +12,44 @@ function wcmmq_add_field_in_panel(){
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'min_quantity',
-        'label'     =>  'Min Quantity',
+        'label'     =>  __( 'Minimum Quantity', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Minimum Quantity for this Product',
+        'description'=> __( 'Enter Minimum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'default_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'default_quantity',
-        'label'     =>  'Default Quantity (Optional)',
+        'label'     =>  __( 'Default Quantity (Optional)', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity',
+        'description'=> __( 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'max_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'max_quantity',
-        'label'     =>  'Max Quantity',
+        'label'     =>  __( 'Maximum Quantity', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter Maximum Quantity for this Product',
+        'description'=> __( 'Enter Maximum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'product_step',
         'name'        =>  WC_MMQ_PREFIX. 'product_step',
-        'label'     =>  'Quantity Step',
+        'label'     =>  __( 'Quantity Step', 'wcmmq' ),
         'class'     =>  'wcmmq_input',
         'type'      =>  'text',
         'desc_tip'  =>  true,
-        'description'=> 'Enter quantity Step',
+        'description'=> __( 'Enter quantity Step', 'wcmmq' ),
         'data_type' => 'decimal'
     );
 
@@ -86,26 +86,32 @@ add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_pa
  */
 function wcmmq_save_field_data( $post_id ){
     
-    $_wcmmq_min_quantity = isset( $_POST[WC_MMQ_PREFIX. 'min_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'min_quantity']) ? $_POST[WC_MMQ_PREFIX . 'min_quantity'] : false;
-    $_wcmmq_default_quantity = isset( $_POST[WC_MMQ_PREFIX . 'default_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'default_quantity']) ? $_POST[WC_MMQ_PREFIX . 'default_quantity'] : false;
-    $_wcmmq_max_quantity = isset( $_POST[WC_MMQ_PREFIX . 'max_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'max_quantity']) ? $_POST[WC_MMQ_PREFIX . 'max_quantity'] : false;
-    $_wcmmq_product_step = isset( $_POST[WC_MMQ_PREFIX . 'product_step'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'product_step']) ? $_POST[WC_MMQ_PREFIX . 'product_step'] : false;
-    if($_wcmmq_min_quantity && $_wcmmq_max_quantity && $_wcmmq_min_quantity > $_wcmmq_max_quantity){
-        $_wcmmq_max_quantity = $_wcmmq_min_quantity + 5;
+    $min_quantity = $_POST[WC_MMQ_PREFIX. 'min_quantity'] ?? false;// isset( $_POST[WC_MMQ_PREFIX. 'min_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'min_quantity']) ? $_POST[WC_MMQ_PREFIX . 'min_quantity'] : false;
+    $default_quantity = $_POST[WC_MMQ_PREFIX . 'default_quantity'] ?? false;// isset( $_POST[WC_MMQ_PREFIX . 'default_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'default_quantity']) ? $_POST[WC_MMQ_PREFIX . 'default_quantity'] : false;
+    $max_quantity = $_POST[WC_MMQ_PREFIX . 'max_quantity'] ?? false;//isset( $_POST[WC_MMQ_PREFIX . 'max_quantity'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'max_quantity']) ? $_POST[WC_MMQ_PREFIX . 'max_quantity'] : false;
+    $product_step = $_POST[WC_MMQ_PREFIX . 'product_step'] ?? false;//isset( $_POST[WC_MMQ_PREFIX . 'product_step'] ) && is_numeric($_POST[WC_MMQ_PREFIX . 'product_step']) ? $_POST[WC_MMQ_PREFIX . 'product_step'] : false;
+    
+    $min_quantity = wc_format_decimal( $min_quantity );
+    $default_quantity = wc_format_decimal( $default_quantity );
+    $max_quantity = wc_format_decimal( $max_quantity );
+    $product_step = wc_format_decimal( $product_step );
+    
+    if($min_quantity && $max_quantity && $min_quantity > $max_quantity){
+        $max_quantity = $min_quantity + 5;
     }
     
-    if( $_wcmmq_max_quantity ){
-        $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity && $_wcmmq_default_quantity <= $_wcmmq_max_quantity ? $_wcmmq_default_quantity : false;
+    if( $max_quantity ){
+        $default_quantity = $default_quantity >= $min_quantity && $default_quantity <= $max_quantity ? $default_quantity : false;
     }else{
-        $_wcmmq_default_quantity = $_wcmmq_default_quantity >= $_wcmmq_min_quantity ? $_wcmmq_default_quantity : false;
+        $default_quantity = $default_quantity >= $min_quantity ? $default_quantity : false;
     }
     
     
     //Updating Here
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $_wcmmq_min_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $_wcmmq_default_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $_wcmmq_max_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'product_step', esc_attr( $_wcmmq_product_step ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $min_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $default_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $max_quantity ) ); 
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'product_step', esc_attr( $product_step ) ); 
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_save_field_data' );
 

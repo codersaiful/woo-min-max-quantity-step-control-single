@@ -70,3 +70,35 @@ function wcmmq_get_message( $keyword, $prefix = WC_MMQ_PREFIX ){
                       
     return WC_MMQ::getOption( $f_keyword );
 }
+
+// add_action('woocommerce_single_product_summary','skdkslsl_skslsl');
+
+// function skdkslsl_skslsl(){
+//     $aaa = wc_format_localized_price('145.33');
+//     // $aaa = wc_get_price_decimal_separator();
+
+//     var_dump(wc_get_price_decimals());
+//     // var_dump(wc_format_decimal('124,22'));
+// }
+
+/**
+ * ei part tuku ami korechilam,
+ * woocommerce er setting page a new tab add korar option khujar jonno.
+ * 
+ * ekhono paini.
+ */
+// add_filter('woocommerce_get_settings_pages','wcmmq_woocommerce_settings_tabs_array');
+// function wcmmq_woocommerce_settings_tabs_array($arr)
+// {
+//     var_dump($arr);
+//     return $arr;
+// }
+
+// add_filter('woocommerce_product_tabs','wcmmq_woocommerce_settings_tabs_array');
+// add_filter('woocommerce_settings_tabs_array','wcmmq_woocommerce_settings_tabs_array');
+// function wcmmq_woocommerce_settings_tabs_array($arr)
+// {
+//     var_dump($arr);
+//     return $arr;
+// }
+

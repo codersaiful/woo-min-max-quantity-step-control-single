@@ -7,11 +7,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 3.4
+ * Version: 3.6
  * Requires at least:    4.0.0
- * Tested up to:         6.1
+ * Tested up to:         6.1.1
  * WC requires at least: 3.0.0
- * WC tested up to: 	 7.1.0
+ * WC tested up to: 	 7.3.0
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '3.4.0');
+define('WC_MMQ_VERSION', '3.6.1');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -73,6 +73,7 @@ WC_MMQ::$default_values = array(
     WC_MMQ_PREFIX . 'max_quantity' => false,
     WC_MMQ_PREFIX . 'product_step' => 1,
     WC_MMQ_PREFIX . 'prefix_quantity' => '',
+    'quantiy_box_archive' => '0',//If we want enable by default, set 1 for this item
     WC_MMQ_PREFIX . 'sufix_quantity' => '',
     WC_MMQ_PREFIX . 'qty_plus_minus_btn' => '1', //Added at 1.8.4 Version
     WC_MMQ_PREFIX . 'step_error_valiation'   => __( "Please enter a valid value. The two nearest valid values are [should_min] and [should_next]", 'wcmmq' ),
@@ -80,10 +81,10 @@ WC_MMQ::$default_values = array(
     WC_MMQ_PREFIX . 'msg_max_limit' => __('Maximum quantity should [max_quantity] of "[product_name]"', 'wcmmq'), //First %s = Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'msg_max_limit_with_already' => __('You have already [current_quantity] item of "[product_name]"', 'wcmmq'), //First %s = $current_qty_inCart Current Quantity and Second %s is Product Title
     WC_MMQ_PREFIX . 'min_qty_msg_in_loop' => __('Minimum qty is', 'wcmmq'),
-    'msg_min_price_cart' => __('Your cart total amount must be equal or more of [cart_min_price]', 'wcmmq'),
-    'msg_max_price_cart' => __('Your cart total amount must be equal or less of [cart_max_price]', 'wcmmq'),
-    'msg_min_quantity_cart' => __('Your cart items total quantity must be equal or more of [cart_min_quantity]', 'wcmmq'),
-    'msg_max_quantity_cart' => __('Your cart items total quantity must be equal or less of [cart_max_quantity]', 'wcmmq'),
+    'msg_min_price_cart' => __('Your cart total amount must be equal to or more of [cart_min_price]', 'wcmmq'),
+    'msg_max_price_cart' => __('Your cart total amount must be equal to or less than [cart_max_price]', 'wcmmq'),
+    'msg_min_quantity_cart' => __("Your cart item's total quantity must be equal to or more than [cart_min_quantity]", 'wcmmq'),
+    'msg_max_quantity_cart' => __("Your cart item's total quantity must be equal to or less than [cart_max_quantity]", 'wcmmq'),
     'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'wcmmq'),
     'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'wcmmq'),
     'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'wcmmq'),
@@ -206,7 +207,7 @@ class WC_MMQ {
 
             new WC_MMQ\Admin\Admin_Loader();
         }
-        
+        WC_MMQ\Includes\Feature_Loader::run();
         WC_MMQ\Modules\Module_Controller::instance();
         
         
@@ -226,7 +227,8 @@ class WC_MMQ {
      * @access public
      */
     public function i18n() {
-        load_plugin_textdomain('wcmmq');
+        // load_plugin_textdomain('wcmmq');
+        load_plugin_textdomain('wcmmq', false, dirname( plugin_basename( __FILE__ ) ) . '/languages');
     }
 
 

@@ -25,6 +25,7 @@ var_dump(wcmmq_message_convert_replace($message, $args));
  * @return String
  */
 function wcmmq_message_convert_replace( $message, $args ){
+    $message = __( $message, 'wcmmq' );
     $defaults = array(
         'min_quantity' => false,
         'max_quantity' => false,

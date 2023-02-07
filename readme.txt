@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.1
 Requires PHP: 7.0
-Stable tag: 3.4
+Stable tag: 3.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,14 @@ Also, you can set values for each product individually. Product label values wil
 **🚩FAST, SECURE AND EASY 🚩**
 *With a Min Max Quantity & Step Control, you can be confident that your business processes will go quickly and easily. User-friendly and adaptable to all popular themes.
 
+**Translation**<br>
+
+* French (Français) - fr_FR
+* Bengali (বাংলা) - bn_BD
+* Russian (Русский) - ru_RU
+* Ukrainian(Українська) - uk
+* Spanish(Español) - es_ES
+
 **🔅OUR OTHER FREE WOOCOMMERCE PLUGINS🔅**
 
 * [Product Table for WooCommerce (wooproducttable)](https://wordpress.org/plugins/woo-product-table/)
@@ -213,6 +221,22 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+
+= 3.6 =
+* Quanity Box added for Archive or Taxonomy page. Like: Category, Tag page.
+* Code Optimized 
+* Bug Fixed
+
+= 3.5 =
+* 4 new translated Language file added. 
+* Added: Ukrainian(Українська) translated file added for frontend. helped by *Lucas*.
+* Added: Spanish(Español) translated file added for frontend.
+* Added: Russian (Русский) translated file added for frontend. Helped us [Vasiliy Kotov](https://www.linkedin.com/in/vasiliy-kotov-10542b47/) to translate Russian Language.
+* Added: French (Français) translated file added for frontend. Helped us [ozapp.app](https://ozapp.app/) to translate French Language.
+* Added: New Option added to change Quantity Separator for WooCommerce Quantity Box.
+* Deciaml Separator issue fixed for comma separator.
+* Javascript script Optimized.
+* Compatibility Checked and tested @WC 7.2.3 and @WP 6.1.1
 
 = 3.4 =
 * Fixed: Issue - Call to a member function is_sold_individually() raise a 505 error in ajax ajax. Fixed by [@dibix](https://wordpress.org/support/topic/call-to-a-member-function-is_sold_individually-raise-a-505-error-in-ajax-ajax/)

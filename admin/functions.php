@@ -139,11 +139,11 @@ add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
  * @return void
  */
 function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title = 'Message', $prefix = WC_MMQ_PREFIX ){
-                
+     $msg_for_langs = __( 'Message', 'wcmmq' );
     
     ?>
 <div class="ultraaddons-panel">
-    <h2 class="with-background"><?php echo esc_html( $section_title ); ?></h2>
+    <h2 class="with-background"><?php echo esc_html__( $section_title, 'wcmmq' ); ?></h2>
     <table class="wcmmq_config_form wcmmq_config_form_message">
         <?php
         
@@ -257,8 +257,10 @@ function wcmmq_social_links(){
     ?>
     <div class="codeastrogy-social-area-wrapper">
         <?php
+        
         $img_folder = WC_MMQ_BASE_URL . 'assets/images/brand/social/';
         $codeastrology = [
+            'ticket'   => ['url' => 'https://codeastrology.com/my-support/?utm=Plugin_Social', 'title' => 'Create Ticket'],
             'web'   => ['url' => 'https://codeastrology.com/?utm=Plugin_Social', 'title' => 'CodeAstrology'],
             'wpt'   => ['url' => 'https://wooproducttable.com/?utm=Plugin_Social', 'title' => 'Woo Product Table'],
             'min-max'   => ['url' => 'https://codeastrology.com/min-max-quantity/?utm=Plugin_Social', 'title' => 'CodeAstrology Min Max Step'],
@@ -307,7 +309,21 @@ $content_of_mail = __( 'I have found an issue with your Min Max and Step Control
         <a href="mailto:contact@codeastrology.com">contact@codeastrology.com</a> or 
         <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&su=<?php echo urlencode("Found issue on your Min Max and Step Control Plugin, see screenshot of issue"); ?>&body=<?php echo esc_attr( $content_of_mail ); ?>&ui=2&tf=1&to=codersaiful@gmail.com,contact@codeastrology.com" target="_blank">Gmail Me</a> or
         <a href="https://www.facebook.com/groups/wphelps" target="_blank">Facebook Group</a>
+        <a href="https://codeastrology.com/my-support/?utm_source=plugin-backend&&utm_medium=Free+Version" target="_blank" class="wpt-create-ticket">Create Ticket</a>
     </p>
     <?php
+}
+
+if( ! function_exists('wpt_doc_link') ){
+    /**
+     * This function will add helper doc
+     * @since 3.3.6.1
+     * @author Fazle Bari <fazlebarisn@gmail.com>
+     */
+    function wpt_doc_link( $url, $title='Helper doc' ){
+        ?>
+            <a href="<?php echo esc_url($url)?>" target="_blank" class="wpt-doc-lick"><?php esc_html_e( $title ); ?></a>
+        <?php
+    }
 }
 

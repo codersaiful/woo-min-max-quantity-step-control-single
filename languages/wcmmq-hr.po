@@ -1,0 +1,320 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Min Max Quantity & Step Control for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-03 06:09+0000\n"
+"PO-Revision-Date: 2023-01-09 09:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: Croatian\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.3; wp-6.1.1\n"
+"X-Domain: wcmmq"
+
+#: wcmmq.php:381
+#, php-format
+msgid "\"%1$s\" requires \"%2$s\" to be installed and activated."
+msgstr ""
+
+#: framework/recommeded.php:21
+#, php-format
+msgid ""
+"%s Product Table plugin helps you to display your WooCommerce products in a "
+"searchable table layout with filters. Add a table on any page or post via a "
+"shortcode. You can create tables as many as you want."
+msgstr ""
+
+#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:143
+msgid "(Optional)"
+msgstr ""
+
+#: admin/includes/terms_condition.php:23
+msgid "Add Terms"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:428 admin/set_menu_and_fac.php:432
+msgid ""
+"Available shortcode [current_quantity][min_quantity],[max_quantity],"
+"[product_name],[step_quantity],[variation_name]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:423 admin/set_menu_and_fac.php:436
+msgid ""
+"Available shortcode [min_quantity],[max_quantity],[product_name],"
+"[step_quantity],[variation_name]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:440
+msgid ""
+"Available shortcode [should_min],[should_next],[product_name],"
+"[variation_name],[quantity],[min_quantity],[step_quantity]"
+msgstr ""
+
+#: modules/module-controller.php:58
+msgid "Button Template for Loop"
+msgstr ""
+
+#: admin/includes/terms_condition.php:6
+#, php-format
+msgid "Choose a %s"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:246
+msgid "Choose Terms"
+msgstr ""
+
+#. Author of the plugin
+msgid "CodeAstrology Team"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:147
+msgid "Comma (,)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:131 admin/set_menu_and_fac.php:374
+#: admin/includes/terms_condition.php:84
+msgid "Default Quantity"
+msgstr ""
+
+#: admin/add_options_admin.php:26
+msgid "Default Quantity (Optional)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:357 admin/includes/terms_condition.php:49
+msgid "Delete"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:146
+msgid "Dot (.)"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:356 admin/includes/terms_condition.php:48
+msgid "Edit"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:270
+msgid "Edit Terms"
+msgstr ""
+
+#: admin/add_options_admin.php:41
+msgid "Enter Maximum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:19
+msgid "Enter Minimum Quantity for this Product"
+msgstr ""
+
+#: admin/add_options_admin.php:52
+msgid "Enter quantity Step"
+msgstr ""
+
+#: modules/module-controller.php:65
+msgid "For Gutenberg block shop page loop, Enable disable."
+msgstr ""
+
+#: admin/set_menu_and_fac.php:258
+msgid "For Mulitple Terms,"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://codeastrology.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://codeastrology.com/min-max-quantity/"
+msgstr ""
+
+#: admin/functions.php:303
+msgid ""
+"I have found an issue with your Min Max and Step Control plugin. I will "
+"explain here with screenshot.Issues And Screenshots:"
+msgstr ""
+
+#: admin/add_options_admin.php:30
+msgid ""
+"It is an optional Number, If do not set, Product default quantity will come "
+"from Minimum Quantity"
+msgstr ""
+
+#: admin/add_options_admin.php:37 admin/set_menu_and_fac.php:115
+#: admin/set_menu_and_fac.php:366 admin/includes/terms_condition.php:64
+msgid "Maximum Quantity"
+msgstr ""
+
+#: wcmmq.php:80
+msgid "Maximum quantity should [max_quantity] of \"[product_name]\""
+msgstr ""
+
+#: admin/set_menu_and_fac.php:427 admin/set_menu_and_fac.php:431
+msgid "Maximum Quantity Validation Message"
+msgstr ""
+
+#: wcmmq.php:89
+msgid ""
+"Maximum variation count total of \"[product_name]\" should be or less then "
+"[vari_count_total]"
+msgstr ""
+
+#: wcmmq.php:87
+msgid ""
+"Maximum variation quantity total of \"[product_name]\" should be or less "
+"then [vari_total_max_qty]"
+msgstr ""
+
+#: admin/functions.php:142
+msgid "Message"
+msgstr ""
+
+#: admin/product_panel.php:21
+msgid "Min Max & Step"
+msgstr ""
+
+#: modules/module-controller.php:53
+msgid "Min Max Modules"
+msgstr ""
+
+#. Name of the plugin
+#: wcmmq.php:382
+msgid "Min Max Quantity & Step Control for WooCommerce"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:95
+msgid "Min Max Quantity & Step Control for WooCommerce by CodeAstrology"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Min Max Quantity & Step Control plugin offers to display specific products "
+"with minimum, maximum quantity. As well as by this plugin you will be able "
+"to set the increment or decrement step as much as you want. In a word: "
+"Minimum Quantity, Maximum Quantity and Step can be controlled. for any issue:"
+" codersaiful@gmail.com"
+msgstr ""
+
+#: modules/module-controller.php:64
+msgid "Min Max Step in Guttenberg Block"
+msgstr ""
+
+#: wcmmq.php:82
+msgid "Minimum qty is"
+msgstr ""
+
+#: admin/add_options_admin.php:15 admin/set_menu_and_fac.php:107
+#: admin/set_menu_and_fac.php:362 admin/includes/terms_condition.php:54
+msgid "Minimum Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:435
+msgid "Minimum Quantity message for shop page"
+msgstr ""
+
+#: wcmmq.php:79
+msgid "Minimum quantity should [min_quantity] of \"[product_name]\""
+msgstr ""
+
+#: admin/set_menu_and_fac.php:422
+msgid "Minimum Quantity Validation Message"
+msgstr ""
+
+#: wcmmq.php:88
+msgid ""
+"Minimum variation quantity total of \"[product_name]\" should be or greater "
+"then [vari_total_min_qty]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:163
+msgid "OFF"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:163
+msgid "ON"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:157
+msgid "Order Page (Condition)"
+msgstr ""
+
+#: wcmmq.php:78
+msgid ""
+"Please enter a valid value. The two nearest valid values are [should_min] "
+"and [should_next]"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:143
+msgid "Quantity Decimal Separator"
+msgstr ""
+
+#: admin/add_options_admin.php:48 admin/set_menu_and_fac.php:123
+msgid "Quantity Step"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:456
+msgid "Reset Default"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:181 admin/set_menu_and_fac.php:322
+msgid "Save All"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:455
+msgid "Save Change"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:103
+msgid "Settings (Universal)"
+msgstr ""
+
+#: modules/module-controller.php:59
+msgid ""
+"Specially for Shop page and related proucts loop. Enable and Disable on Shop "
+"Page as well as on Related product Section."
+msgstr ""
+
+#: admin/set_menu_and_fac.php:370 admin/includes/terms_condition.php:74
+msgid "Step Quantity"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:439
+msgid "Step validation error message"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:211
+msgid "Supported Terms"
+msgstr ""
+
+#: admin/set_menu_and_fac.php:258
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: wcmmq.php:383
+msgid "WooCommerce"
+msgstr ""
+
+#: wcmmq.php:81
+msgid "You have already [current_quantity] item of \"[product_name]\""
+msgstr ""
+
+#: wcmmq.php:86
+msgid ""
+"Your cart item's total quantity must be equal to or less than "
+"[cart_max_quantity]"
+msgstr ""
+
+#: wcmmq.php:85
+msgid ""
+"Your cart item's total quantity must be equal to or more than "
+"[cart_min_quantity]"
+msgstr ""
+
+#: wcmmq.php:84
+msgid "Your cart total amount must be equal to or less than [cart_max_price]"
+msgstr ""
+
+#: wcmmq.php:83
+msgid "Your cart total amount must be equal to or more of [cart_min_price]"
+msgstr ""

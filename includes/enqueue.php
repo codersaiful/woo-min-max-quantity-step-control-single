@@ -29,6 +29,29 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
          * so we have transferred in pro only.
          */
 
+
+         /**
+          * Localize data added for javascript file
+          * Specially need when need decimal style change
+          * @author Saiful Islam <codersaiful@gmail.com>
+          * @version 3.5.1
+          */
+         $ajax_url = admin_url( 'admin-ajax.php' );
+         $WCMMQ_DATA = array( 
+            'ajax_url'       => $ajax_url,
+            'site_url'       => site_url(),
+            'cart_url'       => wc_get_cart_url(),
+            'priceFormat'    => get_woocommerce_price_format(),
+            'decimal_separator'=> '.',
+            'decimal_count'=> wc_get_price_decimals(),
+            );
+
+        if(wc_get_price_decimal_separator() == ','){
+            $options = WC_MMQ::getOptions();
+            $WCMMQ_DATA['decimal_separator'] = ! empty( $options['decimal_separator'] ) ? $options['decimal_separator'] : '.' ;
+        }
+        $WCMMQ_DATA = apply_filters( 'wcmmq_localize_data', $WCMMQ_DATA );
+        wp_localize_script( 'wcmmq-custom-script', 'WCMMQ_DATA', $WCMMQ_DATA );
     }
 }
 add_action( 'wp_enqueue_scripts', 'wcmmq_enqueue', 99 );

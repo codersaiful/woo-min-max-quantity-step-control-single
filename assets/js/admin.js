@@ -35,8 +35,9 @@
     });
 
     /** Save Floating button  **/
+    var saveChangeText = $('button#wcmmq_form_submit_button').text();
     var btnHtml = '<div class="float-section ultraaddons-button-wrapper ultraaddons-panel no-background">';
-    btnHtml += '<button type="submit" name="configure_submit" class="float-btn button-primary primary button">Save Change</button>';
+    btnHtml += '<button type="submit" name="configure_submit" class="float-btn button-primary primary button">' + saveChangeText + '</button>';
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 

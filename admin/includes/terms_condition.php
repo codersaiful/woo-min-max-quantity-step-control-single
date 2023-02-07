@@ -3,7 +3,7 @@
 
     <table class="wcmmq_config_form">
         <tr>
-            <th><label>Choose a <?php echo esc_html( $term_name ); ?></label></th>
+            <th><label><?php echo sprintf( esc_html__( 'Choose a %s', 'wcmmq' ), $term_name ); ?></label></th>
             <td class="">
 
                 <?php
@@ -20,7 +20,7 @@
                 <select class="wcmmq_select_terms <?php echo esc_attr( $term_key ); ?> ua_select" id="wcmmq_term_ids">
                     <?php echo $options_item; ?>
                 </select>
-                <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button primary button button-primary">+ Add Terms</button>    
+                <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button primary button button-primary">+ <?php echo esc_html__( 'Add Terms', 'wcmmq' ); ?></button>    
                 <?php    
                 }else{
                     echo "No item for {$term_name}";
@@ -45,13 +45,13 @@
         <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
         <ul class="wcmmq_each_terms_header" data-target="term_table_<?php echo esc_attr( $id ); ?>">
             <li class="label"><?php echo get_term( $id )->name; ?> (<?php echo esc_html( get_term( $id )->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
-            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>">Edit</li>
-            <li class="delete">Delete</li>
+            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>
+            <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>
          </ul> 
             <table id="term_table_<?php echo esc_attr( $id ); ?>">
         <tr>
             <th>
-                <label>Minimum Quantity</label>
+                <label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
             </th>
             <td>
                 <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_min]" 
@@ -61,7 +61,7 @@
 
         <tr>
             <th>
-                <label>Maximum Quantity</label>
+                <label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>
             </th>
             <td>
                 <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_max]" 
@@ -71,7 +71,7 @@
 
         <tr>
             <th>
-                <label>Step Quantity</label>
+                <label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>
             </th>
             <td>
                 <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_step]" 
@@ -81,7 +81,7 @@
 
         <tr>
             <th>
-                <label>Default Quantity</label>
+                <label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>
             </th>
             <td>
                 <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_default]" 
