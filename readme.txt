@@ -3,7 +3,7 @@ Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://codeastrology.com/min-max-quantity/pricing/?ref=CodeAstrology&utm=Donate_Link
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.1
+Tested up to: 6.1.1
 Requires PHP: 7.0
 Stable tag: 3.6
 License: GPLv2 or later
