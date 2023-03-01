@@ -82,7 +82,7 @@ function wcmmq_faq_page_details(){
     }
     
     $saved_data = WC_MMQ::getOptions();
-    
+    var_dump($saved_data['terms']);
     $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
     
 ?>

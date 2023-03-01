@@ -425,7 +425,7 @@ function wcmmq_quantity_input_args( $args, $product){
     }
     
     $terms_data = wcmmq_get_term_data_wpml();
-
+    $term_value_set = false;
     if(is_array($terms_data) ){
         foreach( $terms_data as $term_key => $values ){
 
@@ -440,23 +440,28 @@ function wcmmq_quantity_input_args( $args, $product){
 
                 $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
                 if( is_array( $my_term_value ) ){
+                    $term_value_set = true;
                     $min_quantity = !empty( $min_quantity ) ? $min_quantity : $my_term_value['_min'];
                     $default_quantity = !empty( $default_quantity ) ? $default_quantity : $my_term_value['_default'];
+                    $default_quantity = !empty( $default_quantity ) ? $default_quantity : $min_quantity;
                     $max_quantity = !empty( $max_quantity )  ? $max_quantity : $my_term_value['_max'];
                     $step_quantity = !empty( $step_quantity ) ? $step_quantity : $my_term_value['_step'];
+                    // var_dump($min_quantity);
                     break;
                 }
             }
 
         }
     }
+    if( ! $term_value_set){
+        $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
+        $default_quantity = !empty( $default_quantity ) ? $default_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
+        $default_quantity = !empty( $default_quantity ) ? $default_quantity : $min_quantity;
+        $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
+        $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
+    }
 
-    //If not available in single product, than come from default
-    $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
-    $default_quantity = !empty( $default_quantity ) ? $default_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
-    $default_quantity = !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-    $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
-    $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
+
 
     // Max quantity (default = -1)
     // simple product
@@ -471,7 +476,7 @@ function wcmmq_quantity_input_args( $args, $product){
     }else{
         $args['max_value'] = $args['max_qty'] = $max_quantity;
     }
-
+    // var_dump($min_quantity);
     $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
     /**
      * Our Customer has given me this solution and It's awesome.
@@ -486,6 +491,7 @@ function wcmmq_quantity_input_args( $args, $product){
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
     // var_dump($args);
     //}
+
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
 }
 add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2);
