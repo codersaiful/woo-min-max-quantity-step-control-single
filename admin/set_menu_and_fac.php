@@ -99,7 +99,7 @@ function wcmmq_faq_page_details(){
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
-        
+        wcmmq_donate_button();
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
