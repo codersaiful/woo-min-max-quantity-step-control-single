@@ -5,7 +5,7 @@
 function wcmmq_before_form_free_content(){
 
     if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
-
+    wcmmq_donate_button();
 ?>
 <div class="wcmmq-nav">
     <ul>
