@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.1.1
 Requires PHP: 7.0
-Stable tag: 3.6
+Stable tag: 3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -221,6 +221,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+
+= 3.7 =
+* Code Optimized
+* Bug Fixed
 
 = 3.6 =
 * Quanity Box added for Archive or Taxonomy page. Like: Category, Tag page.
