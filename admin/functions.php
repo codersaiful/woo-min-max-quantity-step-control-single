@@ -299,6 +299,7 @@ function wcmmq_social_links(){
  * @author Fazle Bari [ fazlebarisn@gmail.com ]
  */
 function wcmmq_submit_issue_link(){
+    wcmmq_donate_button();
     ?>
     <p class="wpt-issue-submit">
 <?php
@@ -312,18 +313,39 @@ $content_of_mail = __( 'I have found an issue with your Min Max and Step Control
         <a href="https://codeastrology.com/my-support/?utm_source=plugin-backend&&utm_medium=Free+Version" target="_blank" class="wpt-create-ticket">Create Ticket</a>
     </p>
     <?php
+    // wcmmq_donate_button();
 }
 
-if( ! function_exists('wpt_doc_link') ){
+if( ! function_exists('wcmmq_doc_link') ){
     /**
      * This function will add helper doc
      * @since 3.3.6.1
      * @author Fazle Bari <fazlebarisn@gmail.com>
      */
-    function wpt_doc_link( $url, $title='Helper doc' ){
+    function wcmmq_doc_link( $url, $title='Helper doc' ){
         ?>
             <a href="<?php echo esc_url($url)?>" target="_blank" class="wpt-doc-lick"><?php esc_html_e( $title ); ?></a>
         <?php
     }
 }
 
+/**
+ * Display Donate button for min max plugin.
+ *
+ * @param boolean $only_free
+ * @return void
+ */
+function wcmmq_donate_button($only_free = false){
+    // if($only_free && defined('WPT_PRO_DEV_VERSION')) return;
+    ?>
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1Mh4dDD2lfqrjhAGQMmUm1PX"
+  publishable-key="pk_live_51Mg2ndD2lfqrjhAG866UldpkG61JxUK5boTxSFo5hahsnMqyWhAOrqNpCOuj67AaalPgamISySLbl4s4BCDWo7mH00vrDu4ba6"
+>
+</stripe-buy-button>
+    <?php
+}
