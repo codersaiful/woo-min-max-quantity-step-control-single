@@ -35,7 +35,7 @@ define('WC_MMQ_MODULES_PATH', plugin_dir_path(WC_MMQ__FILE__) . 'modules' . DIRE
 
 define('WC_MMQ_PLUGIN_BASE_FOLDER', plugin_basename(dirname(__FILE__)));
 define('WC_MMQ_PLUGIN_BASE_FILE', plugin_basename(__FILE__));
-define("WC_MMQ_BASE_URL", WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/');
+define("WC_MMQ_BASE_URL", plugins_url() . '/'. plugin_basename( dirname( __FILE__ ) ) . '/');
 define("wc_mmq_dir_base", dirname(__FILE__) . '/');
 define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
 

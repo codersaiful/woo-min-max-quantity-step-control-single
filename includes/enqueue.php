@@ -43,6 +43,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
             'cart_url'       => wc_get_cart_url(),
             'priceFormat'    => get_woocommerce_price_format(),
             'decimal_separator'=> '.',
+            'default_decimal_separator'=> wc_get_price_decimal_separator(),
             'decimal_count'=> wc_get_price_decimals(),
             );
 
