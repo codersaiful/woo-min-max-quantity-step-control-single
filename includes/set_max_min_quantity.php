@@ -337,6 +337,36 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         }
     }
 
+    // $terms_data = wcmmq_get_term_data_wpml();
+    // $_is_term_value_founded = false;
+    // if(is_array($terms_data) ){
+    //     foreach( $terms_data as $term_key => $values ){
+
+    //         $product_term_list = get_the_terms( $product_id, $term_key );
+    //         $product_term_list = is_array( $product_term_list ) ? $product_term_list : array();
+            
+    //         $product_term_list = array_map(function($arr){
+    //             return $arr->term_id;
+    //         },$product_term_list);
+
+    //         foreach ( $product_term_list as $product_term_id ){
+
+    //             $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
+    //             if( is_array( $my_term_value ) ){
+    //                 $_is_term_value_founded = true;
+    //                 $min_quantity = $my_term_value['_min'] ?? '0';//!empty( $min_quantity ) ? $min_quantity : $my_term_value['_min'];
+    //                 $default_quantity = $my_term_value['_default'] ?? $min_quantity;//!empty( $default_quantity ) ? $default_quantity : $my_term_value['_default'];
+    //                 // $default_quantity = !empty( $default_quantity ) ? $default_quantity : $min_quantity;
+    //                 $max_quantity = $my_term_value['_max'] ?? '';//!empty( $max_quantity )  ? $max_quantity : $my_term_value['_max'];
+    //                 $step_quantity = $my_term_value['_step'] ?? '';//!empty( $step_quantity ) ? $step_quantity : $my_term_value['_step'];
+
+    //                 break;
+    //             }
+    //         }
+
+    //     }
+    // }
+
     if( ! $_is_term_value_founded ){
         $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity', $product_id );
         $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity', $product_id );
