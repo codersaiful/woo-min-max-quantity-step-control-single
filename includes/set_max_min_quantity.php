@@ -255,7 +255,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     //Finalized 
     $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
     $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
     
     /**
      * Getting current Quantity from Cart
@@ -376,7 +376,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     //Finalized 
     $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
     $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
     
 
     $product_name = get_the_title( $product_id );
@@ -502,11 +502,11 @@ function wcmmq_quantity_input_args( $args, $product){
         $step_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
     }
     
-
+    // var_dump($step_quantity);
     //Finalized 
     $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
     $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
     // Max quantity (default = -1)
     // simple product
     if( isset( $args['max_value'] ) && $args['max_value'] > -1){
@@ -533,7 +533,7 @@ function wcmmq_quantity_input_args( $args, $product){
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
-
+    // var_dump($args);
     //}
 
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
