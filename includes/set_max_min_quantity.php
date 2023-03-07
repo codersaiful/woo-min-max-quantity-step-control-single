@@ -70,8 +70,11 @@ function wcmmq_check_quantity_in_cart($product_id,$variation_id = 0) {
  * @return boolean True for pass valid, false for Fail
  */
 function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity ){
+    
     $modulous = false;
-    if(!is_numeric($quantity) || !is_numeric($step_quantity)) { $modulous = false; }
+    if(!is_numeric($quantity) || !is_numeric($step_quantity)) { 
+        $modulous = false; 
+    }
     $consnt_value = 1000000;
     $quantity_int = intval($quantity * $consnt_value);
     $min_quantity_int = intval($min_quantity * $consnt_value);
@@ -191,6 +194,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     if( method_exists( $product, 'is_sold_individually' ) && $product->is_sold_individually() ) return true;
 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
+    $default_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'default_quantity', true);
+    $default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true); //Version 1.8.3
     if($variation_id && $is_variable_support ){
@@ -313,6 +318,8 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
     $product_id = $values['product_id'];
 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
+    $default_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'default_quantity', true);
+    $default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true);
 
