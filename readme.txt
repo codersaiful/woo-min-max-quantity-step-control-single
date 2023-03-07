@@ -3,9 +3,9 @@ Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.7
+Stable tag: 3.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -221,6 +221,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+= 3.8 =
+* Fixed: non-numeric encounter issue has been fixed 
+* Fixed: Variable product qty issue fix
+* Fixed: min max and step getting location confusion has been fixed.
+* Code Optimized
+* Bug Fixed
 
 = 3.7 =
 * Code Optimized
