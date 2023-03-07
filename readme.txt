@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.8
+Stable tag: 3.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -221,6 +221,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+= 3.9 =
+* step issue fixed
+
 = 3.8 =
 * Fixed: non-numeric encounter issue has been fixed 
 * Fixed: Variable product qty issue fix
