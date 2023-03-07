@@ -221,10 +221,8 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
-= 3.9 =
+= 3.8 and 3.9 =
 * step issue fixed
-
-= 3.8 =
 * Fixed: non-numeric encounter issue has been fixed 
 * Fixed: Variable product qty issue fix
 * Fixed: min max and step getting location confusion has been fixed.
