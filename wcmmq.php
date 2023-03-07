@@ -7,11 +7,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 3.6
+ * Version: 3.9
  * Requires at least:    4.0.0
- * Tested up to:         6.1.1
+ * Tested up to:         6.2
  * WC requires at least: 3.0.0
- * WC tested up to: 	 7.3.0
+ * WC tested up to: 	 7.4.0
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '3.6.1');
+define('WC_MMQ_VERSION', '3.9.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -35,7 +35,7 @@ define('WC_MMQ_MODULES_PATH', plugin_dir_path(WC_MMQ__FILE__) . 'modules' . DIRE
 
 define('WC_MMQ_PLUGIN_BASE_FOLDER', plugin_basename(dirname(__FILE__)));
 define('WC_MMQ_PLUGIN_BASE_FILE', plugin_basename(__FILE__));
-define("WC_MMQ_BASE_URL", WP_PLUGIN_URL . '/' . plugin_basename(dirname(__FILE__)) . '/');
+define("WC_MMQ_BASE_URL", plugins_url() . '/'. plugin_basename( dirname( __FILE__ ) ) . '/');
 define("wc_mmq_dir_base", dirname(__FILE__) . '/');
 define("WC_MMQ_BASE_DIR", str_replace('\\', '/', wc_mmq_dir_base));
 

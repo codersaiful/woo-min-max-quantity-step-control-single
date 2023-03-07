@@ -1,11 +1,11 @@
 === Min Max Quantity & Step Control for WooCommerce ===
 Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
-Donate link: https://codeastrology.com/min-max-quantity/pricing/?ref=CodeAstrology&utm=Donate_Link
+Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 3.6
+Stable tag: 3.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -221,6 +221,17 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+= 3.8 and 3.9 =
+* step issue fixed
+* Fixed: non-numeric encounter issue has been fixed 
+* Fixed: Variable product qty issue fix
+* Fixed: min max and step getting location confusion has been fixed.
+* Code Optimized
+* Bug Fixed
+
+= 3.7 =
+* Code Optimized
+* Bug Fixed
 
 = 3.6 =
 * Quanity Box added for Archive or Taxonomy page. Like: Category, Tag page.

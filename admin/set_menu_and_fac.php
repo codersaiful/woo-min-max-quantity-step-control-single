@@ -82,7 +82,7 @@ function wcmmq_faq_page_details(){
     }
     
     $saved_data = WC_MMQ::getOptions();
-    
+
     $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
     
 ?>
@@ -99,7 +99,7 @@ function wcmmq_faq_page_details(){
     <div class="fieldwrap">
         <?php
         do_action( 'wcmmq_before_form' );
-        
+        // wcmmq_donate_button();
         ?>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
                 <div class="ultraaddons-panel">
@@ -110,7 +110,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
-                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -119,7 +119,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
-                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -128,7 +128,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
-                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -137,7 +137,7 @@ function wcmmq_faq_page_details(){
                             <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
                             <td>
                                 <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
-                                <?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
                             </td>
 
                         </tr>
@@ -175,9 +175,9 @@ function wcmmq_faq_page_details(){
                                     <div class="slider round"><!--ADDED HTML -->
                                         <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                                     </div>
-                                </label>
+                                </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
                                 <p style="color: #228b22;">
-                                For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->General->Add to cart behaviour</strong>.<br>
+                                For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
                                 For Variable product Quantity Box with Variation change box. Need premium version.<br>
                                 If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
                                 </p>
@@ -284,7 +284,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                                     <?php
                                     echo $select_option;
                                     ?>
-                                </select><?php wpt_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/'); ?>
+                                </select><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/'); ?>
                                 <p class="wcmmq_terms_promotion">
                                 <?php 
                                     if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){

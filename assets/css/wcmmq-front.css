@@ -26,11 +26,6 @@
 .single-product div.product form.cart .quantity input[type=number], 
 .single-product div.product form.cart .quantity input[type=number],
 
-.qib-button .quantity input[type=number], 
-.qib-button .quantity input[type=number]{ 
--moz-appearance:textfield; /* Firefox */
-}
-
 .quantity.wcmmq-coma-separator-activated,
 .wqpmb_quantity.wcmmq-coma-separator-activated,
 .quantity.wqpmb_quantity.wcmmq-coma-separator-activated
