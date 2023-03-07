@@ -71,15 +71,21 @@ function wcmmq_check_quantity_in_cart($product_id,$variation_id = 0) {
  */
 function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity ){
     
+    //fixing min max value;
+    $quantity = ! empty( $quantity ) ? $quantity : 0;
+    $min_quantity = $min_quantity == '0' || ! empty( $min_quantity ) ? $min_quantity : 1;
+    $step_quantity = ! empty( $step_quantity ) ? $step_quantity : 1;
+
     $modulous = false;
     if(!is_numeric($quantity) || !is_numeric($step_quantity)) { 
         $modulous = false; 
     }
+
     $consnt_value = 1000000;
-    $quantity_int = intval($quantity * $consnt_value);
-    $min_quantity_int = intval($min_quantity * $consnt_value);
-    $step_int = intval($step_quantity * $consnt_value);
-    $final_qty = intval($quantity_int - $min_quantity_int);
+    $quantity_int = $quantity * $consnt_value;//intval($quantity * $consnt_value);
+    $min_quantity_int = $min_quantity * $consnt_value;//intval($min_quantity * $consnt_value);
+    $step_int = $step_quantity * $consnt_value;//intval($step_quantity * $consnt_value);
+    $final_qty = $quantity_int - $min_quantity_int;//intval($quantity_int - $min_quantity_int);
     $module = $final_qty % $step_int;
 
     if( $module == 0 ) { $modulous = true; }
@@ -259,12 +265,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
     $product_name = get_the_title( $product_id );
     $variation_name = ! empty( $variation_id ) ? get_the_title( $variation_id ) : '';
 
-
-    // $modulous = wcmmq_qty_validation_by_step_modulous( $quantity, $min_quantity, $step_quantity);
     $modulous = apply_filters( 'wcmmq_modulous_validation', false, $product_id, $variation_id, $quantity, $min_quantity, $step_quantity );
-    //var_dump($quantity,$step_quantity,$modulous);exit;
-
-
+    
     $args = array(
         'min_quantity' => $min_quantity,
         'max_quantity' => $max_quantity,
