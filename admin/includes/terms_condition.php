@@ -40,59 +40,63 @@
                     $max = $minmaxsteps['_max'];
                     $step = $minmaxsteps['_step'];
                     $default = $minmaxsteps['_default'];
+                    $cart_max = $minmaxsteps['_cart_max'];
+                    $cart_max = $minmaxsteps['_cart_min'];
                     ?>
 
-        <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
-        <ul class="wcmmq_each_terms_header" data-target="term_table_<?php echo esc_attr( $id ); ?>">
-            <li class="label"><?php echo get_term( $id )->name; ?> (<?php echo esc_html( get_term( $id )->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
-            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>
-            <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>
-         </ul> 
-            <table id="term_table_<?php echo esc_attr( $id ); ?>">
-        <tr>
-            <th>
-                <label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
-            </th>
-            <td>
-                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_min]" 
-                       value="<?php echo $minmaxsteps['_min']; ?>"  type="number" step=any>
-            </td>
-        </tr> 
+                    <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
+                        <ul class="wcmmq_each_terms_header" data-target="term_table_<?php echo esc_attr( $id ); ?>">
+                            <li class="label"><?php echo get_term( $id )->name; ?> (<?php echo esc_html( get_term( $id )->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
+                            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>
+                            <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>
+                        </ul> 
+                        <table id="term_table_<?php echo esc_attr( $id ); ?>">
+                            <tr>
+                                <th>
+                                    <label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
+                                </th>
+                                <td>
+                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_min]" 
+                                        value="<?php echo $minmaxsteps['_min']; ?>"  type="number" step=any>
+                                </td>
+                            </tr> 
 
-        <tr>
-            <th>
-                <label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>
-            </th>
-            <td>
-                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_max]" 
-                       value="<?php echo $minmaxsteps['_max']; ?>"  type="number" step=any>
-            </td>
-        </tr> 
+                            <tr>
+                                <th>
+                                    <label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>
+                                </th>
+                                <td>
+                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_max]" 
+                                        value="<?php echo $minmaxsteps['_max']; ?>"  type="number" step=any>
+                                </td>
+                            </tr> 
 
-        <tr>
-            <th>
-                <label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>
-            </th>
-            <td>
-                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_step]" 
-                       value="<?php echo $minmaxsteps['_step']; ?>"  type="number" step=any>
-            </td>
-        </tr> 
+                            <tr>
+                                <th>
+                                    <label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>
+                                </th>
+                                <td>
+                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_step]" 
+                                        value="<?php echo $minmaxsteps['_step']; ?>"  type="number" step=any>
+                                </td>
+                            </tr> 
 
-        <tr>
-            <th>
-                <label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>
-            </th>
-            <td>
-                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_default]" 
-                       value="<?php echo $minmaxsteps['_default']; ?>"  type="number" step=any>
-            </td>
-        </tr> 
-
-    </table>
-        </div>
-         <?php
-
+                            <tr>
+                                <th>
+                                    <label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>
+                                </th>
+                                <td>
+                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_default]" 
+                                        value="<?php echo $minmaxsteps['_default']; ?>"  type="number" step=any>
+                                </td>
+                            </tr>
+                            <?php
+                                // Action will call from pro plugin
+                                do_action( 'wcmmq_terms_table_bottom', $term_key, $id, $minmaxsteps ); 
+                            ?> 
+                        </table>
+                    </div>
+                    <?php
                 }
 
             }
