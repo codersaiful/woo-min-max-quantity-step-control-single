@@ -221,6 +221,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 
 == Changelog ==
+
+= 4.0 =
+* Taxonomy min max issue has been solved. 
+
 = 3.8 and 3.9 =
 * step issue fixed
 * Fixed: non-numeric encounter issue has been fixed 
