@@ -220,7 +220,9 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if( is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -241,8 +243,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
     
+
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
         $default_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
@@ -341,7 +343,9 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -362,7 +366,6 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
     
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
@@ -471,7 +474,9 @@ function wcmmq_quantity_input_args( $args, $product){
     
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -492,7 +497,7 @@ function wcmmq_quantity_input_args( $args, $product){
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
     
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
