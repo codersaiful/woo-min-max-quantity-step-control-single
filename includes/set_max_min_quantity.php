@@ -435,6 +435,10 @@ add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation',
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_quantity_input.html#1234 Details of filter 'woocommerce_quantity_input_args'
  */
 function wcmmq_quantity_input_args( $args, $product){
+    // Check default quantity set or not in global setting
+    $saved_data = WC_MMQ::getOptions();
+    $_is_default_quantity = $saved_data['default_quantity'];
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
@@ -533,7 +537,7 @@ function wcmmq_quantity_input_args( $args, $product){
      * Really great it. Thanks to that user.
      * 
      */
-    if( ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+    if( $_is_default_quantity && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
