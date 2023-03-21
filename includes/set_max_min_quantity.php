@@ -436,7 +436,6 @@ add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation',
  */
 function wcmmq_quantity_input_args( $args, $product){
 
-    $_is_default_quantity = false;
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
@@ -456,7 +455,6 @@ function wcmmq_quantity_input_args( $args, $product){
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
     $default_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'default_quantity', true);
     
-    $_is_default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? true : false;
     $default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true);
@@ -490,7 +488,6 @@ function wcmmq_quantity_input_args( $args, $product){
                 if( is_array( $my_term_value ) ){
                     $_is_term_value_founded = true;
                     $min_quantity = $my_term_value['_min'] ?? '0';
-                    $_is_default_quantity = isset( $my_term_value['_default'] ) && ( $my_term_value['_default'] == '0' || !empty( $default_quantity ) ) ? true : false;
                     $default_quantity = $my_term_value['_default'] ?? $min_quantity;
                     
                     $max_quantity = $my_term_value['_max'] ?? '';
@@ -507,7 +504,6 @@ function wcmmq_quantity_input_args( $args, $product){
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
         $default_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
-        $_is_default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? true : false;
         $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
         $max_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
         $step_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
@@ -540,12 +536,13 @@ function wcmmq_quantity_input_args( $args, $product){
      * 
      */
     
-    if( $_is_default_quantity && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+    if( ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
+    // $args['input_value'] = $default_quantity;
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
-    // var_dump($args);
+    // var_dump($_is_default_quantity,$args);
     //}
 
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
