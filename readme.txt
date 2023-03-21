@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.2
 Requires PHP: 7.0
-Stable tag: 4.0
+Stable tag: 4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -222,8 +222,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/support/)
 
 == Changelog ==
 
+= 4.1 =
+* Fixed: Default quantity issue fixed
+* Fixed: Min quantity issue fixed.
+
 = 4.0 =
-* Taxonomy min max issue has been solved. 
+* Fixed: Taxonomy min max issue has been solved. 
 
 = 3.8 and 3.9 =
 * step issue fixed
