@@ -138,6 +138,9 @@ function wcmmq_faq_page_details(){
                         <td>
                             <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
                             <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                            <p style="color: #228b22;">
+                            It's shoold empty, If you don't know, what is this.
+                            </p>
                         </td>
 
                     </tr>
