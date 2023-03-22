@@ -214,7 +214,7 @@ You will get all the useful [documents](https://codeastrology.com/min-max-quanti
 You can watch our video tutorial on CodeAstrology's  [YouTube](https://www.youtube.com/watch?v=keKRQlxVxmU&list=PLV1ooYxywkSV84cfl6PKw81Fspy72_KYm) channels.
 
 = How can I get support? =
-We’ll provide support via [support ticket](https://codeastrology.com/support/), [live chat](https://prnt.sc/jDcsSL1Q57s8), Skype, or email (support@codeastrology.com)
+We’ll provide support via [support ticket](https://codeastrology.com/my-support/), [live chat](https://prnt.sc/jDcsSL1Q57s8), Skype, or email (support@codeastrology.com)
 
 
 == Screenshots ==
