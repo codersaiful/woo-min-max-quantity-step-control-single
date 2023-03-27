@@ -40,8 +40,8 @@
                     $max = $minmaxsteps['_max'];
                     $step = $minmaxsteps['_step'];
                     $default = $minmaxsteps['_default'];
-                    $cart_max = $minmaxsteps['_cart_max'];
-                    $cart_min = $minmaxsteps['_cart_min'];
+                    $cart_max = $minmaxsteps['_cart_max'] ?? '';
+                    $cart_min = $minmaxsteps['_cart_min'] ?? '';
                     ?>
 
                     <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
@@ -96,7 +96,7 @@
                                 </th>
                                 <td>
                                     <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_max]" 
-                                        value="<?php echo $minmaxsteps['_cart_max']; ?>"  type="number" step=any>
+                                        value="<?php echo $cart_max ?>"  type="number" step=any>
                                 </td>
                             </tr>    
                             <tr>
@@ -105,7 +105,7 @@
                                 </th>
                                 <td>
                                     <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_min]" 
-                                        value="<?php echo $minmaxsteps['_cart_min']; ?>"  type="number" step=any>
+                                        value="<?php echo $cart_min ?>"  type="number" step=any>
                                 </td>
                             </tr> 
                         </table>
