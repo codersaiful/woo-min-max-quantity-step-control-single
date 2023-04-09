@@ -98,7 +98,7 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
         'should_min'    => $should_min,
         'should_next'   => $should_next,
         'product_id'    => $product_id,
-        'variation_id'    => $variation_id,
+        'variation_id'  => $variation_id,
         'quantity'      => $quantity,
         'min_quantity'  => $min_quantity,
         'step_quantity' => $step_quantity,
