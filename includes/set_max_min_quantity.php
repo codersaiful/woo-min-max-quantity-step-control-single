@@ -600,8 +600,7 @@ function wcmmq_step_set_for_order_status_update($pp){
  * @since 1.0
  */
 function wcmmq_step_set_step_quantity( $quantity, $product ){
-
-    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) ){
+    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) && 'product'==get_post_type() ){
 
         $product_step = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'product_step', true);
         $product_step = !empty( $product_step ) ? $product_step : WC_MMQ::getOption( WC_MMQ_PREFIX . 'product_step' ); //Regenerate from Default
