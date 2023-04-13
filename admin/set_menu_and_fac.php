@@ -198,7 +198,7 @@ function wcmmq_faq_page_details(){
                                 <div class="slider round"><!--ADDED HTML -->
                                     <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                                 </div>
-                            </label>
+                            </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
                         </td>
 
                     </tr>
