@@ -34,7 +34,9 @@
         <?php
             if( is_array( $selected_term_ids ) && count( $selected_term_ids ) > 0 ){
 
+                
                 foreach( $selected_term_ids as $trm_id => $minmaxsteps ){
+                    
                     $id = $trm_id;
                     $min = $minmaxsteps['_min'];
                     $max = $minmaxsteps['_max'];
@@ -90,24 +92,35 @@
                                         value="<?php echo $minmaxsteps['_default']; ?>"  type="number" step=any>
                                 </td>
                             </tr>
+
+                            <?php if($term_key == 'product_cat'){ ?>
                             <tr>
-                                <th>
-                                    <label><?php echo esc_html__( 'Maximum Cart Qty', 'wcmmq' ); ?></label>
-                                </th>
-                                <td>
-                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_max]" 
-                                        value="<?php echo $cart_max ?>"  type="number" step=any>
+                                <td colspan="2"> 
+                                    <h3>Cart Page Count Condition</h3>
+                                    <table style="display: inline-block;">
+                                        <tr>
+                                            <th>
+                                                <label><?php echo esc_html__( 'Minimum Cart Qty', 'wcmmq' ); ?></label>
+                                            </th>
+                                            <td>
+                                                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_min]" 
+                                                    value="<?php echo $cart_min ?>"  type="number" step=any>
+                                            </td>
+                                        </tr> 
+
+                                        <tr>
+                                            <th>
+                                                <label><?php echo esc_html__( 'Maximum Cart Qty', 'wcmmq' ); ?></label>
+                                            </th>
+                                            <td>
+                                                <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_max]" 
+                                                    value="<?php echo $cart_max ?>"  type="number" step=any>
+                                            </td>
+                                        </tr>  
+                                    </table>
                                 </td>
-                            </tr>    
-                            <tr>
-                                <th>
-                                    <label><?php echo esc_html__( 'Minimum Cart Qty', 'wcmmq' ); ?></label>
-                                </th>
-                                <td>
-                                    <input class="ua_input" name="data[terms][<?php echo esc_attr( $term_key ); ?>][<?php echo esc_attr( $id ); ?>][_cart_min]" 
-                                        value="<?php echo $cart_min ?>"  type="number" step=any>
-                                </td>
-                            </tr> 
+                            </tr>  
+                            <?php } ?>
                         </table>
                     </div>
                     <?php
