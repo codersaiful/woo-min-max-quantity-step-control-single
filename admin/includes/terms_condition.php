@@ -88,7 +88,7 @@
                        value="<?php echo $minmaxsteps['_default']; ?>"  type="number" step=any>
             </td>
         </tr> 
-        <?php do_action( 'wcmmq_edit_terms_bottom', $term_key, $minmaxsteps, $term_key ); ?>
+        <?php do_action( 'wcmmq_edit_terms_bottom', $term_key, $minmaxsteps, $trm_id ); ?>
 
     </table>
         </div>
