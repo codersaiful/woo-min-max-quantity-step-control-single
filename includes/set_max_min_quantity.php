@@ -552,9 +552,21 @@ add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2
 add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',999,2);
 add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2); //For Variable product
 
-// for orderpage 
+/**
+ * Specially for Order Page
+ * Min max step set
+ * 
+ * asole order page a step min max kaj korto na. ekhon seta kaj korobe.
+ * 
+ * @author Saiful Islam <codersaiful@gmail.com>
+ *
+ * @param int|float|mixed $step
+ * @param object $product
+ * @return int|float|mixed
+ * 
+ * @since 4.1.0
+ */
 function wcmmq_admin_quantity_input_args( $step, $product ){
-    return 2;
 
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
@@ -602,12 +614,12 @@ function wcmmq_admin_quantity_input_args( $step, $product ){
     }
     
     
-    $step_quantity = !empty($step_quantity) ? $step_quantity : 1; //sony
-    // echo($step_quantity);
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
+
    return $step_quantity;
 }
 
-add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', 99999, 2);
+add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', PHP_INT_MAX, 2);
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
