@@ -221,6 +221,8 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+= 4.2 =
+* Min max step issue on Order Edit page has been fixed.
 
 = 4.1 =
 * Fixed: Default quantity issue fixed
