@@ -635,6 +635,7 @@ add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_
  * @since 4.2.0
  */
 function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
+    if( ! is_object($product) ) return $min_quantity;
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
 
