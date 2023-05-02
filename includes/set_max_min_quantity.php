@@ -618,7 +618,7 @@ function wcmmq_admin_quantity_input_args( $step, $product ){
    return $step_quantity;
 }
 
-add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', PHP_INT_MAX, 2);
+add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', 10, 2);
 
 /**
  * Specially for Order Page
@@ -691,8 +691,18 @@ function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
 
     return $min_quantity;
 }
-add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', PHP_INT_MAX, 2 );
+add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', 10, 2 );
 
+add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
+add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
+function wcmmq_admin_qty_min(){
+
+    return 0;
+}
+function wcmmq_admin_qty_step(){
+
+    return 0.001;
+}
 /**
  * Set limit on Single product page for Minimum Quantity of Product
  * @since 1.0
