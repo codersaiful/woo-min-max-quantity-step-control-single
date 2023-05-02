@@ -567,7 +567,8 @@ add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2);
  * @since 4.1.0
  */
 function wcmmq_admin_quantity_input_args( $step, $product ){
-
+    if( ! is_object($product) ) return $step;
+    
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $step;
