@@ -694,22 +694,47 @@ function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
 add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', 10, 2 );
 
 /**
- *  wcmmq_admin_qty_min()  and wcmmq_admin_qty_step() is for special situation
+ *  wcmmq_admin_qty_min()  and wcmmq_admin_qty_step() is for a special situation
  *  By default both function is desible 
  * 
  *  If any user want to change order quantity from deshboard in any number then we have to use this two function
  * 
- *  Copy and paste below code in code snippet
+ *  Copy and paste below code ( only filter hooks ) in code snippet
+ * 
+ *  add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
+ *  add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
+ * 
  */
 
-//add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
-//add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
+/**
+ * This function will override min quantity which is set from plugin and return min qty of 0
+ * so customer can edit and enter any min quantity
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @return int|float|mixed $min_qty
+ * 
+ * @since 4.2.0
+ */
 function wcmmq_admin_qty_min(){
     return 0;
 }
+
+/**
+ * This function will override step quantity which is set from plugin and return step qty of 0.001
+ * so customer can edit and enter any step quantity
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @return int|float|mixed $step
+ * 
+ * @since 4.2.0
+ */
 function wcmmq_admin_qty_step(){
     return 0.001;
 }
+
+
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
