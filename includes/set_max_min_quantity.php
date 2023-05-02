@@ -513,10 +513,8 @@ function wcmmq_quantity_input_args( $args, $product){
     //Finalized 
     $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
     $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-    $step_quantity = !empty($step_quantity) ? $step_quantity : 1; //sony
-    // var_dump($min_quantity,$max_quantity,$default_quantity,$step_quantity);
-    // Max quantity (default = -1)
-    // simple product
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1; 
+
     if( isset( $args['max_value'] ) && $args['max_value'] > -1){
         // stock quantity already set
         $args['max_value']  = $max_quantity && $max_quantity <= $args['max_value']   ? $max_quantity : $args['max_value'];
@@ -621,6 +619,78 @@ function wcmmq_admin_quantity_input_args( $step, $product ){
 }
 
 add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', PHP_INT_MAX, 2);
+
+/**
+ * Specially for Order Page
+ * Min max step set
+ * 
+ * asole order page a step min max kaj korto na. ekhon seta kaj korobe.
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @param int|float|mixed $step
+ * @param object $product
+ * @return int|float|mixed
+ * 
+ * @since 4.2.0
+ */
+function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
+    // if product is sold individually then we can immediately exit here
+
+    $variation_id = false;
+    $product_id = $id = $product->get_id();
+    if( is_cart() ){
+        if( $product->get_type() == 'variation' ){
+            $product_id = $product->get_parent_id();
+            $variation_id = $product->get_id();
+        }else{
+            $product_id = $product->get_id();
+        }
+    }
+
+    $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
+
+    
+    if( $is_variable_support && ! empty( $variation_id )){
+        $v_min_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'min_quantity', true );
+        if($v_min_qty == '0' || !empty($v_min_qty)){
+            $min_quantity = $v_min_qty ?? '';
+        }
+        
+    }
+    
+    $terms_data = wcmmq_get_term_data_wpml();
+    $_is_term_value_founded = false;
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
+        foreach( $terms_data as $term_key => $values ){
+
+            $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
+            foreach ( $product_term_list as $product_term_id ){
+
+                $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
+                if( is_array( $my_term_value ) ){
+                    $_is_term_value_founded = true;
+                    $min_quantity = $my_term_value['_min'] ?? '0';
+                    break;
+                }
+            }
+
+        }
+    }
+     
+    if( ! $_is_term_value_founded && ! $_is_single_value ){
+        $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
+    }
+    
+    //Finalized 
+    $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
+
+    return $min_quantity;
+}
+add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', PHP_INT_MAX, 2 );
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
