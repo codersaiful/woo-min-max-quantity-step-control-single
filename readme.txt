@@ -4,7 +4,7 @@ Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 6.2
-Requires PHP: 7.0
+Requires PHP: 5.4
 Stable tag: 4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -221,8 +221,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
 = 4.2 =
 * Min max step issue on Order Edit page has been fixed.
+* Order Page issue fixex for pro version. 
+* Code Optimized
 
 = 4.1 =
 * Fixed: Default quantity issue fixed
