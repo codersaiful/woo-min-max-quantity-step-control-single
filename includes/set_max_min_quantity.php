@@ -693,18 +693,6 @@ function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
 }
 add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', 10, 2 );
 
-/**
- *  wcmmq_admin_qty_min()  and wcmmq_admin_qty_step() is for a special situation
- *  By default both function is desible 
- * 
- *  If any user want to change order quantity from deshboard in any number then we have to use this two function
- * 
- *  Copy and paste below code ( only filter hooks ) in code snippet
- * 
- *  add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
- *  add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
- * 
- */
 
 /**
  * This function will override min quantity which is set from plugin and return min qty of 0
@@ -734,7 +722,21 @@ function wcmmq_admin_qty_step(){
     return 0.001;
 }
 
+/**
+ *  wcmmq_admin_qty_min()  and wcmmq_admin_qty_step() is for a special situation
+ *  By default both function is desible 
+ * 
+ *  If any user want to change order quantity from deshboard in any number then we have to use this two function
+ * 
+ */
 
+$options = WC_MMQ::getOptions();
+$disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
+
+if ( $disable_order_page ){
+    add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
+    add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
+}
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
@@ -795,12 +797,6 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
     return 1;
 }
 add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99, 2);
-
-$options = WC_MMQ::getOptions();
-$disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
-if ( get_post_type('shop_order') && $disable_order_page ){
-    remove_filter('woocommerce_quantity_input_step', 'wcmmq_step_set_step_quantity');
-}
 
 
 /**
