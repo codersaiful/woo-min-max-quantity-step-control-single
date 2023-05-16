@@ -222,6 +222,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 4.3 =
+* Spelling fixed. 
+* Code Optimized
+
 = 4.2 =
 * Min max step issue on Order Edit page has been fixed.
 * Order Page issue fixex for pro version. 
