@@ -52,6 +52,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
         public static function display_notice()
         {
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
+                $temp_numb = rand(1,8);
                 /**
                  * small notice for pro plugin,
                  * charect:
@@ -59,42 +60,36 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * 
                  */
 
-                // $small_notc = new Notice('small2');
-                // $small_notc->set_message(sprintf( __( '<b>Product Table for Woocommerce (Woo Product Table)</b>: lots of special feature waiting for you. %s.', 'wpt_pro' ), "<a href='https://wooproducttable.com/pricing/'>Get Premium</a>" ));
-                // $small_notc->set_diff_limit(7);
-                // $small_notc->show();
-
+                 $small_notc = new Notice('wcmmq-WP20-notice');
+                 $small_notc->set_message(sprintf( __( "Are you enjoying <b>%s</b>? <b>COUPON CODE: <i>WP20</i> - up to 60%% OFF</b> %s.", 'wcmmq' ),"<a href='https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/' target='_blank'>Min Max Quantity & Step Control by CodeAstrology</a>", "<a href='https://codeastrology.com/coupons/?campaign=WP20_MM&ref=1&utm_source=Default_Offer_LINK' target='_blank'>Click Here</a>" ));
+                 $small_notc->set_diff_limit(10);
+                 if( method_exists($small_notc, 'set_location') ){
+                     $small_notc->set_location('wpt_premium_image_top'); //wpt_premium_image_bottom
+                 }
+                 if($temp_numb == 3) $small_notc->show();
 
                 /**
                  * Offer Hanndle
                  */
-                $target = 'https://codeastrology.com/min-max-quantity//?discount=OfferAug&campaign=OfferAug&utm_source=Offer_LINK';
-                $demo_link = 'https://codeastrology.com/min-max-quantity/product/album/?campaign=OfferAug&utm_source=Offer_LINK';
-                $my_message = 'Have you enjoyed using <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin? Get up to 60% OFF your purchase. [FOR LIMITED TIME] <a class="ca-button" href="https://codeastrology.com/min-max-quantity//?discount=OfferAug&amp;campaign=OfferAug&amp;utm_source=Offer_LINK" target="_blank">Get Discount &rarr;</a>';
-                $offerNc = new Notice('offerAug22');
-                $offerNc->set_title( 'Min Max Quantity & Step Control for WooCommerce ::: Discount UPTO 60%' )
-                ->set_diff_limit(10)
+                
+                $target = 'https://codeastrology.com/coupons/?campaign=WP20_MM&ref=1&utm_source=Default_Offer_LINK';
+                $my_message = '<b><i>COUPON CODE: WP20 - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin?';
+                $offerNc = new Notice('wcmmq-WP20-offer');
+                $offerNc->set_title( 'SPECIAL OFFER' )
+                ->set_diff_limit(35)
                 ->set_type('offer')
-                ->set_img( WC_MMQ_BASE_URL. 'assets/images/offer/discount.png')
+                ->set_img( WC_MMQ_BASE_URL. 'assets/images/min-max-logo.png')
                 ->set_img_target( $target )
                 ->set_message( $my_message )
-               /*  ->add_button([
-                    'text' => 'Get Discount',
-                    'type' => 'primary',
+                ->add_button([
+                    'text' => 'Claim Discount',
+                    'type' => 'success',
                     'link' => $target,
-                ]) */;
+                ]);
                 if( method_exists($offerNc, 'set_location') ){
-                    // $offerNc->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
+                    // $offerNc->set_location('wpt_offer_here'); //wpt_premium_image_bottom
                 }
-                // $offerNc->show();
-                /**
-                 * If u want to set offer again, need to change Message text
-                 * and alos need to fix CSS for inner Offer Nottice.
-                 * 
-                 * @author Saiful Islam <codersaiful@gmail.com>
-                 * @since 3.2.1
-                 */
-                
+                if($temp_numb == 6) $offerNc->show();
                 
                 
 
