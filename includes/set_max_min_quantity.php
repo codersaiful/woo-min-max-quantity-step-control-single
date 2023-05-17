@@ -731,9 +731,13 @@ function wcmmq_admin_qty_step(){
  */
 
 $options = WC_MMQ::getOptions();
+
 $disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
 
-if ( $disable_order_page ){
+// in the old version field name is _wcmmq_s_disable_order_page so we need to consider that also 
+$disable_order_page_old = isset( $options['_wcmmq_s_disable_order_page'] ) ? true : false;
+
+if ( $disable_order_page || $disable_order_page_old ){
     add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
     add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
 }
