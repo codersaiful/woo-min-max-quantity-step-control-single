@@ -222,6 +222,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 4.4 =
+* Group product ajax cart adding issue has been solved
+
 = 4.3 =
 * Spelling fixed. 
 * Code Optimized
