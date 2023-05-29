@@ -10,7 +10,8 @@
         
         $(document.body).on('click', '.single_add_to_cart_button', function (e) {
 
-            var simple_product = $(this).closest('div.product-type-grouped');
+            var simple_product = $(this).closest('div.product-type-simple');
+            
             if(simple_product.length < 1){
                 return;
             }
