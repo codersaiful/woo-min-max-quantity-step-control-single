@@ -194,6 +194,17 @@ function wcmmq_replaced_msg( $text, $key_arr = array(), $val_arr = array() ){
  * @since 1.0
  */
 function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, $variations = false){ //Right two parameters added
+    
+    /**
+     * If anytime, we want to remove the validation change, we have to
+     * set falst the filter hook value for 'wcmmq_add_validation_check'
+     * 
+     * @since 4.3.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    $validation_check = apply_filters('wcmmq_add_validation_check',true, $product_id, get_the_ID());
+    if(!$validation_check) return $bool;
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product = wc_get_product( $product_id );
     // if product is sold individually then we can immediately exit here
@@ -318,6 +329,17 @@ add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 
  * @since 1.0
  */
 function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity ) {
+
+    /**
+     * If anytime, we want to remove the validation change, we have to
+     * set falst the filter hook value for 'wcmmq_cart_validation_check'
+     * 
+     * @since 4.3.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    $validation_check = apply_filters('wcmmq_cart_validation_check',true, $values);
+    if(!$validation_check) return $true;
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product_id = $values['product_id'];
 
@@ -535,7 +557,7 @@ function wcmmq_quantity_input_args( $args, $product){
      * 
      */
     
-    if( ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+    if( $default_quantity !== $min_quantity && ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
     // $args['input_value'] = $default_quantity;
