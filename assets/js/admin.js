@@ -14,8 +14,9 @@
         
         $(document.body).on('click','.wcmmq-premium',function(){
             // alert(45454);
+            var img_link = $(this).find('img').attr('src');
             var link = 'https://codeastrology.com/min-max-quantity/pricing/';
-            window.open(link,'_blank');
+            window.open(img_link,'_blank');
             // window.location.href = 'https://codeastrology.com/min-max-quantity/pricing/';
         });
         

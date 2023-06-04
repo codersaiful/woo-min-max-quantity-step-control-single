@@ -249,14 +249,15 @@ ul.wcmmq_each_terms_header small {
 .wcmmq-premium>*:first-child:before {
     content: "Pro";
     background: #ff0000c2;
-    padding: 7px 15px;
+    padding: 3px 9px;
     color: white;
-    border-radius: 8px;
-    font-size: 20px;
+    border-radius: 5px;
+    font-size: 14px;
     position: absolute;
-    top: 22px;
-    left: 70%;
+    top: 8px;
+    left: 138px;
     z-index: 1;
+    line-height: 14px;
 }
 
 /*******For Radio Button And Checkbox***********/
@@ -419,10 +420,10 @@ ul.wcmmq_each_terms_header small {
 }
 
 .wcmmq-premium img {
-    width: auto;
-    max-width: 100%;
+    width: 45%;
     opacity: 0.6;
     border: 1px solid #96b8cf;
+    min-width: 350px;
 }
 
 .notice.ca-notice.notice-offer {

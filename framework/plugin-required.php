@@ -60,13 +60,13 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * 
                  */
 
-                 $small_notc = new Notice('wcmmq-WP20-notice');
+                 $small_notc = new Notice('wcmmq-WP20-notice-s');
                  $small_notc->set_message(sprintf( __( "Are you enjoying <b>%s</b>? <b>COUPON CODE: <i>WP20</i> - up to 60%% OFF</b> %s.", 'wcmmq' ),"<a href='https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/' target='_blank'>Min Max Quantity & Step Control by CodeAstrology</a>", "<a href='https://codeastrology.com/coupons/?campaign=WP20_MM&ref=1&utm_source=Default_Offer_LINK' target='_blank'>Click Here</a>" ));
                  $small_notc->set_diff_limit(10);
                  if( method_exists($small_notc, 'set_location') ){
                      $small_notc->set_location('wpt_premium_image_top'); //wpt_premium_image_bottom
                  }
-                 if($temp_numb == 2) $small_notc->show();
+                //  if($temp_numb == 2) $small_notc->show();
 
                 /**
                  * Offer Hanndle
@@ -74,7 +74,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 
                 $target = 'https://codeastrology.com/coupons/?campaign=WP20_MM&ref=1&utm_source=Default_Offer_LINK';
                 $my_message = '<b><i>COUPON CODE: WP20 - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin?';
-                $offerNc = new Notice('wcmmq-WP20-offer');
+                $offerNc = new Notice('wcmmq-WP20-offer-ss');
                 $offerNc->set_title( 'SPECIAL OFFER' )
                 ->set_diff_limit(35)
                 ->set_type('offer')
@@ -89,7 +89,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 if( method_exists($offerNc, 'set_location') ){
                     // $offerNc->set_location('wpt_offer_here'); //wpt_premium_image_bottom
                 }
-                if($temp_numb == 5) $offerNc->show();
+                // if($temp_numb == 5) $offerNc->show();
                 
                 
 
