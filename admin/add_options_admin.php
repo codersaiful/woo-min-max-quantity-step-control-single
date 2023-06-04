@@ -113,7 +113,10 @@ function wcmmq_save_field_data( $post_id ){
     //Updating Here
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $min_quantity ) ); 
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $default_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $max_quantity ) ); 
+    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
+    if( $default_qty ){
+        update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $max_quantity ) ); 
+    }
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'product_step', esc_attr( $product_step ) ); 
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_save_field_data' );
