@@ -78,7 +78,10 @@
                        value="<?php echo $minmaxsteps['_step']; ?>"  type="number" step=any>
             </td>
         </tr> 
-
+        <?php
+        $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
+        if( $default_qty ){
+        ?>            
         <tr>
             <th>
                 <label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>
@@ -88,6 +91,7 @@
                        value="<?php echo $minmaxsteps['_default']; ?>"  type="number" step=any>
             </td>
         </tr> 
+        <?php } ?>
         <?php do_action( 'wcmmq_edit_terms_bottom', $term_key, $minmaxsteps, $trm_id ); ?>
 
     </table>

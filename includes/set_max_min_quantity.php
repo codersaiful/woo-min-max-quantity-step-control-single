@@ -556,8 +556,8 @@ function wcmmq_quantity_input_args( $args, $product){
      * Really great it. Thanks to that user.
      * 
      */
-    
-    if( $default_quantity !== $min_quantity && ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
+    if( $default_qty && $default_quantity !== $min_quantity && ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
     // $args['input_value'] = $default_quantity;

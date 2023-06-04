@@ -94,7 +94,7 @@ function wcmmq_faq_page_details(){
         <?php _e("Min Max Quantity & Step Control for WooCommerce by CodeAstrology", "wcmmq");?>
     </h1>
     <?php 
-        wcmmq_social_links(); 
+        // wcmmq_social_links(); 
     ?>
     <div class="fieldwrap">
         <?php
@@ -132,7 +132,12 @@ function wcmmq_faq_page_details(){
                         </td>
 
                     </tr>
-
+                    <?php
+                    //At this moment, no need it
+                    // $exist_dfl_qty = $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ?? false;
+                    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
+                    if( $default_qty ){
+                    ?>
                     <tr>
                         <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
                         <td>
@@ -144,7 +149,9 @@ function wcmmq_faq_page_details(){
                         </td>
 
                     </tr>
-                    <?php if( wc_get_price_decimal_separator() == ',' ){ ?>
+                    <?php
+                    }
+                    if( wc_get_price_decimal_separator() == ',' ){ ?>
                     <tr>
                         <?php
                         
@@ -396,11 +403,18 @@ function wcmmq_faq_page_details(){
                     html += '<label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>';
                     html += thC + td;
                     html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_step]" value=""  type="number" step=any>';
-                    html += tdC + trC + tr + th;
+                    html += tdC + trC;
+
+                    <?php
+                    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
+                    if( $default_qty ){
+                    ?> 
+                    html += tr + th;
                     html += '<label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>';
                     html += thC + td;
                     html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_default]" value=""  type="number" step=any>';
                     html += tdC + trC;
+                    <?php } ?>
                     html += '</table>';
                     html += '</div></div>';
                     $('.wcmmq_terms_wrapper.term_wrapper_' + term_key).prepend(html);

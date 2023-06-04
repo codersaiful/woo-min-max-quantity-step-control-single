@@ -224,6 +224,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 = 4.4 =
 * Group product ajax cart adding issue has been solved
+* Added new filter hook `wcmmq_default_qty_option` to control default value. By default it's hidden now. If you want to show,
+following code to your functions.php file of your child theme.
+`add_filter('wcmmq_default_qty_option', '__return_true');`<br>
+Even you can add using codesnippet or using any custom plugin.
 
 = 4.3 =
 * Spelling fixed. 
