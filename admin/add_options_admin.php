@@ -42,6 +42,8 @@ function wcmmq_add_field_in_panel(){
         'data_type' => 'decimal'
     );
     
+    
+    
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'product_step',
         'name'        =>  WC_MMQ_PREFIX. 'product_step',
