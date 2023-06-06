@@ -223,6 +223,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 4.4 =
+* Quanity issues on side cart has been solved.
 * Group product ajax cart adding issue has been solved
 * Added new filter hook `wcmmq_default_qty_option` to control default value. By default it's hidden now. If you want to show,
 following code to your functions.php file of your child theme.
