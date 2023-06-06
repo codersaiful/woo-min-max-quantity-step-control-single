@@ -5,7 +5,7 @@ Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, cust
 Requires at least: 4.0.0
 Tested up to: 6.2
 Requires PHP: 5.4
-Stable tag: 4.3
+Stable tag: 4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
