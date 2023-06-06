@@ -18,7 +18,11 @@ Min Max Quantity & Step Control for WooCommerce plugin offers to set product's m
 🎉 Minimum Quantity<br>
 🎉 Maximum Quantity<br>
 🎉 Step Quantity<br>
-🎉 Default Quantity<br>
+🎉 WPML supported<br>
+🎉 Cart Page Quantity *(Premium)*<br>
+🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Default Quantity [To enable: `add_filter('wcmmq_default_qty_option', '__return_true');` ]<br>
 
 You can set values for all products globally. The same values will apply to all products.
 You can set values by category. In this case, min, max, and step values will apply only to the chosen categories.<br>
@@ -37,14 +41,14 @@ Also, you can set values for each product individually. Product label values wil
 
 🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
 🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
-🔅 [Set Conditions To A Specific Category](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
-🔅 [Global Condition On Tag](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)
+🔅 [Set Conditions To A Specific Category (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
+🔅 [Global Condition On Tag (Premium) ](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)
 🔅 [Set Values To The Product Individually](https://codeastrology.com/min-max-quantity/set-values-to-the-product-individually/)
-🔅 [Multiply Price By Quantity](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
-🔅 [Decimal Quantity](https://codeastrology.com/min-max-quantity/decimal-quantity/)
-🔅 [Set values on each variation](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
-🔅 [Set Conditions On Cart Page](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)
-🔅 [Exclude/Include Products On Cart Page](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)
+🔅 [Multiply Price By Quantity (Premium) ](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
+🔅 [Decimal Quantity (Premium) ](https://codeastrology.com/min-max-quantity/decimal-quantity/)
+🔅 [Set values on each variation (Premium) ](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+🔅 [Set Conditions On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)
+🔅 [Exclude/Include Products On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)
 
 
 **🏆 World #1 WordPress Minimum Maximum Quantity & Step Control Plugin for WooCommerce. Most active and installed plugins than others.**
