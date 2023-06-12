@@ -86,7 +86,11 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
     $min_quantity_int = $min_quantity * $consnt_value;//intval($min_quantity * $consnt_value);
     $step_int = $step_quantity * $consnt_value;//intval($step_quantity * $consnt_value);
     $final_qty = $quantity_int - $min_quantity_int;//intval($quantity_int - $min_quantity_int);
-    $module = $final_qty % $step_int;
+    if (!empty($step_int)){
+        $module = $final_qty % $step_int;
+    }else{
+        $module = 0;
+    }
 
     if( $module == 0 ) { $modulous = true; }
 
