@@ -564,6 +564,11 @@ function wcmmq_quantity_input_args( $args, $product){
     if( $default_qty && $default_quantity !== $min_quantity && ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
+
+    if( ! empty($args['min_value']) && ! empty( $args['input_value'] ) && $args['input_value'] < $args['min_value'] ){
+        $args['input_value'] = $args['min_value'];
+    }
+
     // $args['input_value'] = $default_quantity;
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
