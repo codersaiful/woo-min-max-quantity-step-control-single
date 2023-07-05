@@ -24,7 +24,8 @@ var_dump(wcmmq_message_convert_replace($message, $args));
  * @param Array $args
  * @return String
  */
-function wcmmq_message_convert_replace( $message, $args ){
+
+function wcmmq_message_convert_replace( $message, $args, $product_id = null ){
     $message = __( $message, 'wcmmq' );
     $defaults = array(
         'min_quantity' => false,
@@ -40,6 +41,7 @@ function wcmmq_message_convert_replace( $message, $args ){
     },$arr_keys);
 
     $reslt = str_replace($find_arr, $args, $message);
+    $reslt = apply_filters('wcmmq_validation_message', $reslt, $product_id );
     return $reslt;
 }
 
@@ -144,8 +146,7 @@ function wcmmq_step_error_message( $bool = true, $other_data = [] ){
     $should_min = $args['should_min'] ?? '';
     $should_next = $args['should_next'] ?? '';
     $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ), $should_min, $should_next );
-    $message = apply_filters('wcmmq_validation_message', $message, $product_id );
-    $message = wcmmq_message_convert_replace( $message, $args );
+    $message = wcmmq_message_convert_replace( $message, $args,$product_id );
     wc_add_notice( $message, 'error' );
 }
 
@@ -293,14 +294,12 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
         'product_name'=> $product_name,
         'variation_name'=> $variation_name,
     );
-    //wcmmq_message_convert_replace( $message, $args );
 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
         return $bool;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
-        $message = apply_filters('wcmmq_validation_message', $message, $product_id );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
     }elseif( $max_quantity && $total_quantity > $max_quantity ){
@@ -310,8 +309,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
             $message .= " <br>";
         }
         $message .= sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
-        $message = apply_filters('wcmmq_validation_message', $message, $product_id );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
     }elseif( ! $modulous ){
@@ -425,7 +423,6 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         'product_name'=> $product_name,
         'variation_name'=> $variation_name,
     );
-    //wcmmq_message_convert_replace( $message, $args );
 
     if( ( !empty($max_quantity) && $max_quantity > 0 && $quantity <= $max_quantity) && $quantity >= $min_quantity && $modulous ){
         return true;
@@ -433,14 +430,12 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         return true;
     }elseif(!empty($max_quantity) && $max_quantity > 0 && $quantity > $max_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
-        $message = apply_filters('wcmmq_validation_message', $message, $product_id );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
     }elseif( $quantity < $min_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
-        $message = apply_filters('wcmmq_validation_message', $message, $product_id );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
     }elseif(!$modulous){
