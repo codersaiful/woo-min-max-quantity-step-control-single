@@ -226,6 +226,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 4.5 =
+* Update decimal separator option
+
 = 4.4 =
 * Quanity issues on side cart has been solved.
 * Group product ajax cart adding issue has been solved
