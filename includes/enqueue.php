@@ -47,7 +47,7 @@ if( !function_exists( 'wcmmq_enqueue' ) ){
             'decimal_count'=> wc_get_price_decimals(),
             );
 
-        if(wc_get_price_decimal_separator() == ','){
+        if(wc_get_price_decimal_separator() != '.'){
             $options = WC_MMQ::getOptions();
             $WCMMQ_DATA['decimal_separator'] = ! empty( $options['decimal_separator'] ) ? $options['decimal_separator'] : '.' ;
         }
