@@ -20,7 +20,9 @@ add_action( 'admin_menu','wcmmq_add_menu' );
  */
 function wcmmq_faq_page_details(){
 
-    var_dump(wp_create_nonce('X-WP-Nonce'));
+    $myData = get_option(WC_MMQ_KEY);
+    var_dump($myData);
+    
     if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
         //Reset 
         $data = WC_MMQ::getDefaults();
