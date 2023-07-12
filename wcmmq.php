@@ -210,7 +210,7 @@ class WC_MMQ {
         }
         WC_MMQ\Includes\Feature_Loader::run();
         WC_MMQ\Modules\Module_Controller::instance();
-        
+        new WC_MMQ\Api\Api();
         
         include_once $dir . '/includes/enqueue.php';
         include_once $dir . '/includes/set_max_min_quantity.php';
