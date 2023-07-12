@@ -55,23 +55,24 @@ class Route_Control extends WP_REST_Controller{
 
     public function my_data($request)
     {
-
+        $my_name = get_option('saiful_my_name');
         $response = [
-            'name' => 'Saiful' . rand(454, 7878787),
+            'name' => $my_name,//'Saiful' . rand(454, 7878787),
             'email' => 'codersaiful@gmail.com',
             'method' => 'READABLE',
         ];
-
-        $response = $this->data;
+        
+        // $response = $this->data;
         return rest_ensure_response( $response );
     }
     public function create_items($request)
     {
-
-        
+        // var_dump($request);
+        $name = $request['name'] ?? '';
+        update_option( 'saiful_my_name', $name );
 
         $response = [
-            'name' => 'Saiful' . rand(454, 7878787),
+            'name' => $name,
             'email' => 'codersaiful@gmail.com',
             'method' => 'CREATABLE',
         ];
