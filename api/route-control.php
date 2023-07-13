@@ -17,6 +17,13 @@ class Route_Control extends WP_REST_Controller{
 
     public function callback_permission( $request)
     {
+        return true;
+        //b0f9a9df24
+        $header = $request->get_headers();
+        $w_x_n = $header['x_wp_nonce'] ?? '';
+        return wp_verify_nonce($w_x_n);
+        var_dump($header['x_wp_nonce']);
+
         // $data = $request->get_json_params();
 
     // Retrieve and validate the nonce
@@ -60,6 +67,7 @@ class Route_Control extends WP_REST_Controller{
             'name' => $my_name,//'Saiful' . rand(454, 7878787),
             'email' => 'codersaiful@gmail.com',
             'method' => 'READABLE',
+            'var_dump' => $request
         ];
         
         // $response = $this->data;
@@ -68,6 +76,7 @@ class Route_Control extends WP_REST_Controller{
     public function create_items($request)
     {
         // var_dump($request);
+        // new \WP_REST_Request();
         $name = $request['name'] ?? '';
         update_option( 'saiful_my_name', $name );
 
@@ -75,6 +84,7 @@ class Route_Control extends WP_REST_Controller{
             'name' => $name,
             'email' => 'codersaiful@gmail.com',
             'method' => 'CREATABLE',
+            'var_dump' => $request->get_headers()
         ];
         return rest_ensure_response( $response );
     }
