@@ -7,11 +7,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 4.4
+ * Version: 4.5
  * Requires at least:    4.0.0
- * Tested up to:         6.2.2
+ * Tested up to:         6.3
  * WC requires at least: 3.0.0
- * WC tested up to: 	 7.7.0
+ * WC tested up to: 	 7.8.2
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '4.4.0');
+define('WC_MMQ_VERSION', '4.5.1');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
