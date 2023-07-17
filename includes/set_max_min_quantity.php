@@ -1,7 +1,5 @@
 <?php
-$hello = new WC_MMQ\Includes\Min_Max_Controller();
-// var_dump($hello);
-//var_dump(defined('WC_MMQ_PRO_VERSION'));
+
 /**
  * Generate and convert Message and replace right value on selected keyword.
  * Suppose user want to show min_quantity in message, now user able to customize message and where user want to
