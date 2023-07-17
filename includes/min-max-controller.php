@@ -225,7 +225,7 @@ class Min_Max_Controller extends Base
         $args['step'] = $this->step_value;
 
         // var_dump($args);
-        var_dump($this);
+        var_dump('inside_input_args_'.$this->product_id);
         return $args;
     }
 
