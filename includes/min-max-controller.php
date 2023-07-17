@@ -19,6 +19,7 @@ class Min_Max_Controller extends Base
     public $min_value;
     public $max_value;
     public $step_value;
+    public $stock_quantity;
 
     //Important key
     public $min_quantity = WC_MMQ_PREFIX . 'min_quantity';
@@ -103,6 +104,7 @@ class Min_Max_Controller extends Base
         if( ! $this->product) return;
 
         $this->is_args_organized = true;
+        $this->stock_quantity = $this->product->get_stock_quantity();
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
@@ -188,11 +190,15 @@ class Min_Max_Controller extends Base
     protected function finalizeArgs()
     {
         if(empty($this->max_value)){
-            $this->max_value = -1;
+            $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : -1;
         }
         
         if(empty($this->step_value)){
             $this->step_value = 1;
+        }
+
+        if( $this->stock_quantity && $this->max_value > $this->stock_quantity){
+            $this->max_value = $this->stock_quantity;
         }
 
         return $this;
@@ -219,7 +225,7 @@ class Min_Max_Controller extends Base
         $args['step'] = $this->step_value;
 
         // var_dump($args);
-        // var_dump($this);
+        var_dump($this);
         return $args;
     }
 
