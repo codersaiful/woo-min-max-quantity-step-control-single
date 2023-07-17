@@ -126,14 +126,34 @@ class Min_Max_Controller extends Base
     protected function setTermwiseArgs()
     {
         if( empty( $this->term_data ) || ! is_array( $this->term_data ) ) return;
+
+        $termwise_args = false;
+
+        foreach( $this->term_data as $term_key => $values ){
+            //thats keys of this term, already in database, jeta setting theke fix/thk kora ache
+            $db_term_ids = array_keys($values);
+            $product_term_ids = wp_get_post_terms( $this->product_id, $term_key, array( 'fields' => 'ids' ));
+            $common_term_ids = array_intersect($db_term_ids, $product_term_ids);
+            if( empty( $common_term_ids ) ) continue;
+
+            $common_term_id = end($common_term_ids);
+            $termwise_args = $values[$common_term_id];
+            break;
+
+        }
+        if( is_array( $termwise_args ) && ! empty( $termwise_args ) ){
+            $this->where_args_on = 'termwise';
+            $this->min_value = $this->max_value = $this->step_value = null;
+            
+            $this->min_value = $termwise_args['_min'] ?? 1;
+            $this->max_value = $termwise_args['_max'] ?? 1;
+            $this->step_value = $termwise_args['_step'] ?? 1;
+            return;
+        }else{
+            $this->setGlobalArgs();
+        }
+
         
-        $this->where_args_on = 'termwise';
-        // $this->min_value = $this->max_value = $this->min_value = null;
-
-
-
-
-        $this->setGlobalArgs();
     }
 
     /**
