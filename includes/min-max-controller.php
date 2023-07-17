@@ -54,10 +54,31 @@ class Min_Max_Controller extends Base
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
         }
         
+        //Input box args setup and manage
+        add_filter('woocommerce_loop_add_to_cart_args',[$this, 'set_input_args'], 9999, 2);
+        add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
+        add_filter('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
+
+        //validation setup
+        add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 2);
+
+    }
+
+    public function add_to_cart_validation( $bool,$product_id)
+    {
+        $this->product = wc_get_product( $product_id );
+        $this->product_id = $product_id;
+
+        $this->assignInputArg();
         
-        add_action('woocommerce_loop_add_to_cart_args',[$this, 'set_input_args'], 9999, 2);
-        add_action('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
-        add_action('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
+
+        
+        // var_dump($args);
+        
+        $this->finalizeArgs();
+
+        var_dump($this);
+        return $bool;
     }
 
     /**
