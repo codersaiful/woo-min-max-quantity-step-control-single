@@ -78,7 +78,7 @@ class Min_Max_Controller extends Base
         
         $this->finalizeArgs();
 
-        var_dump($this);
+        // var_dump($this);
         return $bool;
     }
 
@@ -102,7 +102,7 @@ class Min_Max_Controller extends Base
     {
         // if( $this->is_args_organized) return true;
         if( ! $this->product) return;
-
+        var_dump($this->product_id);
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
         //First check from single product and if it on single page
