@@ -72,6 +72,9 @@ class Min_Max_Controller extends Base
      * * IF ALREADY ARGS ORGANIZED, IF ALREADY ORGANIZED, NO NEED AGAIN ORGANIZE
      *
      * @return void
+     * 
+     * @todo cart page hole ba variation hole ki hobe ta thik kora hoyni
+     * @todo location: line: 472 file: set_max_min_quantity.php clue: if( is_cart() ){
      */
     protected function assignInputArg()
     {
@@ -144,7 +147,7 @@ class Min_Max_Controller extends Base
         if( is_array( $termwise_args ) && ! empty( $termwise_args ) ){
             $this->where_args_on = 'termwise';
             $this->min_value = $this->max_value = $this->step_value = null;
-            
+
             $this->min_value = $termwise_args['_min'] ?? 1;
             $this->max_value = $termwise_args['_max'] ?? 1;
             $this->step_value = $termwise_args['_step'] ?? 1;
