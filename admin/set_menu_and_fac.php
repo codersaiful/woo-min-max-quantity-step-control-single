@@ -455,15 +455,15 @@ function wcmmq_faq_page_details(){
                 $fields_arr = [
                     'msg_min_limit' => [
                         'title' => __('Minimum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
                     ],
                     
                     'msg_max_limit' => [
                         'title' => __('Maximum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
                     ],
                     'msg_max_limit_with_already' => [
-                        'title' => __('Maximum Quantity Validation Message','wcmmq' ),
+                        'title' => __('Already Quantity Validation Message','wcmmq' ),
                         'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
                     ],
                     'min_qty_msg_in_loop' => [

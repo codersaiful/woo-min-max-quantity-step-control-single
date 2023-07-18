@@ -29,6 +29,7 @@ class Min_Max_Controller extends Base
     public $default_quantity = WC_MMQ_PREFIX . 'default_quantity';
     public $max_quantity = WC_MMQ_PREFIX . 'max_quantity';
     public $product_step = WC_MMQ_PREFIX . 'product_step';
+    public $key_prefix = WC_MMQ_PREFIX;
 
     /**
      * It's the property of where the args is final
@@ -99,18 +100,20 @@ class Min_Max_Controller extends Base
 
         $total_quantity = $this->qty_inCart + $quantity;
 
+        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
+        $this->input_args['inputed_quantity'] = $quantity;
 
         if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
             return $bool;
         }elseif($this->min_value && $total_quantity < $this->min_value ){
-            $this->displayErrorMessage( 'msg_min_limit',$this->min_value );
+            $this->displayErrorMessage( 'msg_min_limit' );
             return false;
         }elseif( $this->max_value && $total_quantity > $this->max_value ){
             if( $this->qty_inCart > 0 ){
-                $this->displayErrorMessage( 'msg_max_limit_with_already', $this->qty_inCart );
+                $this->displayErrorMessage( 'msg_max_limit_with_already' );
             }
             
-            $this->displayErrorMessage( 'msg_max_limit', $this->max_value );
+            $this->displayErrorMessage( 'msg_max_limit' );
             return false;
         }
 
@@ -275,7 +278,8 @@ class Min_Max_Controller extends Base
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
 
-        // var_dump($this);
+        // var_dump($this->options['msg_min_limit'] ?? $this->options['_wcmmq_s_msg_min_limit'] ?? '');
+        var_dump($this->getRawMsg('msg_max_limit'));
         // var_dump($args);
         // var_dump('inside_input_args_'.$this->product_id);
         return $args;
@@ -295,14 +299,76 @@ class Min_Max_Controller extends Base
      * @param string $message_key
      * @return void
      */
-    public function displayErrorMessage( $message_key, $qty_amount )
+    public function displayErrorMessage( $message_key )
     {
-        //Error keyword can be: msg_min_limit,
-        $message = sprintf( wcmmq_get_message( $message_key ), $qty_amount, $this->product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $this->input_args, $this->product_id );
+        $message = $this->getRawMsg( $message_key );
+        $message = $this->messageReplace($message);
         wc_add_notice( $message, 'error' );
     }
 
+    /**
+     * retrive message from $this->options 
+     * here we will use array_key as parametter.
+     * such: msg_min_limit or msg_max_limit
+     * This way, there are so many message available.
+     * * msg_min_limit
+     * * msg_max_limit
+     * * msg_max_limit_with_already
+     * 
+     * IMPORTANT NOTICE:
+     * actually in old version, we used '_wcmmq_s_' at the beggining of all key
+     * but in new version we have fixed it and remove it.
+     * for security, i used here: $this->key_prefix = WC_MMQ_PREFIX
+     * 
+     * So no need to use prefix when call getRawMsg() method
+     *
+     * @param String $keyword such: msg_min_limit or msg_max_limit
+     * @return String
+     */
+    public function getRawMsg( $keyword )
+    {
+        $keyword = $this->key_prefix . $keyword;
+        return $this->options[$keyword] ?? '';
+    }
+
+    /**
+     * Message will replace with provided shortcode.
+     * we will use $this->input_args for replace value.
+     * if use [max_quantity] in your message, this method will replace with $this->input_args['max_quantity']
+     *
+     * @param string $message
+     * @return string
+     */
+    public function messageReplace( $message )
+    {
+        $message = __( $message, 'wcmmq' );
+        $defaults = array(
+            'min_quantity' => false,
+            'max_quantity' => false,
+            'product_name'=> false,
+            'current_quantity'=> false,
+        );
+        $args = wp_parse_args( $this->input_args, $defaults );
+        $args = apply_filters( 'wcmmq_message_replaced_shortcode_args', $args );
+        $arr_keys = array_keys($args);
+        $find_arr = array_map(function($val){
+            return "[$val]";
+        },$arr_keys);
+
+        $reslt = str_replace($find_arr, $args, $message);
+        $reslt = apply_filters('wcmmq_validation_message', $reslt, $this->product_id );
+        return $reslt;
+    }
+
+    /**
+     * Get post meta using wp function get_post_meta()
+     * post_id already generated as $this->product_id.
+     * actually this method will only work properly after call $this->assignInputArg()
+     * where we set $this->product_id otherwise, it will return empty -> ''
+     *
+     * @param int $meta_key
+     * @return mixed
+     */
     private function getMeta($meta_key)
     {
         $value = get_post_meta($this->product_id,$meta_key,true);
@@ -310,6 +376,12 @@ class Min_Max_Controller extends Base
         return '';
     }
 
+    /**
+     * Actually term_data set at __construct() method
+     * $this->term_data assign already at constructor method
+     *
+     * @return array|null
+     */
     public function getTermData()
     {
         return $this->term_data;
