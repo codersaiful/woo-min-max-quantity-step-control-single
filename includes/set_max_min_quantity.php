@@ -318,7 +318,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
         return $bool;
     }
 }
-add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
+// add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
 
 /**
  * Validation when you will update cart page of WooCommerce. Actually Minimum and maximum as well as step should be fixed

@@ -8,18 +8,21 @@ class Min_Max_Controller extends Base
 {
 
     public $product_id;
+    public $product_name;
     /**
      * It's need, only when cart page, otherwise it will null
      *
      * @var int
      */
     public $variation_id;
+    public $variation_name;
 
     //Important value
     public $min_value;
     public $max_value;
     public $step_value;
     public $stock_quantity;
+    public $qty_inCart;
 
     //Important key
     public $min_quantity = WC_MMQ_PREFIX . 'min_quantity';
@@ -41,8 +44,8 @@ class Min_Max_Controller extends Base
 
     public $input_args;
     public $term_data;
-    public $options;
-    public $product;
+    protected $options;
+    protected $product;
 
 
     public function __construct()
@@ -61,27 +64,59 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
 
         //validation setup
-        add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 2);
+        add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
 
     }
 
-    public function add_to_cart_validation( $bool,$product_id)
+    public function add_to_cart_validation( $bool,$product_id, $quantity, $variation_id = 0, $variations = false)
     {
+
+        /**
+         * If anytime, we want to remove the validation change, we have to
+         * set falst the filter hook value for 'wcmmq_add_validation_check'
+         * 
+         * @since 4.3.0
+         * @author Saiful Islam <codersaiful@gmail.com>
+         * 
+         * @todo Maybe get_the_ID() is not need here, we have to fix it
+         */
+        $validation_check = apply_filters('wcmmq_add_validation_check',true, $product_id, get_the_ID());
+        if(!$validation_check) return $bool;
+
         $this->product = wc_get_product( $product_id );
         $this->product_id = $product_id;
+        $this->variation_id = $variation_id;
+
+        // if product is sold individually then we can immediately exit here
+        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return true;
 
         $this->assignInputArg();
-        
-
-        
-        // var_dump($args);
-        
         $this->finalizeArgs();
 
-        // var_dump($this);
+        $modulous = apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
+        $total_quantity = $this->qty_inCart + $quantity;
+
+        $args = array(
+            'min_quantity' => $this->min_value,
+            'max_quantity' => $this->max_value,
+            'step_quantity' => $this->step_value,
+            'current_quantity' => $this->qty_inCart,
+            'product_name'=> $this->product_name,
+            'variation_name'=> $this->variation_name,
+        );
+
+        if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
+            return $bool;
+        }elseif($this->min_value && $total_quantity < $this->min_value ){
+            $this->displayErrorMessage( 'msg_min_limit' );
+            return false;
+        }
+
+        
         return $bool;
     }
 
+    
     /**
      * In this method, I will System and manage
      * input's args, I mean: min max and step value
@@ -102,7 +137,12 @@ class Min_Max_Controller extends Base
     {
         // if( $this->is_args_organized) return true;
         if( ! $this->product) return;
-        var_dump($this->product_id);
+
+        //Some important data assing on property
+        $this->product_name = get_the_title( $this->product_id );
+        $this->variation_name = $this->variation_id ? get_the_title( $this->variation_id ) : '';
+        $this->qty_inCart = wcmmq_check_quantity_in_cart( $this->product_id, $this->variation_id );
+        // var_dump($this->product);
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
         //First check from single product and if it on single page
@@ -201,6 +241,15 @@ class Min_Max_Controller extends Base
             $this->max_value = $this->stock_quantity;
         }
 
+        $this->input_args = array(
+            'min_quantity' => $this->min_value,
+            'max_quantity' => $this->max_value,
+            'step_quantity' => $this->step_value,
+            'current_quantity' => $this->qty_inCart,
+            'product_name'=> $this->product_name,
+            'variation_name'=> $this->variation_name,
+        );
+        
         return $this;
     }
 
@@ -224,11 +273,26 @@ class Min_Max_Controller extends Base
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
 
+        // var_dump($this);
         // var_dump($args);
-        var_dump('inside_input_args_'.$this->product_id);
+        // var_dump('inside_input_args_'.$this->product_id);
         return $args;
     }
 
+    /**
+     * To display Error message,
+     * We will use this method.
+     *
+     * @param [type] $message_key
+     * @return void
+     */
+    public function displayErrorMessage( $message_key )
+    {
+        //Error keyword can be: msg_min_limit,
+        $message = sprintf( wcmmq_get_message( $message_key ), $this->min_value, $this->product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = wcmmq_message_convert_replace( $message, $this->input_args, $this->product_id );
+        wc_add_notice( $message, 'error' );
+    }
 
     private function getMeta($meta_key)
     {
