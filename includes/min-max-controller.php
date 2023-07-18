@@ -93,22 +93,24 @@ class Min_Max_Controller extends Base
         $this->assignInputArg();
         $this->finalizeArgs();
 
+        //Modulous wise condition has applied based on following filter
         $modulous = apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
+        if( ! $modulous ) return false;
+
         $total_quantity = $this->qty_inCart + $quantity;
 
-        $args = array(
-            'min_quantity' => $this->min_value,
-            'max_quantity' => $this->max_value,
-            'step_quantity' => $this->step_value,
-            'current_quantity' => $this->qty_inCart,
-            'product_name'=> $this->product_name,
-            'variation_name'=> $this->variation_name,
-        );
 
         if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
             return $bool;
         }elseif($this->min_value && $total_quantity < $this->min_value ){
-            $this->displayErrorMessage( 'msg_min_limit' );
+            $this->displayErrorMessage( 'msg_min_limit',$this->min_value );
+            return false;
+        }elseif( $this->max_value && $total_quantity > $this->max_value ){
+            if( $this->qty_inCart > 0 ){
+                $this->displayErrorMessage( 'msg_max_limit_with_already', $this->qty_inCart );
+            }
+            
+            $this->displayErrorMessage( 'msg_max_limit', $this->max_value );
             return false;
         }
 
@@ -293,10 +295,10 @@ class Min_Max_Controller extends Base
      * @param string $message_key
      * @return void
      */
-    public function displayErrorMessage( $message_key )
+    public function displayErrorMessage( $message_key, $qty_amount )
     {
         //Error keyword can be: msg_min_limit,
-        $message = sprintf( wcmmq_get_message( $message_key ), $this->min_value, $this->product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
+        $message = sprintf( wcmmq_get_message( $message_key ), $qty_amount, $this->product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
         $message = wcmmq_message_convert_replace( $message, $this->input_args, $this->product_id );
         wc_add_notice( $message, 'error' );
     }
