@@ -4,6 +4,12 @@ namespace WC_MMQ\Includes;
 use WC_MMQ;
 use WC_MMQ\Core\Base;
 
+/**
+ * Main Min_Max_Controller class
+ * 
+ * @todo ekhono variation onujayi ze kaj hobe seta kora hoyni.
+ * @author Saiful Islam <codersaiful@gmail.com>
+ */
 class Min_Max_Controller extends Base
 {
 
@@ -43,7 +49,7 @@ class Min_Max_Controller extends Base
     public $is_pro = false;
     public $is_args_organized = false;
 
-    public $input_args;
+    public $input_args = [];
     public $term_data;
     protected $options;
     protected $product;
@@ -54,7 +60,7 @@ class Min_Max_Controller extends Base
         $this->is_pro = defined('WC_MMQ_PRO_VERSION');
         $this->options = WC_MMQ::getOptions();
         $this->term_data = $this->options['terms'] ?? null;
-        
+
         if( ! empty( $this->term_data ) ){
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
         }
@@ -66,9 +72,85 @@ class Min_Max_Controller extends Base
 
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
+        add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
 
     }
 
+    /**
+     * Specially for update_cart_validation() method and add_to_cart_validation() method of this class
+     * 
+     * ************************
+     * IMPORTANT
+     * ************************
+     * dON'T CALL OTHER PLACE
+     * only call after set $this->product property
+     * **** sob jaygay use kora jabena. sudhu cart validation and add to cart validation er somoy
+     * eta use kora jabe
+     * 
+     * *******************
+     * WHAT USED
+     * ********************
+     * $this->product_id = $product_id;
+        $this->variation_id = $variation_id;
+        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
+        $this->input_args['inputed_quantity'] = $quantity;
+
+        $this->organizeAndFinalizeArgs();
+     *
+     * @param int|string $product_id
+     * @param int|string $variation_id
+     * @param int|string $quantity
+     * @return void
+     */
+    public function OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity)
+    {
+        $this->product_id = $product_id;
+        $this->variation_id = $variation_id;
+        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
+        $this->input_args['inputed_quantity'] = $quantity;
+
+        $this->organizeAndFinalizeArgs();
+    }
+    public function update_cart_validation($bool, $cart_item_key, $values, $quantity)
+    {
+
+        /**
+         * If anytime, we want to remove the validation change, we have to
+         * set falst the filter hook value for 'wcmmq_cart_validation_check'
+         * 
+         * @since 4.3.0
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        $validation_check = apply_filters( 'wcmmq_cart_validation_check', true, $values);
+        if( ! $validation_check ) return $bool;
+        $product_id = $values['product_id'] ?? 0;
+        $variation_id = $values['variation_id'] ?? null;
+
+        $this->product = wc_get_product( $product_id );
+        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
+
+        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);
+
+        //First Check modulous
+        $modulous = $this->getModulous($quantity);
+        if( ! $modulous ) return false;
+        
+        if($this->max_value > 0 && $quantity <= $this->max_value && $quantity >= $this->min_value) return true;
+        if($this->max_value < 0 && $this->min_value <= $quantity) return true;
+
+        if($this->max_value > 0 && $quantity > $this->max_value){
+            $this->displayErrorMessage( 'msg_max_limit' );
+            return false;
+        }elseif($this->min_value && $quantity < $this->min_value){
+            
+            $this->displayErrorMessage( 'msg_min_limit' );
+            return false;
+        }
+
+
+        return $bool;
+    }
+    
     public function add_to_cart_validation( $bool,$product_id, $quantity, $variation_id = 0, $variations = false)
     {
 
@@ -85,30 +167,23 @@ class Min_Max_Controller extends Base
         if(!$validation_check) return $bool;
 
         $this->product = wc_get_product( $product_id );
-        $this->product_id = $product_id;
-        $this->variation_id = $variation_id;
+        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
 
-        // if product is sold individually then we can immediately exit here
-        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return true;
+        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);       
 
-        $this->assignInputArg();
-        $this->finalizeArgs();
-
-        //Modulous wise condition has applied based on following filter
-        $modulous = apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
+        //First Check modulous
+        $modulous = $this->getModulous( $quantity );
         if( ! $modulous ) return false;
 
         $total_quantity = $this->qty_inCart + $quantity;
 
-        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
-        $this->input_args['inputed_quantity'] = $quantity;
-
+        
         if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
             return $bool;
         }elseif($this->min_value && $total_quantity < $this->min_value ){
             $this->displayErrorMessage( 'msg_min_limit' );
             return false;
-        }elseif( $this->max_value && $total_quantity > $this->max_value ){
+        }elseif( $this->max_value > 0 && $total_quantity > $this->max_value ){
             if( $this->qty_inCart > 0 ){
                 $this->displayErrorMessage( 'msg_max_limit_with_already' );
             }
@@ -121,7 +196,47 @@ class Min_Max_Controller extends Base
         return $bool;
     }
 
+    /**
+     * updated modulous 
+     * Only we will check when our qty will getter then min and smaller then max
+     *
+     * @param int|string $quantity
+     * @return bool default value is true, if in condition, then it will check using filter hook
+     */
+    protected function getModulous( $quantity )
+    {
+        if( $this->min_value <= $quantity && ( $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
+            return apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
+        }
+        return true;
+    }
     
+    /**
+     * both method's use at one method
+     * Used methods: $this->assignInputArg() AND $this->finalizeArgs() 
+     * Obviously need to set $this->product and $this->product_id
+     * 
+     * **************************
+     * USES:
+     * **************************
+     * $this->assignInputArg();
+     * $this->finalizeArgs();
+     * 
+     * **************************
+     * IMPORTANCE NOTICE:
+     * **************************
+     * Everywhere, where we will assign $this->assignInputArg() after that
+     * I need $this->finalizeArgs() - finalizeArgs maintain original and final args value.
+     * such: $this->min_value, $this->max_value, $this->step_value, $this->input_args etc. which is very important 
+     * 
+     *
+     * @return void
+     */
+    protected function organizeAndFinalizeArgs(){
+        $this->assignInputArg();
+        $this->finalizeArgs();
+    }
+
     /**
      * In this method, I will System and manage
      * input's args, I mean: min max and step value
@@ -154,7 +269,7 @@ class Min_Max_Controller extends Base
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
         $this->step_value = $this->getMeta( $this->product_step );
-        
+
         //Return here if found in single
         if( ! empty( $this->min_value ) || ! empty( $this->min_value ) || ! empty( $this->min_value ) ){
             $this->where_args_on = 'single';
@@ -246,14 +361,18 @@ class Min_Max_Controller extends Base
             $this->max_value = $this->stock_quantity;
         }
 
-        $this->input_args = array(
+        if( ! is_array( $this->input_args ) ){
+            $this->input_args = [];
+        }
+
+        $this->input_args = array_merge( array(
             'min_quantity' => $this->min_value,
             'max_quantity' => $this->max_value,
             'step_quantity' => $this->step_value,
             'current_quantity' => $this->qty_inCart,
             'product_name'=> $this->product_name,
             'variation_name'=> $this->variation_name,
-        );
+        ), $this->input_args );
         
         return $this;
     }
@@ -266,22 +385,16 @@ class Min_Max_Controller extends Base
         //     $this->product = $product;
         // }
         $this->product_id = $this->product->get_id();
-        //Need to set organize args
-        $this->assignInputArg();
-        
 
-        
-        // var_dump($args);
-        
-        $this->finalizeArgs();
+        //Need to set organize args and need to finalize
+        $this->organizeAndFinalizeArgs();
+
+
         $args['min_value'] = $this->min_value;
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
 
-        // var_dump($this->options['msg_min_limit'] ?? $this->options['_wcmmq_s_msg_min_limit'] ?? '');
-        var_dump($this->getRawMsg('msg_max_limit'));
-        // var_dump($args);
-        // var_dump('inside_input_args_'.$this->product_id);
+        // var_dump($this->input_args);
         return $args;
     }
 
@@ -372,7 +485,7 @@ class Min_Max_Controller extends Base
     private function getMeta($meta_key)
     {
         $value = get_post_meta($this->product_id,$meta_key,true);
-        if( is_numeric( $value ) ) return (int) $value;
+        if( is_numeric( $value ) ) return $value;
         return '';
     }
 

@@ -444,7 +444,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         return true;
     }
 }
-add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
+// add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
 
 
 /**
