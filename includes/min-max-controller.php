@@ -264,6 +264,14 @@ class Min_Max_Controller extends Base
         return $this;
     }
 
+    /**
+     * input argsment setup for each place, specially
+     * where used common args filter.
+     *
+     * @param array $args
+     * @param object $product
+     * @return array
+     */
     public function set_input_args( $args, $product )
     {
         // var_dump('args',$this->saiful);
@@ -283,6 +291,13 @@ class Min_Max_Controller extends Base
         return $args;
     }
 
+    /**
+     * Individule quantity setup using single filter
+     *
+     * @param int|string $qty
+     * @param object $product
+     * @return int|string
+     */
     public function quantity_input_step($qty, $product)
     {
         if( $product->is_sold_individually() ) return $qty;
@@ -294,6 +309,14 @@ class Min_Max_Controller extends Base
 
         return $this->step_value;
     }
+
+    /**
+     * Individule quantity setup using single filter
+     *
+     * @param int|string $qty
+     * @param object $product
+     * @return int|string
+     */
     public function quantity_input_min($qty, $product)
     {
         if( $product->is_sold_individually() ) return $qty;
@@ -305,6 +328,14 @@ class Min_Max_Controller extends Base
 
         return $this->min_value;
     }
+
+    /**
+     * Individule quantity setup using single filter
+     *
+     * @param int|string $qty
+     * @param object $product
+     * @return int|string
+     */
     public function quantity_input_max($qty, $product)
     {
         if( $product->is_sold_individually() ) return $qty;
