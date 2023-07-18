@@ -70,12 +70,27 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
         add_filter('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
 
+        /**
+         * You can ask, why need again value asign
+         * indivisually where we already added at 
+         * * woocommerce_quantity_input_args
+         * * woocommerce_loop_add_to_cart_args
+         * * woocommerce_available_variation
+         * 
+         * ACTUALLY SOME THIRD PARTY PLUGIN DIDN'T USE these common filter 
+         * for that side cart plugin, so we have to use also individule also
+         * 
+         */
+        add_filter( 'woocommerce_quantity_input_step', [$this, 'quantity_input_step'], 9999, 2 );
+        add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
+        add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
+
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
         add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
 
     }
-
+    
     
     
     /**
@@ -100,8 +115,13 @@ class Min_Max_Controller extends Base
      * @return void
      */
     protected function organizeAndFinalizeArgs(){
+        $check_name = 'check_' . $this->product_id;
+
+        if( $this->$check_name ) return;
         $this->assignInputArg();
         $this->finalizeArgs();
+
+        $this->$check_name = true;
     }
 
     /**
@@ -246,11 +266,9 @@ class Min_Max_Controller extends Base
 
     public function set_input_args( $args, $product )
     {
+        // var_dump('args',$this->saiful);
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
-        // if( ! $this->product){
-        //     $this->product = $product;
-        // }
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -262,11 +280,45 @@ class Min_Max_Controller extends Base
         $args['step'] = $this->step_value;
         $args['classes'][] = 'wcmmq-qty-input-box';
 
-        // var_dump($args,$this->input_args);
         return $args;
     }
 
+    public function quantity_input_step($qty, $product)
+    {
+        if( $product->is_sold_individually() ) return $qty;
+        $this->product = $product;
+        $this->product_id = $this->product->get_id();
+
+        //Need to set organize args and need to finalize
+        $this->organizeAndFinalizeArgs();
+
+        return $this->step_value;
+    }
+    public function quantity_input_min($qty, $product)
+    {
+        if( $product->is_sold_individually() ) return $qty;
+        $this->product = $product;
+        $this->product_id = $this->product->get_id();
+
+        //Need to set organize args and need to finalize
+        $this->organizeAndFinalizeArgs();
+
+        return $this->min_value;
+    }
+    public function quantity_input_max($qty, $product)
+    {
+        if( $product->is_sold_individually() ) return $qty;
+        $this->product = $product;
+        $this->product_id = $this->product->get_id();
+
+        //Need to set organize args and need to finalize
+        $this->organizeAndFinalizeArgs();
+
+        return $this->max_value;
+    }
+
     /**
+     * $this->product compolsury need to set before this method
      * Specially for update_cart_validation() method and add_to_cart_validation() method of this class
      * 
      * ************************
