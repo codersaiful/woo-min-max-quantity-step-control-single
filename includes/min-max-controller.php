@@ -76,140 +76,7 @@ class Min_Max_Controller extends Base
 
     }
 
-    /**
-     * Specially for update_cart_validation() method and add_to_cart_validation() method of this class
-     * 
-     * ************************
-     * IMPORTANT
-     * ************************
-     * dON'T CALL OTHER PLACE
-     * only call after set $this->product property
-     * **** sob jaygay use kora jabena. sudhu cart validation and add to cart validation er somoy
-     * eta use kora jabe
-     * 
-     * *******************
-     * WHAT USED
-     * ********************
-     * $this->product_id = $product_id;
-        $this->variation_id = $variation_id;
-        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
-        $this->input_args['inputed_quantity'] = $quantity;
-
-        $this->organizeAndFinalizeArgs();
-     *
-     * @param int|string $product_id
-     * @param int|string $variation_id
-     * @param int|string $quantity
-     * @return void
-     */
-    public function OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity)
-    {
-        $this->product_id = $product_id;
-        $this->variation_id = $variation_id;
-        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
-        $this->input_args['inputed_quantity'] = $quantity;
-
-        $this->organizeAndFinalizeArgs();
-    }
-    public function update_cart_validation($bool, $cart_item_key, $values, $quantity)
-    {
-
-        /**
-         * If anytime, we want to remove the validation change, we have to
-         * set falst the filter hook value for 'wcmmq_cart_validation_check'
-         * 
-         * @since 4.3.0
-         * @author Saiful Islam <codersaiful@gmail.com>
-         */
-        $validation_check = apply_filters( 'wcmmq_cart_validation_check', true, $values);
-        if( ! $validation_check ) return $bool;
-        $product_id = $values['product_id'] ?? 0;
-        $variation_id = $values['variation_id'] ?? null;
-
-        $this->product = wc_get_product( $product_id );
-        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
-
-        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);
-
-        //First Check modulous
-        $modulous = $this->getModulous($quantity);
-        if( ! $modulous ) return false;
-        
-        if($this->max_value > 0 && $quantity <= $this->max_value && $quantity >= $this->min_value) return true;
-        if($this->max_value < 0 && $this->min_value <= $quantity) return true;
-
-        if($this->max_value > 0 && $quantity > $this->max_value){
-            $this->displayErrorMessage( 'msg_max_limit' );
-            return false;
-        }elseif($this->min_value && $quantity < $this->min_value){
-            
-            $this->displayErrorMessage( 'msg_min_limit' );
-            return false;
-        }
-
-
-        return $bool;
-    }
     
-    public function add_to_cart_validation( $bool,$product_id, $quantity, $variation_id = 0, $variations = false)
-    {
-
-        /**
-         * If anytime, we want to remove the validation change, we have to
-         * set falst the filter hook value for 'wcmmq_add_validation_check'
-         * 
-         * @since 4.3.0
-         * @author Saiful Islam <codersaiful@gmail.com>
-         * 
-         * @todo Maybe get_the_ID() is not need here, we have to fix it
-         */
-        $validation_check = apply_filters('wcmmq_add_validation_check',true, $product_id, get_the_ID());
-        if(!$validation_check) return $bool;
-
-        $this->product = wc_get_product( $product_id );
-        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
-
-        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);       
-
-        //First Check modulous
-        $modulous = $this->getModulous( $quantity );
-        if( ! $modulous ) return false;
-
-        $total_quantity = $this->qty_inCart + $quantity;
-
-        
-        if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
-            return $bool;
-        }elseif($this->min_value && $total_quantity < $this->min_value ){
-            $this->displayErrorMessage( 'msg_min_limit' );
-            return false;
-        }elseif( $this->max_value > 0 && $total_quantity > $this->max_value ){
-            if( $this->qty_inCart > 0 ){
-                $this->displayErrorMessage( 'msg_max_limit_with_already' );
-            }
-            
-            $this->displayErrorMessage( 'msg_max_limit' );
-            return false;
-        }
-
-        
-        return $bool;
-    }
-
-    /**
-     * updated modulous 
-     * Only we will check when our qty will getter then min and smaller then max
-     *
-     * @param int|string $quantity
-     * @return bool default value is true, if in condition, then it will check using filter hook
-     */
-    protected function getModulous( $quantity )
-    {
-        if( $this->min_value <= $quantity && ( $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
-            return apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
-        }
-        return true;
-    }
     
     /**
      * both method's use at one method
@@ -393,9 +260,145 @@ class Min_Max_Controller extends Base
         $args['min_value'] = $this->min_value;
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
+        $args['classes'][] = 'wcmmq-qty-input-box';
 
-        // var_dump($this->input_args);
+        // var_dump($args,$this->input_args);
         return $args;
+    }
+
+    /**
+     * Specially for update_cart_validation() method and add_to_cart_validation() method of this class
+     * 
+     * ************************
+     * IMPORTANT
+     * ************************
+     * dON'T CALL OTHER PLACE
+     * only call after set $this->product property
+     * **** sob jaygay use kora jabena. sudhu cart validation and add to cart validation er somoy
+     * eta use kora jabe
+     * 
+     * *******************
+     * WHAT USED
+     * ********************
+     * $this->product_id = $product_id;
+        $this->variation_id = $variation_id;
+        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
+        $this->input_args['inputed_quantity'] = $quantity;
+
+        $this->organizeAndFinalizeArgs();
+     *
+     * @param int|string $product_id
+     * @param int|string $variation_id
+     * @param int|string $quantity
+     * @return void
+     */
+    public function OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity)
+    {
+        $this->product_id = $product_id;
+        $this->variation_id = $variation_id;
+        //Need this following line to dispay ['inputed_quantity'] in message, if used ['inputed_quantity'] on message box.
+        $this->input_args['inputed_quantity'] = $quantity;
+
+        $this->organizeAndFinalizeArgs();
+    }
+    public function update_cart_validation($bool, $cart_item_key, $values, $quantity)
+    {
+
+        /**
+         * If anytime, we want to remove the validation change, we have to
+         * set falst the filter hook value for 'wcmmq_cart_validation_check'
+         * 
+         * @since 4.3.0
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        $validation_check = apply_filters( 'wcmmq_cart_validation_check', true, $values);
+        if( ! $validation_check ) return $bool;
+        $product_id = $values['product_id'] ?? 0;
+        $variation_id = $values['variation_id'] ?? null;
+
+        $this->product = wc_get_product( $product_id );
+        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
+
+        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);
+
+        //First Check modulous
+        $modulous = $this->getModulous($quantity);
+        if( ! $modulous ) return false;
+        
+        if($this->max_value > 0 && $quantity <= $this->max_value && $quantity >= $this->min_value) return true;
+        if($this->max_value < 0 && $this->min_value <= $quantity) return true;
+
+        if($this->max_value > 0 && $quantity > $this->max_value){
+            $this->displayErrorMessage( 'msg_max_limit' );
+            return false;
+        }elseif($this->min_value && $quantity < $this->min_value){
+            
+            $this->displayErrorMessage( 'msg_min_limit' );
+            return false;
+        }
+
+
+        return $bool;
+    }
+    
+    public function add_to_cart_validation( $bool,$product_id, $quantity, $variation_id = 0, $variations = false)
+    {
+
+        /**
+         * If anytime, we want to remove the validation change, we have to
+         * set falst the filter hook value for 'wcmmq_add_validation_check'
+         * 
+         * @since 4.3.0
+         * @author Saiful Islam <codersaiful@gmail.com>
+         * 
+         * @todo Maybe get_the_ID() is not need here, we have to fix it
+         */
+        $validation_check = apply_filters('wcmmq_add_validation_check',true, $product_id, get_the_ID());
+        if(!$validation_check) return $bool;
+
+        $this->product = wc_get_product( $product_id );
+        if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
+
+        $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);       
+
+        //First Check modulous
+        $modulous = $this->getModulous( $quantity );
+        if( ! $modulous ) return false;
+
+        $total_quantity = $this->qty_inCart + $quantity;
+
+        
+        if( $total_quantity <= $this->max_value && $total_quantity >= $this->min_value && $modulous ){
+            return $bool;
+        }elseif($this->min_value && $total_quantity < $this->min_value ){
+            $this->displayErrorMessage( 'msg_min_limit' );
+            return false;
+        }elseif( $this->max_value > 0 && $total_quantity > $this->max_value ){
+            if( $this->qty_inCart > 0 ){
+                $this->displayErrorMessage( 'msg_max_limit_with_already' );
+            }
+            
+            $this->displayErrorMessage( 'msg_max_limit' );
+            return false;
+        }
+
+        
+        return $bool;
+    }
+
+    /**
+     * updated modulous 
+     * Only we will check when our qty will getter then min and smaller then max
+     *
+     * @param int|string $quantity
+     * @return bool default value is true, if in condition, then it will check using filter hook
+     */
+    protected function getModulous( $quantity )
+    {
+        if( $this->min_value <= $quantity && ( $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
+            return apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
+        }
+        return true;
     }
 
     /**
@@ -474,6 +477,7 @@ class Min_Max_Controller extends Base
     }
 
     /**
+     * get_post_meta($this->product_id,$meta_key,true) 
      * Get post meta using wp function get_post_meta()
      * post_id already generated as $this->product_id.
      * actually this method will only work properly after call $this->assignInputArg()
