@@ -282,8 +282,15 @@ class Min_Max_Controller extends Base
     /**
      * To display Error message,
      * We will use this method.
+     * 
+     * specially for validation method when add to cart
+     * It shows Error type notice.
+     * 
+     * @uses wcmmq_get_message() we will remove it asap
+     * @uses wcmmq_message_convert_replace() we will remove it asap
+     * @uses wc_add_notice()
      *
-     * @param [type] $message_key
+     * @param string $message_key
      * @return void
      */
     public function displayErrorMessage( $message_key )
