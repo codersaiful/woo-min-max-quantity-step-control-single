@@ -282,12 +282,35 @@ class Min_Max_Controller extends Base
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
 
+        //for more or for vairable product 
+        //check woocommerce/templates/single-product/add-to-cart/variable.php file
+        /**
+         * some available code available over there.
+         * need some time to fix this issue
+        // $available_variations[0]['min_qty']=15;
+        // $available_variations[0]['max_qty']=30;
+
+        // $available_variations[1]['min_qty']=10;
+        // $available_variations[1]['step_qty']=10;
+        // $available_variations[1]['step']=10;
+        // $available_variations[1]['max_qty']=40;
+
+        // $available_variations[2]['min_qty']=3;
+        // $available_variations[2]['max_qty']=33;
+         */
+        if($this->is_pro){
+
+            $args['min_value'] = $this->min_value;
+            $args['max_value'] = $this->max_value;
+            $args['step'] = $this->step_value;    
+        }
 
         $args['min_value'] = $this->min_value;
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
         $args['classes'][] = 'wcmmq-qty-input-box';
 
+        // var_dump($args);
         return $args;
     }
 
