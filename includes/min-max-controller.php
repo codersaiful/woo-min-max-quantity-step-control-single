@@ -298,11 +298,11 @@ class Min_Max_Controller extends Base
         // $available_variations[2]['min_qty']=3;
         // $available_variations[2]['max_qty']=33;
          */
-        if($this->is_pro){
 
-            $args['min_value'] = $this->min_value;
-            $args['max_value'] = $this->max_value;
-            $args['step'] = $this->step_value;    
+
+        if( $this->product->get_type() === 'variable' && ! $this->is_pro){
+            $args['min_qty'] = $this->min_value;
+            $args['max_qty'] = $this->max_value;
         }
 
         $args['min_value'] = $this->min_value;
@@ -311,7 +311,7 @@ class Min_Max_Controller extends Base
         $args['classes'][] = 'wcmmq-qty-input-box';
 
         // var_dump($args);
-        return $args;
+        return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
     /**
