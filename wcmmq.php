@@ -203,7 +203,7 @@ class WC_MMQ {
             include_once $dir . '/admin/functions.php';
             include_once $dir . '/admin/product_panel.php';
             include_once $dir . '/admin/add_options_admin.php';
-            include_once $dir . '/admin/set_menu_and_fac.php';
+            // include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
 
             new WC_MMQ\Admin\Admin_Loader();
