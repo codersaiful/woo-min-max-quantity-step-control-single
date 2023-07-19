@@ -84,7 +84,7 @@ $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
     </div>
 </div>
 
-<div class="wrap wcmmq_wrap wcmmq-content">
+<div class="wrap wcmmq_wrap wcmmq-content ultraaddons">
     <h1 class="wp-heading "></h1>
 
     <?php 
