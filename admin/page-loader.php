@@ -91,11 +91,14 @@ class Page_Loader extends Base
         wp_register_script( 'wcmmq-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
         wp_enqueue_script( 'wcmmq-admin-script' );
         
+        wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
+        wp_enqueue_style( 'ultraaddons-common-css' );
+
         wp_register_style( 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
         wp_enqueue_style( 'wcmmq_css' );
 
-        wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
-        wp_enqueue_style( 'ultraaddons-common-css' );
+        wp_register_style( 'wcmmq-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
+        wp_enqueue_style( 'wcmmq-new-admin' );
     }
     public function redirect_to_new_page()
     {
