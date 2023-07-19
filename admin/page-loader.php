@@ -72,6 +72,8 @@ class Page_Loader extends Base
 
     public function admin_enqueue_scripts()
     {
+        global $current_screen;
+        
         /**
          * Select2 CSS file including. 
          * 
@@ -97,8 +99,15 @@ class Page_Loader extends Base
         wp_register_style( 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
         wp_enqueue_style( 'wcmmq_css' );
 
-        wp_register_style( 'wcmmq-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
-        wp_enqueue_style( 'wcmmq-new-admin' );
+        $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
+        if( strpos( $s_id, $this->main_slug ) !== false ){
+            
+            wp_register_style( 'wcmmq-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
+            wp_enqueue_style( 'wcmmq-new-admin' );
+
+        }
+
+        
     }
     public function redirect_to_new_page()
     {
