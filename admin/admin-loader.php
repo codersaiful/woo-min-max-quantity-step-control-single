@@ -10,7 +10,7 @@ class Admin_Loader extends Base{
         $deactive_form = new Deactive_Form();
         $deactive_form->run();
 
-        $settings = new Settings_Loader();
-        $settings->run();
+        // $settings = new Settings_Loader();
+        // $settings->run();
     }
 }
