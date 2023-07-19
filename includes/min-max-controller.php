@@ -53,6 +53,7 @@ class Min_Max_Controller extends Base
     public $term_data;
     protected $options;
     protected $product;
+    protected $variation_product;
 
 
     public function __construct()
@@ -152,10 +153,20 @@ class Min_Max_Controller extends Base
         // var_dump($this->product);
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
+
+        if( $this->variation_id ){
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->stock_quantity = $this->variation_product->get_stock_quantity();
+        }
+
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
         $this->step_value = $this->getMeta( $this->product_step );
+
+        do_action( 'wcmmq_arg_asign', $this );
+
+        if( $this->is_pro && $this->setIfVariationArgs() ) return true;
 
         //Return here if found in single
         if( ! empty( $this->min_value ) || ! empty( $this->min_value ) || ! empty( $this->min_value ) ){
@@ -174,6 +185,28 @@ class Min_Max_Controller extends Base
         //At the end, if we get here, we will set again global setting.
         $this->setGlobalArgs();
         return true;
+    }
+
+    /**
+     * If only found min max input box in variation
+     * if found any one, we will set min_value,max_value,step_value
+     * otherwise, we will not set anything.
+     *
+     * @return void
+     */
+    public function setIfVariationArgs()
+    {
+        if( ! $this->variation_id ) return;
+        $min_v = $this->getMetaVariation( $this->min_quantity );
+        $max_v = $this->getMetaVariation( $this->max_quantity );
+        $step_v = $this->getMetaVariation( $this->product_step );
+        if( ! empty( $min_v ) || ! empty( $max_v ) || ! empty( $step_v )){
+            $this->min_value = $min_v;
+            $this->max_value = $max_v;
+            $this->step_value = $step_v;
+            return true;
+        }
+        return;
     }
 
     /**
@@ -595,6 +628,13 @@ class Min_Max_Controller extends Base
     private function getMeta($meta_key)
     {
         $value = get_post_meta($this->product_id,$meta_key,true);
+        if( is_numeric( $value ) ) return $value;
+        return '';
+    }
+
+    private function getMetaVariation($meta_key)
+    {
+        $value = get_post_meta($this->variation_id,$meta_key,true);
         if( is_numeric( $value ) ) return $value;
         return '';
     }
