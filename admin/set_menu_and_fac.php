@@ -11,7 +11,14 @@ function wcmmq_add_menu(){
     $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' );
     
     add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
-
+    $min_max_img = WC_MMQ_BASE_URL . 'assets/images/min-max.png';
+    $page_title = "Min Max and Step Control Plugin";
+    $menu_title = "Min Max Control"; 
+    $menu_slug = 'wcmmq_min_max_step';
+    $callback = 'wcmmq_faq_page_details'; 
+    $icon_url = $min_max_img;
+    $position = 55.11;
+    add_menu_page($page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position);
 }
 add_action( 'admin_menu','wcmmq_add_menu' );
 
