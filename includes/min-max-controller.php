@@ -267,7 +267,7 @@ class Min_Max_Controller extends Base
      *
      * @return void
      */
-    protected function finalizeArgs()
+    public function finalizeArgs()
     {
         if(empty($this->max_value)){
             $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : -1;
