@@ -94,72 +94,118 @@
         $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
         if( $default_qty ){
         ?>
-        <tr>
-            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
-            <td>
-                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
-                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                <p style="color: #228b22;">
-                It's shoold empty, If you don't know, what is this.
-                </p>
-            </td>
 
+        
+
+        <tr>
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label form-field col-lg-6">
+                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]">
+                            <?php echo esc_html__('Default Quantity','wcmmq');?> 
+                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
+                        </label>
+                    </div>
+                    <div class="form-field col-lg-6">
+                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
+                        <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    <p style="color: #228b22;">
+                        It's shoold empty, If you don't know, what is this.
+                    </p>
+                </div> 
+            </td>
         </tr>
         <?php
         }
-        if( wc_get_price_decimal_separator() != '.' ){ ?>
-        <tr>
-            <?php
-            
+        if( wc_get_price_decimal_separator() != '.' ){ 
             $decimal_separator = $saved_data['decimal_separator'] ?? '.';
-            ?>
-            <th><label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
-            <td>
-                <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo $decimal_separator ; ?>">
-            </td>
+        ?>
 
-        </tr>
+        <tr>
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label form-field col-lg-6">
+                        <label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> 
+                            <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
+                        </label>
+                    </div>
+                    <div class="form-field col-lg-6">
+                        <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo $decimal_separator ; ?>">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    
+                </div> 
+            </td>
+        </tr>    
         <?php } ?>
         
 
-        <!-- 
+            <!-- 
             * Will add quantity box on archive pages
             * @ since 3.6.0
             * @ Author Fazle Bari 
             -->
-            <tr>
             <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
-            <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label></th>
+        <tr>
             <td>
-                <label class="switch">
-                    <input value="1" name="data[quantiy_box_archive]"
-                        <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="quantiy_box_archive">
-                    <div class="slider round"><!--ADDED HTML -->
-                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                <div class="wcmmq-form-control">
+                    <div class="form-label form-field col-lg-6">
+                        <label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
                     </div>
-                </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
-                <p style="color: #228b22;">
-                For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
-                For Variable product Quantity Box with Variation change box. Need premium version.<br>
-                If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
-                </p>
+                    <div class="form-field col-lg-6">
+                        <label class="switch">
+                            <input value="1" name="data[quantiy_box_archive]"
+                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="quantiy_box_archive">
+                            <div class="slider round"><!--ADDED HTML -->
+                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </td>
-
+            <td>
+                <div class="wcmmq-form-info">
+                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
+                    <p>
+                    For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
+                    For Variable product Quantity Box with Variation change box. Need premium version.<br>
+                    If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
+                    </p>
+                </div> 
+            </td>
         </tr>
 
+        <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
         <tr>
-            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
-            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
             <td>
-                <label class="switch">
-                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
-                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
-                    <div class="slider round"><!--ADDED HTML -->
-                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                <div class="wcmmq-form-control">
+                    <div class="form-label form-field col-lg-6">
+                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label>
                     </div>
-                </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
+                    <div class="form-field col-lg-6">
+                        <label class="switch">
+                            <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
+                                <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                            <div class="slider round"><!--ADDED HTML -->
+                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </td>
-
+            <td>
+                <div class="wcmmq-form-info">
+                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
+                </div> 
+            </td>
         </tr>
         
         <?php
