@@ -127,7 +127,7 @@ include 'main-page/topbar.php';
              * To add new panel in Forms
              * @since 1.8.6
              */
-            do_action( 'wcmmq_form_panel_before_message', $saved_data );
+            // do_action( 'wcmmq_form_panel_before_message', $saved_data );
 
             $fields_arr = [
                 'msg_min_limit' => [
