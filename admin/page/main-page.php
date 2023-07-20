@@ -127,7 +127,7 @@ include 'main-page/topbar.php';
              * To add new panel in Forms
              * @since 1.8.6
              */
-            // do_action( 'wcmmq_form_panel_before_message', $saved_data );
+            do_action( 'wcmmq_form_panel_before_message', $saved_data );
 
             $fields_arr = [
                 'msg_min_limit' => [
@@ -175,7 +175,7 @@ include 'main-page/topbar.php';
                     class="wcmmq-btn reset wcmmq-has-icon"
                     onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
                     <span><i class="wcmmq_icon-arrows-cw-outline"></i></span>
-                    <?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?>
+                    <?php echo esc_html__( 'Reset Settings', 'wcmmq' ); ?>
                 </button>
                 
             </div>

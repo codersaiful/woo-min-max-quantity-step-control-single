@@ -149,7 +149,7 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
             <tr>
                 <th class="wcmmq-inside">
                     <div class="wcmmq-table-header-inside">
-                        <h3><?php echo esc_html__( 'Messages', 'wcmmq' ); ?></h3>
+                        <h3><?php echo esc_html__( $section_title, 'wcmmq' ); ?></h3>
                     </div>
                     
                 </th>
