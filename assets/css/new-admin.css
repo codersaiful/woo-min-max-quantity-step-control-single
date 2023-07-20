@@ -126,10 +126,12 @@ table.wcmmq-table thead tr h3 {
 table.wcmmq-table tr td, table.wcmmq-table tr th, .wcmmq-table > thead > tr > th {
     padding: 0 30px;
 }
-.wcmmq-table thead > tr .wcmmq-inside {
-    padding: 28px 30px;
-    margin-bottom: 30px;
+.wcmmq-table thead > tr div.wcmmq-table-header-inside {
+    padding: 30px 0;
     border-bottom: 2px solid rgba(219, 219, 219, 0.522);
+}
+.wcmmq-table thead > tr div.wcmmq-table-header-right-side {
+    padding: 30px 0;
 }
 table.wcmmq-table tbody tr th, table.wcmmq-table tbody tr td {
     padding-top: 10px;

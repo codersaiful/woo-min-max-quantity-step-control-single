@@ -98,29 +98,69 @@ include 'main-page/topbar.php';
                     <thead>
                         <tr>
                             <th class="wcmmq-inside">
-                                <h3><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h3>
+                                <div class="wcmmq-table-header-inside">
+                                    <h3><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h3>
+                                </div>
+                                
                             </th>
-                            <th>something else</th>
+                            <th>
+                            <div class="wcmmq-table-header-right-side"></div>
+                            </th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
-                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <div class="wcmmq-form-control">
+                                    <div class="form-label form-field col-lg-6">
+                                        LabelTagHere
+                                    </div>
+                                    <div class="form-field col-lg-6">
+                                        InputFieldOrAnyOtherField
+                                    </div>
+                                </div>
                             </td>
-
+                            <td>
+                                <div class="wcmmq-form-info">
+                                    DescriptionOfField_and_docLink
+                                </div> 
+                            </td>
                         </tr>
-
                         <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
                             <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
-                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <div class="wcmmq-form-control">
+                                    <div class="form-label form-field col-lg-6">
+                                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
+                                    </div>
+                                    <div class="form-field col-lg-6">
+                                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                    </div>
+                                </div>
                             </td>
-
+                            <td>
+                                <div class="wcmmq-form-info">
+                                    Minimum value for input box. it's Global. 
+                                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                </div> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="wcmmq-form-control">
+                                    <div class="form-label form-field col-lg-6">
+                                    <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label>
+                                    </div>
+                                    <div class="form-field col-lg-6">
+                                    <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wcmmq-form-info">
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                </div> 
+                            </td>
                         </tr>
 
                         <tr>
