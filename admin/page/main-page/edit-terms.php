@@ -1,6 +1,21 @@
-<h2 class="with-background"> <?php echo esc_html__('Edit Terms','wcmmq');?></h2>
+
 <div class="wcmmq-terms-wrapper">
-    <?php
+    <table class="wcmmq-table edit-terms">
+        <thead>
+            <tr>
+                <th class="wcmmq-inside">
+                    <div class="wcmmq-table-header-inside">
+                        <h3><?php echo esc_html__('Edit Terms','wcmmq');?></h3>
+                    </div>
+                    
+                </th>
+                <th>
+                    <div class="wcmmq-table-header-right-side"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
 
         /**
          * Automatically display all terms in Set on Terrms
@@ -41,7 +56,10 @@
         }
 
 
-    ?>                    
+        ?>  
+        </tbody>
+    </table>
+                      
 </div><!-- /.wcmmq-terms-wrapper -->                
 
 
