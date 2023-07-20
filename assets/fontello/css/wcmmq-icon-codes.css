@@ -45,6 +45,8 @@
 .wcmmq_icon-help-circled:before { content: '\e82b'; } /* '' */
 .wcmmq_icon-info-outline:before { content: '\e82c'; } /* '' */
 .wcmmq_icon-info-circled:before { content: '\e82d'; } /* '' */
+.wcmmq_icon-plus:before { content: '\e82e'; } /* '' */
+.wcmmq_icon-plus-circle:before { content: '\e82f'; } /* '' */
 .wcmmq_icon-spin1:before { content: '\e830'; } /* '' */
 .wcmmq_icon-spin2:before { content: '\e831'; } /* '' */
 .wcmmq_icon-spin3:before { content: '\e832'; } /* '' */

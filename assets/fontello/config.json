@@ -359,6 +359,18 @@
       "css": "info-circled",
       "code": 59437,
       "src": "entypo"
+    },
+    {
+      "uid": "44e04715aecbca7f266a17d5a7863c68",
+      "css": "plus",
+      "code": 59438,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "a66e72da83c98248ae3ef43808efc452",
+      "css": "plus-circle",
+      "code": 59439,
+      "src": "websymbols"
     }
   ]
 }
