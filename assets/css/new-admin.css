@@ -88,7 +88,14 @@ a.wcmmq-button i, button.wcmmq-button i {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-
+table.wcmmq-table tr td label {
+    text-align: left;
+    line-height: 1.3;
+    font-weight: normal;
+    color: #092329;
+    text-shadow: none;
+    font-size: 14px;
+}
 /* section part end here  */
 
 /* table style start here  */
@@ -253,6 +260,18 @@ a.wcmmq-button.reset:hover {
     width: 40px;
     font-weight: bold;
 }
+.wcmmq-section-panel.no-background.wcmmq-full-form-submit-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.wcmmq-section-panel.no-background.wcmmq-full-form-submit-wrapper>button {
+    min-width: max-content;
+}
 
 /* wrapper section start here  */
 .wrap.wcmmq_wrap.wcmmq-content {
@@ -268,7 +287,7 @@ a.wcmmq-button.reset:hover {
     background: #607d8b26;
     color: #000;
     text-align: right;
-    cursor: pointer;
+    cursor: move;
 }
 .wcmmq-content table .wcmmq_each_terms table {
     background: #fefefe;
