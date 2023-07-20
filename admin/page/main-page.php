@@ -115,187 +115,72 @@ include 'main-page/topbar.php';
             
             </div>
             
-            <div class="wcmmq-section-panel inside-panel">
-                <h2 class="with-background"> <?php echo esc_html__('Edit Terms','wcmmq');?></h2>
-                <div class="wcmmq-terms-wrapper">
-                    <?php
-
-                        /**
-                         * Automatically display all terms in Set on Terrms
-                         */
-                        $support_all_terms = apply_filters( 'wcmmq_display_all_terms', false, $saved_data );
-                        if( $support_all_terms ){
-                            $term_lists = get_object_taxonomies('product','objects');
-                            //var_dump($term_lists);
-                            $ourTermList = false;
-                            foreach( $term_lists as $trm_key => $trm_object ){
-                                if( $trm_object->labels->singular_name == 'Tag' && $trm_key !== 'product_tag' ){
-                                    $ourTermList[$trm_key] = $trm_key;
-                                }else{
-                                    $ourTermList[$trm_key] = $trm_object->labels->singular_name;
-                                }
-                            }
-                        }
-
-                        $term_lists = apply_filters( 'wcmmq_terms_list', $ourTermList, $saved_data );
-
-                        $args = array(
-                            'hide_empty'    => false, 
-                            'orderby'       => 'count',
-                            'order'         => 'DESC',
-                        );
-                        $_term_lists = isset( $saved_data['terms'] ) && is_array( $saved_data['terms'] ) ? array_merge( $saved_data['terms'], $term_lists ) : $term_lists;
-
-                        foreach( $_term_lists as $key => $each ){
-                            $term_key = $key;
-                            $term_name = !empty( $term_lists[$key] ) ? $term_lists[$key] : $key;
-
-                            $term_obj = get_terms( $term_key, $args );
-
-                            $selected_term_ids = isset( $saved_data['terms'][$term_key] ) && !empty( $saved_data['terms'][$term_key] ) ? $saved_data['terms'][$term_key] : false;
-                            $selected_term_ids = wcmmq_term_ids_wpml( $selected_term_ids, $key );
-
-                            include WC_MMQ_BASE_DIR . 'admin/includes/terms_condition.php';
-                        }
-
-
-                    ?>                    
-                </div><!-- /.wcmmq-terms-wrapper -->                
-
+            <div class="wcmmq-section-panel inside-panel edit-terms">
+                <?php include 'main-page/edit-terms.php'; ?>
             </div>
             
-            <script>
-            jQuery(document).ready(function($){
-                $(document).on('click','.add_terms_button', function(e){
-                    
-                    e.preventDefault();
-                    var term_key = $(this).attr('data-term_key');
-                    var id = $('.wcmmq_select_terms.' + term_key).val();
-                        var term_name  = $('.wcmmq_select_terms.' + term_key + ' option[value="' + id + '"]').text();
-                    if( $('#wcmmq_terms_' + term_key + '_' + id).length > 0 ){
-                        alert("Already Added");
-                        return;
-                    }
-                    var html = '';
-                    var td, tdC, th, thC, tr, trC;
-                    td = '<td>';
-                    tdC = '</td>';
-                    th = '<th>';
-                    thC = '</th>'
-                    tr = '<tr>';
-                    trC = '</tr>';
-                    html += '<div id="wcmmq_terms_' + term_key + '_' + id + '" class="wcmmq_each_terms"  data-term_key="' + term_key + '" data-term_id="' + id + '">\n\
-                            <ul class="wcmmq_each_terms_header" data-target="term_table_' + id + '">\n\
-                                <li class="label">' + term_name + '<small>' + term_key + '</small></li>\n\
-                                <li class="edit" data-target="term_table_' + id + '"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>\n\
-                                <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>\n\
-                            </ul>\n\
-                            <div class="product_cat">';
-                    html += '<table id="term_table_' + id + '">';
-                    html += tr + th; 
-                    html += '<label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>';
-                    html += thC + td;
-                    html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_min]" value=""  type="number" step=any>';
-                    html += tdC + trC + tr + th; 
-                    html += '<label><?php echo esc_html__( 'Maximum Quantity', 'wcmmq' ); ?></label>';
-                    html += thC + td;
-                    html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_max]" value=""  type="number" step=any>';
-                    html += tdC + trC + tr + th;
-                    html += '<label><?php echo esc_html__( 'Step Quantity', 'wcmmq' ); ?></label>';
-                    html += thC + td;
-                    html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_step]" value=""  type="number" step=any>';
-                    html += tdC + trC;
-
-                    <?php
-                    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
-                    if( $default_qty ){
-                    ?> 
-                    html += tr + th;
-                    html += '<label><?php echo esc_html__( 'Default Quantity', 'wcmmq' ); ?></label>';
-                    html += thC + td;
-                    html += '<input class="ua_input" name="data[terms]['+ term_key +']['+ id +'][_default]" value=""  type="number" step=any>';
-                    html += tdC + trC;
-                    <?php } ?>
-                    html += '</table>';
-                    html += '</div></div>';
-                    $('.wcmmq_terms_wrapper.term_wrapper_' + term_key).prepend(html);
-                });
-                
-                $(document).on('click','ul.wcmmq_each_terms_header',function(){
-                    var table_id = $(this).attr('data-target');
-                    console.log(table_id);
-                    $('#' + table_id).toggle();
-                });
-                    
-                // delete from list
-                $('body').on('click', '.delete', function(){
-                    //e.preventDefault();
-                    $(this).parents('.wcmmq_each_terms').remove();
-                });
-                
-                $( ".wcmmq_terms_wrapper, .wcmmq-terms-wrapper" ).sortable({
-                    handle:this,//'.ultratable-handle'//this //.ultratable-handle this is handle class selector , if need '.ultratable-handle',
-                });
-                
-                    //woocommerce_page_wcmmq_min_max_step 
-                function wcmmqSelectItem(target, id) { // refactored this a bit, don't pay attention to this being a function
-                    var option = $(target).children('[value='+id+']');
-                    option.detach();
-                    $(target).append(option).change();
-                }
-                $('.wcmmq_config_form select').select2();
-                $('.wcmmq_config_form select').on('select2:select', function(e){
-                wcmmqSelectItem(e.target, e.params.data.id);
-                });    
-            });
-            </script>
-                <?php 
-                
-                /**
-                 * @Hook Action: wcmmq_form_panel
-                 * To add new panel in Forms
-                 * @since 1.8.6
-                 */
-                do_action( 'wcmmq_form_panel_before_message', $saved_data );
-
-                $fields_arr = [
-                    'msg_min_limit' => [
-                        'title' => __('Minimum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    
-                    'msg_max_limit' => [
-                        'title' => __('Maximum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'msg_max_limit_with_already' => [
-                        'title' => __('Already Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'min_qty_msg_in_loop' => [
-                        'title' => __('Minimum Quantity message for shop page','wcmmq' ),
-                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'step_error_valiation' => [
-                        'title' => __('Step validation error message','wcmmq' ),
-                        'desc'  => __('Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]','wcmmq' ),
-                    ],
             
-                ];
+            <?php 
             
-                wcmmq_message_field_generator($fields_arr, $saved_data);
+            /**
+             * @Hook Action: wcmmq_form_panel
+             * To add new panel in Forms
+             * @since 1.8.6
+             */
+            do_action( 'wcmmq_form_panel_before_message', $saved_data );
+
+            $fields_arr = [
+                'msg_min_limit' => [
+                    'title' => __('Minimum Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
+                ],
                 
-                /**
-                 * @Hook Action: wcmmq_form_panel
-                 * To add new panel in Forms
-                 * @since 1.8.6
-                 */
-                do_action( 'wcmmq_form_panel_bottom', $saved_data );
-                ?>
-            <div class="section ultraaddons-button-wrapper wcmmq-section-panel no-background wcmmq-submit-button">
-                <button name="configure_submit" class="button-primary primary button"> <?php echo esc_html__('Save Change','wcmmq');?></button>
-                <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');"><?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?></button>
+                'msg_max_limit' => [
+                    'title' => __('Maximum Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
+                ],
+                'msg_max_limit_with_already' => [
+                    'title' => __('Already Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                ],
+                'min_qty_msg_in_loop' => [
+                    'title' => __('Minimum Quantity message for shop page','wcmmq' ),
+                    'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                ],
+                'step_error_valiation' => [
+                    'title' => __('Step validation error message','wcmmq' ),
+                    'desc'  => __('Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]','wcmmq' ),
+                ],
+        
+            ];
+        
+            wcmmq_message_field_generator($fields_arr, $saved_data);
+            
+            /**
+             * @Hook Action: wcmmq_form_panel
+             * To add new panel in Forms
+             * @since 1.8.6
+             */
+            do_action( 'wcmmq_form_panel_bottom', $saved_data );
+            ?>
+
+            <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
+                
+                <button name="configure_submit"  
+                    class="wcmmq-btn wcmmq-has-icon">
+                    <span><i class="wcmmq_icon-ok"></i></span>
+                    <?php echo esc_html__('Save Change','wcmmq');?>
+                </button>
+                <button name="reset_button" 
+                    class="wcmmq-btn reset wcmmq-has-icon"
+                    onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
+                    <span><i class="wcmmq_icon-arrows-cw-outline"></i></span>
+                    <?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?>
+                </button>
+                
             </div>
+
+
                     
         </form>
         
