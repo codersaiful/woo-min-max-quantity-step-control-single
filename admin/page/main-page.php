@@ -76,6 +76,11 @@ $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
                 <div class="wcmmq-main-title">
                     <h2 class="wcmmq-ntitle"><?php _e("Min Max Control", "wcmmq");?></h2>
                 </div>
+                
+                <div class="wcmmq-main-title wcmmq-main-title-secondary">
+                    <h2 class="wcmmq-ntitle"><?php _e("Manage and Settings", "wcmmq");?></h2>
+                </div>
+
             </div>
         </div>
         <div class="col-lg-5">

@@ -102,6 +102,16 @@ class Page_Loader extends Base
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
         if( strpos( $s_id, $this->main_slug ) !== false ){
             
+            wp_register_style( 'wcmmq-icon-font', $this->base_url . 'assets/fontello/css/wcmmq-icon.css', false, $this->dev_version );
+            wp_enqueue_style( 'wcmmq-icon-font' );
+
+            
+            wp_register_style( 'wcmmq-icon-animation', $this->base_url . 'assets/fontello/css/animation.css', false, $this->dev_version );
+            wp_enqueue_style( 'wcmmq-icon-animation' );
+
+
+
+
             wp_register_style( 'wcmmq-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
             wp_enqueue_style( 'wcmmq-new-admin' );
 

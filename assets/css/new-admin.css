@@ -27,12 +27,13 @@ body .wcmmq-header, body .wcmmq-content {
     display: flex;
     gap: 25px;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .wcmmq-header.wcmmq-clearfix {}
 
-.wcmmq-main-title {
-    padding-left: 30px;
+.wcmmq-main-title-secondary {
+    padding-left: 25px;
     border-left: 1px solid #80808057;
 }
 
@@ -43,7 +44,10 @@ body .wcmmq-header, body .wcmmq-content {
     padding: 0;
     margin: 0px 0;
 }
-
+.wcmmq-main-title.wcmmq-main-title-secondary h2.wcmmq-ntitle {
+    color: #ababab;
+    font-weight: 100;
+}
 .wcmmq-logo-area {}
 
 .wcmmq-logo-area img.wcmmq-brand-logo {
