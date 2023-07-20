@@ -140,9 +140,9 @@ add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
  */
 function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title = 'Message', $prefix = WC_MMQ_PREFIX ){
      $msg_for_langs = __( 'Message', 'wcmmq' );
-    
+
     ?>
-<div class="ultraaddons-panel">
+<div class="wcmmq-section-panel">
     <h2 class="with-background"><?php echo esc_html__( $section_title, 'wcmmq' ); ?></h2>
     <table class="wcmmq_config_form wcmmq_config_form_message">
         <?php
