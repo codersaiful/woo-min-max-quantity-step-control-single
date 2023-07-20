@@ -23,7 +23,7 @@
                         </select>
                         
                         <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button wcmmq-btn wcmmq-has-icon">
-                            <span><i class="wcmmq_icon-ok"></i></span>    
+                            <span><i class="wcmmq_icon-plus"></i></span>    
                             <?php echo esc_html__( 'Add Terms', 'wcmmq' ); ?>
                         </button>    
                         <?php    
