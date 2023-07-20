@@ -120,53 +120,67 @@ include 'main-page/topbar.php';
             </div>
             
             
-                <?php 
-                
-                /**
-                 * @Hook Action: wcmmq_form_panel
-                 * To add new panel in Forms
-                 * @since 1.8.6
-                 */
-                do_action( 'wcmmq_form_panel_before_message', $saved_data );
+            <?php 
+            
+            /**
+             * @Hook Action: wcmmq_form_panel
+             * To add new panel in Forms
+             * @since 1.8.6
+             */
+            do_action( 'wcmmq_form_panel_before_message', $saved_data );
 
-                $fields_arr = [
-                    'msg_min_limit' => [
-                        'title' => __('Minimum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    
-                    'msg_max_limit' => [
-                        'title' => __('Maximum Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'msg_max_limit_with_already' => [
-                        'title' => __('Already Quantity Validation Message','wcmmq' ),
-                        'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'min_qty_msg_in_loop' => [
-                        'title' => __('Minimum Quantity message for shop page','wcmmq' ),
-                        'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
-                    ],
-                    'step_error_valiation' => [
-                        'title' => __('Step validation error message','wcmmq' ),
-                        'desc'  => __('Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]','wcmmq' ),
-                    ],
-            
-                ];
-            
-                wcmmq_message_field_generator($fields_arr, $saved_data);
+            $fields_arr = [
+                'msg_min_limit' => [
+                    'title' => __('Minimum Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
+                ],
                 
-                /**
-                 * @Hook Action: wcmmq_form_panel
-                 * To add new panel in Forms
-                 * @since 1.8.6
-                 */
-                do_action( 'wcmmq_form_panel_bottom', $saved_data );
-                ?>
-            <div class="section ultraaddons-button-wrapper wcmmq-section-panel no-background wcmmq-submit-button">
-                <button name="configure_submit" class="button-primary primary button"> <?php echo esc_html__('Save Change','wcmmq');?></button>
-                <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');"><?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?></button>
+                'msg_max_limit' => [
+                    'title' => __('Maximum Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[inputed_quantity],[variation_name]','wcmmq' ),
+                ],
+                'msg_max_limit_with_already' => [
+                    'title' => __('Already Quantity Validation Message','wcmmq' ),
+                    'desc'  => __('Available shortcode [current_quantity][min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                ],
+                'min_qty_msg_in_loop' => [
+                    'title' => __('Minimum Quantity message for shop page','wcmmq' ),
+                    'desc'  => __('Available shortcode [min_quantity],[max_quantity],[product_name],[step_quantity],[variation_name]','wcmmq' ),
+                ],
+                'step_error_valiation' => [
+                    'title' => __('Step validation error message','wcmmq' ),
+                    'desc'  => __('Available shortcode [should_min],[should_next],[product_name],[variation_name],[quantity],[min_quantity],[step_quantity]','wcmmq' ),
+                ],
+        
+            ];
+        
+            wcmmq_message_field_generator($fields_arr, $saved_data);
+            
+            /**
+             * @Hook Action: wcmmq_form_panel
+             * To add new panel in Forms
+             * @since 1.8.6
+             */
+            do_action( 'wcmmq_form_panel_bottom', $saved_data );
+            ?>
+
+            <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
+                
+                <button name="configure_submit"  
+                    class="wcmmq-btn wcmmq-has-icon">
+                    <span><i class="wcmmq_icon-ok"></i></span>
+                    <?php echo esc_html__('Save Change','wcmmq');?>
+                </button>
+                <button name="reset_button" 
+                    class="wcmmq-btn reset wcmmq-has-icon"
+                    onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
+                    <span><i class="wcmmq_icon-gift"></i></span>
+                    <?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?>
+                </button>
+                
             </div>
+
+
                     
         </form>
         
