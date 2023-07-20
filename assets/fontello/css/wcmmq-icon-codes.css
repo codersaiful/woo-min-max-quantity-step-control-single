@@ -39,6 +39,12 @@
 .wcmmq_icon-down-open-mini:before { content: '\e825'; } /* '' */
 .wcmmq_icon-dot-3:before { content: '\e826'; } /* '' */
 .wcmmq_icon-dot-2:before { content: '\e827'; } /* '' */
+.wcmmq_icon-arrows-cw-outline:before { content: '\e828'; } /* '' */
+.wcmmq_icon-arrows-cw:before { content: '\e829'; } /* '' */
+.wcmmq_icon-help-circled-alt:before { content: '\e82a'; } /* '' */
+.wcmmq_icon-help-circled:before { content: '\e82b'; } /* '' */
+.wcmmq_icon-info-outline:before { content: '\e82c'; } /* '' */
+.wcmmq_icon-info-circled:before { content: '\e82d'; } /* '' */
 .wcmmq_icon-spin1:before { content: '\e830'; } /* '' */
 .wcmmq_icon-spin2:before { content: '\e831'; } /* '' */
 .wcmmq_icon-spin3:before { content: '\e832'; } /* '' */

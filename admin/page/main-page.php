@@ -174,7 +174,7 @@ include 'main-page/topbar.php';
                 <button name="reset_button" 
                     class="wcmmq-btn reset wcmmq-has-icon"
                     onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
-                    <span><i class="wcmmq_icon-gift"></i></span>
+                    <span><i class="wcmmq_icon-arrows-cw-outline"></i></span>
                     <?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?>
                 </button>
                 
