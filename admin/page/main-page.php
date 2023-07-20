@@ -111,7 +111,7 @@ include 'main-page/topbar.php';
 
         
             <div class="wcmmq-section-panel supported-terms" id="wcmmq-supported-terms">
-                
+                <?php include 'main-page/supported-terms.php'; ?>
             
             </div>
             
