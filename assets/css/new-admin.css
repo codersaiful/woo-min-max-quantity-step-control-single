@@ -12,7 +12,7 @@ body .wcmmq-header, body .wcmmq-content {
     color: #6b625a;
 }
 .wcmmq-header {
-    padding: 21px 40px;
+    padding: 27px 40px;
     margin-bottom: 40px;
     background: #ffffff;
     display: flow-root;
@@ -53,7 +53,93 @@ body .wcmmq-header, body .wcmmq-content {
 .wcmmq-logo-area img.wcmmq-brand-logo {
     height: 39px;
 }
+.header-button-wrapper {
+    display: flex;
+    gap: 10px 20px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
+a.wcmmq-button i, button.wcmmq-button i {
+    font-size: 112%;
+    margin-right: 10px;
+}
+
+/* common element  */
+a.wcmmq-button, button.wcmmq-button {
+    padding: 11px 19px 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.023em;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    background-color: #607D8B;
+    text-decoration: none;
+}
+
+a.wcmmq-button:hover, button.wcmmq-button:hover {
+    background-color: #4CAF50;
+}
+a.wcmmq-button.reverse, button.wcmmq-button.reverse {
+    background-color: #4CAF50;
+}
+a.wcmmq-button.reverse:hover, button.wcmmq-button.reverse:hover {
+    background-color: #607D8B;
+}
+a.wcmmq-button.reset {
+    background: #e3e3e3;
+    color: #747272;
+}
+a.wcmmq-button.reset:hover {
+    background: #ebebeb;
+    color: #9E9E9E;
+}
+.wcmmq-btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 14px;
+    line-height: normal;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 11px 19px 12px 18px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #4CAF50;
+}
+.wcmmq-btn.reset {
+    background-color: #9E9E9E;
+}
+.wcmmq-btn:hover {
+    color: white;
+    background-color: #607D8B;
+}
+.wcmmq-btn.wcmmq-has-icon{
+    padding: 0 30px 0 0;
+}
+.wcmmq-btn.wcmmq-has-icon {
+    padding: 0 30px 0 0;
+}
+.wcmmq-btn span {
+    display: inline-block;
+    text-align: center;
+    width: 46px;
+    padding: 14px 0;
+    margin-right: 14px;
+    border-radius: 4px 0 0 4px;
+    background: #00000042;
+}
 
 /* wrapper section start here  */
 .wrap.wcmmq_wrap.wcmmq-content {
@@ -104,8 +190,8 @@ margin-left: -15px;
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
 position: relative;
 min-height: 1px;
-padding-right: 15px;
-padding-left: 15px;
+/* padding-right: 15px;
+padding-left: 15px; */
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11 {
 float: left;

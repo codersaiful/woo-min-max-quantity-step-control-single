@@ -64,46 +64,30 @@ $saved_data = WC_MMQ::getOptions();
 
 $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
 
+//TOPBAR INCLUDE HERE
+include 'main-page/topbar.php';
 ?>
 
-<div class="wcmmq-header wcmmq-clearfix">
-    <div class="row">
-        <div class="col-lg-7">
-            <div class="wcmmq-logo-wrapper-area">
-                <div class="wcmmq-logo-area">
-                    <img src="<?php echo esc_url( $min_max_img ); ?>" class="wcmmq-brand-logo">
-                </div>
-                <div class="wcmmq-main-title">
-                    <h2 class="wcmmq-ntitle"><?php _e("Min Max Control", "wcmmq");?></h2>
-                </div>
-                
-                <div class="wcmmq-main-title wcmmq-main-title-secondary">
-                    <h2 class="wcmmq-ntitle"><?php _e("Manage and Settings", "wcmmq");?></h2>
-                </div>
 
-            </div>
-        </div>
-        <div class="col-lg-5">
-
-        </div>
-    </div>
-</div>
 
 <div class="wrap wcmmq_wrap wcmmq-content ultraaddons">
     <h1 class="wp-heading "></h1>
 
     <?php 
         $is_pro = $this->is_pro;
-        if( $is_pro ){
+        if( ! $is_pro ){
            include 'main-page/premium-link-header.php'; 
         }
         // wcmmq_social_links();
-        var_dump($this);
+        // var_dump($this);
     ?>
     <div class="fieldwrap">
         <?php
             do_action( 'wcmmq_before_form' );
         ?>
+        <a class="wcmmq-btn wcmmq-has-icon" href="#"><span><i class="wcmmq_icon-ok"></i></span>Link</a>
+        <button class="wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span>Save Change</button>
+        <button class="wcmmq-btn reset wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span>Save Change</button>
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
             <div class="ultraaddons-panel">
                 <h2 class="with-background ca-branding-header"><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h2>
