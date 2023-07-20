@@ -139,9 +139,109 @@ add_action( 'wcmmq_form_panel_bottom','wcmmq_cart_page_notices' );
  * @return void
  */
 function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title = 'Message', $prefix = WC_MMQ_PREFIX ){
-     $msg_for_langs = __( 'Message', 'wcmmq' );
+
+
 
     ?>
+
+<table class="wcmmq-table supported-terms">
+    <thead>
+        <tr>
+            <th class="wcmmq-inside">
+                <div class="wcmmq-table-header-inside">
+                    <h3><?php echo esc_html__( 'Message', 'wcmmq' ); ?></h3>
+                </div>
+                
+            </th>
+            <th>
+            <div class="wcmmq-table-header-right-side"></div>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php
+        foreach( $fields_arr as $key_name => $messages ){
+
+            extract($messages);
+            $f_key_name = $prefix . $key_name;
+            $value = $saved_data[$f_key_name] ?? '';
+            $default_value = WC_MMQ::$default_values[$f_key_name] ?? '';
+            $value = ! empty( $value ) ? $value : $default_value;
+
+            ?>
+            <tr>
+                <td>
+                    <div class="wcmmq-form-control">
+                        <div class="form-label col-lg-6">
+                            <label for=""><?php echo esc_html( $title ); ?></label>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <?php 
+
+                            $settings = array(
+                                'textarea_name'     =>'data['. $f_key_name . ']',
+                                'textarea_rows'     => 3,
+                                'teeny'             => true,
+                                );
+                            wp_editor( esc_attr( $value ), $f_key_name, $settings ); 
+                            ?>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="wcmmq-form-info">
+                        <?php
+                            echo esc_html( $desc );
+
+                            $lang = apply_filters('wpml_default_language', NULL );
+                            $active_langs = apply_filters( 'wpml_active_languages', array(), 'orderby=id&order=desc' );
+                            if( isset( $active_langs[$lang] )){
+                                unset($active_langs[$lang]);
+                            }
+                            if( empty( $active_langs ) || ! is_array( $active_langs ) ) continue;
+                            
+                            ?>
+
+                            <div class="language-area" style="border-bottom: 4px solid black;">
+                                <p class="lang-area-title"><?php echo esc_html__( 'WPML Translate Area', 'wcmmq_pro' ); ?></p>
+                                <?php
+                                foreach( $active_langs as $active_lang ){
+                        
+                                    $code = $active_lang['code'];
+                                    $english_name = $active_lang['translated_name'];
+                                    $native_name = $active_lang['native_name'];
+                                    $lang_name = $english_name . "({$native_name})";
+                                    
+                                    $flag = $active_lang['country_flag_url'];
+                                ?>
+                                <p class="wpt-each-input">
+                                    <lable><img src="<?php echo esc_url( $flag ); ?>" class="wpt-wpml-admin-flag"> <?php echo esc_html( $lang_name ); ?></lable>
+                                <?php
+                                $wpml_key_name = $f_key_name . '_' . $code;
+                                $value = $saved_data[$wpml_key_name] ?? $value;
+                                $settings = array(
+                                    'textarea_name'     =>'data['. $wpml_key_name . ']',
+                                    'textarea_rows'     => 3,
+                                    'teeny'             => true,
+                                    );
+                                wp_editor( esc_attr( $value ), $wpml_key_name, $settings ); 
+                                ?>
+                                    
+                                </p>
+                                <?php }
+                                ?>
+                            </div>
+                    </div> 
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+
 <div class="wcmmq-section-panel">
     <h2 class="with-background"><?php echo esc_html__( $section_title, 'wcmmq' ); ?></h2>
     <table class="wcmmq_config_form wcmmq_config_form_message">
