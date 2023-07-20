@@ -17,7 +17,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         LabelTagHere
                     </div>
                     <div class="form-field col-lg-6">
@@ -34,7 +34,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
                     </div>
                     <div class="form-field col-lg-6">
@@ -52,7 +52,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                     <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
@@ -71,7 +71,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
@@ -100,7 +100,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]">
                             <?php echo esc_html__('Default Quantity','wcmmq');?> 
                             <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
@@ -129,7 +129,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> 
                             <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span>
                         </label>
@@ -157,7 +157,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
@@ -187,7 +187,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label form-field col-lg-6">
+                    <div class="form-label col-lg-6">
                         <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
