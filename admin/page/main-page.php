@@ -163,14 +163,27 @@ include 'main-page/topbar.php';
                             </td>
                         </tr>
 
-                        <tr>
-                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
-                            <td>
-                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
-                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                            </td>
 
+                        <tr>
+                            <td>
+                                <div class="wcmmq-form-control">
+                                    <div class="form-label form-field col-lg-6">
+                                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label>
+                                    </div>
+                                    <div class="form-field col-lg-6">
+                                        <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wcmmq-form-info">
+                                    this is step for input filed
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                </div> 
+                            </td>
                         </tr>
+
+
                         <?php
                         //At this moment, no need it
                         // $exist_dfl_qty = $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ?? false;
@@ -256,10 +269,7 @@ include 'main-page/topbar.php';
 
                     
                 </table>
-                <?php do_action( 'wcmmq_offer_here' ); ?>
-                <div class="ultraaddons-button-wrapper">
-                    <button name="configure_submit" class="button-primary primary button"><?php echo esc_html__('Save All','wcmmq');?></button>
-                </div>
+
                 <?php
                 $time = time();
                 $tar_time = strtotime('11/25/2022');
