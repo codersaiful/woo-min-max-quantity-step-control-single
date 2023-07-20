@@ -3,10 +3,10 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label col-lg-4">
+                    <div class="form-label col-lg-5">
                         <label><?php echo sprintf( esc_html__( 'Choose a %s', 'wcmmq' ), $term_name ); ?></label>
                     </div>
-                    <div class="form-field col-lg-8">
+                    <div class="form-field col-lg-7">
                     <?php
                         $options_item = '';
                         if( is_array( $term_obj ) && count( $term_obj ) > 0 ){
@@ -22,7 +22,7 @@
                             <?php echo $options_item; ?>
                         </select>
                         
-                        <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button wcmmq-btn wcmmq-has-icon">
+                        <button data-term_key="<?php echo esc_attr( $term_key ); ?>" class="add_terms_button wcmmq-btn wcmmq-btn-small wcmmq-has-icon">
                             <span><i class="wcmmq_icon-plus"></i></span>    
                             <?php echo esc_html__( 'Add Terms', 'wcmmq' ); ?>
                         </button>    
@@ -45,8 +45,8 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    
-                    <div class="form-field col-lg-12">
+                    <div class="col-lg-2"></div>
+                    <div class="form-field col-lg-10">
                     <div class="wcmmq_terms_wrapper term_wrapper_<?php echo esc_attr( $term_key ); ?>">
         <?php
             if( is_array( $selected_term_ids ) && count( $selected_term_ids ) > 0 ){

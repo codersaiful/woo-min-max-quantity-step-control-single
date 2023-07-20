@@ -221,6 +221,11 @@ a.wcmmq-button.reset:hover {
     color: #fff;
     background-color: #4CAF50;
 }
+.wcmmq-btn.wcmmq-btn-small {
+    padding: 9 18px 9 18px;
+    font-weight: normal;
+    text-transform: none;
+}
 .wcmmq-btn.reset {
     background-color: #9E9E9E;
 }
@@ -243,6 +248,11 @@ a.wcmmq-button.reset:hover {
     border-radius: 4px 0 0 4px;
     background: #00000042;
 }
+.wcmmq-btn.wcmmq-btn-small span {
+    padding: 10px 0;
+    width: 40px;
+    font-weight: bold;
+}
 
 /* wrapper section start here  */
 .wrap.wcmmq_wrap.wcmmq-content {
@@ -251,6 +261,19 @@ a.wcmmq-button.reset:hover {
 
 
 
+/* inside table design  */
+.wcmmq-content table .wcmmq_each_terms_header {
+    margin: 0;
+    padding: 6px;
+    background: #607d8b26;
+    color: #000;
+    text-align: right;
+    cursor: pointer;
+}
+.wcmmq-content table .wcmmq_each_terms table {
+    background: #fefefe;
+    margin-bottom: 25px;
+}
 
 
 

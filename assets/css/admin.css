@@ -98,7 +98,7 @@ ul.wcmmq_each_terms_header small {
 .wcmmq_each_terms_header li:first-child {
     margin-left: 0;
     float: left;
-    font-size: 150%;
+    font-size: initial;
     font-weight: 400;
 }
 
