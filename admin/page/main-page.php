@@ -70,17 +70,18 @@ include 'main-page/topbar.php';
 
 
 
-<div class="wrap wcmmq_wrap wcmmq-content ultraaddons">
-    <h1 class="wp-heading "></h1>
 
+
+<div class="wrap wcmmq_wrap wcmmq-content">
     <?php 
         $is_pro = $this->is_pro;
         if( ! $is_pro ){
-           include 'main-page/premium-link-header.php'; 
+            include 'main-page/premium-link-header.php'; 
         }
         // wcmmq_social_links();
         // var_dump($this);
     ?>
+    <h1 class="wp-heading "></h1>
     <div class="fieldwrap">
         <?php
             do_action( 'wcmmq_before_form' );
@@ -88,118 +89,130 @@ include 'main-page/topbar.php';
         <a class="wcmmq-btn wcmmq-has-icon" href="#"><span><i class="wcmmq_icon-ok"></i></span>Link</a>
         <button class="wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span>Save Change</button>
         <button class="wcmmq-btn reset wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span>Save Change</button>
+        
+        
         <form action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
-            <div class="ultraaddons-panel">
-                <h2 class="with-background ca-branding-header"><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h2>
-                <table class="wcmmq_config_form">
-
-                    <tr>
-                        <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
-                        <td>
-                            <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
-                            <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
-                        <td>
-                            <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
-                            <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                        </td>
-
-                    </tr>
-
-                    <tr>
-                        <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
-                        <td>
-                            <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
-                            <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                        </td>
-
-                    </tr>
-                    <?php
-                    //At this moment, no need it
-                    // $exist_dfl_qty = $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ?? false;
-                    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
-                    if( $default_qty ){
-                    ?>
-                    <tr>
-                        <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
-                        <td>
-                            <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
-                            <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
-                            <p style="color: #228b22;">
-                            It's shoold empty, If you don't know, what is this.
-                            </p>
-                        </td>
-
-                    </tr>
-                    <?php
-                    }
-                    if( wc_get_price_decimal_separator() != '.' ){ ?>
-                    <tr>
-                        <?php
-                        
-                        $decimal_separator = $saved_data['decimal_separator'] ?? '.';
-                        ?>
-                        <th><label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
-                        <td>
-                            <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo $decimal_separator ; ?>">
-                        </td>
-
-                    </tr>
-                    <?php } ?>
-                    
-
-                    <!-- 
-                        * Will add quantity box on archive pages
-                        * @ since 3.6.0
-                        * @ Author Fazle Bari 
-                        -->
+            <div class="wcmmq-section-panel ultraaddons">
+               
+                <table class="wcmmq-table">
+                    <thead>
                         <tr>
-                        <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
-                        <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label></th>
-                        <td>
-                            <label class="switch">
-                                <input value="1" name="data[quantiy_box_archive]"
-                                    <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="quantiy_box_archive">
-                                <div class="slider round"><!--ADDED HTML -->
-                                    <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
-                                </div>
-                            </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
-                            <p style="color: #228b22;">
-                            For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
-                            For Variable product Quantity Box with Variation change box. Need premium version.<br>
-                            If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
-                            </p>
-                        </td>
+                            <th class="wcmmq-inside">
+                                <h3><?php echo esc_html__( 'Settings (Universal)', 'wcmmq' ); ?></h3>
+                            </th>
+                            <th>something else</th>
+                        </tr>
+                    </thead>
 
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]"> <?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label></th>
+                            <td>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>min_quantity]" class="ua_input_number config_min_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'min_quantity']; ?>"  type="number" step=any>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                            </td>
 
-                    <tr>
-                        <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
-                        <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
-                        <td>
-                            <label class="switch">
-                                <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
-                                    <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
-                                <div class="slider round"><!--ADDED HTML -->
-                                    <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
-                                </div>
-                            </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
-                        </td>
+                        </tr>
 
-                    </tr>
-                    
-                    <?php
-                    /**
-                     * Obviously need tr and td here
-                     * 
-                     */
-                    do_action( 'wcmmq_setting_bottom_row', $saved_data );
-                    ?>
+                        <tr>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]"><?php echo esc_html__('Maximum Quantity','wcmmq');?></label></th>
+                            <td>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>max_quantity]" class="ua_input_number config_max_qty" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'max_quantity']; ?>"  type="number" step=any>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]"><?php echo esc_html__('Quantity Step','wcmmq');?></label></th>
+                            <td>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>product_step]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'product_step']; ?>"  type="number" step=any>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                            </td>
+
+                        </tr>
+                        <?php
+                        //At this moment, no need it
+                        // $exist_dfl_qty = $saved_data[WC_MMQ_PREFIX . 'default_quantity'] ?? false;
+                        $default_qty = apply_filters( 'wcmmq_default_qty_option', false, $saved_data );
+                        if( $default_qty ){
+                        ?>
+                        <tr>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]"><?php echo esc_html__('Default Quantity','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
+                            <td>
+                                <input name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" id="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>default_quantity]" class="ua_input_number" value="<?php echo $saved_data[WC_MMQ_PREFIX . 'default_quantity']; ?>"  type="number" step=any>
+                                <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/'); ?>
+                                <p style="color: #228b22;">
+                                It's shoold empty, If you don't know, what is this.
+                                </p>
+                            </td>
+
+                        </tr>
+                        <?php
+                        }
+                        if( wc_get_price_decimal_separator() != '.' ){ ?>
+                        <tr>
+                            <?php
+                            
+                            $decimal_separator = $saved_data['decimal_separator'] ?? '.';
+                            ?>
+                            <th><label for="data[decimal_separator]"><?php echo esc_html__('Quantity Decimal Separator','wcmmq');?> <span class="hightlighted_text"><?php echo esc_html__('(Optional)','wcmmq');?></span></label></th>
+                            <td>
+                                <input name="data[decimal_separator]" id="data[decimal_separator]" class="ua_input_number" value="<?php echo $decimal_separator ; ?>">
+                            </td>
+
+                        </tr>
+                        <?php } ?>
+                        
+
+                        <!-- 
+                            * Will add quantity box on archive pages
+                            * @ since 3.6.0
+                            * @ Author Fazle Bari 
+                            -->
+                            <tr>
+                            <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
+                            <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label></th>
+                            <td>
+                                <label class="switch">
+                                    <input value="1" name="data[quantiy_box_archive]"
+                                        <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="quantiy_box_archive">
+                                    <div class="slider round"><!--ADDED HTML -->
+                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                    </div>
+                                </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
+                                <p style="color: #228b22;">
+                                For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
+                                For Variable product Quantity Box with Variation change box. Need premium version.<br>
+                                If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
+                                </p>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <?php $disable_order_page = isset( $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] ) && $saved_data[ WC_MMQ_PREFIX . 'disable_order_page' ] == '1' ? 'checked' : false; ?>
+                            <th><label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label></th>
+                            <td>
+                                <label class="switch">
+                                    <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
+                                        <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                                    <div class="slider round"><!--ADDED HTML -->
+                                        <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                                    </div>
+                                </label><?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-on-woocommerce-order-page/'); ?>
+                            </td>
+
+                        </tr>
+                        
+                        <?php
+                        /**
+                         * Obviously need tr and td here
+                         * 
+                         */
+                        do_action( 'wcmmq_setting_bottom_row', $saved_data );
+                        ?>
+                    </tbody>
 
                     
                 </table>
@@ -234,7 +247,7 @@ include 'main-page/topbar.php';
                 ?>
             
         
-            <div class="ultraaddons-panel" id="wcmmq-supported-terms">
+            <div class="wcmmq-section-panel" id="wcmmq-supported-terms">
                 <h2 class="with-background black-background"> <?php echo esc_html__('Supported Terms','wcmmq');?></h2>
                 <?php
                 
@@ -293,7 +306,7 @@ include 'main-page/topbar.php';
 
                 </table> 
                 
-            <div class="ultraaddons-panel inside-panel">
+            <div class="wcmmq-section-panel inside-panel">
                 <h2 class="with-background"> <?php echo esc_html__('Edit Terms','wcmmq');?></h2>
                 <div class="wcmmq-terms-wrapper">
                     <?php
@@ -474,7 +487,7 @@ include 'main-page/topbar.php';
                  */
                 do_action( 'wcmmq_form_panel_bottom', $saved_data );
                 ?>
-            <div class="section ultraaddons-button-wrapper ultraaddons-panel no-background wcmmq-submit-button">
+            <div class="section ultraaddons-button-wrapper wcmmq-section-panel no-background wcmmq-submit-button">
                 <button name="configure_submit" class="button-primary primary button"> <?php echo esc_html__('Save Change','wcmmq');?></button>
                 <button name="reset_button" class="button button-default" onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');"><?php echo esc_html__( 'Reset Default', 'wcmmq' ); ?></button>
             </div>

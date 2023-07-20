@@ -5,6 +5,10 @@
 body #wpcontent {
     padding-left: 0;
 }
+.wcmmq_wrap .fieldwrap,.wcmmq_wrap .fieldwrap form, #wcmmq-main-configuration-form{
+    width: 100%;
+    display: block;
+}
 body .wcmmq-header, body .wcmmq-content {
     font-family: Arial, sans-serif;
     font-size: 14px;
@@ -25,9 +29,11 @@ body .wcmmq-header, body .wcmmq-content {
 
 .wcmmq-logo-wrapper-area {
     display: flex;
-    gap: 25px;
+    gap: 0 25px;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 .wcmmq-header.wcmmq-clearfix {}
@@ -67,7 +73,96 @@ a.wcmmq-button i, button.wcmmq-button i {
     margin-right: 10px;
 }
 
+
+
+/* section part start here  */
+.wcmmq-section-panel {
+    background: white;
+    margin: 40px 0;
+    -webkit-box-shadow: 1px 1px 8px 0 rgba(170, 157, 137, 0.14);
+    box-shadow: 1px 1px 8px 0 rgba(170, 157, 137, 0.14);
+}
+
+/* section part end here  */
+
+/* table style start here  */
+.wcmmq-content table {
+    display: table;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+}
+
+.wcmmq-table > thead > tr > th {
+    padding: 0 30px;
+}
+.wcmmq-table > tbody > tr > td {
+    padding: 0 30px;
+}
+.wcmmq-table > thead > tr > th:first-child, 
+.wcmmq-table > tbody > tr > td:first-child {
+    width: 67%;
+}
+.wcmmq-table th, .wcmmq-table td {
+    vertical-align: top;
+}
+.wcmmq-table thead > tr > th,
+.wcmmq-table tbody > tr > th {
+    text-align: left;
+}
+.wcmmq-table > thead > tr > th:first-child, 
+.wcmmq-table > tbody > tr > td:first-child {
+    width: 67%;
+}
+.wcmmq-table > thead > tr > th:last-child, 
+.wcmmq-table > tbody > tr > td:last-child {
+    background-color: #fbfaf9;
+}
+table.wcmmq-table thead tr h3 {
+    font-size: 22px;
+    font-weight: 100;
+}
+table.wcmmq-table tr td, table.wcmmq-table tr th, .wcmmq-table > thead > tr > th {
+    padding: 0 30px;
+}
+.wcmmq-table thead > tr .wcmmq-inside {
+    padding: 28px 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(219, 219, 219, 0.522);
+}
+table.wcmmq-table tbody tr th, table.wcmmq-table tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+table.wcmmq-table tbody tr:first-child th, table.wcmmq-table tbody tr:first-child td {
+    padding-top: 20px;
+}
+/* table style end here  */
+
+
+
 /* common element  */
+
+label, .wcmmq-label {
+display: block;
+font-size: 15px;
+font-family: "Open Sans", "Helvetica Neue", sans-serif;
+color: #291C09;
+font-weight: 600;
+margin-bottom: 7px;
+}
+
+h1, h2, h3, h4, h5, h6, .wrap h1 {
+color: #291c09;
+font-family: "Open Sans", Arial, sans-serif;
+font-weight: normal;
+line-height: 1.313;
+padding: 0;
+margin: 0;
+border: 0;
+}
+
 a.wcmmq-button, button.wcmmq-button {
     padding: 11px 19px 12px 18px;
     font-weight: 600;

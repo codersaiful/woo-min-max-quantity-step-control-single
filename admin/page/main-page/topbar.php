@@ -21,7 +21,7 @@
                     <a class="wcmmq-button reverse" 
                         href="https://codeastrology.com/min-max-quantity/pricing/" 
                         target="_blank">
-                        <i class="wcmmq_icon-cart"></i>
+                        <i class="wcmmq_icon-heart-filled"></i>
                         Get Premium Offer
                     </a>
                 <?php } ?>
@@ -29,7 +29,7 @@
                 <a class="wcmmq-button reset" 
                     href="https://codeastrology.com/min-max-quantity/documentation/" 
                     target="_blank">
-                    <i class="wcmmq_icon-cart"></i>Documentation
+                    <i class="wcmmq_icon-note"></i>Documentation
                 </a>
                 
                 <!-- <button class="wcmmq-btn"><span><i class="wcmmq_icon-cart"></i></span> Save Chabnge</button> -->
