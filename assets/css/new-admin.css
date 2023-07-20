@@ -82,6 +82,12 @@ a.wcmmq-button i, button.wcmmq-button i {
     -webkit-box-shadow: 1px 1px 8px 0 rgba(170, 157, 137, 0.14);
     box-shadow: 1px 1px 8px 0 rgba(170, 157, 137, 0.14);
 }
+.wcmmq-section-panel.no-background{
+    background: transparent !important;
+
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
 
 /* section part end here  */
 
