@@ -220,7 +220,7 @@ include 'main-page/topbar.php';
                 </div><!-- /.wcmmq-terms-wrapper -->                
 
             </div>
-
+            
             <script>
             jQuery(document).ready(function($){
                 $(document).on('click','.add_terms_button', function(e){
@@ -355,18 +355,11 @@ include 'main-page/topbar.php';
             </div>
                     
         </form>
-        <div class="wpmmq-form-bottom wpmmq-plugin-recommended-wrapper">
-            <?php 
-            /**
-             * Added Recommendation plugin notice over here
-             */
-            do_action( 'wcmmq_form_bottom', $saved_data );
-            
-            ?>
+        
+        
+        <!-- eta asole save all button er jonno. that's why display none  -->
+        <div class="ultraaddons-button-wrapper">
+                <button style="display: none;" name="configure_submit" class="button-primary primary button" id="wcmmq_form_submit_button"> <?php echo esc_html__('Save All','wcmmq');?></button>
         </div>
-        <?php 
-            wcmmq_social_links(); 
-            wcmmq_submit_issue_link();
-        ?>
     </div>
 </div> 
