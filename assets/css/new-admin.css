@@ -414,8 +414,8 @@ Device and Screen wise CSS end Here
 .wcmmq-section-panel .switch {
     position: relative;
     display: inline-block;
-    width: 66px;
-    height: 27px;
+    width: 115px;
+    height: 40px;
 }
 
 .wcmmq-section-panel .switch input {
@@ -438,10 +438,10 @@ Device and Screen wise CSS end Here
 .wcmmq-section-panel .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 5px;
-    bottom: 5px;
+    height: 24px;
+    width: 24px;
+    left: 10px;
+    bottom: 7px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -459,7 +459,7 @@ Device and Screen wise CSS end Here
 .wcmmq-section-panel input:checked+.slider:before {
     -webkit-transform: translateX(39px);
     -ms-transform: translateX(39px);
-    transform: translateX(39px);
+    transform: translateX(70px);
 }
 
 .wcmmq-section-panel .on {
