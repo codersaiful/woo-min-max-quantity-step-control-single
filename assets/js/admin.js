@@ -36,9 +36,9 @@
     });
 
     /** Save Floating button  **/
-    var saveChangeText = $('button#wcmmq_form_submit_button').text();
-    var btnHtml = '<div class="float-section ultraaddons-button-wrapper ultraaddons-panel no-background">';
-    btnHtml += '<button type="submit" name="configure_submit" class="float-btn button-primary primary button">' + saveChangeText + '</button>';
+    var saveChangeText = 'Save Change';
+    var btnHtml = '<div class="">';
+    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span><strong>' + saveChangeText + '</strong></button>';
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 
@@ -64,10 +64,10 @@
     let leftWill = configFormElement.width() - targetElement.width() - 20;
     
 
-    targetElement.css({
-        left: leftWill,
-        right: 'unset'
-    });
+    // targetElement.css({
+    //     left: leftWill,
+    //     right: 'unset'
+    // });
     if(scrollTop < conPass){
         targetElement.addClass('stick_on_scroll-on');
     }else{
