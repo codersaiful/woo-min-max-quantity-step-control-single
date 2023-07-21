@@ -36,7 +36,7 @@
     });
 
     /** Save Floating button  **/
-    var saveChangeText = 'Save Change';
+    var saveChangeText = 'Save';
     var btnHtml = '<div class="">';
     btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span><strong>' + saveChangeText + '</strong></button>';
     btnHtml += '</div>';
