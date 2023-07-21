@@ -429,7 +429,7 @@ Device and Screen wise CSS end Here
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #eaeaea;
+    background-color: #f7f7f7;
     -webkit-transition: .4s;
     transition: .4s;
     border: 1px solid #bdbdbd;
@@ -442,7 +442,7 @@ Device and Screen wise CSS end Here
     width: 24px;
     left: 10px;
     bottom: 5px;
-    background-color: white;
+    background-color: #ede9e9;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -457,9 +457,10 @@ Device and Screen wise CSS end Here
 }
 
 .wcmmq-section-panel input:checked+.slider:before {
-    -webkit-transform: translateX(76px);
-    -ms-transform: translateX(76px);
-    transform: translateX(76px);
+    -webkit-transform: translateX(73px);
+    -ms-transform: translateX(73px);
+    transform: translateX(73px);
+    background: white;
 }
 
 .wcmmq-section-panel .on {
