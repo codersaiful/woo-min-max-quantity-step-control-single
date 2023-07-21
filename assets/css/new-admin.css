@@ -92,11 +92,12 @@ a.wcmmq-button i, button.wcmmq-button i {
 table.wcmmq-table tr td label {
     text-align: left;
     line-height: 1.3;
-    font-weight: normal;
+    font-weight: bold;
     color: #092329;
     text-shadow: none;
     font-size: 14px;
 }
+
 /* section part end here  */
 
 /* table style start here  */
@@ -129,9 +130,16 @@ table.wcmmq-table tr td label {
 .wcmmq-table > tbody > tr > td:first-child {
     width: 67%;
 }
+
 .wcmmq-table > thead > tr > th:last-child, 
 .wcmmq-table > tbody > tr > td:last-child {
-    background-color: #fbfaf9;
+    background-color: #f6f6f6;
+    /* background-color: #fbfaf9; */
+}
+/* .wcmmq-table > thead > tr:hover > th:last-child, */
+.wcmmq-table > tbody > tr:hover > td:last-child {
+    background-color: #fffbf7;
+    background-color: #fff;
 }
 table.wcmmq-table thead tr h3 {
     font-size: 22px;
@@ -156,6 +164,18 @@ table.wcmmq-table tbody tr:first-child th, table.wcmmq-table tbody tr:first-chil
 }
 /* table style end here  */
 
+
+/* terms setting and edit part custom start here */
+table.wcmmq-table table tr th,
+table.wcmmq-table table tr td{
+    width: 50%;
+}
+table.wcmmq-table table tr th label,
+table.wcmmq-table table tr td label {
+    font-weight: normal;
+    color: #092329c7;
+}
+/* terms setting and edit part custom end here */
 
 
 /* common element  */
@@ -229,6 +249,9 @@ a.wcmmq-button.reset:hover {
     color: #fff;
     background-color: #4CAF50;
 }
+.wcmmq-btn.round {
+    border-radius: 22px;
+}
 .wcmmq-btn.wcmmq-btn-small {
     padding: 9 18px 9 18px;
     font-weight: normal;
@@ -253,6 +276,9 @@ a.wcmmq-button.reset:hover {
     margin-right: 14px;
     border-radius: 4px 0 0 4px;
     background: #00000042;
+}
+.wcmmq-btn.round span {
+    border-radius: 22px 0 0 22px;
 }
 .wcmmq-btn.wcmmq-btn-small span {
     padding: 10px 0;
