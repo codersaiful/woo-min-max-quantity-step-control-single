@@ -27,7 +27,7 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <?php var_dump($saved_data); ?>
+                    <!-- <?php var_dump($saved_data); ?> -->
                     <div class="form-label col-lg-6">
                         <label for="data[live_support]"><?php echo esc_html__('Live Support','wcmmq');?></label>
                     </div>
