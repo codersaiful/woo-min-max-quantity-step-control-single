@@ -137,8 +137,11 @@ if( !function_exists( 'wcmmq_tawkto_code_header' ) ){
      * @return String
      */
     function wcmmq_tawkto_code_header( $class_string ){
+        $disable_live_support = WC_MMQ::getOption( 'disable_live_support' );
+        if( $disable_live_support ) return;
         global $current_screen;
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
+        
         if( strpos( $s_id, 'wcmmq') !== false ){
         ?>
 <!--Start of Tawk.to Script-->

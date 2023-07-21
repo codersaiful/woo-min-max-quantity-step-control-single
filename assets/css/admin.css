@@ -539,16 +539,19 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
 }
 form#wcmmq-main-configuration-form #stick_on_scroll-on span {
     width: 60px;
-    padding: 20px 0;
+    padding: 16 0;
     margin-right: 0;
 }
+form#wcmmq-main-configuration-form #stick_on_scroll-on span i.wcmmq_icon-floppy{
+    font-size: 22px;
+}
 form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 100;
     transform: rotate(90deg);
     display: inline-block;
-    letter-spacing: 2px;
-    width: 39px;
+    letter-spacing: 1px;
+    width: 28px;
     text-align: center;
 }
 form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{

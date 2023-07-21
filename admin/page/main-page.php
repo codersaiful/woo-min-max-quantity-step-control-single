@@ -164,7 +164,9 @@ include 'main-page/topbar.php';
              */
             do_action( 'wcmmq_form_panel_bottom', $saved_data );
             ?>
-
+            <div class="wcmmq-section-panel live-support" id="wcmmq-supported-terms">
+                <?php include 'main-page/live-support.php'; ?>
+            </div>
             <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
                 <button name="configure_submit"  

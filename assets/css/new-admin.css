@@ -228,7 +228,7 @@ a.wcmmq-button.reset {
 }
 a.wcmmq-button.reset:hover {
     background: #ebebeb;
-    color: #9E9E9E;
+    color: #3e3a3a;
 }
 .wcmmq-btn {
     display: inline-block;
@@ -359,7 +359,11 @@ Screen and devicewise Custom CSS
     .wcmmq-header {
         padding: 27px 40px;
     }
-    
+    form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {
+        font-size: 12px;
+        letter-spacing: 2px;
+        width: 38px;
+    }
 }
 @media (max-width: 782px) {
     .auto-fold #wpcontent {
@@ -394,6 +398,9 @@ Screen and devicewise Custom CSS
     }
     table.wcmmq-table table tr th, table.wcmmq-table table tr td {
         width: 90%;
+    }
+    form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {
+        display: none;
     }
 }
 /* ********************************
