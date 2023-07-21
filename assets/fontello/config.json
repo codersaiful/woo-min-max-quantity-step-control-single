@@ -371,6 +371,18 @@
       "css": "plus-circle",
       "code": 59439,
       "src": "websymbols"
+    },
+    {
+      "uid": "f4445feb55521283572ee88bc304f928",
+      "css": "floppy",
+      "code": 59443,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "191bcf63575a78def53c907c3d3bf7f0",
+      "css": "floppy-1",
+      "code": 59445,
+      "src": "entypo"
     }
   ]
 }

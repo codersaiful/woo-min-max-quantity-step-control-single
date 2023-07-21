@@ -515,6 +515,12 @@ ul.wcmmq_each_terms_header small {
     background: white;
 }
 
+form#wcmmq-main-configuration-form  .float-btn.wcmmq-btn {
+    opacity: 0;
+    /* top: 70px; */
+    right: -80px;
+    transition: .4s all;
+}
 form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     position: fixed;
     bottom: unset;
@@ -525,10 +531,11 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     font-weight: normal;
     border-radius: unset;
     z-index: 99999;
-    display: none;
+    display: block;
     top: 80px;
     left: unset;
     margin: 0;
+    opacity: 1;
 }
 form#wcmmq-main-configuration-form #stick_on_scroll-on span {
     width: 60px;
@@ -541,6 +548,8 @@ form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {
     transform: rotate(90deg);
     display: inline-block;
     letter-spacing: 2px;
+    width: 39px;
+    text-align: center;
 }
 form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{
     display: block;

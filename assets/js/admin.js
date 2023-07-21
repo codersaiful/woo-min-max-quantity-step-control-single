@@ -38,7 +38,7 @@
     /** Save Floating button  **/
     var saveChangeText = 'Save';
     var btnHtml = '<div class="">';
-    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-ok"></i></span><strong>' + saveChangeText + '</strong></button>';
+    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-floppy"></i></span><strong>' + saveChangeText + '</strong></button>';
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 
@@ -73,7 +73,7 @@
     }else{
         targetElement.removeClass('stick_on_scroll-on');
     }
-    
+    console.log(scrollTop,colSetsLen);
     if(scrollTop > 100 && colSetsLen > 0){
         targetElement.attr('id','stick_on_scroll-on');
     }else if(colSetsLen > 0){
