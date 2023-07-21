@@ -16,7 +16,7 @@ body .wcmmq-header, body .wcmmq-content {
     color: #6b625a;
 }
 .wcmmq-header {
-    padding: 27px 40px;
+    padding: 15px 20px;;
     margin-bottom: 40px;
     background: #ffffff;
     display: flow-root;
@@ -29,7 +29,7 @@ body .wcmmq-header, body .wcmmq-content {
 
 .wcmmq-logo-wrapper-area {
     display: flex;
-    gap: 0 25px;
+    gap: 0 8px;
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -39,7 +39,7 @@ body .wcmmq-header, body .wcmmq-content {
 .wcmmq-header.wcmmq-clearfix {}
 
 .wcmmq-main-title-secondary {
-    padding-left: 25px;
+    padding-left: 9px;
     border-left: 1px solid #80808057;
 }
 
@@ -63,9 +63,10 @@ body .wcmmq-header, body .wcmmq-content {
     display: flex;
     gap: 10px 20px;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-wrap: wrap;
     flex-direction: row;
+    margin-top: 15px;
 }
 
 a.wcmmq-button i, button.wcmmq-button i {
@@ -243,9 +244,7 @@ a.wcmmq-button.reset:hover {
 .wcmmq-btn.wcmmq-has-icon{
     padding: 0 30px 0 0;
 }
-.wcmmq-btn.wcmmq-has-icon {
-    padding: 0 30px 0 0;
-}
+
 .wcmmq-btn span {
     display: inline-block;
     text-align: center;
@@ -275,7 +274,7 @@ a.wcmmq-button.reset:hover {
 
 /* wrapper section start here  */
 .wrap.wcmmq_wrap.wcmmq-content {
-    margin: 0 40px;
+    margin: 0 10px;
 }
 
 
@@ -299,17 +298,65 @@ a.wcmmq-button.reset:hover {
 Screen and devicewise Custom CSS
 ******************************** */
 @media (min-width: 768px) {
-
+    .wrap.wcmmq_wrap.wcmmq-content {
+        margin: 0 20px;
+    }
+    .wcmmq-header {
+        
+    }
 }
 
 @media (min-width: 992px) {
+    .wcmmq-main-title-secondary {
+        padding-left: 25px;
+    }
+    .wcmmq-logo-wrapper-area {
+        gap: 0 25px;
+    }
 
+    .wrap.wcmmq_wrap.wcmmq-content {
+        margin: 0 30px;
+    }
+    .wcmmq-header {
+        padding: 20px 30px;
+    }
 }
 
 @media (min-width: 1200px) {
+    .header-button-wrapper {
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+    .wrap.wcmmq_wrap.wcmmq-content {
+        margin: 0 40px;
+    }
+    .wcmmq-header {
+        padding: 27px 40px;
+    }
+    
+}
+@media (max-width: 782px) {
+    .auto-fold #wpcontent {
+        padding-left: 0;
+    }
+    .wcmmq-main-title h2.wcmmq-ntitle {
+        font-size: 15px;
+    }
+    .wcmmq-logo-area img.wcmmq-brand-logo {
+        height: 27px;
+    }
+
+    a.wcmmq-button, button.wcmmq-button {
+        padding: 7px 14px 7px 9px;
+    }
+    .wcmmq-btn span {
+        padding: 11px 0;
+    }
+    .wcmmq-btn.wcmmq-has-icon {
+        padding: 0 18px 0 0;
+    }
 
 }
-
 /* ********************************
 Device and Screen wise CSS end Here
 ******************************** */
