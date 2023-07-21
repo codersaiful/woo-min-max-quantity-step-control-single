@@ -408,6 +408,105 @@ Device and Screen wise CSS end Here
 ******************************** */
 
 
+/* Element design  Start here */
+
+/*******For Radio Button And Checkbox***********/
+.wcmmq-section-panel .switch {
+    position: relative;
+    display: inline-block;
+    width: 66px;
+    height: 27px;
+}
+
+.wcmmq-section-panel .switch input {
+    display: none;
+}
+
+.wcmmq-section-panel .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #eaeaea;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 1px solid #bdbdbd;
+}
+
+.wcmmq-section-panel .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 5px;
+    bottom: 5px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.wcmmq-section-panel input:checked+.slider {
+    background-color: #4CAF50;
+    border: 1px solid #3c973f;
+}
+
+.wcmmq-section-panel input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.wcmmq-section-panel input:checked+.slider:before {
+    -webkit-transform: translateX(39px);
+    -ms-transform: translateX(39px);
+    transform: translateX(39px);
+}
+
+.wcmmq-section-panel .on {
+    display: none;
+}
+
+.wcmmq-section-panel .on,
+.wcmmq-section-panel .off {
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.wcmmq-section-panel .off {
+    color: #403434;
+    font-weight: bold;
+    left: 60%;
+}
+
+.wcmmq-section-panel .on {}
+
+.wcmmq-section-panel input:checked+.slider .on {
+    display: block;
+}
+
+.wcmmq-section-panel input:checked+.slider .off {
+    display: none;
+}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.wcmmq-section-panel .slider.round {
+  border-radius: 39px;
+}
+
+.wcmmq-section-panel .slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* Element design  end here */
+
 /*Common WP*/
 .notice {
     margin-right: 40px;
