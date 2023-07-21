@@ -84,7 +84,7 @@ include 'main-page/topbar.php';
     <h1 class="wp-heading "></h1>
     <div class="fieldwrap">
         <?php
-            // do_action( 'wcmmq_before_form' );
+            do_action( 'wcmmq_before_form' );
         ?>
         <div class="wcmmq-section-panel no-background">
             <a class="wcmmq-btn wcmmq-has-icon" href="#"><span><i class="wcmmq_icon-ok"></i></span>Link</a>

@@ -382,6 +382,19 @@ Screen and devicewise Custom CSS
         padding: 0 18px 0 0;
     }
 
+    .wcmmq-table > thead > tr > th:last-child, .wcmmq-table > tbody > tr > td:last-child {
+        display: none !important;
+        overflow: hidden;
+    }
+    .wcmmq-table > thead > tr > th:first-child, .wcmmq-table > tbody > tr > td:first-child {
+        width: 83%;
+    }
+    .form-field input[type="text"], .form-field input[type="password"], .form-field input[type="email"], .form-field input[type="number"], .form-field input[type="search"], .form-field input[type="tel"], .form-field input[type="url"], .form-field textarea {
+        width: 100%;
+    }
+    table.wcmmq-table table tr th, table.wcmmq-table table tr td {
+        width: 90%;
+    }
 }
 /* ********************************
 Device and Screen wise CSS end Here
