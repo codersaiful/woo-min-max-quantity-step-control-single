@@ -1,6 +1,10 @@
 <?php
 namespace WC_MMQ\Modules;
-class Module_Controller
+
+use WC_MMQ\Core\Base;
+use WC_MMQ\Admin\Page_Loader;
+
+class Module_Controller extends Base
 {
 
     public $prefix = 'wcmmq_';
@@ -17,7 +21,10 @@ class Module_Controller
     private $folder_name = 'module';
 
 
-
+    /**
+     * Getting information from 
+     */
+    private $page_loader;
     private $dir = __DIR__;
 
     /**
@@ -50,6 +57,8 @@ class Module_Controller
 
     public function __construct()
     {
+        $this->page_loader = new Page_Loader();
+        $this->parent_menu = $this->page_loader->main_slug;
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
         $module_item = array(
@@ -155,6 +164,7 @@ class Module_Controller
 
     public function admin_menu()
     {
+        
         $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
         add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
     }
