@@ -531,7 +531,7 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     font-weight: normal;
     border-radius: unset;
     z-index: 99999;
-    display: block;
+    display: none;
     top: 80px;
     left: unset;
     margin: 0;
