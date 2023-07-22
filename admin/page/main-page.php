@@ -1,11 +1,11 @@
 <?php
-var_dump($_POST);
+
 if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
     //Reset 
     $data = WC_MMQ::getDefaults();
     //var_dump($value);
     update_option( WC_MMQ_KEY, $data );
-    echo '<div class="updated inline"><p>Reset Successfully</p></div>';
+    echo '<div class="updated"><p>Reset Successfully</p></div>';
 }else if( isset( $_POST['data'] ) && isset( $_POST['configure_submit'] ) ){
 
     //configure_submit

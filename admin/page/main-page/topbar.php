@@ -26,7 +26,7 @@
                     </a>
                 <?php }else{ ?>
                     <a class="wcmmq-btn wcmmq-has-icon" 
-                        href="<?php esc_attr( admin_url( 'admin.php?page=wcmmq-license' ) ) ?>">
+                        href="<?php esc_attr( admin_url() ) ?>admin.php?page=wcmmq-license">
                         <span><i class=" wcmmq_icon-heart-1"></i></span>
                         License
                     </a>
