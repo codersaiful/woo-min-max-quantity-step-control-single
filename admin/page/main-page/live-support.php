@@ -32,7 +32,7 @@
                         <label for="data[live_support]"><?php echo esc_html__('Live Support','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
-                        <label class="switch switch-reverse">
+                        <label class="switch reverse">
                             <input value="1" name="data[disable_live_support]"
                                 <?php echo $live_support; /* finding checked or null */ ?> type="checkbox" id="live_support">
                             <div class="slider round"><!--ADDED HTML -->

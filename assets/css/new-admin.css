@@ -434,7 +434,9 @@ Device and Screen wise CSS end Here
     transition: .4s;
     border: 1px solid #bdbdbd;
 }
-
+.wcmmq-section-panel .switch.reverse .slider {
+    border: 1px solid #3c973f;
+}
 .wcmmq-section-panel .slider:before {
     position: absolute;
     content: "";
@@ -446,10 +448,17 @@ Device and Screen wise CSS end Here
     -webkit-transition: .4s;
     transition: .4s;
 }
+.wcmmq-section-panel .switch.reverse .slider:before {
+    background-color: #3c973f;
+}
 
 .wcmmq-section-panel input:checked+.slider {
     background-color: #ffffff;
     border: 1px solid #3c973f;
+}
+.wcmmq-section-panel .switch.reverse input:checked+.slider {
+    background-color: #fff;
+    border: 1px solid #d1d1d1;
 }
 
 .wcmmq-section-panel input:focus+.slider {
@@ -462,10 +471,19 @@ Device and Screen wise CSS end Here
     transform: translateX(73px);
     background: #4CAF50;
 }
-
-.wcmmq-section-panel .on {
-    display: none;
+.wcmmq-section-panel .switch.reverse .slider:before {
+    -webkit-transform: translateX(73px);
+    -ms-transform: translateX(73px);
+    transform: translateX(73px);
 }
+.wcmmq-section-panel .switch.reverse input:checked+.slider:before {
+    -webkit-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
+    background: #d1d1d1;
+}
+
+
 
 .wcmmq-section-panel .on,
 .wcmmq-section-panel .off {
@@ -477,7 +495,15 @@ Device and Screen wise CSS end Here
     font-size: 14px;
     font-family: Verdana, sans-serif;
 }
-
+.wcmmq-section-panel .on {
+    display: none;
+}
+.wcmmq-section-panel .switch.reverse .on {
+    display: block;
+}
+.wcmmq-section-panel .switch.reverse .off {
+    display: none;
+}
 .wcmmq-section-panel .off {
     font-weight: bold;
     left: 60%;
