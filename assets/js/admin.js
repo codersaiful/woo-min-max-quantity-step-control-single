@@ -20,7 +20,8 @@
             // window.location.href = 'https://codeastrology.com/min-max-quantity/pricing/';
         });
         
-        $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (){
+        $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (e){
+            e.preventDefault();
             var min_val = $(this).find('.config_min_qty').val();
             var max_val = $(this).find('.config_max_qty').val();
             if(min_val!=''){
@@ -30,6 +31,9 @@
                     return false;
                 }
             }
+
+            let submitBtn = $(this).find('button.configure_submit');
+
         });
 
        
@@ -38,7 +42,7 @@
     /** Save Floating button  **/
     var saveChangeText = 'Save';
     var btnHtml = '<div class="">';
-    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon"><span><i class="wcmmq_icon-floppy"></i></span><strong>' + saveChangeText + '</strong></button>';
+    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon configure_submit"><span><i class="wcmmq_icon-floppy"></i></span><strong>' + saveChangeText + '</strong></button>';
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 

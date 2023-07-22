@@ -170,14 +170,14 @@ include 'main-page/topbar.php';
             <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
                 <button name="configure_submit"  
-                    class="wcmmq-btn wcmmq-has-icon">
-                    <span><i class="wcmmq_icon-ok"></i></span>
+                    class="wcmmq-btn wcmmq-has-icon configure_submit">
+                    <span><i class="wcmmq_icon-floppy"></i></span>
                     <?php echo esc_html__('Save Change','wcmmq');?>
                 </button>
                 <button name="reset_button" 
-                    class="wcmmq-btn reset wcmmq-has-icon"
+                    class="wcmmq-btn reset wcmmq-has-icon reset_button"
                     onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
-                    <span><i class="wcmmq_icon-arrows-cw-outline"></i></span>
+                    <span><i class="wcmmq_icon-arrows-cw"></i></span>
                     <?php echo esc_html__( 'Reset Settings', 'wcmmq' ); ?>
                 </button>
                 
