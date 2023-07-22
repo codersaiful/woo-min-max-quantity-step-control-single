@@ -158,12 +158,12 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
+                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">
                             <input value="1" name="data[quantiy_box_archive]"
-                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="data[quantiy_box_archive]">
+                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="_quantiy_box_archive">
                             <div class="slider round"><!--ADDED HTML -->
                                 <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                             </div>
@@ -188,12 +188,12 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label>
+                        <label for="_disable_order_page"><?php echo esc_html__('Order Page (Condition)','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">
                             <input value="1" name="data[<?php echo esc_attr( WC_MMQ_PREFIX ); ?>disable_order_page]"
-                                <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_wcmmq_disable_order_page">
+                                <?php echo $disable_order_page; /* finding checked or null */ ?> type="checkbox" id="_disable_order_page">
                             <div class="slider round"><!--ADDED HTML -->
                                 <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                             </div>
