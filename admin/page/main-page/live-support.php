@@ -23,7 +23,7 @@
         * @ since 3.6.0
         * @ Author Fazle Bari 
         -->
-        <?php $live_support = isset( $saved_data['live_support' ] ) && $saved_data['live_support' ] == '1' ? 'checked' : false; ?>
+        <?php $live_support = isset( $saved_data['disable_live_support' ] ) && $saved_data['disable_live_support' ] == '1' ? 'checked' : false; ?>
         <tr>
             <td>
                 <div class="wcmmq-form-control">

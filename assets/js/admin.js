@@ -109,7 +109,7 @@
     }else{
         targetElement.removeClass('stick_on_scroll-on');
     }
-    console.log(scrollTop,colSetsLen);
+    
     if(scrollTop > 100 && colSetsLen > 0){
         targetElement.attr('id','stick_on_scroll-on');
     }else if(colSetsLen > 0){
