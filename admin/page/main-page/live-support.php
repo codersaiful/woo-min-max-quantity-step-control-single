@@ -29,12 +29,12 @@
                 <div class="wcmmq-form-control">
                     <!-- <?php var_dump($saved_data); ?> -->
                     <div class="form-label col-lg-6">
-                        <label for="data[live_support]"><?php echo esc_html__('Live Support','wcmmq');?></label>
+                        <label for="data[disable_live_support]"><?php echo esc_html__('Live Support','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch reverse">
                             <input value="1" name="data[disable_live_support]"
-                                <?php echo $live_support; /* finding checked or null */ ?> type="checkbox" id="live_support">
+                                <?php echo $live_support; /* finding checked or null */ ?> type="checkbox" id="data[disable_live_support]">
                             <div class="slider round"><!--ADDED HTML -->
                                 <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                             </div>

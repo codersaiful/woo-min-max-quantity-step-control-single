@@ -163,7 +163,7 @@
                     <div class="form-field col-lg-6">
                         <label class="switch">
                             <input value="1" name="data[quantiy_box_archive]"
-                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="quantiy_box_archive">
+                                <?php echo $quantiy_box_archive; /* finding checked or null */ ?> type="checkbox" id="data[quantiy_box_archive]">
                             <div class="slider round"><!--ADDED HTML -->
                                 <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                             </div>
