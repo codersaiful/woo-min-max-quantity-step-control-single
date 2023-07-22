@@ -519,6 +519,13 @@ Device and Screen wise CSS end Here
     display: none;
 }
 
+.wcmmq-section-panel .switch.reverse input:checked+.slider .on {
+    display: none;
+}
+
+.wcmmq-section-panel .switch.reverse input:checked+.slider .off {
+    display: block;
+}
 /*--------- END --------*/
 
 /* Rounded sliders */
