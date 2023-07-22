@@ -83,11 +83,11 @@ jQuery(document).ready(function($){
         thC = '</th>'
         tr = '<tr>';
         trC = '</tr>';
-        html += '<div id="wcmmq_terms_' + term_key + '_' + id + '" class="wcmmq_each_terms"  data-term_key="' + term_key + '" data-term_id="' + id + '">\n\
+        html += '<div id="wcmmq_terms_' + term_key + '_' + id + '" class="wcmmq_each_terms wcmmq-each-term-temp"  data-term_key="' + term_key + '" data-term_id="' + id + '">\n\
                 <ul class="wcmmq_each_terms_header" data-target="term_table_' + id + '">\n\
                     <li class="label">' + term_name + '<small>' + term_key + '</small></li>\n\
-                    <li class="edit" data-target="term_table_' + id + '"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>\n\
-                    <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>\n\
+                    <li class="edit" data-target="term_table_' + id + '"><i class="wcmmq_icon-dot-3"></i></li>\n\
+                    <li class="delete"><i class="wcmmq_icon-trash-empty"></i></li>\n\
                 </ul>\n\
                 <div class="product_cat">';
         html += '<table id="term_table_' + id + '">';
@@ -118,18 +118,21 @@ jQuery(document).ready(function($){
         html += '</table>';
         html += '</div></div>';
         $('.wcmmq_terms_wrapper.term_wrapper_' + term_key).prepend(html);
+        $('#wcmmq_terms_' + term_key + '_' + id).fadeIn('slow');
     });
     
     $(document).on('click','ul.wcmmq_each_terms_header',function(){
         var table_id = $(this).attr('data-target');
-        console.log(table_id);
-        $('#' + table_id).toggle();
+        $('#' + table_id).fadeToggle();
     });
         
     // delete from list
     $('body').on('click', '.delete', function(){
         //e.preventDefault();
-        $(this).parents('.wcmmq_each_terms').remove();
+        var thisParentEl = $(this).parents('.wcmmq_each_terms');
+        thisParentEl.fadeOut('medium',function(){
+            thisParentEl.remove();
+        });
     });
     
     $( ".wcmmq_terms_wrapper, .wcmmq-terms-wrapper" ).sortable({

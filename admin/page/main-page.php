@@ -94,7 +94,7 @@ include 'main-page/topbar.php';
             
         </div>
         
-        <form class="ultraaddons" action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
+        <form class="" action="#wcmmq-supported-terms" method="POST" id="wcmmq-main-configuration-form">
             <div class="wcmmq-section-panel universal-settings" id="wcmmq-universal-settings">
                 <?php include 'main-page/universal-settings.php'; ?>
             </div>

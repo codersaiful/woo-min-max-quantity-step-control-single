@@ -91,8 +91,8 @@ ul.wcmmq_each_terms_header small {
 }
 .wcmmq_each_terms_header li {
     display: inline-block;
-    padding: 5px;
-    margin: 0 20px;
+    padding: 4px;
+    margin: 0;
     cursor: pointer;
 }
 .wcmmq_each_terms_header li:first-child {
@@ -104,7 +104,10 @@ ul.wcmmq_each_terms_header small {
 
 /*each term design*/
 .wcmmq_each_terms {
-    margin-bottom: 1px;
+    margin-bottom: 10px;
+}
+.wcmmq_each_terms.wcmmq-each-term-temp {
+    display: none;
 }
 .wcmmq_each_terms table {
     background: #f1f1f1;

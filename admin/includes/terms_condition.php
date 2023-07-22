@@ -62,8 +62,8 @@
         <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
         <ul class="wcmmq_each_terms_header" data-target="term_table_<?php echo esc_attr( $id ); ?>">
             <li class="label"><?php echo get_term( $id )->name; ?> (<?php echo esc_html( get_term( $id )->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
-            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><?php echo esc_html__( 'Edit', 'wcmmq' ); ?></li>
-            <li class="delete"><?php echo esc_html__( 'Delete', 'wcmmq' ); ?></li>
+            <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><i class="wcmmq_icon-dot-3"></i></li>
+            <li class="delete"><i class="wcmmq_icon-trash-empty"></i></li>
          </ul> 
     <table id="term_table_<?php echo esc_attr( $id ); ?>">
         <tr>
