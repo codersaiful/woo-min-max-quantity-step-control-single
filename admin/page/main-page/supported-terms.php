@@ -52,7 +52,7 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
                     <div class="form-label col-lg-6">
                         <label for=""><?php echo esc_html__('Choose Terms','wcmmq');?></label>
                     </div>
-                    <div class="form-field col-lg-6">
+                    <div class="form-field col-lg-6" >
                         <select name="data[supported_terms][]" data-name="supported_terms" class="ua_input_select" id="wcmmq_supported_terms" multiple>
                         <?php
                             echo $select_option;

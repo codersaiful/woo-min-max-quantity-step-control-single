@@ -9,7 +9,8 @@
          * form will be submit
          */
          $(document.body).on('change','#wcmmq_supported_terms',function(){
-            $('#wcmmq_form_submit_button').trigger('click');
+            
+            $('button.wcmmq-btn.configure_submit').trigger('click');
         });
         
         $(document.body).on('click','.wcmmq-premium',function(){
