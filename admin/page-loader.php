@@ -21,9 +21,18 @@ class Page_Loader extends Base
     {
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
+
+
+        add_action('wp_ajax_wcmmq_save_form', [$this, 'save_form']);
         
     }
 
+    public function save_form()
+    {
+        var_dump($_POST);
+
+        die();
+    }
 
     
     public function main_page_html()
@@ -92,6 +101,19 @@ class Page_Loader extends Base
         
         wp_register_script( 'wcmmq-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
         wp_enqueue_script( 'wcmmq-admin-script' );
+
+        
+        $ajax_url = admin_url( 'admin-ajax.php' );
+        $WCMMQ_ADMIN_DATA = array( 
+            'ajax_url'       => $ajax_url,
+            'site_url'       => site_url(),
+            'cart_url'       => wc_get_cart_url(),
+            'priceFormat'    => get_woocommerce_price_format(),
+            'decimal_separator'=> '.',
+            'default_decimal_separator'=> wc_get_price_decimal_separator(),
+            'decimal_count'=> wc_get_price_decimals(),
+            );
+        wp_localize_script( 'wcmmq-admin-script', 'WCMMQ_ADMIN_DATA', $WCMMQ_ADMIN_DATA );
         
         wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
         wp_enqueue_style( 'ultraaddons-common-css' );
@@ -119,6 +141,14 @@ class Page_Loader extends Base
 
         
     }
+
+    /**
+     * Old menu page will redirect to new menu page.
+     * 
+     * 
+     *
+     * @return void
+     */
     public function redirect_to_new_page()
     {
         wp_redirect(admin_url('admin.php?page=' . $this->main_slug));

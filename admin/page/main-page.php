@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_POST);
 if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
     //Reset 
     $data = WC_MMQ::getDefaults();
@@ -164,20 +164,22 @@ include 'main-page/topbar.php';
              */
             do_action( 'wcmmq_form_panel_bottom', $saved_data );
             ?>
-            <div class="wcmmq-section-panel live-support" id="wcmmq-supported-terms">
+            <div class="wcmmq-section-panel live-support" id="wcmmq-live-support-area">
                 <?php include 'main-page/live-support.php'; ?>
             </div>
             <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
-                <button name="configure_submit"  
+                <button name="configure_submit" type="submit"
                     class="wcmmq-btn wcmmq-has-icon configure_submit">
                     <span><i class="wcmmq_icon-floppy"></i></span>
+                    <strong class="form-submit-text">
                     <?php echo esc_html__('Save Change','wcmmq');?>
+                    </strong>
                 </button>
                 <button name="reset_button" 
                     class="wcmmq-btn reset wcmmq-has-icon reset_button"
                     onclick="return confirm('If you continue with this action, you will reset all options in this page.\nAre you sure?');">
-                    <span><i class="wcmmq_icon-arrows-cw"></i></span>
+                    <span><i class="wcmmq_icon-arrows-cw "></i></span>
                     <?php echo esc_html__( 'Reset Settings', 'wcmmq' ); ?>
                 </button>
                 

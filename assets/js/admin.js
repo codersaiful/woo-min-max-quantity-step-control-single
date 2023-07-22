@@ -33,7 +33,39 @@
             }
 
             let submitBtn = $(this).find('button.configure_submit');
+            let submitBtnInForm = submitBtn.not('.float-btn');
+            let submitBtnIcon = submitBtn.find('span i');
+            submitBtn.find('strong.form-submit-text').text('Saving...');
+            submitBtnIcon.attr('class', 'wcmmq_icon-spin5 animate-spin');
+            // submitBtnIcon.attr('class', 'wcmmq_icon-floppy');
+            
+            var postURL = 'http://wpp.cm/wp-admin/admin.php?page=wcmmq-min-max-control';
+            var other_data = $(this).serializeArray();
+            
+            // $.post(postURL, other_data, function(response){}).done(function(result){
+            //     $('#wcmmq-live-support-area').html(result);
+            //     $('#wcmmq-universal-settings').html(result);
+                
+            //     alert('Savvveeeeeed');
+            // }).fail(function(){
+            //     alert('FFFFFFFFaileddddddddd');
+            // });
 
+            console.log(other_data);
+            // let data = {
+            //     action: 'wcmmq_save_form',
+            //     other_data: other_data
+            // };
+
+            // let ajax_url = WCMMQ_ADMIN_DATA.ajax_url;
+            // $.ajax({
+            //     type: 'POST',
+            //     url: ajax_url,// + get_data,
+            //     data: data,
+            //     success:function(result){
+            //         $('#wcmmq-live-support-area').html(result);
+            //     }
+            // });
         });
 
        

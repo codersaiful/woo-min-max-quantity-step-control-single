@@ -542,7 +542,7 @@ form#wcmmq-main-configuration-form #stick_on_scroll-on span {
     padding: 16 0;
     margin-right: 0;
 }
-form#wcmmq-main-configuration-form #stick_on_scroll-on span i.wcmmq_icon-floppy{
+form#wcmmq-main-configuration-form #stick_on_scroll-on span i{
     font-size: 22px;
 }
 form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {

@@ -249,6 +249,9 @@ a.wcmmq-button.reset:hover {
     color: #fff;
     background-color: #4CAF50;
 }
+.wcmmq-btn strong{
+    font-weight: 800;
+}
 .wcmmq-btn.round {
     border-radius: 22px;
 }
