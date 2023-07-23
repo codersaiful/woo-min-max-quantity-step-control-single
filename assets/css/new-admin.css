@@ -311,7 +311,17 @@ a.wcmmq-button.reset:hover {
 .wcmmq-section-panel.no-background.wcmmq-full-form-submit-wrapper>button {
     min-width: max-content;
 }
-
+.wcmmq-content .ua_input_number, .wcmmq-content .ua_input_select {
+    width: 70%;
+    max-width: 400px;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    padding: 4px 10px;
+    height: 38px;
+    min-width: 90px;
+    box-shadow: none;
+    color: #716269;
+}
 /* wrapper section start here  */
 .wrap.wcmmq_wrap.wcmmq-content {
     margin: 0 10px;
