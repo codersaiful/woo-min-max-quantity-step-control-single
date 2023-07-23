@@ -9,7 +9,7 @@ class Module_Controller extends Base
 
     public $prefix = 'wcmmq_';
 
-    public $parent_menu;
+    // public $parent_menu;
     private $option_key = 'disable_modules';
     public $options;
 
@@ -25,7 +25,7 @@ class Module_Controller extends Base
      * Getting information from 
      */
     private $page_loader;
-    private $dir = __DIR__;
+    public $dir = __DIR__;
 
     /**
      * For Instance
@@ -57,10 +57,10 @@ class Module_Controller extends Base
 
     public function __construct()
     {
-        $this->page_loader = new Page_Loader();
+        // $this->page_loader = new Page_Loader();
 
-        $this->parent_menu = $this->page_loader->main_slug;
-        $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
+        // $this->parent_menu = $this->page_loader->main_slug;
+        $this->menu_title = __( 'Module Switcher', 'wcmmq' );
         
         $module_item = array(
             'loop-template-button' => array(
@@ -92,7 +92,7 @@ class Module_Controller extends Base
 
         $this->option_key = $this->prefix . $this->option_key;
         $this->active_module_key = $this->prefix . $this->active_module_key;
-        add_action( 'admin_menu', [$this, 'admin_menu'] );
+        // add_action( 'admin_menu', [$this, 'admin_menu'] );
 
        foreach( $this->get_active_modules() as $key_modl=>$modl ){
            $file_dir = ! empty( $modl['dir'] ) ? $modl['dir'] : $this->dir;
@@ -164,13 +164,13 @@ class Module_Controller extends Base
     public function admin_menu()
     {
         
-        $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
-        add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
+        // $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
+        // add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
     }
 
     public function module_page()
     {
-        include $this->page_loader->page_folder_dir . 'topbar.php';
+        // include $this->page_loader->page_folder_dir . 'topbar.php';
         include_once __DIR__ . '/module-page.php';
     }
 

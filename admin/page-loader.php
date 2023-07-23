@@ -2,6 +2,7 @@
 namespace WC_MMQ\Admin;
 
 use WC_MMQ\Core\Base;
+use WC_MMQ\Modules\Module_Controller;
 
 class Page_Loader extends Base
 {
@@ -10,11 +11,14 @@ class Page_Loader extends Base
     public $page_folder_dir;
 
     protected $is_pro;
+    public $module_controller;
 
     public function __construct()
     {
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
+
+        $this->module_controller = new Module_Controller();
     }
 
     public function run()
@@ -43,6 +47,12 @@ class Page_Loader extends Base
         include $main_page_file;
     }
     
+    public function module_page()
+    {
+        include $this->page_folder_dir . 'topbar.php';
+        include $this->module_controller->dir . '/module-page.php';
+        // var_dump($this->module_controller->dir);
+    }
     
 
     public function admin_menu()
@@ -69,6 +79,10 @@ class Page_Loader extends Base
         $icon_url = $min_max_img;
         $position = 55.11;
         add_menu_page($page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position);
+
+        //Module page adding
+        add_submenu_page( $this->main_slug, $this->module_controller->menu_title, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
+
 
         add_submenu_page($this->main_slug, 'Documentation', 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
         if($this->is_pro){
