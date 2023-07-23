@@ -162,6 +162,10 @@ table.wcmmq-table tbody tr th, table.wcmmq-table tbody tr td {
 table.wcmmq-table tbody tr:first-child th, table.wcmmq-table tbody tr:first-child td {
     padding-top: 20px;
 }
+table.wcmmq-table tbody>tr.extra-divider td,
+table.wcmmq-table tbody tr:last-child td {
+    padding-bottom: 20px;
+}
 /* table style end here  */
 
 
@@ -181,6 +185,9 @@ table.wcmmq-table table tr td label {
     margin: 0 !important;
 }
 .wcmmq-licnse-form>h2{display: none;}
+.wcmmq-license-input-box {
+    margin-bottom: 20px;
+}
 
 /* common element  */
 
@@ -370,6 +377,10 @@ Screen and devicewise Custom CSS
         font-size: 12px;
         letter-spacing: 2px;
         width: 38px;
+    }
+    table.wcmmq-table tbody>tr.extra-divider td,
+    table.wcmmq-table tbody tr:last-child td {
+        padding-bottom: 40px;
     }
 }
 @media (max-width: 782px) {
