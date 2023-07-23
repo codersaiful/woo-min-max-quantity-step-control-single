@@ -9,7 +9,7 @@ class Module_Controller extends Base
 
     public $prefix = 'wcmmq_';
 
-    public $parent_menu = 'options-general.php';
+    public $parent_menu;
     private $option_key = 'disable_modules';
     public $options;
 
@@ -58,6 +58,7 @@ class Module_Controller extends Base
     public function __construct()
     {
         $this->page_loader = new Page_Loader();
+
         $this->parent_menu = $this->page_loader->main_slug;
         $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
         
@@ -150,12 +151,10 @@ class Module_Controller extends Base
         
         if( empty( $this->modules['items'] ) || ! is_array( $this->modules['items'] ) ) return;
         $deflt_option = $this->get_default_option();
-
-        // var_dump($deflt_option,$this->options,$this->modules['items']);
         foreach( $this->modules['items'] as $key=>$val ){
         $deflt_option = $this->get_default_option();
             $def_status = $deflt_option[$key] ?? 'off';
-            // var_dump($def_status);
+
             $this->modules['items'][$key]['status'] = $this->options[$key] ?? $def_status;
         }
 
@@ -171,6 +170,7 @@ class Module_Controller extends Base
 
     public function module_page()
     {
+        include $this->page_loader->page_folder_dir . 'topbar.php';
         include_once __DIR__ . '/module-page.php';
     }
 

@@ -62,10 +62,10 @@ if( isset( $_POST['data'] ) && isset( $_POST['reset_button'] ) ){
 
 $saved_data = WC_MMQ::getOptions();
 
-$min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
+
 
 //TOPBAR INCLUDE HERE
-include 'main-page/topbar.php';
+include $this->page_folder_dir . 'topbar.php';
 ?>
 
 
