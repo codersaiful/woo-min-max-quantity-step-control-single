@@ -16,7 +16,7 @@ body .wcmmq-header, body .wcmmq-content {
     color: #6b625a;
 }
 .wcmmq-header {
-    padding: 15px 20px;;
+    padding: 25px 30px;
     margin-bottom: 40px;
     background: #ffffff;
     display: flow-root;
@@ -259,6 +259,7 @@ a.wcmmq-button.reset:hover {
     border-radius: 2px;
     color: #fff;
     background-color: #4CAF50;
+    white-space: nowrap;
 }
 .wcmmq-btn strong{
     font-weight: 800;
@@ -267,7 +268,7 @@ a.wcmmq-button.reset:hover {
     border-radius: 22px;
 }
 .wcmmq-btn.wcmmq-btn-small {
-    padding: 9 18px 9 18px;
+    padding: 9px 18px 9px 18px;
     font-weight: normal;
     text-transform: none;
 }
