@@ -465,14 +465,20 @@ Device and Screen wise CSS end Here
 }
 .wcmmq-section-panel .slider:before {
     position: absolute;
-    content: "";
-    height: 24px;
+    /* content: ""; */
+    height: 18px;
     width: 24px;
     left: 10px;
     bottom: 5px;
     background-color: #ede9e9;
     -webkit-transition: .4s;
     transition: .4s;
+    content: '\e811';
+    font-family: "wcmmq-icon";
+    text-align: center;
+    padding-top: 6px !important;
+    font-size: 10px;
+    color: white;
 }
 .wcmmq-section-panel .switch.reverse .slider:before {
     background-color: #3c973f;
