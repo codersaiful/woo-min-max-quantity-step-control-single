@@ -3,10 +3,10 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="form-label col-lg-5">
+                    <div class="form-label col-lg-6">
                         <label><?php echo sprintf( esc_html__( 'Choose a %s', 'wcmmq' ), $term_name ); ?></label>
                     </div>
-                    <div class="form-field col-lg-7">
+                    <div class="form-field col-lg-6">
                     <?php
                         $options_item = '';
                         if( is_array( $term_obj ) && count( $term_obj ) > 0 ){
@@ -18,7 +18,7 @@
 
                         if( !empty( $options_item ) ){
                         ?>
-                        <select class="wcmmq_select_terms <?php echo esc_attr( $term_key ); ?> ua_select" id="wcmmq_term_ids">
+                        <select class="wcmmq_select_terms <?php echo esc_attr( $term_key ); ?> ua_select-s" id="wcmmq_term_ids">
                             <?php echo $options_item; ?>
                         </select>
                         
@@ -28,7 +28,7 @@
                         </button>    
                         <?php    
                         }else{
-                            echo "No item for {$term_name}";
+                            echo sprintf( esc_html__( 'No terms for %s', 'wcmmq' ), $term_name );
                         }
                     ?>
                     </div>
@@ -36,32 +36,36 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                    DescriptionOfField_and_docLink
+                <?php echo sprintf( esc_html__( 'Add your %s, you able to add one more.', 'wcmmq' ), $term_name ); ?>
                 </div> 
             </td>
         </tr>
 
 
-        <tr>
+        <tr class="extra-divider">
             <td>
                 <div class="wcmmq-form-control">
-                    <div class="col-lg-2"></div>
-                    <div class="form-field col-lg-10">
+                    <div class="col-lg-6"></div>
+                    <div class="form-field col-lg-6">
                     <div class="wcmmq_terms_wrapper term_wrapper_<?php echo esc_attr( $term_key ); ?>">
         <?php
+        
             if( is_array( $selected_term_ids ) && count( $selected_term_ids ) > 0 ){
 
                 foreach( $selected_term_ids as $trm_id => $minmaxsteps ){
+
                     $id = $trm_id;
                     $min = $minmaxsteps['_min'] ?? '';
                     $max = $minmaxsteps['_max'] ?? '';
                     $step = $minmaxsteps['_step'] ?? '';
                     $default = $minmaxsteps['_default'] ?? '';
+                    $theTerm = get_term( $id );
+                    if( ! $theTerm ) continue;
                     ?>
 
         <div  id="wcmmq_terms_<?php echo esc_attr( $term_key . '_' .$id ); ?>" class="wcmmq_each_terms"  data-term_key="<?php echo esc_attr( $term_key ); ?>" data-term_id="<?php echo esc_attr( $id ); ?>">
         <ul class="wcmmq_each_terms_header" data-target="term_table_<?php echo esc_attr( $id ); ?>">
-            <li class="label"><?php echo get_term( $id )->name; ?> (<?php echo esc_html( get_term( $id )->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
+            <li class="label"><?php echo $theTerm->name; ?> (<?php echo esc_html( $theTerm->count ); ?>)<small><?php echo esc_html( $term_key ); ?></small></li>
             <li class="edit" data-target="term_table_<?php echo esc_attr( $id ); ?>"><i class="wcmmq_icon-dot-3"></i></li>
             <li class="delete"><i class="wcmmq_icon-trash-empty"></i></li>
          </ul> 
@@ -125,7 +129,7 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                    DescriptionOfField_and_docLink
+                    <?php echo sprintf( esc_html__( 'Configure min,max,step for %s', 'wcmmq' ), $term_name ); ?>
                 </div> 
             </td>
         </tr>

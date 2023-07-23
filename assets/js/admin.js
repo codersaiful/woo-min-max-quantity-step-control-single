@@ -3,6 +3,7 @@
     $(document).ready(function(){
         
         $('.ua_input_select,.wcmmq_select_terms').select2();
+        $('#select#wcmmq_term_ids').select2();
         
         /**
          * Support terms -> on after change,
