@@ -177,6 +177,10 @@ table.wcmmq-table table tr td label {
 }
 /* terms setting and edit part custom end here */
 
+.wcmmq-licnse-form .license-module-parent {
+    margin: 0 !important;
+}
+.wcmmq-licnse-form>h2{display: none;}
 
 /* common element  */
 

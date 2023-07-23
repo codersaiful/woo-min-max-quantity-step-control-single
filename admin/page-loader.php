@@ -9,6 +9,7 @@ class Page_Loader extends Base
 
     public $main_slug = 'wcmmq-min-max-control';
     public $page_folder_dir;
+    public $topbar_file;
     public $sub_title;
 
     protected $is_pro;
@@ -18,6 +19,7 @@ class Page_Loader extends Base
     {
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
+        $this->topbar_file = $this->page_folder_dir . 'topbar.php';
         $this->topbar_sub_title = __("Manage and Settings", "wcmmq");
 
         $this->module_controller = new Module_Controller();
@@ -53,7 +55,7 @@ class Page_Loader extends Base
     {
         
         $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
-        include $this->page_folder_dir . 'topbar.php';
+        include $this->topbar_file;
         include $this->module_controller->dir . '/module-page.php';
     }
     

@@ -65,7 +65,7 @@ $saved_data = WC_MMQ::getOptions();
 
 
 //TOPBAR INCLUDE HERE
-include $this->page_folder_dir . 'topbar.php';
+include $this->topbar_file;
 ?>
 
 
