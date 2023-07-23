@@ -327,8 +327,12 @@ a.wcmmq-button.reset:hover {
 .wrap.wcmmq_wrap.wcmmq-content {
     margin: 0 10px;
 }
-
-
+.wcmmq-form-control .form-field>* {
+    margin-bottom: 10px;
+}
+.wcmmq-form-control select {
+    width: 100%;
+}
 
 /* inside table design  */
 .wcmmq-content table .wcmmq_each_terms_header {
@@ -392,6 +396,9 @@ Screen and devicewise Custom CSS
     table.wcmmq-table tbody>tr.extra-divider td,
     table.wcmmq-table tbody tr:last-child td {
         padding-bottom: 40px;
+    }
+    .wcmmq-form-control select {
+        width: 100%;
     }
 }
 @media (max-width: 782px) {

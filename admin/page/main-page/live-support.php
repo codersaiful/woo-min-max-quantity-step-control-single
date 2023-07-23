@@ -44,7 +44,7 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                    <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/', 'Customer Support'); ?>
+                    <?php wcmmq_doc_link('https://codeastrology.com/my-support', 'Customer Support'); ?>
                     
                 </div> 
             </td>
