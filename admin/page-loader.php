@@ -9,6 +9,7 @@ class Page_Loader extends Base
 
     public $main_slug = 'wcmmq-min-max-control';
     public $page_folder_dir;
+    public $sub_title;
 
     protected $is_pro;
     public $module_controller;
@@ -17,6 +18,7 @@ class Page_Loader extends Base
     {
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
+        $this->topbar_sub_title = __("Manage and Settings", "wcmmq");
 
         $this->module_controller = new Module_Controller();
     }
@@ -47,11 +49,12 @@ class Page_Loader extends Base
         include $main_page_file;
     }
     
-    public function module_page()
+    public function module_page_html()
     {
+        
+        $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
         include $this->page_folder_dir . 'topbar.php';
         include $this->module_controller->dir . '/module-page.php';
-        // var_dump($this->module_controller->dir);
     }
     
 
@@ -59,7 +62,7 @@ class Page_Loader extends Base
     {
         $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce' );
     
-        //This bellow line will removed
+        //This bellow line will removed //If we enable bellow line, we have a include set_menu_and_fac.php file
         // add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', 'wcmmq_faq_page_details' );
         
         //from new class
@@ -81,7 +84,7 @@ class Page_Loader extends Base
         add_menu_page($page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position);
 
         //Module page adding
-        add_submenu_page( $this->main_slug, $this->module_controller->menu_title, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
+        add_submenu_page( $this->main_slug, $this->module_controller->menu_title, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
 
         add_submenu_page($this->main_slug, 'Documentation', 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');

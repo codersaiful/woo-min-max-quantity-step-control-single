@@ -13,7 +13,7 @@ $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
                 </div>
                 
                 <div class="wcmmq-main-title wcmmq-main-title-secondary">
-                    <h2 class="wcmmq-ntitle"><?php _e("Manage and Settings", "wcmmq");?></h2>
+                    <h2 class="wcmmq-ntitle"><?php echo esc_html( $this->topbar_sub_title );?></h2>
                 </div>
 
             </div>
