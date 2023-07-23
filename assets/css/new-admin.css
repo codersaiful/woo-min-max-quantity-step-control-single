@@ -455,7 +455,7 @@ Device and Screen wise CSS end Here
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #f7f7f7;
+    background-color: #fefefe;
     -webkit-transition: .4s;
     transition: .4s;
     border: 1px solid #bdbdbd;
@@ -520,6 +520,9 @@ Device and Screen wise CSS end Here
     left: 50%;
     font-size: 14px;
     font-family: Verdana, sans-serif;
+}
+.wcmmq-section-panel .off {
+    color: #646464;
 }
 .wcmmq-section-panel .on {
     display: none;

@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-        <tr>
+        <!-- <tr>
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
@@ -30,7 +30,7 @@
                     DescriptionOfField_and_docLink
                 </div> 
             </td>
-        </tr>
+        </tr> -->
         <tr>
             <td>
                 <div class="wcmmq-form-control">
