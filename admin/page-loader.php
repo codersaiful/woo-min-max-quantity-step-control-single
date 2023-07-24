@@ -10,7 +10,7 @@ class Page_Loader extends Base
     public $main_slug = 'wcmmq-min-max-control';
     public $page_folder_dir;
     public $topbar_file;
-    public $sub_title;
+    public $topbar_sub_title;
 
     protected $is_pro;
     protected $pro_version;
@@ -98,6 +98,13 @@ class Page_Loader extends Base
             add_submenu_page($this->main_slug, 'Support & Buy', 'Support & Buy', 'read','https://codeastrology.com/downloads/min-max-step-control-wc/');
         }
         
+
+        //License Menu if pro version is getter or equal V2.0.8.4
+        if($this->pro_version && version_compare($this->pro_version, '2.0.8.4', '>=')){
+            $license = new \WC_MMQ_PRO\Admin\License\Init();
+
+            add_submenu_page( $this->main_slug, __('Min Max Control License', 'wcmmq_pro'), __( 'License', 'wcmmq_pro' ), $capability, 'wcmmq-license', [$license, 'license_page'] );
+        }
     }
 
     public function admin_enqueue_scripts()
