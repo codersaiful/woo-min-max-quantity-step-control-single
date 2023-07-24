@@ -13,11 +13,13 @@ class Page_Loader extends Base
     public $sub_title;
 
     protected $is_pro;
+    protected $pro_version;
     public $module_controller;
 
     public function __construct()
     {
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
+        $this->pro_version = $this->is_pro ? WC_MMQ_PRO_VERSION : null; 
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
         $this->topbar_sub_title = __("Manage and Settings", "wcmmq");
