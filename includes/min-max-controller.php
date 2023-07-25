@@ -346,7 +346,11 @@ class Min_Max_Controller extends Base
         if( ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
             $args['input_value'] = $this->min_value;
         }
-        // var_dump($args);
+
+		if( ! empty( $args['quantity'] ) ){
+            $args['quantity'] = $this->min_value;
+         }
+         
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
