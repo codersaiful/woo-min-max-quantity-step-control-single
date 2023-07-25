@@ -35,17 +35,20 @@ jQuery(function($) {
                 };
                 $.ajax({
                     type: 'POST',
-                    url: ajax_url,
+                    url: 'http://127.0.0.1:8000/api/test',
                     data: data,
                     success:function(result){
-                        deactiveNow();
+                        console.log(result);
+                        // deactiveNow();
                     },
-                    complete:function(){
-                        deactiveNow();
+                    complete:function(result){
+                        console.log(result);
+                        // deactiveNow();
 
                     },
-                    error:function(){
-                        deactiveNow();
+                    error:function(result){
+                        console.log(result);
+                        // deactiveNow();
                     }
                 });
             }
@@ -58,7 +61,7 @@ jQuery(function($) {
             if(typeof target !== 'undefined' && target !== ''){
                 wrapperElement.find('.' + target).fadeIn();
             }else{
-                console.log("Nothing");
+
                 wrapperElement.find('.common-target').fadeOut();
             }
             
