@@ -14,7 +14,8 @@ jQuery(function($) {
         var FormElementWrapper = wrapperElement.find('ca-survey-form');
         var deactiveBtn = $(deactive_btn_selector);
         var deactiveURL = deactiveBtn.attr('href');
-        let ourServer = 'http://edm.ultraaddons.com';//'http://wptheme.cm';//noslush
+        // let ourServer = 'http://edm.ultraaddons.com';//'http://wptheme.cm';//noslush
+        let ourServer = "http://127.0.0.1:8000/api/test";//'http://wptheme.cm';//noslush
 
 
         $(document.body).on('submit',wrapper_id_selector + ' .ca-survey-form form.ca-deactive-form',function(e){
@@ -22,11 +23,13 @@ jQuery(function($) {
             validation = formSubmitValidation();
 
             if(validation){
-                $(this).find('button.ca_button.ca-submit-form').html('Submitting...');
+                let submitButton = $(this).find('button.ca_button.ca-submit-form');
+                submitButton.html('Submitting...');
                 var formData = $(this).serializeArray();
                 var token_number = $(this).find('input.token_number').val();
 
-                var ajax_url = ourServer + '/wp-admin/admin-ajax.php';
+                // var ajax_url = ourServer + '/wp-admin/admin-ajax.php';
+                var ajax_url = ourServer;
                 var data = {
                     action: 'ca-plugin-user-data-collection',
                     datas: formData,
@@ -52,9 +55,10 @@ jQuery(function($) {
                 //     }
                 // });
 
-                $.post("http://127.0.0.1:8000/api/test",formData, function(data, status){
+                $.post(ajax_url,formData, function(data, status){
+                    submitButton.html("Submitted");
                     console.log(data, status);
-                    // alert("Data: " + data + "\nStatus: " + status);
+                    // deactiveNow();
                 });
             }
         });
