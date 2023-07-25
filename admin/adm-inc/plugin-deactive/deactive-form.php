@@ -89,7 +89,7 @@ class Deactive_Form
     protected $assignScreen = false;
     protected $screen;
     protected $screenID;
-    public $dev_version = '1.0.0';
+    public $dev_version = WC_MMQ_VERSION;
 
     protected $form_top_message;
 
@@ -204,6 +204,8 @@ class Deactive_Form
      */
     public function form()
     {
+        
+        
         if (!$this->assignScreen) $this->assignScreen();
         if ($this->screenID !== $this->required_screen_id) return;
         $date = date(" m/d/Y");
@@ -211,10 +213,18 @@ class Deactive_Form
         $site_url = get_site_url();
         $blog_name = get_bloginfo( 'name' );
         $plugin_name = $this->data['name'] ?? 'CA Plugin';
+        if(function_exists('wp_get_current_user')){
+            $current_user = wp_get_current_user();
+            $email = $current_user->user_email;
+        }
+        
 ?>
         <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form-wrap" class="ca-survey-form-wrap">
             <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form" class="ca-survey-form">
                 <p class="motivational-speek"><?php echo esc_html( $this->form_top_message ); ?></p>
+                <?php
+                
+                ?>
                 <form method="POST" class="ca-deactive-form">
                     <input name="Plugin" type="hidden" class="plugin_name" placeholder="Plugin" value="<?php echo esc_attr( $plugin_name ); ?>" required>
                     <input name="Token" type="hidden" class="token_number" placeholder="Plugin" value="<?php echo esc_attr( $token ); ?>" required>

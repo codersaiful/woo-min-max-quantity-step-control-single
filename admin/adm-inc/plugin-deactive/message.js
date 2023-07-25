@@ -33,23 +33,28 @@ jQuery(function($) {
                     token_number: token_number,
                     base_data: base_data,
                 };
-                $.ajax({
-                    type: 'POST',
-                    url: 'http://127.0.0.1:8000/api/test',
-                    data: data,
-                    success:function(result){
-                        console.log(result);
-                        // deactiveNow();
-                    },
-                    complete:function(result){
-                        console.log(result);
-                        // deactiveNow();
+                // $.ajax({
+                //     type: 'POST',
+                //     url: 'http://127.0.0.1:8000/api/test',
+                //     data: data,
+                //     success:function(result){
+                //         console.log(result);
+                //         // deactiveNow();
+                //     },
+                //     complete:function(result){
+                //         console.log(result);
+                //         // deactiveNow();
 
-                    },
-                    error:function(result){
-                        console.log(result);
-                        // deactiveNow();
-                    }
+                //     },
+                //     error:function(result){
+                //         console.log(result);
+                //         // deactiveNow();
+                //     }
+                // });
+
+                $.post("http://127.0.0.1:8000/api/test",formData, function(data, status){
+                    console.log(data, status);
+                    // alert("Data: " + data + "\nStatus: " + status);
                 });
             }
         });
