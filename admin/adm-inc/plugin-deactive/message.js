@@ -38,14 +38,15 @@ jQuery(function($) {
                     url: ajax_url,
                     data: data,
                     success:function(result){
-                        deactiveNow();
+                        console.log(result);
+                        // deactiveNow();
                     },
                     complete:function(){
-                        deactiveNow();
+                        // deactiveNow();
 
                     },
                     error:function(){
-                        deactiveNow();
+                        // deactiveNow();
                     }
                 });
             }
