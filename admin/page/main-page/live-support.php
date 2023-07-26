@@ -27,7 +27,6 @@
         <tr>
             <td>
                 <div class="wcmmq-form-control">
-                    <!-- <?php var_dump($saved_data); ?> -->
                     <div class="form-label col-lg-6">
                         <label for="_disable_live_support"><?php echo esc_html__('Live Support','wcmmq');?></label>
                     </div>
@@ -39,6 +38,33 @@
                                 <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
                             </div>
                         </label>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    <?php wcmmq_doc_link('https://codeastrology.com/my-support', 'Customer Support'); ?>
+                    
+                </div> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label col-lg-6">
+                        <label for="_disable_live_support"><?php echo esc_html__('Important Link','wcmmq');?></label>
+                    </div>
+                    <div class="form-field col-lg-6">
+                        <div class="wcmmq-important-link-area">
+                            <a class="wcmmq-btn wcmmq-btn-small wcmmq-has-icon">
+                                <span><i class="wcmmq_icon-plus"></i></span>    
+                                Github Repo                       
+                            </a>
+                            <a class="wcmmq-btn wcmmq-btn-small wcmmq-has-icon">
+                                <span><i class="wcmmq_icon-plus"></i></span>    
+                                Submit Issue                       
+                            </a>
+                        </div>
                     </div>
                 </div>
             </td>
