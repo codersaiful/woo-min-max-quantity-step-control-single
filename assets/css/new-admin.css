@@ -349,7 +349,15 @@ a.wcmmq-button.reset:hover {
 .wcmmq-form-control select {
     width: 100%;
 }
-
+span#footer-thankyou.wcmmq-footer-thankyou a>i {
+    color: #FF9800;
+}
+span#footer-thankyou.wcmmq-footer-thankyou a>i:before {
+    margin-left: 0;
+    margin-right: 0;
+    background: white;
+    padding: 2px;
+}
 /* inside table design  */
 .wcmmq-content table .wcmmq_each_terms_header {
     margin: 0;

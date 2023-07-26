@@ -162,6 +162,7 @@ class Page_Loader extends Base
 
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
         if( strpos( $s_id, $this->plugin_prefix ) !== false ){
+            add_filter('admin_footer_text',[$this, 'admin_footer_text']);
             
             wp_register_style( 'wcmmq-icon-font', $this->base_url . 'assets/fontello/css/wcmmq-icon.css', false, $this->dev_version );
             wp_enqueue_style( 'wcmmq-icon-font' );
@@ -193,6 +194,16 @@ class Page_Loader extends Base
         wp_redirect(admin_url('admin.php?page=' . $this->main_slug));
     }
 
+    public function admin_footer_text($text)
+    {
+        $rev_link = 'https://wordpress.org/support/plugin/woo-min-max-quantity-step-control-single/reviews/#new-post';
+        $text = sprintf(
+			__( 'Thank you for using Min Max Control. <a href="%s" target="_blank">%sPlease review us</a>.' ),
+			$rev_link,
+            '<i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i><i class="wcmmq_icon-star-filled"></i>'
+		);
+        return '<span id="footer-thankyou" class="wcmmq-footer-thankyou">' . $text . '</span>';
+    }
     public function plugins_api_result( $res, $action, $args )
     {
         if ( $action !== 'query_plugins' ) {
