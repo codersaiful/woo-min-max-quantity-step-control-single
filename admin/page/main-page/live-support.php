@@ -56,13 +56,32 @@
                     </div>
                     <div class="form-field col-lg-6">
                         <div class="wcmmq-important-link-area">
-                            <a class="wcmmq-btn wcmmq-btn-small wcmmq-has-icon">
-                                <span><i class="wcmmq_icon-plus"></i></span>    
+                            <a class="wcmmq-btn reset wcmmq-has-icon wcmmq-btn-tiny" 
+                              href="https://codeastrology.com/min-max-quantity/"
+                              title="Pro Feature and Min Max Control Home Page"
+                              target="_blank">
+                                <span><i class="wcmmq_icon-globe-inv"></i></span>    
+                                Web                       
+                            </a>
+                            <a class="wcmmq-btn wcmmq-has-icon wcmmq-btn-tiny" 
+                              href="https://github.com/codersaiful/woo-min-max-quantity-step-control-single"
+                              title="Github Repository of Min Man Control Free version"
+                              target="_blank">
+                                <span><i class="wcmmq_icon-github-circled"></i></span>    
                                 Github Repo                       
                             </a>
-                            <a class="wcmmq-btn wcmmq-btn-small wcmmq-has-icon">
-                                <span><i class="wcmmq_icon-plus"></i></span>    
+                            <a class="wcmmq-btn wcmmq-has-icon wcmmq-btn-tiny"
+                              href="https://github.com/codersaiful/woo-min-max-quantity-step-control-single/issues/new"
+                              title="Submit your issue and you can request for a feature"
+                              target="_blank">
+                                <span><i class="wcmmq_icon-github"></i></span>    
                                 Submit Issue                       
+                            </a>
+                            <a class="wcmmq-btn wcmmq-has-icon wcmmq-btn-tiny"
+                              href="https://www.trustpilot.com/review/codeastrology.com"
+                              target="_blank">
+                                <span><i class="wcmmq_icon-star-filled"></i></span>    
+                                Review                       
                             </a>
                         </div>
                     </div>
@@ -70,8 +89,7 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
-                    <?php wcmmq_doc_link('https://codeastrology.com/my-support', 'Customer Support'); ?>
-                    
+
                 </div> 
             </td>
         </tr>

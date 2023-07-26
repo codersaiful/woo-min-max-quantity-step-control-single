@@ -272,6 +272,11 @@ a.wcmmq-button.reset:hover {
     font-weight: normal;
     text-transform: none;
 }
+.wcmmq-btn.wcmmq-btn-tiny {
+    padding: 8px 16px 8px 16px;
+    font-weight: normal;
+    text-transform: none;
+}
 .wcmmq-btn.reset {
     background-color: #9E9E9E;
 }
@@ -282,7 +287,9 @@ a.wcmmq-button.reset:hover {
 .wcmmq-btn.wcmmq-has-icon{
     padding: 0 30px 0 0;
 }
-
+.wcmmq-btn.wcmmq-btn-tiny.wcmmq-has-icon {
+    padding: 0 8px 0 0;
+}
 .wcmmq-btn span {
     display: inline-block;
     text-align: center;
@@ -292,12 +299,22 @@ a.wcmmq-button.reset:hover {
     border-radius: 4px 0 0 4px;
     background: #00000042;
 }
+
+.wcmmq-btn.wcmmq-btn-tiny span {
+    margin-right: 6px;
+    border-radius: 3px 0 0 3px;
+}
 .wcmmq-btn.round span {
     border-radius: 22px 0 0 22px;
 }
 .wcmmq-btn.wcmmq-btn-small span {
     padding: 10px 0;
     width: 40px;
+    font-weight: bold;
+}
+.wcmmq-btn.wcmmq-btn-tiny span {
+    padding: 8px 0;
+    width: 32px;
     font-weight: bold;
 }
 .wcmmq-section-panel.no-background.wcmmq-full-form-submit-wrapper {
