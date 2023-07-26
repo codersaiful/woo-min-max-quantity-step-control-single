@@ -113,7 +113,7 @@ class Page_Loader extends Base
         
 
         //License Menu if pro version is getter or equal V2.0.8.4
-        if(is_object($this->license) && version_compare($this->pro_version, '2.0.8.4', '>=')){
+        if( is_object( $this->license ) && version_compare($this->pro_version, '2.0.8.4', '>=')){
             add_submenu_page( $this->main_slug, __('Min Max Control License', 'wcmmq_pro'), __( 'License', 'wcmmq_pro' ), $capability, 'wcmmq-license', [$this->license, 'license_page'] );
         }
     }

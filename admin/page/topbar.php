@@ -1,5 +1,28 @@
 <?php
 $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
+
+/**
+ * This following part actually
+ * for our both version
+ * 
+ * ekta en vato nd arekta amader mull site laisens er jonno.
+ * code vato hole to WC_MMQ_PRO::$direct er value null thakbe
+ * tokhon amra License menu ta ekhane dekhabo na.
+ * 
+ * ********************
+ * arekta prosno jagte pare.
+ * ei lai sense er jonno to ekta property achei amade Page_Loader class e
+ * tarpor o keno amra ekhane notun kore check korchi.
+ * 
+ * asoel ei tobbar.php file ta onno class diye o , jemon \WC_MMQ_PRO\Admin\License\Init class eo 
+ * load kora hoyeche. tokhon to $this->license pabe na.
+ * tai notun kore check korechi.
+ */
+$license_direct = true;
+if($this->is_pro && class_exists('\WC_MMQ_PRO')){
+    $license_direct = \WC_MMQ_PRO::$direct;
+}
+
 $topbar_sub_title = __( 'Manage and Settings', 'wcmmq' );
 if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
     $topbar_sub_title = $this->topbar_sub_title;
@@ -31,7 +54,7 @@ if( isset( $this->topbar_sub_title ) && ! empty( $this->topbar_sub_title ) ){
                         <i class="wcmmq_icon-heart-filled"></i>
                         Get Premium Offer
                     </a>
-                <?php }else{ ?>
+                <?php }else if($license_direct){ ?>
                     <a class="wcmmq-btn wcmmq-has-icon" 
                         href="<?php esc_attr( admin_url() ) ?>admin.php?page=wcmmq-license">
                         <span><i class=" wcmmq_icon-heart-1"></i></span>
