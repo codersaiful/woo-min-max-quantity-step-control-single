@@ -14,12 +14,16 @@ class Page_Loader extends Base
 
     protected $is_pro;
     protected $pro_version;
+    public $license;
     public $module_controller;
 
     public function __construct()
     {
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
-        $this->pro_version = $this->is_pro ? WC_MMQ_PRO_VERSION : null; 
+        if($this->is_pro){
+            $this->pro_version = WC_MMQ_PRO_VERSION;
+            $this->license = \WC_MMQ_PRO::$direct;
+        }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
         $this->topbar_sub_title = __("Manage and Settings", "wcmmq");
@@ -109,10 +113,8 @@ class Page_Loader extends Base
         
 
         //License Menu if pro version is getter or equal V2.0.8.4
-        if($this->pro_version && version_compare($this->pro_version, '2.0.8.4', '>=')){
-            $license = new \WC_MMQ_PRO\Admin\License\Init();
-
-            add_submenu_page( $this->main_slug, __('Min Max Control License', 'wcmmq_pro'), __( 'License', 'wcmmq_pro' ), $capability, 'wcmmq-license', [$license, 'license_page'] );
+        if(is_object($this->license) && version_compare($this->pro_version, '2.0.8.4', '>=')){
+            add_submenu_page( $this->main_slug, __('Min Max Control License', 'wcmmq_pro'), __( 'License', 'wcmmq_pro' ), $capability, 'wcmmq-license', [$this->license, 'license_page'] );
         }
     }
 
