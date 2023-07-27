@@ -169,7 +169,7 @@ class Min_Max_Controller extends Base
         if( $this->is_pro && $this->setIfVariationArgs() ) return true;
 
         //Return here if found in single
-        if( ! empty( $this->min_value ) || ! empty( $this->min_value ) || ! empty( $this->min_value )  || $this->min_value == 0 ){
+        if( ! empty( $this->min_value ) || ! empty( $this->max_value ) || ! empty( $this->step_value )  || $this->min_value == 0 ){
             $this->where_args_on = 'single';
             return true;
         }elseif( empty( $this->term_data ) ){
