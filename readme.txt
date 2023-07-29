@@ -227,6 +227,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 4.5 =
+* use `add_filter('wcmmq_ajax_cart_single_page', '__return_false');` for disable ajax add to cart on single page.
 * Update decimal separator option
 * Code Optimized
 
