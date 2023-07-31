@@ -26,6 +26,16 @@ class Tracker extends Base
         // Add more data fields as needed
     );
 
+
+    $data = [
+        'plugin' => $user_id,
+        'site' => $ip_address,
+        'email' => 'saiful@codeastrology.com',
+        'other' => $plugin_version,
+        'track_time' => time(),
+        'track_count' => 2,
+    ];
+
     $api_url = $this->tracker_url; // Replace this with your actual API endpoint
     var_dump(json_encode( $data ));
     // Send data to the tracking API using the WordPress HTTP API
@@ -37,7 +47,7 @@ class Tracker extends Base
         ),
         'body' => json_encode( $data ),
     ) );
-        var_dump(json_encode( $data ));
+        // var_dump($tttt);
 
     }
 }
