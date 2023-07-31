@@ -16,7 +16,7 @@ class Admin_Loader extends Base{
         $main_page->run();
 
         $tracker = new Tracker();
-        // $main_page->run();
+        $tracker->run();
 
         // $settings = new Settings_Loader();
         // $settings->run();
