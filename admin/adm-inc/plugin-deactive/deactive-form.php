@@ -251,7 +251,7 @@ class Deactive_Form
                         <?php echo wp_kses_post( $this->common_target_msg ); ?>
                     </div>
                     <div class="ca-msg-button-wrapper">
-                        <button type="submit" class="ca_button ca-deactive ca-submit-form" id="ca_deactivate">Submit & Deactivate</button>
+                        <button type="submit" class="ca_button ca-deactive ca-submit-form" id="ca_deactivate">Accept & Deactivate</button>
                         <a href="#" class="ca_button ca_cancel" id="ca_cancel">Keep</a>
                         <a href="#" class="ca_button ca_skip" id="ca_skip">Skip & Deactivate</a>
                     </div>
