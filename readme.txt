@@ -1,7 +1,7 @@
-=== Min Max Quantity & Step Control for WooCommerce ===
+=== Min Max Control - Min Max Quantity & Step Control for WooCommerce===
 Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
-Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
+Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 6.3
 Requires PHP: 5.4
@@ -9,11 +9,11 @@ Stable tag: 4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Min Max Quantity & Step Control for WooCommerce plugin offers to set product's minimum, maximum quantity and step of each product individually.
+Min Max Control plugin offers to set product's minimum, maximum quantity and step of each product individually.
 
 == Description ==
 
-*Min Max Quantity & Step Control for WooCommerce* plugin offers to set product’s 
+*Min Max Control*(Min Max Quantity & Step Control for WooCommerce) plugin offers to set product’s 
 
 🎉 Minimum Quantity<br>
 🎉 Maximum Quantity<br>

@@ -73,7 +73,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  */
                 
                 $target = 'https://codeastrology.com/coupons/?campaign=WP20_MM&ref=1&utm_source=Default_Offer_LINK';
-                $my_message = '<b><i>COUPON CODE: WP20 - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Quantity & Step Control for WooCommerce</b> Plugin?';
+                $my_message = '<b><i>COUPON CODE: WP20 - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin?';
                 $offerNc = new Notice('wcmmq-WP20-offer-ss');
                 $offerNc->set_title( 'SPECIAL OFFER' )
                 ->set_diff_limit(35)
