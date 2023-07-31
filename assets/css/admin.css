@@ -91,20 +91,23 @@ ul.wcmmq_each_terms_header small {
 }
 .wcmmq_each_terms_header li {
     display: inline-block;
-    padding: 5px;
-    margin: 0 20px;
+    padding: 4px;
+    margin: 0;
     cursor: pointer;
 }
 .wcmmq_each_terms_header li:first-child {
     margin-left: 0;
     float: left;
-    font-size: 150%;
+    font-size: initial;
     font-weight: 400;
 }
 
 /*each term design*/
 .wcmmq_each_terms {
-    margin-bottom: 1px;
+    margin-bottom: 10px;
+}
+.wcmmq_each_terms.wcmmq-each-term-temp {
+    display: none;
 }
 .wcmmq_each_terms table {
     background: #f1f1f1;
@@ -127,7 +130,8 @@ ul.wcmmq_each_terms_header small {
 
 .wcmmq_each_terms table tr th, .wcmmq_each_terms table td {
     padding: 7px 10px !important;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 0 none;
+    background: #dddddd17;
 }
 
 .wcmmq_each_terms table * {
@@ -249,14 +253,15 @@ ul.wcmmq_each_terms_header small {
 .wcmmq-premium>*:first-child:before {
     content: "Pro";
     background: #ff0000c2;
-    padding: 7px 15px;
+    padding: 3px 9px;
     color: white;
-    border-radius: 8px;
-    font-size: 20px;
+    border-radius: 5px;
+    font-size: 14px;
     position: absolute;
-    top: 22px;
-    left: 70%;
+    top: 8px;
+    left: 138px;
     z-index: 1;
+    line-height: 14px;
 }
 
 /*******For Radio Button And Checkbox***********/
@@ -295,8 +300,8 @@ ul.wcmmq_each_terms_header small {
 }
 
 .ultraaddons input:checked + .slider {
-  background-color: #2ab934a6;
-  border: 1px solid #2ab934;
+    background-color: #4CAF50;
+    border: 1px solid #3c973f;
 }
 
 .ultraaddons input:focus + .slider {
@@ -419,10 +424,10 @@ ul.wcmmq_each_terms_header small {
 }
 
 .wcmmq-premium img {
-    width: auto;
-    max-width: 100%;
+    width: 45%;
     opacity: 0.6;
     border: 1px solid #96b8cf;
+    min-width: 350px;
 }
 
 .notice.ca-notice.notice-offer {
@@ -506,24 +511,51 @@ ul.wcmmq_each_terms_header small {
     display: none;
 }
 .wrap.wcmmq_wrap .wcmmq-submit-button {
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-bottom: 0px;
 }
 .wpmmq-form-bottom .ca-reuire-plugin-notice.anwwhere-notice {
     background: white;
 }
 
+form#wcmmq-main-configuration-form  .float-btn.wcmmq-btn {
+    opacity: 0;
+    /* top: 70px; */
+    right: -80px;
+    transition: .4s all;
+}
 form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     position: fixed;
-    bottom: 33px;
-    right: 50px;
+    bottom: unset;
+    right: 0;
     box-shadow: 0px 10px 30px 0 #00000061;
-    padding: 12px 36px;
+    padding: 0 2px 0 0 !important;
     font-size: 16px;
     font-weight: normal;
-    border-radius:unset;
+    border-radius: unset;
     z-index: 99999;
     display: none;
+    top: 80px;
+    left: unset;
+    margin: 0;
+    opacity: 1;
+}
+form#wcmmq-main-configuration-form #stick_on_scroll-on span {
+    width: 60px;
+    padding: 16 0;
+    margin-right: 0;
+}
+form#wcmmq-main-configuration-form #stick_on_scroll-on span i{
+    font-size: 22px;
+}
+form#wcmmq-main-configuration-form #stick_on_scroll-on>strong {
+    font-size: 10px;
+    font-weight: 100;
+    transform: rotate(90deg);
+    display: inline-block;
+    letter-spacing: 1px;
+    width: 28px;
+    text-align: center;
 }
 form#wcmmq-main-configuration-form  #stick_on_scroll-on.stick_on_scroll-on{
     display: block;

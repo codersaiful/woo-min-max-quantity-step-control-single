@@ -32,7 +32,7 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
                     $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
                     if( is_array( $my_term_value ) ){
                         $min_quantity = !empty( $min_quantity ) ? $min_quantity : $my_term_value['_min'];
-                        $default_quantity = !empty( $default_quantity ) ? $default_quantity : $my_term_value['_default'];
+                        $default_quantity = !empty( $default_quantity ) ? $default_quantity : $my_term_value['_default'] ?? '';
                         $max_quantity = !empty( $max_quantity )  ? $max_quantity : $my_term_value['_max'];
                         $step_quantity = !empty( $step_quantity ) ? $step_quantity : $my_term_value['_step'];
                         break;

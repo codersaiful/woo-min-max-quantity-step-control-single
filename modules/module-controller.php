@@ -1,11 +1,15 @@
 <?php
 namespace WC_MMQ\Modules;
-class Module_Controller
+
+use WC_MMQ\Core\Base;
+use WC_MMQ\Admin\Page_Loader;
+
+class Module_Controller extends Base
 {
 
     public $prefix = 'wcmmq_';
 
-    public $parent_menu = 'options-general.php';
+    // public $parent_menu;
     private $option_key = 'disable_modules';
     public $options;
 
@@ -17,8 +21,11 @@ class Module_Controller
     private $folder_name = 'module';
 
 
-
-    private $dir = __DIR__;
+    /**
+     * Getting information from 
+     */
+    private $page_loader;
+    public $dir = __DIR__;
 
     /**
      * For Instance
@@ -50,7 +57,10 @@ class Module_Controller
 
     public function __construct()
     {
-        $this->menu_title = __( 'Min Max Modules', 'wcmmq' );
+        // $this->page_loader = new Page_Loader();
+
+        // $this->parent_menu = $this->page_loader->main_slug;
+        $this->menu_title = __( 'Module Switcher', 'wcmmq' );
         
         $module_item = array(
             'loop-template-button' => array(
@@ -82,7 +92,7 @@ class Module_Controller
 
         $this->option_key = $this->prefix . $this->option_key;
         $this->active_module_key = $this->prefix . $this->active_module_key;
-        add_action( 'admin_menu', [$this, 'admin_menu'] );
+        // add_action( 'admin_menu', [$this, 'admin_menu'] );
 
        foreach( $this->get_active_modules() as $key_modl=>$modl ){
            $file_dir = ! empty( $modl['dir'] ) ? $modl['dir'] : $this->dir;
@@ -141,12 +151,10 @@ class Module_Controller
         
         if( empty( $this->modules['items'] ) || ! is_array( $this->modules['items'] ) ) return;
         $deflt_option = $this->get_default_option();
-
-        // var_dump($deflt_option,$this->options,$this->modules['items']);
         foreach( $this->modules['items'] as $key=>$val ){
         $deflt_option = $this->get_default_option();
             $def_status = $deflt_option[$key] ?? 'off';
-            // var_dump($def_status);
+
             $this->modules['items'][$key]['status'] = $this->options[$key] ?? $def_status;
         }
 
@@ -155,12 +163,14 @@ class Module_Controller
 
     public function admin_menu()
     {
-        $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
-        add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
+        
+        // $capability = apply_filters( 'wcmmq_menu_capability', 'manage_woocommerce', 'module_page' );
+        // add_submenu_page( $this->parent_menu, $this->menu_title, $this->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page'] );
     }
 
     public function module_page()
     {
+        // include $this->page_loader->page_folder_dir . 'topbar.php';
         include_once __DIR__ . '/module-page.php';
     }
 

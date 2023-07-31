@@ -2,12 +2,13 @@
     'use strict';
     function addCustomInputBox(){
         var decimal_separator = WCMMQ_DATA.decimal_separator;
-        if( decimal_separator === ',' ){
+        console.log(decimal_separator);
+        if( decimal_separator != '.' ){
             $('input.input-text.qty.text').not('.wcmmq-second-input-box,.wcmmq-main-input-box').each(function(){
                 
                 $(this).addClass('wcmmq-main-input-box');
                 var input_val = $(this).val();
-                var val_with_coma = input_val.replace(/\./g, ',');
+                var val_with_coma = input_val.replace(/\./g, decimal_separator);
                 var parentQuantity = $(this).parents('.quantity');
                 parentQuantity.addClass('wcmmq-coma-separator-activated');
                 $(this).after('<input type="text" value="' + val_with_coma + '" class="wcmmq-second-input-box input-text qty text" id="wcmmq-second-input-id">');
@@ -139,8 +140,8 @@
         $(document.body).on('change',qty_box_selector,function(){
             qty_value = $(this).val();
             
-            if( decimal_separator === ',' ){
-                qty_value = qty_value.replace(/\./g, ',');
+            if( decimal_separator != ',' ){
+                qty_value = qty_value.replace(/\./g, decimal_separator);
             }
 
             $(this).parents('.quantity').find('.wcmmq-second-input-box').val(qty_value);

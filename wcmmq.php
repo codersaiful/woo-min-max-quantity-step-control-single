@@ -7,11 +7,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 3.9
+ * Version: 4.5
  * Requires at least:    4.0.0
- * Tested up to:         6.2
+ * Tested up to:         6.3
  * WC requires at least: 3.0.0
- * WC tested up to: 	 7.4.0
+ * WC tested up to: 	 7.8.2
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '3.9.0');
+define('WC_MMQ_VERSION', '4.5.7');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -85,6 +85,7 @@ WC_MMQ::$default_values = array(
     'msg_max_price_cart' => __('Your cart total amount must be equal to or less than [cart_max_price]', 'wcmmq'),
     'msg_min_quantity_cart' => __("Your cart item's total quantity must be equal to or more than [cart_min_quantity]", 'wcmmq'),
     'msg_max_quantity_cart' => __("Your cart item's total quantity must be equal to or less than [cart_max_quantity]", 'wcmmq'),
+    'msg_step_quantity_cart' => __("Please enter a valid value. Value should be multiplier of [step_quantity]", 'wcmmq'),
     'msg_vari_total_max_qty' => __('Maximum variation quantity total of "[product_name]" should be or less then [vari_total_max_qty]', 'wcmmq'),
     'msg_vari_total_min_qty' => __('Minimum variation quantity total of "[product_name]" should be or greater then [vari_total_min_qty]', 'wcmmq'),
     'msg_vari_count_total' => __('Maximum variation count total of "[product_name]" should be or less then [vari_count_total]', 'wcmmq'),
@@ -202,7 +203,7 @@ class WC_MMQ {
             include_once $dir . '/admin/functions.php';
             include_once $dir . '/admin/product_panel.php';
             include_once $dir . '/admin/add_options_admin.php';
-            include_once $dir . '/admin/set_menu_and_fac.php';
+            // include_once $dir . '/admin/set_menu_and_fac.php';
             include_once $dir . '/admin/plugin_setting_link.php';
 
             new WC_MMQ\Admin\Admin_Loader();
@@ -212,7 +213,10 @@ class WC_MMQ {
         
         
         include_once $dir . '/includes/enqueue.php';
+        
         include_once $dir . '/includes/set_max_min_quantity.php';
+        $saful = new WC_MMQ\Includes\Min_Max_Controller();
+        // var_dump($saful);
     }
 
     /**

@@ -19,18 +19,19 @@ function wcmmq_add_field_in_panel(){
         'description'=> __( 'Enter Minimum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
-    
-    $args[] = array(
-        'id'        =>  WC_MMQ_PREFIX. 'default_quantity',
-        'name'        =>  WC_MMQ_PREFIX. 'default_quantity',
-        'label'     =>  __( 'Default Quantity (Optional)', 'wcmmq' ),
-        'class'     =>  'wcmmq_input',
-        'type'      =>  'text',
-        'desc_tip'  =>  true,
-        'description'=> __( 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity', 'wcmmq' ),
-        'data_type' => 'decimal'
-    );
-    
+    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
+    if( $default_qty ){
+        $args[] = array(
+            'id'        =>  WC_MMQ_PREFIX. 'default_quantity',
+            'name'        =>  WC_MMQ_PREFIX. 'default_quantity',
+            'label'     =>  __( 'Default Quantity (Optional)', 'wcmmq' ),
+            'class'     =>  'wcmmq_input',
+            'type'      =>  'text',
+            'desc_tip'  =>  true,
+            'description'=> __( 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity', 'wcmmq' ),
+            'data_type' => 'decimal'
+        );
+    }    
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'max_quantity',
         'name'        =>  WC_MMQ_PREFIX. 'max_quantity',
@@ -41,6 +42,8 @@ function wcmmq_add_field_in_panel(){
         'description'=> __( 'Enter Maximum Quantity for this Product', 'wcmmq' ),
         'data_type' => 'decimal'
     );
+    
+    
     
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'product_step',
@@ -109,8 +112,11 @@ function wcmmq_save_field_data( $post_id ){
     
     //Updating Here
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'min_quantity', esc_attr( $min_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $default_quantity ) ); 
-    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $max_quantity ) ); 
+    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
+    if( $default_qty ){
+        update_post_meta( $post_id, WC_MMQ_PREFIX . 'default_quantity', esc_attr( $default_quantity ) ); 
+    }
+    update_post_meta( $post_id, WC_MMQ_PREFIX . 'max_quantity', esc_attr( $max_quantity ) );
     update_post_meta( $post_id, WC_MMQ_PREFIX . 'product_step', esc_attr( $product_step ) ); 
 }
 add_action( 'woocommerce_process_product_meta', 'wcmmq_save_field_data' );

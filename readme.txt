@@ -3,9 +3,9 @@ Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.2
-Requires PHP: 7.0
-Stable tag: 3.9
+Tested up to: 6.3
+Requires PHP: 5.4
+Stable tag: 4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,11 @@ Min Max Quantity & Step Control for WooCommerce plugin offers to set product's m
 🎉 Minimum Quantity<br>
 🎉 Maximum Quantity<br>
 🎉 Step Quantity<br>
-🎉 Default Quantity<br>
+🎉 WPML supported<br>
+🎉 Cart Page Quantity *(Premium)*<br>
+🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Default Quantity [To enable: `add_filter('wcmmq_default_qty_option', '__return_true');` ]<br>
 
 You can set values for all products globally. The same values will apply to all products.
 You can set values by category. In this case, min, max, and step values will apply only to the chosen categories.<br>
@@ -37,14 +41,14 @@ Also, you can set values for each product individually. Product label values wil
 
 🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
 🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
-🔅 [Set Conditions To A Specific Category](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
-🔅 [Global Condition On Tag](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)
+🔅 [Set Conditions To A Specific Category (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
+🔅 [Global Condition On Tag (Premium) ](https://codeastrology.com/min-max-quantity/global-condition-on-tag/)
 🔅 [Set Values To The Product Individually](https://codeastrology.com/min-max-quantity/set-values-to-the-product-individually/)
-🔅 [Multiply Price By Quantity](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
-🔅 [Decimal Quantity](https://codeastrology.com/min-max-quantity/decimal-quantity/)
-🔅 [Set values on each variation](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
-🔅 [Set Conditions On Cart Page](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)
-🔅 [Exclude/Include Products On Cart Page](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)
+🔅 [Multiply Price By Quantity (Premium) ](https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/)
+🔅 [Decimal Quantity (Premium) ](https://codeastrology.com/min-max-quantity/decimal-quantity/)
+🔅 [Set values on each variation (Premium) ](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
+🔅 [Set Conditions On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-on-cart-page/)
+🔅 [Exclude/Include Products On Cart Page (Premium) ](https://codeastrology.com/min-max-quantity/exclude-include-products-on-cart-page/)
 
 
 **🏆 World #1 WordPress Minimum Maximum Quantity & Step Control Plugin for WooCommerce. Most active and installed plugins than others.**
@@ -214,13 +218,43 @@ You will get all the useful [documents](https://codeastrology.com/min-max-quanti
 You can watch our video tutorial on CodeAstrology's  [YouTube](https://www.youtube.com/watch?v=keKRQlxVxmU&list=PLV1ooYxywkSV84cfl6PKw81Fspy72_KYm) channels.
 
 = How can I get support? =
-We’ll provide support via [support ticket](https://codeastrology.com/support/), [live chat](https://prnt.sc/jDcsSL1Q57s8), Skype, or email (support@codeastrology.com)
+We’ll provide support via [support ticket](https://codeastrology.com/my-support/), [live chat](https://prnt.sc/jDcsSL1Q57s8), Skype, or email (support@codeastrology.com)
 
 
 == Screenshots ==
 
 
 == Changelog ==
+
+= 4.5 =
+* use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
+* Update decimal separator option
+* Code Optimized
+
+= 4.4 =
+* Quanity issues on side cart has been solved.
+* Group product ajax cart adding issue has been solved
+* Added new filter hook `wcmmq_default_qty_option` to control default value. By default it's hidden now. If you want to show,
+following code to your functions.php file of your child theme.
+`add_filter('wcmmq_default_qty_option', '__return_true');`<br>
+Even you can add using codesnippet or using any custom plugin.
+
+= 4.3 =
+* Spelling fixed. 
+* Code Optimized
+
+= 4.2 =
+* Min max step issue on Order Edit page has been fixed.
+* Order Page issue fixex for pro version. 
+* Code Optimized
+
+= 4.1 =
+* Fixed: Default quantity issue fixed
+* Fixed: Min quantity issue fixed.
+
+= 4.0 =
+* Fixed: Taxonomy min max issue has been solved. 
+
 = 3.8 and 3.9 =
 * step issue fixed
 * Fixed: non-numeric encounter issue has been fixed 

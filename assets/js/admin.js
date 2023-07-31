@@ -3,23 +3,27 @@
     $(document).ready(function(){
         
         $('.ua_input_select,.wcmmq_select_terms').select2();
+        $('#select#wcmmq_term_ids').select2();
         
         /**
          * Support terms -> on after change,
          * form will be submit
          */
          $(document.body).on('change','#wcmmq_supported_terms',function(){
-            $('#wcmmq_form_submit_button').trigger('click');
+            
+            $('button.wcmmq-btn.configure_submit').trigger('click');
         });
         
         $(document.body).on('click','.wcmmq-premium',function(){
             // alert(45454);
+            var img_link = $(this).find('img').attr('src');
             var link = 'https://codeastrology.com/min-max-quantity/pricing/';
-            window.open(link,'_blank');
+            window.open(img_link,'_blank');
             // window.location.href = 'https://codeastrology.com/min-max-quantity/pricing/';
         });
         
-        $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (){
+        $(document.body).on('submit', 'form#wcmmq-main-configuration-form', function (e){
+
             var min_val = $(this).find('.config_min_qty').val();
             var max_val = $(this).find('.config_max_qty').val();
             if(min_val!=''){
@@ -29,15 +33,24 @@
                     return false;
                 }
             }
+
+            let submitBtn = $(this).find('button.configure_submit');
+            let submitBtnInForm = submitBtn.not('.float-btn');
+            let submitBtnIcon = submitBtn.find('span i');
+            submitBtn.find('strong.form-submit-text').text('Saving...');
+            submitBtnIcon.attr('class', 'wcmmq_icon-spin5 animate-spin');
+            // submitBtnIcon.attr('class', 'wcmmq_icon-floppy');
+            
+            
         });
 
        
     });
 
     /** Save Floating button  **/
-    var saveChangeText = $('button#wcmmq_form_submit_button').text();
-    var btnHtml = '<div class="float-section ultraaddons-button-wrapper ultraaddons-panel no-background">';
-    btnHtml += '<button type="submit" name="configure_submit" class="float-btn button-primary primary button">' + saveChangeText + '</button>';
+    var saveChangeText = 'Save';
+    var btnHtml = '<div class="">';
+    btnHtml += '<button type="submit" name="configure_submit" class="float-btn wcmmq-btn wcmmq-has-icon configure_submit"><span><i class="wcmmq_icon-floppy"></i></span><strong>' + saveChangeText + '</strong></button>';
     btnHtml += '</div>';
     //wcmmq-main-configuration-form
 
@@ -63,10 +76,10 @@
     let leftWill = configFormElement.width() - targetElement.width() - 20;
     
 
-    targetElement.css({
-        left: leftWill,
-        right: 'unset'
-    });
+    // targetElement.css({
+    //     left: leftWill,
+    //     right: 'unset'
+    // });
     if(scrollTop < conPass){
         targetElement.addClass('stick_on_scroll-on');
     }else{

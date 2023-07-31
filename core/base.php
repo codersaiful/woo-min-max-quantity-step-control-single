@@ -3,6 +3,7 @@ namespace WC_MMQ\Core;
 
 class Base{
     public $_root = __CLASS__;
+    public $plugin_prefix = 'wcmmq';
     public $dev_version = WC_MMQ_VERSION;
     public $base_url = WC_MMQ_BASE_URL;
     public $base_dir = WC_MMQ_BASE_DIR;

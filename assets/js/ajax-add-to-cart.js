@@ -10,6 +10,11 @@
         
         $(document.body).on('click', '.single_add_to_cart_button', function (e) {
 
+            var simple_product = $(this).closest('div.product-type-simple');
+            
+            if(simple_product.length < 1){
+                return;
+            }
             /**
              * Actually if .disabled class found 
              * or .wc-variation-selection-needed class found

@@ -1,5 +1,5 @@
 <?php
-//var_dump(defined('WC_MMQ_PRO_VERSION'));
+
 /**
  * Generate and convert Message and replace right value on selected keyword.
  * Suppose user want to show min_quantity in message, now user able to customize message and where user want to
@@ -24,7 +24,8 @@ var_dump(wcmmq_message_convert_replace($message, $args));
  * @param Array $args
  * @return String
  */
-function wcmmq_message_convert_replace( $message, $args ){
+
+function wcmmq_message_convert_replace( $message, $args, $product_id = null ){
     $message = __( $message, 'wcmmq' );
     $defaults = array(
         'min_quantity' => false,
@@ -40,6 +41,7 @@ function wcmmq_message_convert_replace( $message, $args ){
     },$arr_keys);
 
     $reslt = str_replace($find_arr, $args, $message);
+    $reslt = apply_filters('wcmmq_validation_message', $reslt, $product_id );
     return $reslt;
 }
 
@@ -52,6 +54,9 @@ function wcmmq_message_convert_replace( $message, $args ){
  */
 function wcmmq_check_quantity_in_cart($product_id,$variation_id = 0) {
     global $woocommerce;
+    if( ! is_object($woocommerce->cart)) return 0;
+    if( ! method_exists($woocommerce->cart, 'get_cart')) return 0;
+    // var_dump($woocommerce);
     foreach($woocommerce->cart->get_cart() as $key => $value ) {
         if( $product_id == $value['product_id'] && $variation_id == $value['variation_id'] ) {
             return $value['quantity'];
@@ -86,7 +91,11 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
     $min_quantity_int = $min_quantity * $consnt_value;//intval($min_quantity * $consnt_value);
     $step_int = $step_quantity * $consnt_value;//intval($step_quantity * $consnt_value);
     $final_qty = $quantity_int - $min_quantity_int;//intval($quantity_int - $min_quantity_int);
-    $module = $final_qty % $step_int;
+    if (!empty($step_int)){
+        $module = $final_qty % $step_int;
+    }else{
+        $module = 0;
+    }
 
     if( $module == 0 ) { $modulous = true; }
 
@@ -98,7 +107,7 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
         'should_min'    => $should_min,
         'should_next'   => $should_next,
         'product_id'    => $product_id,
-        'variation_id'    => $variation_id,
+        'variation_id'  => $variation_id,
         'quantity'      => $quantity,
         'min_quantity'  => $min_quantity,
         'step_quantity' => $step_quantity,
@@ -140,7 +149,7 @@ function wcmmq_step_error_message( $bool = true, $other_data = [] ){
     $should_min = $args['should_min'] ?? '';
     $should_next = $args['should_next'] ?? '';
     $message = sprintf( WC_MMQ::getOption( WC_MMQ_PREFIX . 'step_error_valiation' ), $should_min, $should_next );
-    $message = wcmmq_message_convert_replace( $message, $args );
+    $message = wcmmq_message_convert_replace( $message, $args,$product_id );
     wc_add_notice( $message, 'error' );
 }
 
@@ -194,6 +203,17 @@ function wcmmq_replaced_msg( $text, $key_arr = array(), $val_arr = array() ){
  * @since 1.0
  */
 function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, $variations = false){ //Right two parameters added
+    
+    /**
+     * If anytime, we want to remove the validation change, we have to
+     * set falst the filter hook value for 'wcmmq_add_validation_check'
+     * 
+     * @since 4.3.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    $validation_check = apply_filters('wcmmq_add_validation_check',true, $product_id, get_the_ID());
+    if(!$validation_check) return $bool;
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product = wc_get_product( $product_id );
     // if product is sold individually then we can immediately exit here
@@ -220,7 +240,9 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if( is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -241,8 +263,8 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
     
+
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
         $default_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
@@ -275,13 +297,12 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
         'product_name'=> $product_name,
         'variation_name'=> $variation_name,
     );
-    //wcmmq_message_convert_replace( $message, $args );
 
     if( $total_quantity <= $max_quantity && $total_quantity >= $min_quantity && $modulous ){
         return $bool;
     }elseif($min_quantity && $total_quantity < $min_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
     }elseif( $max_quantity && $total_quantity > $max_quantity ){
@@ -291,7 +312,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
             $message .= " <br>";
         }
         $message .= sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return false;
     }elseif( ! $modulous ){
@@ -300,7 +321,7 @@ function wcmmq_min_max_valitaion($bool,$product_id,$quantity,$variation_id = 0, 
         return $bool;
     }
 }
-add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
+// add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 5); //When add to cart
 
 /**
  * Validation when you will update cart page of WooCommerce. Actually Minimum and maximum as well as step should be fixed
@@ -316,6 +337,17 @@ add_filter('woocommerce_add_to_cart_validation', 'wcmmq_min_max_valitaion', 10, 
  * @since 1.0
  */
 function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity ) {
+
+    /**
+     * If anytime, we want to remove the validation change, we have to
+     * set falst the filter hook value for 'wcmmq_cart_validation_check'
+     * 
+     * @since 4.3.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    $validation_check = apply_filters('wcmmq_cart_validation_check',true, $values);
+    if(!$validation_check) return $true;
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     $product_id = $values['product_id'];
 
@@ -341,7 +373,9 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -362,7 +396,6 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
     
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
@@ -393,7 +426,6 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         'product_name'=> $product_name,
         'variation_name'=> $variation_name,
     );
-    //wcmmq_message_convert_replace( $message, $args );
 
     if( ( !empty($max_quantity) && $max_quantity > 0 && $quantity <= $max_quantity) && $quantity >= $min_quantity && $modulous ){
         return true;
@@ -401,12 +433,12 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         return true;
     }elseif(!empty($max_quantity) && $max_quantity > 0 && $quantity > $max_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_max_limit' ), $max_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
     }elseif( $quantity < $min_quantity ){
         $message = sprintf( wcmmq_get_message( 'msg_min_limit' ), $min_quantity, $product_name ); // __( 'Minimum quantity should %s of "%s"', 'wcmmq' ) //Control from main file
-        $message = wcmmq_message_convert_replace( $message, $args );
+        $message = wcmmq_message_convert_replace( $message, $args, $product_id );
         wc_add_notice( $message, 'error' );
         return;
     }elseif(!$modulous){
@@ -415,7 +447,7 @@ function wcmmq_update_cart_validation( $true, $cart_item_key, $values, $quantity
         return true;
     }
 }
-add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
+// add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation', 10, 4); //When Update cart
 
 
 /**
@@ -432,6 +464,7 @@ add_filter('woocommerce_update_cart_validation', 'wcmmq_update_cart_validation',
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_quantity_input.html#1234 Details of filter 'woocommerce_quantity_input_args'
  */
 function wcmmq_quantity_input_args( $args, $product){
+
     $is_variable_support = defined('WC_MMQ_PRO_VERSION');
     // if product is sold individually then we can immediately exit here
     if( $product->is_sold_individually() ) return $args;
@@ -450,7 +483,8 @@ function wcmmq_quantity_input_args( $args, $product){
 
     $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
     $default_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'default_quantity', true);
-    $default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
+    
+    $default_quantity = $default_quantity == '0' || !empty( $default_quantity ) ? $default_quantity : '';
     $max_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'max_quantity', true);
     $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true);
     
@@ -464,14 +498,16 @@ function wcmmq_quantity_input_args( $args, $product){
             $min_quantity = $v_min_qty ?? '';
             $max_quantity = $v_max_qty ?? '';
             $step_quantity = $v_step_qty ?? '';
-            $default_quantity = $v_default_qty ?? $v_min_qty;
+            $default_quantity = $v_default_qty ?? '';
         }
         
     }
     
     $terms_data = wcmmq_get_term_data_wpml();
     $_is_term_value_founded = false;
-    if(is_array($terms_data) ){
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
         foreach( $terms_data as $term_key => $values ){
 
             $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
@@ -481,7 +517,7 @@ function wcmmq_quantity_input_args( $args, $product){
                 if( is_array( $my_term_value ) ){
                     $_is_term_value_founded = true;
                     $min_quantity = $my_term_value['_min'] ?? '0';
-                    $default_quantity = $my_term_value['_default'] ?? $min_quantity;
+                    $default_quantity = $my_term_value['_default'] ?? '';
                     
                     $max_quantity = $my_term_value['_max'] ?? '';
                     $step_quantity = $my_term_value['_step'] ?? '';
@@ -492,23 +528,22 @@ function wcmmq_quantity_input_args( $args, $product){
 
         }
     }
-    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) || !empty( $max_quantity ) || !empty( $step_quantity ) ;
+    
     
     if( ! $_is_term_value_founded && ! $_is_single_value ){
         $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
         $default_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
-        $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
+        $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : '';
         $max_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
         $step_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
     }
     
-    // var_dump($step_quantity);
+    
     //Finalized 
     $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
-    $default_quantity = $default_quantity === '0' || !empty( $default_quantity ) ? $default_quantity : $min_quantity;
-    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
-    // Max quantity (default = -1)
-    // simple product
+    $default_quantity = !empty( $default_quantity ) ? $default_quantity : false;
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1; 
+
     if( isset( $args['max_value'] ) && $args['max_value'] > -1){
         // stock quantity already set
         $args['max_value']  = $max_quantity && $max_quantity <= $args['max_value']   ? $max_quantity : $args['max_value'];
@@ -521,16 +556,23 @@ function wcmmq_quantity_input_args( $args, $product){
         $args['max_value'] = $args['max_qty'] = $max_quantity;
     }
     
-    $args['min_value'] = $args['min_qty'] = '0'; // Min quantity (default = 0)
+    $args['min_value'] = $args['min_qty'] = $min_quantity; // Min quantity (default = 0)
     /**
      * Our Customer has given me this solution and It's awesome.
      * Working property.
      * Really great it. Thanks to that user.
      * 
      */
-    if( ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
+    $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
+    if( $default_qty && $default_quantity !== $min_quantity && ! empty( $default_quantity ) && ! empty( $args['input_name'] ) && substr($args['input_name'],0,8) === 'quantity'){
         $args['input_value'] = $default_quantity;
     }
+
+    if( ! empty($args['min_value']) && ! empty( $args['input_value'] ) && $args['input_value'] < $args['min_value'] ){
+        $args['input_value'] = $args['min_value'];
+    }
+
+    // $args['input_value'] = $default_quantity;
     $args['step'] = $step_quantity; // Increment/decrement by this value (default = 1)
     $args['quantity'] = $default_quantity; // Increment/decrement by this value (default = 1)
     // var_dump($args);
@@ -538,9 +580,201 @@ function wcmmq_quantity_input_args( $args, $product){
 
     return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
 }
-add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2);
-add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',999,2);
-add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2); //For Variable product
+// add_filter('woocommerce_loop_add_to_cart_args','wcmmq_quantity_input_args',999,2);
+// add_filter('woocommerce_quantity_input_args','wcmmq_quantity_input_args',999,2);
+// add_filter('woocommerce_available_variation','wcmmq_quantity_input_args',999,2); //For Variable product
+
+/**
+ * Specially for Order Page
+ * Min max step set
+ * 
+ * asole order page a step min max kaj korto na. ekhon seta kaj korobe.
+ * 
+ * @author Saiful Islam <codersaiful@gmail.com>
+ *
+ * @param int|float|mixed $step
+ * @param object $product
+ * @return int|float|mixed
+ * 
+ * @since 4.1.0
+ */
+function wcmmq_admin_quantity_input_args( $step, $product ){
+    if( ! is_object($product) ) return $step;
+    
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
+    // if product is sold individually then we can immediately exit here
+    if( $product->is_sold_individually() ) return $step;
+
+    $variation_id = false;
+    $product_id = $id = $product->get_id();
+
+    $step_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'product_step', true);
+    
+    
+    if( $is_variable_support && ! empty( $variation_id )){
+        $v_step_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'product_step', true );
+        if( !empty($v_step_qty) ){
+            $step_quantity = $v_step_qty ?? '';
+        }
+        
+    }
+    
+    $terms_data = wcmmq_get_term_data_wpml();
+    $_is_term_value_founded = false;
+    $_is_single_value = !empty( $step_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
+        foreach( $terms_data as $term_key => $values ){
+
+            $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
+            foreach ( $product_term_list as $product_term_id ){
+
+                $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
+                if( is_array( $my_term_value ) ){
+                    $_is_term_value_founded = true;
+                    $step_quantity = $my_term_value['_step'] ?? '';
+
+                    break;
+                }
+            }
+
+        }
+    }
+    
+    
+    if( ! $_is_term_value_founded && ! $_is_single_value ){
+        $step_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
+    }
+    
+    
+    $step_quantity = !empty($step_quantity) ? $step_quantity : 1;
+
+   return $step_quantity;
+}
+
+add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_quantity_input_args', 10, 2);
+
+/**
+ * Specially for Order Page
+ * Min max step set
+ * 
+ * asole order page a step min max kaj korto na. ekhon seta kaj korobe.
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @param int|float|mixed $step
+ * @param object $product
+ * @return int|float|mixed
+ * 
+ * @since 4.2.0
+ */
+function wcmmq_quantity_input_min_admin( $min_quantity, $product ){
+    if( ! is_object($product) ) return $min_quantity;
+    $is_variable_support = defined('WC_MMQ_PRO_VERSION');
+    // if product is sold individually then we can immediately exit here
+
+    $variation_id = false;
+    $product_id = $id = $product->get_id();
+    if( is_cart() ){
+        if( $product->get_type() == 'variation' ){
+            $product_id = $product->get_parent_id();
+            $variation_id = $product->get_id();
+        }else{
+            $product_id = $product->get_id();
+        }
+    }
+
+    $min_quantity = get_post_meta($product_id, WC_MMQ_PREFIX . 'min_quantity', true);
+
+    
+    if( $is_variable_support && ! empty( $variation_id )){
+        $v_min_qty = get_post_meta( $variation_id, WC_MMQ_PREFIX . 'min_quantity', true );
+        if($v_min_qty == '0' || !empty($v_min_qty)){
+            $min_quantity = $v_min_qty ?? '';
+        }
+        
+    }
+    
+    $terms_data = wcmmq_get_term_data_wpml();
+    $_is_term_value_founded = false;
+    $_is_single_value = $min_quantity == '0' || !empty( $min_quantity ) ;
+    
+    if(is_array($terms_data) && ! $_is_single_value ){
+        foreach( $terms_data as $term_key => $values ){
+
+            $product_term_list = wp_get_post_terms( $product_id, $term_key, array( 'fields' => 'ids' ));
+            foreach ( $product_term_list as $product_term_id ){
+
+                $my_term_value = isset( $values[$product_term_id] ) ? $values[$product_term_id] : false;
+                if( is_array( $my_term_value ) ){
+                    $_is_term_value_founded = true;
+                    $min_quantity = $my_term_value['_min'] ?? '0';
+                    break;
+                }
+            }
+
+        }
+    }
+     
+    if( ! $_is_term_value_founded && ! $_is_single_value ){
+        $min_quantity = WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
+    }
+    
+    //Finalized 
+    $min_quantity = $min_quantity === '0' || !empty( $min_quantity ) ? $min_quantity : '0';
+
+    return $min_quantity;
+}
+add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_quantity_input_min_admin', 10, 2 );
+
+
+/**
+ * This function will override min quantity which is set from plugin and return min qty of 0
+ * so customer can edit and enter any min quantity
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @return int|float|mixed $min_qty
+ * 
+ * @since 4.2.0
+ */
+function wcmmq_admin_qty_min(){
+    return 0;
+}
+
+/**
+ * This function will override step quantity which is set from plugin and return step qty of 0.001
+ * so customer can edit and enter any step quantity
+ * 
+ * @author Fazle Bari <fazlebarisn@gmail.com>
+ *
+ * @return int|float|mixed $step
+ * 
+ * @since 4.2.0
+ */
+function wcmmq_admin_qty_step(){
+    return 0.001;
+}
+
+/**
+ *  wcmmq_admin_qty_min()  and wcmmq_admin_qty_step() is for a special situation
+ *  By default both function is desible 
+ * 
+ *  If any user want to change order quantity from deshboard in any number then we have to use this two function
+ * 
+ */
+
+$options = WC_MMQ::getOptions();
+
+$disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
+
+// in the old version field name is _wcmmq_s_disable_order_page so we need to consider that also 
+$disable_order_page_old = isset( $options['_wcmmq_s_disable_order_page'] ) ? true : false;
+
+if ( $disable_order_page || $disable_order_page_old ){
+    add_filter( 'woocommerce_quantity_input_min_admin', 'wcmmq_admin_qty_min',999 );
+    add_filter('woocommerce_quantity_input_step_admin', 'wcmmq_admin_qty_step',999);
+}
 
 /**
  * Set limit on Single product page for Minimum Quantity of Product
@@ -556,7 +790,7 @@ function wcmmq_s_set_min_for_single( $quantity, $product ){
     }
     return 1;
 }
-add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 99, 2 );
+// add_filter('woocommerce_quantity_input_min','wcmmq_s_set_min_for_single', 99, 2 );
 
 /**
  * Set limit on Single product page for Maximum Quantity of Product
@@ -590,8 +824,7 @@ function wcmmq_step_set_for_order_status_update($pp){
  * @since 1.0
  */
 function wcmmq_step_set_step_quantity( $quantity, $product ){
-
-    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) ){
+    if( is_object( $product ) &&  method_exists( $product, 'get_id' ) && 'product'==get_post_type() ){
 
         $product_step = get_post_meta( $product->get_id(), WC_MMQ_PREFIX . 'product_step', true);
         $product_step = !empty( $product_step ) ? $product_step : WC_MMQ::getOption( WC_MMQ_PREFIX . 'product_step' ); //Regenerate from Default
@@ -601,13 +834,7 @@ function wcmmq_step_set_step_quantity( $quantity, $product ){
     }
     return 1;
 }
-add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99, 2);
-
-$options = WC_MMQ::getOptions();
-$disable_order_page = isset( $options['disable_order_page'] ) ? true : false;
-if ( get_post_type('shop_order') && $disable_order_page ){
-    remove_filter('woocommerce_quantity_input_step', 'wcmmq_step_set_step_quantity');
-}
+// add_filter('woocommerce_quantity_input_step','wcmmq_step_set_step_quantity', 99, 2);
 
 
 /**
