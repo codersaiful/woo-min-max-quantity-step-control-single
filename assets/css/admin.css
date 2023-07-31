@@ -695,3 +695,9 @@ a.wpt-doc-lick {
     color: #42b9cc;
     font-style: oblique;
 }
+
+/* debug  */
+body.toplevel_page_wcmmq-min-max-control pre{
+    margin-left: 230px;
+    margin-top: 30px;
+}
