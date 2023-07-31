@@ -54,8 +54,8 @@ function wcmmq_message_convert_replace( $message, $args, $product_id = null ){
  */
 function wcmmq_check_quantity_in_cart($product_id,$variation_id = 0) {
     global $woocommerce;
-    
-    if(! method_exists($woocommerce->cart, 'get_cart')) return 0;
+    if( ! is_object($woocommerce->cart)) return 0;
+    if( ! method_exists($woocommerce->cart, 'get_cart')) return 0;
     // var_dump($woocommerce);
     foreach($woocommerce->cart->get_cart() as $key => $value ) {
         if( $product_id == $value['product_id'] && $variation_id == $value['variation_id'] ) {
