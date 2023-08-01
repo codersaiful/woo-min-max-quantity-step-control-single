@@ -7,7 +7,7 @@ use WC_MMQ\Modules\Module_Controller;
 class Tracker extends Base
 {
     protected $transient = 'wcmmq_transient_trak';
-    protected $plugin_name = 'Min Max';
+    protected $plugin_name = 'Min Max Control';
     protected $plugin_version = WC_MMQ_VERSION;
     
 
@@ -31,12 +31,12 @@ class Tracker extends Base
     $other['plugin_version'] = $this->plugin_version;
 
     $data = [
-        'plugin' => $user_id,
-        'site' => $ip_address,
+        'plugin' => $this->plugin_name,
+        'site' => site_url(),
         'email' => 'saiful@codeastrology.com',
         'other' => $plugin_version,
         'track_time' => time(),
-        'track_count' => 2,
+        // 'track_count' => 2,
     ];
 
     $api_url = $this->tracker_url; // Replace this with your actual API endpoint
