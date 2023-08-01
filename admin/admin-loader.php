@@ -15,10 +15,16 @@ class Admin_Loader extends Base{
         $main_page = new Page_Loader();
         $main_page->run();
 
-        $tracker = new Tracker();
-        $tracker->run();
+        
 
         // $settings = new Settings_Loader();
         // $settings->run();
+
+        add_action('admin_init', [$this, 'admin_init']);
+    }
+
+    public function admin_init(){
+        $tracker = new Tracker();
+        $tracker->run();
     }
 }

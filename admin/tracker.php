@@ -16,7 +16,7 @@ class Tracker extends Base
     protected $option_key = 'wcmmq_trak_optin';
 
     protected $optin_bool;
-    protected $transient_exp = 20; // in second
+    protected $transient_exp = 5; // in second
     public $tracker_url = 'http://wptheme.cm/wp-json/tracker/v1/track';
     public function __construct()
     {
@@ -27,39 +27,54 @@ class Tracker extends Base
 
     public function run()
     {
+        if( $this->transient ) return;
+        if( function_exists('current_user_can') && ! current_user_can('administrator') ) return;
+        
+        set_transient($this->transient_key, 'sent', $this->transient_exp);
+        
+        $user = wp_get_current_user();
+        $theme = wp_get_theme();
+        $themeName = $theme->Name;
+        
+        
+        $other = [];
+        $other['plugin_version'] = $this->plugin_version;
+        $other['active_plugins'] = $this->active_plugins();
 
-    if( $this->transient ) return;
-    var_dump($this->transient);
+        $data = [
+            'plugin' => $this->plugin_name,
+            'site' => site_url(),
+            'email' => $user->user_email,
+            'theme' => $themeName,
+            'other' => json_encode($other),
+            'track_time' => time(),
+        ];
 
-    set_transient($this->transient_key, 'sent', $this->transient_exp);
+        $api_url = $this->tracker_url; // Replace this with your actual API endpoint
+
+        // return;
+        // Send data to the tracking API using the WordPress HTTP API
+        wp_remote_post( $api_url, array(
+            'method' => 'POST',
+            'timeout' => 15,
+            'headers' => array(
+                'Content-Type' => 'application/json',
+            ),
+            'body' => json_encode( $data ),
+        ) );
+    }
+
+    /**
+     * List of Active plugins.
+     *
+     * @return array
+     */
+    private function active_plugins(){
+        $active_plugins = get_option( 'active_plugins', array() );
     
-    $user_id = get_current_user_id();
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    $plugin_version = '1.0'; // Replace this with your actual plugin version
-
-    $other = [];
-    $other['plugin_version'] = $this->plugin_version;
-
-    $data = [
-        'plugin' => $this->plugin_name,
-        'site' => site_url(),
-        'email' => 'saiful@codeastrology.com',
-        'other' => $plugin_version,
-        'track_time' => time(),
-        // 'track_count' => 2,
-    ];
-
-    $api_url = $this->tracker_url; // Replace this with your actual API endpoint
-    var_dump($api_url);
-    // return;
-    // Send data to the tracking API using the WordPress HTTP API
-    wp_remote_post( $api_url, array(
-        'method' => 'POST',
-        'timeout' => 15,
-        'headers' => array(
-            'Content-Type' => 'application/json',
-        ),
-        'body' => json_encode( $data ),
-    ) );
+        // Return an array of plugin names (without file paths)
+        $plugin_names = array_map( 'plugin_basename', $active_plugins );
+    
+        return $plugin_names;
     }
 }
