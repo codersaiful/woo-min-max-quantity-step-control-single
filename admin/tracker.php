@@ -40,14 +40,14 @@ class Tracker extends Base
         $other = [];
         $other['plugin_version'] = $this->plugin_version;
         $other['active_plugins'] = $this->active_plugins();
-
+        
         $data = [
             'plugin' => $this->plugin_name,
             'site' => site_url(),
+            'site_title' => get_bloginfo('name'),
             'email' => $user->user_email,
             'theme' => $themeName,
             'other' => json_encode($other),
-            'track_time' => time(),
         ];
 
         $api_url = $this->tracker_url; // Replace this with your actual API endpoint
