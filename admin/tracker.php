@@ -29,7 +29,7 @@ class Tracker extends Base
     {
         $this->optin_bool = get_option( $this->option_key );
         $this->transient = get_transient( $this->transient_key );
-        
+
     }
 
     public function run()
@@ -47,7 +47,13 @@ class Tracker extends Base
         $other = [];
         $other['plugin_version'] = $this->plugin_version;
         $other['active_plugins'] = $this->active_plugins();
-        
+        // $other['php_version2'] = phpversion();
+        $other['php_version'] = PHP_VERSION;
+        global $wp_version,$wp_db_version;
+        // require ABSPATH . WPINC . '/version.php';
+        $other['wp_version'] = $wp_version;
+        $other['wp_db_version'] = $wp_db_version;
+        // wp_version_check();
         $data = [
             'plugin' => $this->plugin_name,
             'site' => site_url(),
