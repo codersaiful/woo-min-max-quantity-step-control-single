@@ -16,7 +16,14 @@ class Tracker extends Base
     protected $option_key = 'wcmmq_trak_optin';
 
     protected $optin_bool;
-    protected $transient_exp = 60; // in second
+    /**
+     * jetar uppor vitti kore mulot online dekhabe
+     * ami ekhane 1 ghonta debo
+     * 1 hour = 3600 second
+     * half hour = 1800 second
+     *
+     */
+    protected $transient_exp = 1800; // in second // when test used 60
     public $tracker_url = 'http://wptheme.cm/wp-json/tracker/v1/track';
     public function __construct()
     {
