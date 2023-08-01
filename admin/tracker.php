@@ -16,7 +16,7 @@ class Tracker extends Base
     protected $option_key = 'wcmmq_trak_optin';
 
     protected $optin_bool;
-    protected $transient_exp = 5; // in second
+    protected $transient_exp = 25; // in second
     public $tracker_url = 'http://wptheme.cm/wp-json/tracker/v1/track';
     public function __construct()
     {
