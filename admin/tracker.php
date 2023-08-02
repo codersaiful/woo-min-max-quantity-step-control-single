@@ -57,6 +57,7 @@ class Tracker extends Base
         global $wp_version;
         $other['wp_version'] = $wp_version;
         $other['mysql_version'] = $wpdb->db_version();
+        // $other['wc_version'] = $wc_version; need to add
 
         $data = [
             'plugin' => $this->plugin_name,
