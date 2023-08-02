@@ -111,7 +111,7 @@
                             </div>
                         </label>
                         <p class="warning-alert">
-                            Tracker will send some basic date to Plugin Author. such as: WordPress Version, MySQL Version, site title, Min Max Plugin version, Theme Name etc.
+                            Tracker will send some basic date to Plugin Author. such as: WordPress Version, MySQL Version,WooCommerce Version, site title, Min Max Plugin version, Theme Name etc.
                             <i>If you don't want to share these info, Off this option.</i> We don't sale your data, We use your data as servey for our plugin improve and update. 
                         </p>
                     </div>

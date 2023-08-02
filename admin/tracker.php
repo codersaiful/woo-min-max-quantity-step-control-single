@@ -39,6 +39,7 @@ class Tracker extends Base
 
     public function run()
     {
+        var_dump(WC());
         if( $this->transient ) return;
         if( function_exists('current_user_can') && ! current_user_can('administrator') ) return;
         
@@ -48,16 +49,16 @@ class Tracker extends Base
         $theme = wp_get_theme();
         $themeName = $theme->Name;
         
-        global $wpdb;
+        global $wpdb,$wp_version;
         $other = [];
         $other['plugin_version'] = $this->plugin_version;
         $other['active_plugins'] = $this->active_plugins();
         // $other['php_version'] = phpversion();
         $other['php_version'] = PHP_VERSION;
-        global $wp_version;
+        
         $other['wp_version'] = $wp_version;
         $other['mysql_version'] = $wpdb->db_version();
-        // $other['wc_version'] = $wc_version; need to add
+        $other['wc_version'] = WC()->version;
 
         $data = [
             'plugin' => $this->plugin_name,
