@@ -25,7 +25,7 @@ class Tracker extends Base
      */
     protected $transient_exp = 1800; // in second // when test used 60
     
-    public $_domain = 'http://edm.ultraaddons.com'; //Don't use slash at the end of the link. eg: http://wptheme.cm
+    public $_domain = 'http://edm.ultraaddons.com'; //Don't use slash at the end of the link. eg: http://wptheme.cm or: http://edm.ultraaddons.com
     public $tracker_url;
 
     public $route = '/wp-json/tracker/v1/track';
