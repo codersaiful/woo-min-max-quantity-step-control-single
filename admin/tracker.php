@@ -43,17 +43,16 @@ class Tracker extends Base
         $theme = wp_get_theme();
         $themeName = $theme->Name;
         
-        
+        global $wpdb;
         $other = [];
         $other['plugin_version'] = $this->plugin_version;
         $other['active_plugins'] = $this->active_plugins();
-        // $other['php_version2'] = phpversion();
+        // $other['php_version'] = phpversion();
         $other['php_version'] = PHP_VERSION;
-        global $wp_version,$wp_db_version;
-        // require ABSPATH . WPINC . '/version.php';
+        global $wp_version;
         $other['wp_version'] = $wp_version;
-        $other['wp_db_version'] = $wp_db_version;
-        // wp_version_check();
+        $other['mysql_version'] = $wpdb->db_version();
+
         $data = [
             'plugin' => $this->plugin_name,
             'site' => site_url(),
