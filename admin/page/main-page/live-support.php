@@ -99,7 +99,7 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_tracker"><?php echo esc_html__('Tracker','wcmmq');?><i class="wcmmq-optional">Optional</i></label>
+                        <label for="_tracker" title="Help Us to Improve plugin based on user data."><?php echo esc_html__('Tracker','wcmmq');?><i class="wcmmq-optional">Optional</i></label>
                     </div>
                     <div class="form-field col-lg-6">
                         
@@ -112,7 +112,7 @@
                         </label>
                         <p class="warning-alert">
                             Tracker will send some basic date to Plugin Author. such as: WordPress Version, MySQL Version, site title, Min Max Plugin version, Theme Name etc.
-                            <i>If you don't want to share these info, Off this option.</i> We don't sale your data, We use your data as servey for our plugin update. 
+                            <i>If you don't want to share these info, Off this option.</i> We don't sale your data, We use your data as servey for our plugin improve and update. 
                         </p>
                     </div>
                 </div>
