@@ -39,7 +39,7 @@ class Tracker extends Base
 
     public function run()
     {
-        var_dump(WC());
+
         if( $this->transient ) return;
         if( function_exists('current_user_can') && ! current_user_can('administrator') ) return;
         
