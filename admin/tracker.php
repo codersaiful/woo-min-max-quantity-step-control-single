@@ -24,9 +24,14 @@ class Tracker extends Base
      *
      */
     protected $transient_exp = 1800; // in second // when test used 60
-    public $tracker_url = 'http://wptheme.cm/wp-json/tracker/v1/track';
+    
+    public $_domain = 'http://edm.ultraaddons.com'; //Don't use slash at the end of the link. eg: http://wptheme.cm
+    public $tracker_url;
+
+    public $route = '/wp-json/tracker/v1/track';
     public function __construct()
     {
+        $this->tracker_url = $this->_domain . $this->route;
         $this->optin_bool = get_option( $this->option_key );
         $this->transient = get_transient( $this->transient_key );
 
@@ -57,7 +62,7 @@ class Tracker extends Base
             'plugin' => $this->plugin_name,
             'site' => site_url(),
             'site_title' => get_bloginfo('name'),
-            'email' => $user->user_email,
+            'email' => '',//$user->user_email
             'theme' => $themeName,
             'other' => json_encode($other),
         ];

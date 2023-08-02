@@ -371,7 +371,12 @@ span#footer-thankyou.wcmmq-footer-thankyou a>i:before {
     background: #fefefe;
     margin-bottom: 25px;
 }
-
+i.wcmmq-optional {
+    font-weight: normal;
+    margin: 0 5px;
+    font-size: 95%;
+    color: gray;
+}
 
 /* ********************************
 Screen and devicewise Custom CSS
