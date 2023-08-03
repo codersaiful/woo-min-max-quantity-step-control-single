@@ -263,7 +263,7 @@ class Deactive_Form
                     </div>
                     <p style="color: #5c5c5c;padding:0;margin: 0 0 8px 0;font-size: 13px;">
                         Submission will send some basic data to Plugin Author as a servey. 
-                        Such: your site url, title, this plugin version etc. <i>You can <a href="#" class="ca_skip">Skip & Deactivate</a></i>
+                        Such: your site url, title, this plugin version etc. <i>You can <b>Skip & Deactivate</b></i>
                     </p>
                     <div class="ca-msg-button-wrapper">
                         <button type="submit" class="ca_button ca-deactive ca-submit-form" title="Send some basic data to Plugin Author" id="ca_deactivate">Send Data & Deactivate</button>
