@@ -354,7 +354,12 @@ a.wcmmq-button.reset:hover {
 .wrap.wcmmq_wrap.wcmmq-content {
     margin: 0 10px;
 }
-.wcmmq-form-control .form-field>* {
+.wqpmb-important-link-area {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-bottom: 10px;
 }
 .wcmmq-form-control select {
