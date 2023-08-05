@@ -270,7 +270,7 @@ class Min_Max_Controller extends Base
     public function finalizeArgs()
     {
         if(empty($this->max_value)){
-            $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : -1;
+            $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
         
         if(empty($this->step_value)){
