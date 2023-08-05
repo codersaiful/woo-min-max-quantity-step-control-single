@@ -24,9 +24,9 @@ class Min_Max_Controller extends Base
     public $variation_name;
 
     //Important value
-    public $min_value;
+    public $min_value = 1;
     public $max_value;
-    public $step_value;
+    public $step_value = 1;
     public $stock_quantity;
     public $qty_inCart;
 
@@ -82,9 +82,9 @@ class Min_Max_Controller extends Base
          * for that side cart plugin, so we have to use also individule also
          * 
          */
-        add_filter( 'woocommerce_quantity_input_step', [$this, 'quantity_input_step'], 9999, 2 );
-        add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
-        add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
+        // add_filter( 'woocommerce_quantity_input_step', [$this, 'quantity_input_step'], 9999, 2 );
+        // add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
+        // add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
 
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
@@ -153,12 +153,12 @@ class Min_Max_Controller extends Base
         // var_dump($this->product);
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
-        var_dump($this->variation_id);
+        // var_dump($this->variation_id);
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
         }
-        var_dump($this);
+        // var_dump($this->variation_product);
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
@@ -313,13 +313,18 @@ class Min_Max_Controller extends Base
         $this->product = $product;
         $this->product_id = $this->product->get_id();
 
-        if('variation' === $this->product->get_type() ){
-            $this->product_id = $this->product->get_parent_id();
-            $this->variation_id = $this->product->get_id();
+        if( $this->is_pro && is_single() && 'variable' === $this->product->get_type() ){
+            $this->variation_id = $args['variation_id'] ?? 0;
             $this->variation_product = wc_get_product( $this->variation_id );
+        }elseif('variation' === $this->product->get_type() ){
+            $this->product_id = $this->product->get_parent_id();
             $this->product = wc_get_product( $this->product_id );
         }
-        var_dump([$this->product_id]);
+        if($this->is_pro && 'variation' === $this->product->get_type() ){
+            $this->variation_id = $this->product->get_id();
+            $this->variation_product = wc_get_product( $this->variation_id );
+        }
+        // var_dump([$this->product_id]);
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -346,7 +351,9 @@ class Min_Max_Controller extends Base
 		if( ! empty( $args['quantity'] ) ){
             $args['quantity'] = $this->min_value;
          }
-        var_dump($this);
+        var_dump($this->input_args);
+        var_dump($this->variation_product);
+        // var_dump($args);
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
