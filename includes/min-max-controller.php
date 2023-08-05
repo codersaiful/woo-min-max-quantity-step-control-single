@@ -153,7 +153,7 @@ class Min_Max_Controller extends Base
         // var_dump($this->product);
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
-
+        var_dump($this->variation_id);
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
@@ -316,9 +316,10 @@ class Min_Max_Controller extends Base
         if('variation' === $this->product->get_type() ){
             $this->product_id = $this->product->get_parent_id();
             $this->variation_id = $this->product->get_id();
+            $this->variation_product = wc_get_product( $this->variation_id );
             $this->product = wc_get_product( $this->product_id );
         }
-        // var_dump();
+        var_dump([$this->product_id]);
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -345,7 +346,7 @@ class Min_Max_Controller extends Base
 		if( ! empty( $args['quantity'] ) ){
             $args['quantity'] = $this->min_value;
          }
-        var_dump($this->input_args);
+        var_dump($this);
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
