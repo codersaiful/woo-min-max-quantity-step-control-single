@@ -158,7 +158,7 @@ class Min_Max_Controller extends Base
             $this->variation_product = wc_get_product( $this->variation_id );
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
         }
-
+        var_dump($this);
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
@@ -197,6 +197,7 @@ class Min_Max_Controller extends Base
     public function setIfVariationArgs()
     {
         if( ! $this->variation_id ) return;
+        if( ! $this->is_pro ) return;
         $min_v = $this->getMetaVariation( $this->min_quantity );
         $max_v = $this->getMetaVariation( $this->max_quantity );
         $step_v = $this->getMetaVariation( $this->product_step );
@@ -312,25 +313,19 @@ class Min_Max_Controller extends Base
         $this->product = $product;
         $this->product_id = $this->product->get_id();
 
+        if('variation' === $this->product->get_type() ){
+            $this->product_id = $this->product->get_parent_id();
+            $this->variation_id = $this->product->get_id();
+            $this->product = wc_get_product( $this->product_id );
+        }
+        // var_dump();
+
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
 
         //for more or for vairable product 
         //check woocommerce/templates/single-product/add-to-cart/variable.php file
-        /**
-         * some available code available over there.
-         * need some time to fix this issue
-        // $available_variations[0]['min_qty']=15;
-        // $available_variations[0]['max_qty']=30;
-
-        // $available_variations[1]['min_qty']=10;
-        // $available_variations[1]['step_qty']=10;
-        // $available_variations[1]['step']=10;
-        // $available_variations[1]['max_qty']=40;
-
-        // $available_variations[2]['min_qty']=3;
-        // $available_variations[2]['max_qty']=33;
-         */
+        
 
 
         if( $this->product->get_type() === 'variable' && ! $this->is_pro){
@@ -350,7 +345,7 @@ class Min_Max_Controller extends Base
 		if( ! empty( $args['quantity'] ) ){
             $args['quantity'] = $this->min_value;
          }
-         
+        var_dump($this->input_args);
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
