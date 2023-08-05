@@ -15,6 +15,7 @@ class Min_Max_Controller extends Base
 
     public $product_id;
     public $product_name;
+    public $get_product_type;
     /**
      * It's need, only when cart page, otherwise it will null
      *
@@ -22,6 +23,7 @@ class Min_Max_Controller extends Base
      */
     public $variation_id;
     public $variation_name;
+    public $get_variation_type;
 
     //Important value
     public $min_value = 1;
@@ -116,13 +118,36 @@ class Min_Max_Controller extends Base
      * @return void
      */
     protected function organizeAndFinalizeArgs(){
-        $check_name = 'check_' . $this->product_id;
+        $check_name = 'check_' . $this->product_id . '_' . $this->variation_id;
 
         if( $this->$check_name ) return;
         $this->assignInputArg();
         $this->finalizeArgs();
 
         $this->$check_name = true;
+    }
+
+    public function checkQtyInCart()
+    {
+        global $woocommerce;
+        if( ! is_object($woocommerce->cart)) return 0;
+        if( ! method_exists($woocommerce->cart, 'get_cart')) return 0;
+        $return = 0;
+
+        foreach($woocommerce->cart->get_cart() as $key => $value ) {
+
+            $temp_quantity = $value['quantity'] ?? 0;
+            if( $this->variation_id && $this->is_pro && $this->product_id == $value['product_id'] && $this->variation_id == $value['variation_id'] ) {
+                $return = $temp_quantity;
+                break;
+            }elseif($this->product_id == $value['product_id'] && empty( $value['variation_id'] ) ){
+                $return = $temp_quantity;
+                break;
+            }elseif(! $this->is_pro && $this->product_id == $value['product_id'] && ! empty( $value['variation_id'] ) ){
+                $return += $temp_quantity;
+            }
+        }
+        return $return;
     }
 
     /**
@@ -143,19 +168,20 @@ class Min_Max_Controller extends Base
      */
     protected function assignInputArg()
     {
-        // if( $this->is_args_organized) return true;
+
         if( ! $this->product) return;
 
         //Some important data assing on property
         $this->product_name = get_the_title( $this->product_id );
-        $this->variation_name = $this->variation_id ? get_the_title( $this->variation_id ) : '';
-        $this->qty_inCart = wcmmq_check_quantity_in_cart( $this->product_id, $this->variation_id );
-        // var_dump($this->product);
+        $this->variation_name = $this->variation_id ? get_the_title( $this->variation_id ) : null;
+        $this->qty_inCart = $this->checkQtyInCart();//wcmmq_check_quantity_in_cart( $this->product_id, $this->variation_id );
+
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
-        // var_dump($this->variation_id);
+
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
         }
         // var_dump($this->variation_product);
@@ -207,6 +233,7 @@ class Min_Max_Controller extends Base
             $this->step_value = $step_v;
             return true;
         }
+        
         return;
     }
 
@@ -270,6 +297,7 @@ class Min_Max_Controller extends Base
      */
     public function finalizeArgs()
     {
+
         if(empty($this->max_value)){
             $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
@@ -286,14 +314,17 @@ class Min_Max_Controller extends Base
             $this->input_args = [];
         }
 
-        $this->input_args = array_merge( array(
+        // var_dump($this->input_args);
+        $this->input_args = array(
             'min_quantity' => $this->min_value,
             'max_quantity' => $this->max_value,
             'step_quantity' => $this->step_value,
             'current_quantity' => $this->qty_inCart,
+            'product_id'=> $this->product_id,
             'product_name'=> $this->product_name,
+            'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
-        ), $this->input_args );
+        );
         
         return $this;
     }
@@ -312,19 +343,23 @@ class Min_Max_Controller extends Base
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
         $this->product_id = $this->product->get_id();
+        $this->get_product_type = $this->product->get_type();
 
-        if( $this->is_pro && is_single() && 'variable' === $this->product->get_type() ){
+        if( is_single() && 'variable' === $this->product->get_type() ){
             $this->variation_id = $args['variation_id'] ?? 0;
             $this->variation_product = wc_get_product( $this->variation_id );
         }elseif('variation' === $this->product->get_type() ){
-            $this->product_id = $this->product->get_parent_id();
-            $this->product = wc_get_product( $this->product_id );
-        }
-        if($this->is_pro && 'variation' === $this->product->get_type() ){
+            //As it's variation product, So I have to assign variation id and product at the begining this statement
             $this->variation_id = $this->product->get_id();
             $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();
+
+            $this->product_id = $this->product->get_parent_id();
+            $this->product = wc_get_product( $this->product_id );
+        }else{
+            $this->variation_id = null;
+            $this->variation_product = null;
         }
-        // var_dump([$this->product_id]);
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -352,7 +387,7 @@ class Min_Max_Controller extends Base
             $args['quantity'] = $this->min_value;
          }
         var_dump($this->input_args);
-        var_dump($this->variation_product);
+        // var_dump($this->variation_id);
         // var_dump($args);
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
