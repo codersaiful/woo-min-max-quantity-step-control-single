@@ -389,6 +389,8 @@ class Min_Max_Controller extends Base
         // var_dump($this->input_args);
         // var_dump($this->variation_id);
         // var_dump($args);
+        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe
+        $args['attributes']['title'] = 'Somehting is better than nothing';
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
