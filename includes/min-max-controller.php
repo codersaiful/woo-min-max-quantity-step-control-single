@@ -26,9 +26,9 @@ class Min_Max_Controller extends Base
     public $get_variation_type;
 
     //Important value
-    public $min_value = 1;
+    public $min_value;
     public $max_value;
-    public $step_value = 1;
+    public $step_value;
     public $stock_quantity;
     public $qty_inCart;
 
@@ -224,13 +224,15 @@ class Min_Max_Controller extends Base
         if( $this->is_pro && $this->setIfVariationArgs() ) return true;
 
         //Return here if found in single
-        if( ! empty( $this->min_value ) || ! empty( $this->max_value ) || ! empty( $this->step_value )  || $this->min_value == 0 ){
+        if( ! empty( $this->min_value ) || ! empty( $this->max_value ) || ! empty( $this->step_value )  || $this->min_value === 0 || $this->min_value === '0' ){
             $this->where_args_on = 'single';
             return true;
         }elseif( empty( $this->term_data ) ){
+            
             $this->setGlobalArgs();
             return true;
         }elseif( ! empty( $this->term_data ) && is_array( $this->term_data ) ){
+            
             $this->setTermwiseArgs();
             return true;
         }
@@ -327,15 +329,19 @@ class Min_Max_Controller extends Base
     public function finalizeArgs()
     {
 
-        if(empty($this->max_value)){
+        if( empty($this->min_value) && $this->min_value !== '0' ){
+            $this->min_value = '1';
+        }
+
+        if( empty( $this->max_value ) ){
             $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
         
         if(empty($this->step_value)){
-            $this->step_value = 1;
+            $this->step_value = '1';
         }
 
-        if( $this->stock_quantity && $this->max_value > $this->stock_quantity){
+        if( $this->stock_quantity && $this->max_value > $this->stock_quantity ){
             $this->max_value = $this->stock_quantity;
         }
 
