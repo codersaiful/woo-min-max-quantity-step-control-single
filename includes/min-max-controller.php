@@ -52,6 +52,20 @@ class Min_Max_Controller extends Base
     public $is_args_organized = false;
 
     public $input_args = [];
+
+    /**
+     * Filter hook provided args,
+     * which I stored at $temp_args
+     * Specially of input box,
+     * which is provided by WooCommerce using 
+     * filter hook like:
+     * *woocommerce_loop_add_to_cart_args
+     * *woocommerce_quantity_input_args
+     * *woocommerce_loop_add_to_cart_args
+     *
+     * @var array
+     */
+    public $temp_args = [];
     public $term_data;
     protected $options;
     protected $product;
@@ -118,6 +132,21 @@ class Min_Max_Controller extends Base
      * @return void
      */
     protected function organizeAndFinalizeArgs(){
+        if( is_single() && 'variable' === $this->product->get_type() ){
+            $this->variation_id = $this->temp_args['variation_id'] ?? 0;
+            $this->variation_product = wc_get_product( $this->variation_id );
+        }elseif('variation' === $this->product->get_type() ){
+            //As it's variation product, So I have to assign variation id and product at the begining this statement
+            $this->variation_id = $this->product->get_id();
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();
+
+            $this->product_id = $this->product->get_parent_id();
+            $this->product = wc_get_product( $this->product_id );
+        }else{
+            $this->variation_id = null;
+            $this->variation_product = null;
+        }
         $check_name = 'check_' . $this->product_id . '_' . $this->variation_id;
 
         if( $this->$check_name ) return;
@@ -339,27 +368,14 @@ class Min_Max_Controller extends Base
      */
     public function set_input_args( $args, $product )
     {
-        // var_dump('args',$this->saiful);
+        $this->temp_args = $args;
+
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
 
-        if( is_single() && 'variable' === $this->product->get_type() ){
-            $this->variation_id = $args['variation_id'] ?? 0;
-            $this->variation_product = wc_get_product( $this->variation_id );
-        }elseif('variation' === $this->product->get_type() ){
-            //As it's variation product, So I have to assign variation id and product at the begining this statement
-            $this->variation_id = $this->product->get_id();
-            $this->variation_product = wc_get_product( $this->variation_id );
-            $this->get_variation_type = $this->variation_product->get_type();
-
-            $this->product_id = $this->product->get_parent_id();
-            $this->product = wc_get_product( $this->product_id );
-        }else{
-            $this->variation_id = null;
-            $this->variation_product = null;
-        }
+        
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -386,7 +402,7 @@ class Min_Max_Controller extends Base
 		if( ! empty( $args['quantity'] ) ){
             $args['quantity'] = $this->min_value;
          }
-        // var_dump($this->input_args);
+        var_dump($this->input_args);
         // var_dump($this->variation_id);
         // var_dump($args);
         //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe
