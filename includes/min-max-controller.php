@@ -389,9 +389,6 @@ class Min_Max_Controller extends Base
 
         //for more or for vairable product 
         //check woocommerce/templates/single-product/add-to-cart/variable.php file
-        
-
-
         if( $this->product->get_type() === 'variable' && ! $this->is_pro){
             $args['min_qty'] = $this->min_value;
             $args['max_qty'] = $this->max_value;
@@ -407,7 +404,7 @@ class Min_Max_Controller extends Base
         }
 
 		if( ! empty( $args['quantity'] ) ){
-            $args['quantity'] = $this->min_value;
+            $args['input_value'] = $args['quantity'] ?? $this->min_value;
          }
 
         //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
