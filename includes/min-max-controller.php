@@ -402,10 +402,10 @@ class Min_Max_Controller extends Base
         if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
             $args['input_value'] = $this->min_value;
         }
-        
+
         if( ! empty( $args['quantity'] ) ){
             $args['input_value'] = $args['quantity'] ?? $this->min_value;
-         }
+        }
 
         //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
         $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
