@@ -99,9 +99,9 @@ class Min_Max_Controller extends Base
          * for that side cart plugin, so we have to use also individule also
          * 
          */
-        // add_filter( 'woocommerce_quantity_input_step', [$this, 'quantity_input_step'], 9999, 2 );
-        // add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
-        // add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
+        add_filter( 'woocommerce_quantity_input_step', [$this, 'quantity_input_step'], 9999, 2 );
+        add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
+        add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
 
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
