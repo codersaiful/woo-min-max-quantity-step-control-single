@@ -178,6 +178,9 @@ You are welcome to contribute  to this project. Join with us [Fork Github reposi
 = Does Min/Max Quantities work with variable products? =
 Yes, it work with  variable, to learn click on this [tutorial link.](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
 
+= Can I enable ajax add to cart on single product? =
+Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
+
 = Can I set a minimum, maximum, default, or step for all products at once? =
 Yes, to learn more, please [click](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/) on this link.
 
@@ -227,6 +230,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 4.5 =
+* Variable product's min max and step issue in free version has been fixed.
 * use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 * Update decimal separator option
 * Code Optimized
