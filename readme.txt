@@ -202,6 +202,9 @@ Yes, you can.
 = Is there any shortcode? =
 No need shortcode.
 
+= Does it support with any Side cart plugin or any theme? =
+Yes, It's support. Actually we developed our plugin using WooCommerce filter hook, so it will support with any theme and plugin.
+
 = Where will I find the setting menu for Min Max and step? =
 Very easy. Just add a new product or edit an existing product. You will see a tab “Min Max & Step '' in the product data panel. You can set your product quantity and steps easily.
 
