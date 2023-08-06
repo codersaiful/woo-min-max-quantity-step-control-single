@@ -33,11 +33,12 @@ class Min_Max_Controller extends Base
     public $qty_inCart;
 
     //Important key
+    public $key_prefix = WC_MMQ_PREFIX;
     public $min_quantity = WC_MMQ_PREFIX . 'min_quantity';
     public $default_quantity = WC_MMQ_PREFIX . 'default_quantity';
     public $max_quantity = WC_MMQ_PREFIX . 'max_quantity';
     public $product_step = WC_MMQ_PREFIX . 'product_step';
-    public $key_prefix = WC_MMQ_PREFIX;
+    
 
     /**
      * It's the property of where the args is final
@@ -81,7 +82,7 @@ class Min_Max_Controller extends Base
         if( ! empty( $this->term_data ) ){
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
         }
-        
+
         //Input box args setup and manage
         add_filter('woocommerce_loop_add_to_cart_args',[$this, 'set_input_args'], 9999, 2);
         add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
@@ -408,11 +409,9 @@ class Min_Max_Controller extends Base
 		if( ! empty( $args['quantity'] ) ){
             $args['quantity'] = $this->min_value;
          }
-        var_dump($this->input_args);
-        // var_dump($this->variation_id);
-        // var_dump($args);
-        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe
-        $args['attributes']['title'] = 'Somehting is better than nothing';
+
+        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
+        $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 

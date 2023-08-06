@@ -63,12 +63,12 @@ class Module_Controller extends Base
         $this->menu_title = __( 'Module Switcher', 'wcmmq' );
         
         $module_item = array(
-            'loop-template-button' => array(
-                'key'   => 'loop-template-button',
-                'name'  =>  __( 'Button Template for Loop', 'wcmmq' ),
-                'desc'  =>  __( 'Specially for Shop page and related proucts loop. Enable and Disable on Shop Page as well as on Related product Section.', 'wcmmq' ),
-                'status'=>  'on',
-            ),
+            // 'loop-template-button' => array(
+            //     'key'   => 'loop-template-button',
+            //     'name'  =>  __( 'Button Template for Loop', 'wcmmq' ),
+            //     'desc'  =>  __( 'Specially for Shop page and related proucts loop. Enable and Disable on Shop Page as well as on Related product Section.', 'wcmmq' ),
+            //     'status'=>  'on',
+            // ),
             'guttenberg-block' => array(
                 'key'   => 'guttenberg-block',
                 'name'  =>  __( 'Min Max Step in Guttenberg Block', 'wcmmq' ),
