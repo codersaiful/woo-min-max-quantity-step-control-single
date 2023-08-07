@@ -95,7 +95,7 @@
         </tr>
 
         <?php $tracker = isset( $saved_data['tracker' ] ) && $saved_data['tracker' ] == '1' ? 'checked' : false; ?>
-        <tr>
+        <tr style="display: none;">
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
