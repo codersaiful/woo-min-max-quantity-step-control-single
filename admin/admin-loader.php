@@ -25,18 +25,9 @@ class Admin_Loader extends Base{
     }
 
     public function admin_init(){
-        /**
-         * Tracker Enable Only Based on Customer Approval
-         * You able to disbale/Enable from
-         * Dashboard -> Min Max Control -> Support & Tracker -> Tracker
-         * 
-         * @since 4.5.8
-         */
-        $tracker = WC_MMQ::getOption('tracker');
-        if( $tracker ){
-            $tracker = new Tracker();
-            $tracker->run();
-        }
+
+        $tracker = new Tracker();
+        $tracker->run();
         
     }
 }
