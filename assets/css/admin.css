@@ -701,3 +701,13 @@ body.toplevel_page_wcmmq-min-max-control pre{
     margin-left: 230px;
     margin-top: 30px;
 }
+.extra-area {
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+.wcmmq-content .extra-area p.lang-area-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: black;
+    margin: 10px 0;
+}
