@@ -233,6 +233,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 4.5 =
+* Added: Live Chatbox On/Off button added. Easily able to on or off.
 * WPML Language wise message issue fixed.
 * Variable product's min max and step issue in free version has been fixed.
 * use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
