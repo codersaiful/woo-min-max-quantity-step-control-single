@@ -3,7 +3,7 @@
         <tr>
             <th class="wcmmq-inside">
                 <div class="wcmmq-table-header-inside">
-                    <h3><?php echo esc_html__( 'Live Support', 'wcmmq' ); ?></h3>
+                    <h3><?php echo esc_html__( 'Support & Tracker', 'wcmmq' ); ?></h3>
                 </div>
                 
             </th>
@@ -94,6 +94,38 @@
             </td>
         </tr>
 
+        <?php $tracker = isset( $saved_data['tracker' ] ) && $saved_data['tracker' ] == '1' ? 'checked' : false; ?>
+        <tr style="display: none;">
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label col-lg-6">
+                        <label for="_tracker" title="Help Us to Improve plugin based on user data."><?php echo esc_html__('Tracker','wcmmq');?><i class="wcmmq-optional">Optional</i></label>
+                    </div>
+                    <div class="form-field col-lg-6">
+                        
+                        <label class="switch">
+                            <input value="1" name="data[tracker]"
+                                <?php echo $tracker; /* finding checked or null */ ?> type="checkbox" id="_tracker">
+                            <div class="slider round"><!--ADDED HTML -->
+                                <span class="on"><?php echo esc_html__('ON','wcmmq');?></span><span class="off"> <?php echo esc_html__('OFF','wcmmq');?></span><!--END-->
+                            </div>
+                        </label>
+                        <p class="warning-alert">
+                            Tracker will send some basic date to Plugin Author. such as: WordPress Version, MySQL Version,WooCommerce Version, site title, Min Max Plugin version, Theme Name etc.
+                            <i>If you don't want to share these info, Off this option.</i> We don't sale your data, We use your data as servey for our plugin improve and update. 
+                        </p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    <p>
+                        <b>Help us</b> to improve our plugin by proding your basic data. 
+                    </p>
+                    
+                </div> 
+            </td>
+        </tr>
         
     </tbody>
 

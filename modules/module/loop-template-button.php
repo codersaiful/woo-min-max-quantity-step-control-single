@@ -1,4 +1,53 @@
 <?php
+// namespace WC_MMQ\Modules\Module;
+
+// use WC_MMQ\Includes\Min_Max_Controller;
+// class Loop_Template_Button extends Min_Max_Controller{
+//     public function __construct()
+//     {
+//         parent::__construct();
+
+//         // add_action('woocommerce_loop_add_to_cart_args',[$this, 'woocommerce_loop_add_to_cart_args'] );
+//         // add_action('woocommerce_before_shop_loop',[$this, 'acttt'] );
+//         // add_action('woocommerce_after_single_product_summary',[$this, 'acttt'] );
+//         // var_dump($this->input_args);
+//     }
+//     public function acttt()
+//     {
+//         add_filter('woocommerce_loop_add_to_cart_link',[$this, 'shop_loop'],10,3);
+//     }
+//     public function shop_loop($button, $product, $args)
+//     {
+//         var_dump($args);
+//         if(!$product) return $button;
+//         if( $product->is_sold_individually() ) return $button;
+//         $this->product = $product;
+//         $this->product_id = $this->product->get_id();
+//         $this->get_product_type = $this->product->get_type();
+
+//         if( is_single() && 'variable' === $this->product->get_type() ){
+//             $this->variation_id = $args['variation_id'] ?? 0;
+//             $this->variation_product = wc_get_product( $this->variation_id );
+//         }elseif('variation' === $this->product->get_type() ){
+//             //As it's variation product, So I have to assign variation id and product at the begining this statement
+//             $this->variation_id = $this->product->get_id();
+//             $this->variation_product = wc_get_product( $this->variation_id );
+//             $this->get_variation_type = $this->variation_product->get_type();
+
+//             $this->product_id = $this->product->get_parent_id();
+//             $this->product = wc_get_product( $this->product_id );
+//         }else{
+//             $this->variation_id = null;
+//             $this->variation_product = null;
+//         }
+
+//         //Need to set organize args and need to finalize
+//         $this->organizeAndFinalizeArgs();
+//         var_dump($this->input_args);
+//         return $button;
+//     }
+// }
+// new Loop_Template_Button();
 // var_dump( 444444 );
 /**
  * Setting quantity in Loop of Shop Page
@@ -42,11 +91,11 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
             }
         }
         //If not available in single product, than come from default
-        $min_quantity = !empty( $min_quantity ) ? $min_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
-        $default_quantity = !empty( $default_quantity ) ? $default_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
+        $min_quantity = !empty( $min_quantity ) ? $min_quantity : \WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'min_quantity',$product_id );
+        $default_quantity = !empty( $default_quantity ) ? $default_quantity : \WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'default_quantity',$product_id );
         $default_quantity = !empty( $default_quantity ) ? $default_quantity :$min_quantity;
-        $max_quantity = !empty( $max_quantity ) ? $max_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
-        $step_quantity = !empty( $step_quantity ) ? $step_quantity : WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
+        $max_quantity = !empty( $max_quantity ) ? $max_quantity : \WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'max_quantity',$product_id );
+        $step_quantity = !empty( $step_quantity ) ? $step_quantity : \WC_MMQ::minMaxStep( WC_MMQ_PREFIX . 'product_step',$product_id );
 
 
         if( ( !empty( $min_quantity ) || !$min_quantity ) && is_numeric($min_quantity) ){
@@ -58,7 +107,7 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
 
         $cart_btn_attr = array(
             'href' => esc_url( $product->add_to_cart_url() ),
-            'title' => esc_attr( WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ),
+            'title' => esc_attr( \WC_MMQ::getOption( WC_MMQ_PREFIX . 'min_qty_msg_in_loop' ) . " " .$args['quantity'] ),
             'quantity' => esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
             'class' => esc_attr( isset( $args['class'] ) ? $args['class'] : $class ),
             'product_id' => $product_id,
@@ -99,7 +148,7 @@ function wcmmq_set_min_qt_in_shop_loop($button = false,$product = false,$args = 
  * @since 1.0.14
  */
 function wcmmq_add_filter_for_shop_n_related_loop(){
-    add_filter('woocommerce_loop_add_to_cart_link','wcmmq_set_min_qt_in_shop_loop',10,3);
+    // add_filter('woocommerce_loop_add_to_cart_link','wcmmq_set_min_qt_in_shop_loop',10,3);
 }
-add_action('woocommerce_before_shop_loop','wcmmq_add_filter_for_shop_n_related_loop' );
-add_action('woocommerce_after_single_product_summary','wcmmq_add_filter_for_shop_n_related_loop' );
+// add_action('woocommerce_before_shop_loop','wcmmq_add_filter_for_shop_n_related_loop' );
+// add_action('woocommerce_after_single_product_summary','wcmmq_add_filter_for_shop_n_related_loop' );

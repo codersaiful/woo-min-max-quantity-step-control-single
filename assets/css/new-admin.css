@@ -144,6 +144,17 @@ table.wcmmq-table thead tr h3 {
     font-size: 22px;
     font-weight: 100;
 }
+table.wcmmq-table h4.section-divider-title {
+    font-size: 18px;
+    font-weight: 100;
+    color: #838383;
+}
+table.wcmmq-table tr.divider-row>td {
+    padding-top: 20px;
+    border-top: 1px solid rgba(219, 219, 219, 0.522);
+    /* border-bottom: 1px solid rgba(219, 219, 219, 0.522); */
+    padding-bottom: 20px;
+}
 table.wcmmq-table tr td, table.wcmmq-table tr th, .wcmmq-table > thead > tr > th {
     padding: 0 30px;
 }
@@ -343,7 +354,12 @@ a.wcmmq-button.reset:hover {
 .wrap.wcmmq_wrap.wcmmq-content {
     margin: 0 10px;
 }
-.wcmmq-form-control .form-field>* {
+.wqpmb-important-link-area {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
     margin-bottom: 10px;
 }
 .wcmmq-form-control select {
@@ -371,7 +387,12 @@ span#footer-thankyou.wcmmq-footer-thankyou a>i:before {
     background: #fefefe;
     margin-bottom: 25px;
 }
-
+i.wcmmq-optional {
+    font-weight: normal;
+    margin: 0 5px;
+    font-size: 95%;
+    color: gray;
+}
 
 /* ********************************
 Screen and devicewise Custom CSS

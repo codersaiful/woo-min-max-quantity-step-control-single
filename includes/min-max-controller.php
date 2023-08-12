@@ -15,6 +15,7 @@ class Min_Max_Controller extends Base
 
     public $product_id;
     public $product_name;
+    public $get_product_type;
     /**
      * It's need, only when cart page, otherwise it will null
      *
@@ -22,6 +23,7 @@ class Min_Max_Controller extends Base
      */
     public $variation_id;
     public $variation_name;
+    public $get_variation_type;
 
     //Important value
     public $min_value;
@@ -31,11 +33,12 @@ class Min_Max_Controller extends Base
     public $qty_inCart;
 
     //Important key
+    public $key_prefix = WC_MMQ_PREFIX;
     public $min_quantity = WC_MMQ_PREFIX . 'min_quantity';
     public $default_quantity = WC_MMQ_PREFIX . 'default_quantity';
     public $max_quantity = WC_MMQ_PREFIX . 'max_quantity';
     public $product_step = WC_MMQ_PREFIX . 'product_step';
-    public $key_prefix = WC_MMQ_PREFIX;
+    
 
     /**
      * It's the property of where the args is final
@@ -50,6 +53,20 @@ class Min_Max_Controller extends Base
     public $is_args_organized = false;
 
     public $input_args = [];
+
+    /**
+     * Filter hook provided args,
+     * which I stored at $temp_args
+     * Specially of input box,
+     * which is provided by WooCommerce using 
+     * filter hook like:
+     * *woocommerce_loop_add_to_cart_args
+     * *woocommerce_quantity_input_args
+     * *woocommerce_loop_add_to_cart_args
+     *
+     * @var array
+     */
+    public $temp_args = [];
     public $term_data;
     protected $options;
     protected $product;
@@ -65,7 +82,7 @@ class Min_Max_Controller extends Base
         if( ! empty( $this->term_data ) ){
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
         }
-        
+
         //Input box args setup and manage
         add_filter('woocommerce_loop_add_to_cart_args',[$this, 'set_input_args'], 9999, 2);
         add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
@@ -116,13 +133,51 @@ class Min_Max_Controller extends Base
      * @return void
      */
     protected function organizeAndFinalizeArgs(){
-        $check_name = 'check_' . $this->product_id;
+        if( is_single() && 'variable' === $this->product->get_type() ){
+            $this->variation_id = $this->temp_args['variation_id'] ?? 0;
+            $this->variation_product = wc_get_product( $this->variation_id );
+        }elseif('variation' === $this->product->get_type() ){
+            //As it's variation product, So I have to assign variation id and product at the begining this statement
+            $this->variation_id = $this->product->get_id();
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();
+
+            $this->product_id = $this->product->get_parent_id();
+            $this->product = wc_get_product( $this->product_id );
+        }else{
+            $this->variation_id = null;
+            $this->variation_product = null;
+        }
+        $check_name = 'check_' . $this->product_id . '_' . $this->variation_id;
 
         if( $this->$check_name ) return;
         $this->assignInputArg();
         $this->finalizeArgs();
 
         $this->$check_name = true;
+    }
+
+    public function checkQtyInCart()
+    {
+        global $woocommerce;
+        if( ! is_object($woocommerce->cart)) return 0;
+        if( ! method_exists($woocommerce->cart, 'get_cart')) return 0;
+        $return = 0;
+
+        foreach($woocommerce->cart->get_cart() as $key => $value ) {
+
+            $temp_quantity = $value['quantity'] ?? 0;
+            if( $this->variation_id && $this->is_pro && $this->product_id == $value['product_id'] && $this->variation_id == $value['variation_id'] ) {
+                $return = $temp_quantity;
+                break;
+            }elseif($this->product_id == $value['product_id'] && empty( $value['variation_id'] ) ){
+                $return = $temp_quantity;
+                break;
+            }elseif(! $this->is_pro && $this->product_id == $value['product_id'] && ! empty( $value['variation_id'] ) ){
+                $return += $temp_quantity;
+            }
+        }
+        return $return;
     }
 
     /**
@@ -143,22 +198,23 @@ class Min_Max_Controller extends Base
      */
     protected function assignInputArg()
     {
-        // if( $this->is_args_organized) return true;
+
         if( ! $this->product) return;
 
         //Some important data assing on property
         $this->product_name = get_the_title( $this->product_id );
-        $this->variation_name = $this->variation_id ? get_the_title( $this->variation_id ) : '';
-        $this->qty_inCart = wcmmq_check_quantity_in_cart( $this->product_id, $this->variation_id );
-        // var_dump($this->product);
+        $this->variation_name = $this->variation_id ? get_the_title( $this->variation_id ) : null;
+        $this->qty_inCart = $this->checkQtyInCart();//wcmmq_check_quantity_in_cart( $this->product_id, $this->variation_id );
+
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
 
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
         }
-
+        // var_dump($this->variation_product);
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
         $this->max_value = $this->getMeta( $this->max_quantity );
@@ -169,13 +225,15 @@ class Min_Max_Controller extends Base
         if( $this->is_pro && $this->setIfVariationArgs() ) return true;
 
         //Return here if found in single
-        if( ! empty( $this->min_value ) || ! empty( $this->max_value ) || ! empty( $this->step_value )  || $this->min_value == 0 ){
+        if( ! empty( $this->min_value ) || ! empty( $this->max_value ) || ! empty( $this->step_value )  || $this->min_value === 0 || $this->min_value === '0' ){
             $this->where_args_on = 'single';
             return true;
         }elseif( empty( $this->term_data ) ){
+            
             $this->setGlobalArgs();
             return true;
         }elseif( ! empty( $this->term_data ) && is_array( $this->term_data ) ){
+            
             $this->setTermwiseArgs();
             return true;
         }
@@ -197,6 +255,7 @@ class Min_Max_Controller extends Base
     public function setIfVariationArgs()
     {
         if( ! $this->variation_id ) return;
+        if( ! $this->is_pro ) return;
         $min_v = $this->getMetaVariation( $this->min_quantity );
         $max_v = $this->getMetaVariation( $this->max_quantity );
         $step_v = $this->getMetaVariation( $this->product_step );
@@ -206,6 +265,7 @@ class Min_Max_Controller extends Base
             $this->step_value = $step_v;
             return true;
         }
+        
         return;
     }
 
@@ -269,15 +329,20 @@ class Min_Max_Controller extends Base
      */
     public function finalizeArgs()
     {
-        if(empty($this->max_value)){
-            $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : -1;
+
+        if( empty($this->min_value) && $this->min_value !== '0' ){
+            $this->min_value = '1';
+        }
+
+        if( empty( $this->max_value ) ){
+            $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
         
         if(empty($this->step_value)){
-            $this->step_value = 1;
+            $this->step_value = '1';
         }
 
-        if( $this->stock_quantity && $this->max_value > $this->stock_quantity){
+        if( $this->stock_quantity && $this->max_value > $this->stock_quantity ){
             $this->max_value = $this->stock_quantity;
         }
 
@@ -285,14 +350,17 @@ class Min_Max_Controller extends Base
             $this->input_args = [];
         }
 
-        $this->input_args = array_merge( array(
+        // var_dump($this->input_args);
+        $this->input_args = array(
             'min_quantity' => $this->min_value,
             'max_quantity' => $this->max_value,
             'step_quantity' => $this->step_value,
             'current_quantity' => $this->qty_inCart,
+            'product_id'=> $this->product_id,
             'product_name'=> $this->product_name,
+            'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
-        ), $this->input_args );
+        );
         
         return $this;
     }
@@ -307,32 +375,20 @@ class Min_Max_Controller extends Base
      */
     public function set_input_args( $args, $product )
     {
-        // var_dump('args',$this->saiful);
+        $this->temp_args = $args;
+
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
         $this->product_id = $this->product->get_id();
+        $this->get_product_type = $this->product->get_type();
+
+        
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
 
         //for more or for vairable product 
         //check woocommerce/templates/single-product/add-to-cart/variable.php file
-        /**
-         * some available code available over there.
-         * need some time to fix this issue
-        // $available_variations[0]['min_qty']=15;
-        // $available_variations[0]['max_qty']=30;
-
-        // $available_variations[1]['min_qty']=10;
-        // $available_variations[1]['step_qty']=10;
-        // $available_variations[1]['step']=10;
-        // $available_variations[1]['max_qty']=40;
-
-        // $available_variations[2]['min_qty']=3;
-        // $available_variations[2]['max_qty']=33;
-         */
-
-
         if( $this->product->get_type() === 'variable' && ! $this->is_pro){
             $args['min_qty'] = $this->min_value;
             $args['max_qty'] = $this->max_value;
@@ -343,14 +399,16 @@ class Min_Max_Controller extends Base
         $args['step'] = $this->step_value;
         $args['classes'][] = 'wcmmq-qty-input-box';
 
-        if( ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
+        if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
             $args['input_value'] = $this->min_value;
         }
 
-		if( ! empty( $args['quantity'] ) ){
-            $args['quantity'] = $this->min_value;
-         }
-         
+        if( ! empty( $args['quantity'] ) ){
+            $args['input_value'] = $args['quantity'] ?? $this->min_value;
+        }
+
+        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
+        $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 

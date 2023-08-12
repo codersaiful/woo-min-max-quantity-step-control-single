@@ -1,7 +1,7 @@
-=== Min Max Quantity & Step Control for WooCommerce ===
+=== Min Max Control - Min Max Quantity & Step Control for WooCommerce===
 Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
-Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
+Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
 Tested up to: 6.3
 Requires PHP: 5.4
@@ -9,11 +9,11 @@ Stable tag: 4.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Min Max Quantity & Step Control for WooCommerce plugin offers to set product's minimum, maximum quantity and step of each product individually.
+Min Max Control plugin offers to set product's minimum, maximum quantity and step of each product individually.
 
 == Description ==
 
-*Min Max Quantity & Step Control for WooCommerce* plugin offers to set product’s 
+*Min Max Control*(Min Max Quantity & Step Control for WooCommerce) plugin offers to set product’s 
 
 🎉 Minimum Quantity<br>
 🎉 Maximum Quantity<br>
@@ -178,6 +178,9 @@ You are welcome to contribute  to this project. Join with us [Fork Github reposi
 = Does Min/Max Quantities work with variable products? =
 Yes, it work with  variable, to learn click on this [tutorial link.](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
 
+= Can I enable ajax add to cart on single product? =
+Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
+
 = Can I set a minimum, maximum, default, or step for all products at once? =
 Yes, to learn more, please [click](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/) on this link.
 
@@ -198,6 +201,9 @@ Yes, you can.
 
 = Is there any shortcode? =
 No need shortcode.
+
+= Does it support with any Side cart plugin or any theme? =
+Yes, It's support. Actually we developed our plugin using WooCommerce filter hook, so it will support with any theme and plugin.
 
 = Where will I find the setting menu for Min Max and step? =
 Very easy. Just add a new product or edit an existing product. You will see a tab “Min Max & Step '' in the product data panel. You can set your product quantity and steps easily.
@@ -227,6 +233,8 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 4.5 =
+* WPML Language wise message issue fixed.
+* Variable product's min max and step issue in free version has been fixed.
 * use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 * Update decimal separator option
 * Code Optimized

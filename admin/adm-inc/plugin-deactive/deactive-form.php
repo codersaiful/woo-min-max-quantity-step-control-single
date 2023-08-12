@@ -218,15 +218,26 @@ class Deactive_Form
         $plugin_name = $this->data['name'] ?? 'CA Plugin';
         $email = '';
         if(function_exists('wp_get_current_user')){
-            $current_user = wp_get_current_user();
-            $email = $current_user->user_email;
+            // $current_user = wp_get_current_user();
+            // $email = $current_user->user_email;
         }
+        global $wpdb,$wp_version;
+        $other = [];
+
+        $other['php_version'] = PHP_VERSION;
         
+        $other['wp_version'] = $wp_version;
+        $other['mysql_version'] = $wpdb->db_version();
+        $other['wc_version'] = WC()->version;
+
+        $other_data = json_encode($other);
 ?>
         <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form-wrap" class="ca-survey-form-wrap">
             <div id="<?php echo esc_attr( $this->prefix ); ?>-survey-form" class="ca-survey-form">
                 <p class="motivational-speek"><?php echo esc_html( $this->form_top_message ); ?></p>
                 <form method="POST" class="ca-deactive-form">
+                    <input name="Other" type="hidden" value="<?php echo esc_attr( $other_data ); ?>">
+
                     <input name="Plugin" type="hidden" class="plugin_name" placeholder="Plugin" value="<?php echo esc_attr( $plugin_name ); ?>" required>
                     <input name="Token" type="hidden" class="token_number" placeholder="Plugin" value="<?php echo esc_attr( $token ); ?>" required>
                     <input name="Version" type="hidden" placeholder="Version" value="<?php echo esc_attr( $this->dev_version ); ?>" required>
@@ -250,8 +261,12 @@ class Deactive_Form
                     <div class="ca-display-message common-target" style="display:none;" data-target_msg="<?php echo esc_attr( $this->common_target_msg ); ?>">
                         <?php echo wp_kses_post( $this->common_target_msg ); ?>
                     </div>
+                    <p style="color: #5c5c5c;padding:0;margin: 0 0 8px 0;font-size: 13px;">
+                        Submission will send some basic data to Plugin Author as a servey. 
+                        Such: your site url, title, this plugin version etc. <i>You can <b>Skip & Deactivate</b></i>
+                    </p>
                     <div class="ca-msg-button-wrapper">
-                        <button type="submit" class="ca_button ca-deactive ca-submit-form" id="ca_deactivate">Submit & Deactivate</button>
+                        <button type="submit" class="ca_button ca-deactive ca-submit-form" title="Send some basic data to Plugin Author" id="ca_deactivate">Send Data & Deactivate</button>
                         <a href="#" class="ca_button ca_cancel" id="ca_cancel">Keep</a>
                         <a href="#" class="ca_button ca_skip" id="ca_skip">Skip & Deactivate</a>
                     </div>

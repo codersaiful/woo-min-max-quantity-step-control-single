@@ -138,8 +138,8 @@ class Page_Loader extends Base
         wp_enqueue_script( 'select2', $this->base_url . 'assets/js/select2.full.min.js', array( 'jquery' ), '4.0.5', true );
 
         
-        wp_register_script( 'wcmmq-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
-        wp_enqueue_script( 'wcmmq-admin-script' );
+        wp_register_script( $this->plugin_prefix . '-admin-script', $this->base_url . 'assets/js/admin.js', array( 'jquery','select2' ), $this->dev_version, true );
+        wp_enqueue_script( $this->plugin_prefix . '-admin-script' );
 
         
         $ajax_url = admin_url( 'admin-ajax.php' );
@@ -152,30 +152,30 @@ class Page_Loader extends Base
             'default_decimal_separator'=> wc_get_price_decimal_separator(),
             'decimal_count'=> wc_get_price_decimals(),
             );
-        wp_localize_script( 'wcmmq-admin-script', 'WCMMQ_ADMIN_DATA', $WCMMQ_ADMIN_DATA );
+        wp_localize_script( $this->plugin_prefix . '-admin-script', 'WCMMQ_ADMIN_DATA', $WCMMQ_ADMIN_DATA );
         
         wp_register_style( 'ultraaddons-common-css', $this->base_url . 'assets/css/admin-common.css', false, $this->dev_version );
         wp_enqueue_style( 'ultraaddons-common-css' );
 
-        wp_register_style( 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
-        wp_enqueue_style( 'wcmmq_css' );
+        wp_register_style( $this->plugin_prefix . 'wcmmq_css', $this->base_url . 'assets/css/admin.css', false, $this->dev_version );
+        wp_enqueue_style( $this->plugin_prefix . 'wcmmq_css' );
 
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
         if( strpos( $s_id, $this->plugin_prefix ) !== false ){
             add_filter('admin_footer_text',[$this, 'admin_footer_text']);
             
-            wp_register_style( 'wcmmq-icon-font', $this->base_url . 'assets/fontello/css/wcmmq-icon.css', false, $this->dev_version );
-            wp_enqueue_style( 'wcmmq-icon-font' );
+            wp_register_style( $this->plugin_prefix . '-icon-font', $this->base_url . 'assets/fontello/css/wcmmq-icon.css', false, $this->dev_version );
+            wp_enqueue_style( $this->plugin_prefix . '-icon-font' );
 
             
-            wp_register_style( 'wcmmq-icon-animation', $this->base_url . 'assets/fontello/css/animation.css', false, $this->dev_version );
-            wp_enqueue_style( 'wcmmq-icon-animation' );
+            wp_register_style( $this->plugin_prefix . '-icon-animation', $this->base_url . 'assets/fontello/css/animation.css', false, $this->dev_version );
+            wp_enqueue_style( $this->plugin_prefix . '-icon-animation' );
 
 
 
 
-            wp_register_style( 'wcmmq-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
-            wp_enqueue_style( 'wcmmq-new-admin' );
+            wp_register_style( $this->plugin_prefix . '-new-admin', $this->base_url . 'assets/css/new-admin.css', false, $this->dev_version );
+            wp_enqueue_style( $this->plugin_prefix . '-new-admin' );
 
         }
 

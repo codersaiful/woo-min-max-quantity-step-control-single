@@ -62,36 +62,36 @@
    //var $elem = $('.float-section');
    $(window).on('scroll',function(){
     
-    let targetElement = $('.float-btn');
-    
-    
-    let bodyHeight = $('#wpbody').height();
-    let scrollTop = $(this).scrollTop();
-    let screenHeight = $(this).height();
+        let targetElement = $('.float-btn');
+        
+        
+        let bodyHeight = $('#wpbody').height();
+        let scrollTop = $(this).scrollTop();
+        let screenHeight = $(this).height();
 
-    let configFormElement = $('form#wcmmq-main-configuration-form');
-    if(configFormElement.length < 1) return;
+        let configFormElement = $('form#wcmmq-main-configuration-form');
+        if(configFormElement.length < 1) return;
 
-    let conPass = bodyHeight - screenHeight - 100 - targetElement.height();
-    let leftWill = configFormElement.width() - targetElement.width() - 20;
-    
+        let conPass = bodyHeight - screenHeight - 100 - targetElement.height();
+        let leftWill = configFormElement.width() - targetElement.width() - 20;
+        
 
-    // targetElement.css({
-    //     left: leftWill,
-    //     right: 'unset'
-    // });
-    if(scrollTop < conPass){
-        targetElement.addClass('stick_on_scroll-on');
-    }else{
-        targetElement.removeClass('stick_on_scroll-on');
-    }
-    
-    if(scrollTop > 100 && colSetsLen > 0){
-        targetElement.attr('id','stick_on_scroll-on');
-    }else if(colSetsLen > 0){
-        targetElement.removeAttr('id');
-    }
-    
+        // targetElement.css({
+        //     left: leftWill,
+        //     right: 'unset'
+        // });
+        if(scrollTop < conPass){
+            targetElement.addClass('stick_on_scroll-on');
+        }else{
+            targetElement.removeClass('stick_on_scroll-on');
+        }
+        
+        if(scrollTop > 100 && colSetsLen > 0){
+            targetElement.attr('id','stick_on_scroll-on');
+        }else if(colSetsLen > 0){
+            targetElement.removeAttr('id');
+        }
+        
 
-});
+    });
 })(jQuery);
