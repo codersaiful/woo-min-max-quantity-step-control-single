@@ -144,7 +144,16 @@ class Min_Max_Controller extends Base
 
             $this->product_id = $this->product->get_parent_id();
             $this->product = wc_get_product( $this->product_id );
-        }else{
+        }elseif( ! $this->is_pro ){
+            /**
+             * Actually not available pro version
+             * Then we have do generate variation_ID null
+             * Otherwise it will not work
+             * 
+             * Checked for Variation
+             * 
+             * @since 4.5.11
+             */
             $this->variation_id = null;
             $this->variation_product = null;
         }
