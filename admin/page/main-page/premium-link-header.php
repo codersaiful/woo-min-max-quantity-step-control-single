@@ -6,7 +6,7 @@
 		<div class="row" style="align-items: inherit;flex-wrap: wrap;margin:0;">
 			<div class="wcmmq-pic-col col-lg-8">
 				<div class="col-lg-2">
-					<a href="https://codeastrology.com/min-max-quantity//?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore_logo&amp;partner=wordpress_org">
+					<a href="https://codeastrology.com/min-max-quantity/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore_logo&amp;partner=wordpress_org" target="_blank">
 						<i class="premium_adv"></i>
 					</a>
 				</div>
@@ -15,12 +15,12 @@
 					<p>Enjoy all awesome feature.</p>
 				</div>
 				<div class="col-lg-6">
-					<a href="https://codeastrology.com/min-max-quantity//?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;">Get Premium Offer</a>
+					<a href="https://codeastrology.com/min-max-quantity/pricing/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Premium Offer</a>
 				</div>
 			</div>
 			<div class="wcmmq-sup-col col-lg-4">
 				<div class="half-containers money-back">
-					<a href="https://codeastrology.com/min-max-quantity//?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org">
+					<a href="https://codeastrology.com/min-max-quantity/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
 						<span>Money Back Guarantee</span>
 					</a>
 					<p style="text-align: center;padding:15px;">100% No-Risk 14-Days Money Back Guarantee</p>
