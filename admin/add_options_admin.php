@@ -83,7 +83,7 @@ add_filter('wcmmq_field_args_in_panel' , function($args){
     }
     
     woocommerce_wp_note([
-        'id'    => 'wcmmq-tips-not',
+        'id'    => $tip_color,
         'class' => $tip_color,
         'message' => $message,
         'label'     =>  __( 'Important:', 'wcmmq' ),
