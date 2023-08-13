@@ -1,4 +1,5 @@
 <div class="wrap wcmmq_wrap wcmmq-content">
+<h1 class="wp-heading "></h1>
 <div class="fieldwrap">
 <section class="wcmmq-section-panel wcmmq-premium-notice-panel no-background" style="box-shadow: 1px 1px 8px 0 rgba(170,157,137,0.14);">
 	<div class="container-fluid">
