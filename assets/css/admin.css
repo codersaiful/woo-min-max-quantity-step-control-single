@@ -711,3 +711,31 @@ body.toplevel_page_wcmmq-min-max-control pre{
     color: black;
     margin: 10px 0;
 }
+output#wcmmq-tips-note-pro,
+output#wcmmq-tips-not {
+    color: white;
+    background: #F44336;
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+output#wcmmq-tips-note-pro{
+    background-color: #4CAF50;
+}
+.wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro, .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-free {
+    color: #fffbfb;
+    background: #F44336;
+    padding: 3px 11px;
+    margin: 0;
+}
+.wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro{
+    color: black;
+    background: #ffeb3b57;
+}
+table.wcmmq-table tr.divider-row.wcmmq-free-pro-notice-message>td {
+    border-bottom: 1px solid rgba(219, 219, 219, 0.522);
+    border-top: 0 none;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+}

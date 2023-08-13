@@ -87,6 +87,32 @@
             </td>
         </tr>
 
+        <tr class="divider-row wcmmq-free-pro-notice-message">
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label col-lg-6">
+                        Message for min,max,step
+                    </div>
+                    <div class="form-field col-lg-6">
+                        <?php if($this->is_pro){
+                            $class = 'wcmmq-input-decimal-msg-pro';
+                            $msgs = 'You able to add decimal value as your min max and step.';
+                        }else{
+                            $msgs = 'If you want Decimal value for minimum, maxium and step, Need pro version.';
+                            $class = 'wcmmq-input-decimal-msg-free';
+                        }
+                        ?>
+                        
+                        <p class="<?php echo esc_attr( $class ); ?>"><?php echo esc_html( $msgs ); ?></p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    <p>It's a notice for free or premium version.</p>
+                </div> 
+            </td>
+        </tr>
 
         <?php
         //At this moment, no need it
