@@ -81,14 +81,16 @@ add_filter('wcmmq_field_args_in_panel' , function($args){
     foreach($args as $arg){
         woocommerce_wp_text_input($arg);
     }
+    if( function_exists( 'woocommerce_wp_note' ) ){
+        woocommerce_wp_note([
+            'id'    => $tip_color,
+            'class' => $tip_color,
+            'message' => $message,
+            'label'     =>  __( 'Important:', 'wcmmq' ),
     
-    woocommerce_wp_note([
-        'id'    => $tip_color,
-        'class' => $tip_color,
-        'message' => $message,
-        'label'     =>  __( 'Important:', 'wcmmq' ),
-
-    ]);
+        ]);
+    }
+    
 }
 
 add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file
