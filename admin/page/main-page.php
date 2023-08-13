@@ -66,6 +66,10 @@ $saved_data = WC_MMQ::getOptions();
 
 //TOPBAR INCLUDE HERE
 include $this->topbar_file;
+$is_pro = $this->is_pro;
+if( ! $is_pro ){
+    include 'main-page/premium-link-header.php'; 
+}
 ?>
 
 
@@ -73,14 +77,7 @@ include $this->topbar_file;
 
 
 <div class="wrap wcmmq_wrap wcmmq-content">
-    <?php 
-        $is_pro = $this->is_pro;
-        if( ! $is_pro ){
-            include 'main-page/premium-link-header.php'; 
-        }
-        // wcmmq_social_links();
-        // var_dump($this);
-    ?>
+
     <h1 class="wp-heading "></h1>
     <div class="fieldwrap">
         <?php
