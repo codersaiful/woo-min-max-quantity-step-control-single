@@ -722,6 +722,7 @@ output#wcmmq-tips-not {
 output#wcmmq-tips-note-pro{
     background-color: #3c973f;
 }
+p.wcmmq-input-decimal-msg-free,
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro, .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-free {
     color: #fffbfb;
     background: #F44336;
@@ -736,6 +737,6 @@ table.wcmmq-table tr.divider-row.wcmmq-free-pro-notice-message>td {
     border-bottom: 1px solid rgba(219, 219, 219, 0.522);
     border-top: 0 none;
     padding-top: 10px;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     margin-bottom: 0;
 }

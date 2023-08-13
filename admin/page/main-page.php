@@ -180,6 +180,13 @@ include $this->topbar_file;
             <div class="wcmmq-section-panel live-support" id="wcmmq-live-support-area">
                 <?php include 'main-page/live-support.php'; ?>
             </div>
+
+            <?php 
+            if( ! $this->is_pro ){
+                include 'main-page/premium-placeholder.php';
+            }
+            ?>
+
             <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
                 <button name="configure_submit" type="submit"
@@ -198,6 +205,7 @@ include $this->topbar_file;
                 
             </div>
 
+            
 
                     
         </form>

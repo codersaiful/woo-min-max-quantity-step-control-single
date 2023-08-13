@@ -64,14 +64,15 @@ if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
             <td>
                 <div class="wcmmq-form-info">
                 <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/'); ?>
-                <p class="wcmmq_terms_promotion">
+                <p>Set Taxonomy wise miminum, maximum and step quantity.</p>
+                <?php if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){ ?>
+                <p class="wcmmq_terms_promotion wcmmq-input-decimal-msg-free">
                 <?php 
-                    if( ! defined( 'WC_MMQ_PRO_VERSION' ) ){
-                    echo esc_html__('For Mulitple Terms,','wcmmq');?> <a href="https://codeastrology.com/min-max-quantity/pricing/"><?php echo esc_html__('Upgrade to PRO','wcmmq');?></a>    
+                    echo esc_html__('For Mulitple Terms, Such: Category, Tag, Color, Size or any other taxonomy. Need Pro version. ','wcmmq');?> <a href="https://codeastrology.com/min-max-quantity/pricing/"><?php echo esc_html__('Upgrade to PRO','wcmmq');?></a>    
+                </p>
                 <?php
                     };
                 ?>
-                </p>
                 </div> 
             </td>
         </tr>

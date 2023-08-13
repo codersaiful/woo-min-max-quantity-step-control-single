@@ -233,7 +233,35 @@
                 </div> 
             </td>
         </tr>
-        
+        <?php if(!$this->is_pro){ ?>
+
+            <tr class="user_can_not_edit">
+                <td>
+                    <div class="wcmmq-form-control">
+                        <div class="form-label col-lg-6">
+                            <label for="data[_wcmmq_s_display_price_with_min]">
+                            Multiply Price By Quantity                        </label>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <label class="switch">
+                                <input value="1" name="data[display_price_with_min]" type="checkbox" id="_wcmmq_display_price_with_min">
+                                <div class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">ON</span><span class="off">OFF</span><!--END-->
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="wcmmq-form-info">
+                        <a href="https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <p>Product price will multiply by the quantity before being displayed on a single product page and will Increase or decrease in accordance with the quantity. </p>
+                    </div>
+                </td>
+            </tr>
+
+        <?php } ?>
         <?php
         /**
          * Obviously need tr and td here
