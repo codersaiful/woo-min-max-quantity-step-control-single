@@ -22,7 +22,7 @@ class Page_Loader extends Base
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         if($this->is_pro){
             $this->pro_version = WC_MMQ_PRO_VERSION;
-            $this->license = \WC_MMQ_PRO::$direct;
+            $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
