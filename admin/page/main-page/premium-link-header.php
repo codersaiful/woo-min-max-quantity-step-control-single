@@ -34,8 +34,15 @@
 <?php 
 $min_logo = WC_MMQ_BASE_URL . 'assets/images/large-logo.png';
 $money_back = WC_MMQ_BASE_URL . 'assets/images/money-back.png';
+$white_logo = WC_MMQ_BASE_URL . 'assets/images/brand/header-logo-white-x.png';
 ?>
 <style>
+      .row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+    }
     .wcmmq-premium-notice-panel .wcmmq-pic-col {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -51,6 +58,21 @@ $money_back = WC_MMQ_BASE_URL . 'assets/images/money-back.png';
         padding: 25px 10px;
         color: #fff;
         flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+    }
+    .wcmmq-premium-notice-panel .wcmmq-pic-col:after {
+        content: "";
+        height: 66px;
+        width: 163px;
+        position: absolute;
+        bottom: 21px;
+        right: 0px;
+        background: transparent url(<?php echo esc_url( $white_logo ); ?>) no-repeat;
+        transform: rotate(90deg);
+        text-align: center;
+        opacity: 0.6;
+        z-index: 0;
     }
     .premium_adv {
         background: url("<?php echo esc_url( $min_logo ); ?>") no-repeat center;
