@@ -108,7 +108,10 @@ table.wcmmq-table tr td label {
     width: 100%;
     max-width: 100%;
 }
-
+.wcmmq-table tr>th.wcmmq-inside {
+    background: url('../images/brand/black-small-logo.png') no-repeat 90% center;
+    background-size: auto 40px;
+}
 .wcmmq-table > thead > tr > th {
     padding: 0 30px;
 }
