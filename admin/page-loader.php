@@ -62,7 +62,9 @@ class Page_Loader extends Base
         add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
         $this->topbar_sub_title = __( 'Browse our Plugins','wcmmq' );
         include $this->topbar_file;
-        include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
         include $this->page_folder_dir . 'browse-plugins.php';
     }
     
