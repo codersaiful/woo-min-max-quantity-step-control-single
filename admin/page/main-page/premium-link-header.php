@@ -23,7 +23,7 @@
 					<a href="https://codeastrology.com/min-max-quantity/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
 						<span>Money Back Guarantee</span>
 					</a>
-					<p style="text-align: center;padding:15px;">100% No-Risk 14-Days Money Back Guarantee</p>
+					<p style="text-align: center;padding:15px;">100% No-Risk 30-Days Money Back Guarantee</p>
 				</div>
 			</div>
 		</div>
