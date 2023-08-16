@@ -76,7 +76,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  */
                 
                 $target = 'https://codeastrology.com/coupons/?campaign=SPECIAL60F10DAYS&ref=1&utm_source=Default_Offer_LINK';
-                $my_message = '<b><i>COUPON CODE: SPECIAL60F10DAYS - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin?';
+                $my_message = '<b><i>COUPON CODE: SPECIAL60F10DAYS - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin';
                 $offerNc = new Notice('wcmmq_SPECIAL60F10DAYS_offer');
                 $offerNc->set_title( 'SPECIAL OFFER for 10 days' )
                 ->set_diff_limit(35)
