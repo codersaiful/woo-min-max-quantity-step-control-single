@@ -35,17 +35,6 @@ class Page_Loader extends Base
     {
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
-
-
-        add_action('wp_ajax_wcmmq_save_form', [$this, 'save_form']);
-        
-    }
-
-    public function save_form()
-    {
-        var_dump($_POST);
-
-        die();
     }
 
     
