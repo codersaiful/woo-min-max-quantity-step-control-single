@@ -51,7 +51,9 @@ class Page_Loader extends Base
         
         $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
         include $this->topbar_file;
-        include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
         include $this->module_controller->dir . '/module-page.php';
     }
     
