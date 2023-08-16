@@ -86,7 +86,7 @@ class Tracker extends Base
      *
      * @author Saiful Islam <codersaiful@gmail.com>
      */
-    protected $transient_exp = 10800; // in second // when test used 60
+    protected $transient_exp = 14400; // in second // when test used 60
     
     public $_domain = 'http://edm.ultraaddons.com'; //Don't use slash at the end of the link. eg: http://wptheme.cm or: http://edm.ultraaddons.com
     public $tracker_url;
@@ -126,15 +126,17 @@ class Tracker extends Base
          * @author Saiful Islam <codersaiful@gmail.com>
          * @since 4.6.0
          */
-        if( isset($_GET['manual_allow']) && $_GET['manual_allow'] === 'yes' ){
+        if( isset($_GET['manual_allow']) && $_GET['manual_allow'] === 'yes' && $this->option_allow !== 'allow' ){
             update_option($this->option_key, 'allow');
             delete_transient($this->transient_key);
             
         }
-        
     }
     public function page_handle()
     {
+        if( $this->option_allow === 'allow' ){
+            add_filter('admin_body_class', [$this, 'already_body_class']);
+        }
         if($this->option_allow) return;
         add_action('admin_notices', [$this, 'allow_notice']);
         add_filter('admin_body_class', [$this, 'body_class']);
@@ -178,6 +180,10 @@ class Tracker extends Base
         $other['mysql_version'] = $wpdb->db_version();
         $other['wc_version'] = WC()->version;
         $other['display_name'] = $user->display_name;
+
+        if( isset($_GET['manual_allow']) && $_GET['manual_allow'] === 'yes' && $this->option_allow !== 'allow' ){
+            $other['manual_allow'] = 'yes';
+        }
 
         $data = [
             'plugin' => $this->plugin_name,
@@ -339,6 +345,15 @@ document.addEventListener("DOMContentLoaded",function(){var t=document.querySele
         
         if( strpos( $s_id, $this->plugin_prefix) === false ) return $classes;
         $classes .= ' tracker-added allow-tracker-body ';
+        return $classes;
+    }
+    public function already_body_class($classes)
+    {
+        global $current_screen;
+        $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
+        
+        if( strpos( $s_id, $this->plugin_prefix) === false ) return $classes;
+        $classes .= ' already-added-tracker ';
         return $classes;
     }
 

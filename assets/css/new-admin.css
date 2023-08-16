@@ -42,7 +42,10 @@ body .wcmmq-header, body .wcmmq-content {
     padding-left: 9px;
     border-left: 1px solid #80808057;
 }
-
+body.already-added-tracker .wcmmq-main-title.wcmmq-main-title-secondary {
+    padding-right: 25px;
+    border-right: 1px solid #6868681f;
+}
 .wcmmq-main-title h2.wcmmq-ntitle {
     font-size: 25px;
     font-weight: normal;
@@ -53,6 +56,9 @@ body .wcmmq-header, body .wcmmq-content {
 .wcmmq-main-title.wcmmq-main-title-secondary h2.wcmmq-ntitle {
     color: #ababab;
     font-weight: 100;
+}
+body.already-added-tracker .wcmmq-main-title.wcmmq-main-title-secondary h2.wcmmq-ntitle {
+    color: #898686;
 }
 .wcmmq-logo-area {}
 
