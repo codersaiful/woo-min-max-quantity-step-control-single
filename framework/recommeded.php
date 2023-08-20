@@ -10,7 +10,7 @@ class Recommeded
 {
     public static function check()
     {
-        $this_plugin = __( 'CodeAstrology Min Max', 'wpt_pro' );
+        $this_plugin = __( 'Min Max Control', 'wpt_pro' );
         
         $mmp_req_slug = 'woo-product-table/woo-product-table.php';
         $mmp_tar_slug = WC_MMQ_PLUGIN_BASE_FILE;
@@ -29,7 +29,7 @@ class Recommeded
             $req_mmp->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
             $req_mmp->run();
 
-            $req_mmp->set_location('wcmmq_form_bottom'); //wpt_premium_image_bottom
+            $req_mmp->set_location('wcmmq_plugin_recommend_here'); //wpt_premium_image_bottom
             $req_mmp->run();
         }
 
@@ -47,7 +47,7 @@ class Recommeded
         if( method_exists($req_pmb, 'set_location') ){
             $req_pmb->set_location('wcmmq_offer_here');
             $req_pmb->run();
-            $req_pmb->set_location('wcmmq_form_bottom');
+            $req_pmb->set_location('wcmmq_plugin_recommend_here');
             $req_pmb->run();
         }
 
@@ -62,7 +62,7 @@ class Recommeded
         $req_pmb->get_full_this_plugin_name($this_plugin);
 
         if( method_exists($req_pmb, 'set_location') && did_action( 'elementor/loaded' ) ){
-            $req_pmb->set_location('wcmmq_form_bottom'); //wcmmq_form_bottom
+            $req_pmb->set_location('wcmmq_plugin_recommend_here'); //wcmmq_plugin_recommend_here
             $req_pmb->run();
         }
     }

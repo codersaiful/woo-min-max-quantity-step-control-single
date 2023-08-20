@@ -657,6 +657,7 @@ p.wpt-issue-submit {
     opacity: 1;
     padding-top: 2px;
     margin-top: 2px;
+    background-color: transparent !important;
 }
 
 p.wpt-issue-submit>b {
