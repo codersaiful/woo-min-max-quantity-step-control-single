@@ -199,7 +199,9 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
+
                     <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
+                    <p><b>Nee pro, if want qty box for variable product.</b></p>
                     <p>
                     For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
                     For Variable product Quantity Box with Variation change box. Need premium version.<br>
