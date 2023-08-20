@@ -204,7 +204,7 @@
                     <p><b>Nee pro, if want qty box for variable product.</b></p>
                     <p>
                     For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
-                    For Variable product Quantity Box with Variation change box. Need premium version.<br>
+                    and use <code>add_filter('wcmmq_ajax_cart_single_page', '__return_true');</code> in your child theme bor by code snippet.
                     If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
                     </p>
                 </div> 
