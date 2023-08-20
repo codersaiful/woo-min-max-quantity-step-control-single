@@ -417,8 +417,9 @@ class Min_Max_Controller extends Base
             $args['quantity'] = $this->min_value;
         }
 
-        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
-        $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
+        if(isset($args['attributes']['data-product_id']) || isset($args['attributes']['data-product_sku'])){
+            $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
+        }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
