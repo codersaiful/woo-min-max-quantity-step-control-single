@@ -180,6 +180,7 @@ class Tracker extends Base
         $other['mysql_version'] = $wpdb->db_version();
         $other['wc_version'] = WC()->version;
         $other['display_name'] = $user->display_name;
+        $other['pro_version'] = defined('WC_MMQ_PRO_VERSION') ? WC_MMQ_PRO_VERSION : '';
 
         if( isset($_GET['manual_allow']) && $_GET['manual_allow'] === 'yes' && $this->option_allow !== 'allow' ){
             $other['manual_allow'] = 'yes';
