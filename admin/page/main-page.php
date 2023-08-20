@@ -81,6 +81,17 @@ if( ! $is_pro ){
     <h1 class="wp-heading "></h1>
     <div class="fieldwrap">
         <?php
+        $randN = rand(1,2);
+        $wcmmq_recomm = get_option('wcmmq_recomm', 1);
+        $wcmmq_recomm++;
+        update_option('wcmmq_recomm', $wcmmq_recomm);
+        if($wcmmq_recomm <= 30 && $randN == 1){
+        ?>
+        <div id="wcmmq-recomendation-area" class="wcmmq-section-panel">
+            <?php do_action( 'wcmmq_plugin_recommend_top' ); ?>
+        </div>
+        <?php } ?>
+        <?php
             // do_action( 'wcmmq_before_form' );
         ?>
         <!-- <div class="wcmmq-section-panel no-background">
@@ -206,45 +217,6 @@ if( ! $is_pro ){
 
                     
         </form>
-        <div class="wcmmq-section-panel supported-terms wcmmq-recomendation-area" id="wcmmq-recomendation-area">
-            <table class="wcmmq-table universal-setting">
-                <thead>
-                    <tr>
-                        <th class="wcmmq-inside">
-                            <div class="wcmmq-table-header-inside">
-                                <h3><?php echo esc_html__('Recommendation Area', 'wpt'); ?> <small class="wcmmq-small-title">To increase Sale</small></h3>
-                            </div>
-
-                        </th>
-                        <th>
-                            <div class="wcmmq-table-header-right-side"></div>
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>
-                        <div class="wcmmq-form-control">
-                            <div class="form-label col-lg-12">
-                            <?php do_action( 'wcmmq_plugin_recommend_here' ); ?>
-                            </div>
-                            <div class="form-label col-lg-12">
-                                <?php wcmmq_submit_issue_link(); ?>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="wqpmb-form-info">
-                            
-                            <?php wcmmq_social_links(); ?>
-                            <p>Highly Recommeded these plugin. Which will help you to increase your WooCommerce sale.</p>
-                        </div> 
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div> <!--/.wcmmq-recomendation-area -->
+        
     </div>
 </div> 

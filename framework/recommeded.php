@@ -26,7 +26,7 @@ class Recommeded
         // var_dump(method_exists($req_mmp, 'set_location'),$req_mmp);
         // ->set_required();
         if( method_exists($req_mmp, 'set_location') ){
-            $req_mmp->set_location('wcmmq_offer_here'); //wpt_premium_image_bottom
+            $req_mmp->set_location('wcmmq_plugin_recommend_top'); //wpt_premium_image_bottom
             $req_mmp->run();
 
             $req_mmp->set_location('wcmmq_plugin_recommend_here'); //wpt_premium_image_bottom
