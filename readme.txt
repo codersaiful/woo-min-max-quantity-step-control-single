@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.3
 Requires PHP: 5.4
-Stable tag: 4.7
+Stable tag: 4.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 4.7  =
+* Confliction issue with [Woo Product Table](https://wordpress.org/plugins/woo-product-table/) has been solved.
+* Backend Design update.
+* Bug Fixex.
 
 = 4.7  =
 * Fixed: Add to cart min value issue on Shop/Archive page has been solved
