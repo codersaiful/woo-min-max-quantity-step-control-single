@@ -366,7 +366,7 @@ a.wcmmq-button.reset:hover {
 .wrap.wcmmq_wrap.wcmmq-content {
     margin: 0 10px;
 }
-.wqpmb-important-link-area {
+.wcmmq-important-link-area {
     display: flex;
     gap: 5px;
     flex-wrap: wrap;
@@ -656,7 +656,7 @@ Device and Screen wise CSS end Here
     margin: 10px 0;
     background: rgb(255 255 255 / 3%);
 }
-#wcmmq-recomendation-area .ca-reuire-plugin-notice.activate a.ca-button {
+#wcmmq-recomendation-area .ca-reuire-plugin-notice a.ca-button {
     background: #4caf50;
     border-color: #38823b;
     text-transform: uppercase !important;
@@ -664,7 +664,12 @@ Device and Screen wise CSS end Here
     border-left: 27px solid #38823b;
     position: relative;
 }
-#wcmmq-recomendation-area .ca-reuire-plugin-notice.activate a.ca-button:hover {
+#wcmmq-recomendation-area .install.ca-reuire-plugin-notice a.ca-button {
+    background: #ff4200;
+    border-color: #ff4200;
+    border-left-color:#ce3a07;
+}
+#wcmmq-recomendation-area .ca-reuire-plugin-notice a.ca-button:hover {
     background: #9C27B0;
     border-color: #7c1b8c;
     text-transform: uppercase !important;
@@ -672,7 +677,7 @@ Device and Screen wise CSS end Here
     border-left: 27px solid #7c1b8c;
     position: relative;
 }
-#wcmmq-recomendation-area .ca-reuire-plugin-notice.activate a.ca-button:before {
+#wcmmq-recomendation-area .ca-reuire-plugin-notice a.ca-button:before {
     content: "☀";
     position: absolute;
     top: 3px;
@@ -690,4 +695,31 @@ small.wcmmq-small-title {
     color: #9f9f9f;
     font-weight: normal;
     white-space: nowrap;
+}
+@media screen and (min-width: 680px) {
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice {
+        background: transparent no-repeat 10px center;
+        background-size: 85px auto;
+        padding-left: 108px;
+    }
+    div#wcmmq-recomendation-area.wcmmq-section-panel .ca-notice.ca-reuire-plugin-notice.anwwhere-notice {
+        background: transparent no-repeat 12px center;
+        background-size: 55px auto;
+        padding-left: 78px;
+    }
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice[data-notice_id='woo-product-table']{
+        background-image: url('../images/products/woo-product-table.png');
+    }
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice[data-notice_id='woo-min-max-quantity-step-control-single']{
+        background-image: url('../images/products/woo-min-max-quantity-step-control-single.png');
+    }
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice[data-notice_id='wc-quantity-plus-minus-button']{
+        background-image: url('../images/products/wc-quantity-plus-minus-button.png');
+    }
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice[data-notice_id='ca-quick-view']{
+        background-image: url('../images/products/ca-quick-view.png');
+    }
+    div#wcmmq-recomendation-area .ca-notice.ca-reuire-plugin-notice.anwwhere-notice[data-notice_id='ultraaddons-elementor-lite']{
+        background-image: url('../images/products/ultraaddons-elementor-lite.png');
+    }
 }
