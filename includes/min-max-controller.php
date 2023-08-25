@@ -30,6 +30,8 @@ class Min_Max_Controller extends Base
     public $max_value;
     public $step_value;
     public $stock_quantity;
+    public $backorders;
+    public $backorders_status = false;
     public $qty_inCart;
 
     //Important key
@@ -217,12 +219,15 @@ class Min_Max_Controller extends Base
 
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
+        $this->backorders = $this->product->get_backorders();
 
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
             $this->get_variation_type = $this->variation_product->get_type();
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
+            $this->backorders = $this->variation_product->get_backorders();
         }
+        $this->backorders_status = $this->backorders !== 'no' ? true : false;
         // var_dump($this->variation_product);
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
@@ -343,7 +348,7 @@ class Min_Max_Controller extends Base
             $this->min_value = '1';
         }
 
-        if( empty( $this->max_value ) ){
+        if( empty( $this->max_value ) && ! $this->backorders_status ){
             $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
         
@@ -351,7 +356,7 @@ class Min_Max_Controller extends Base
             $this->step_value = '1';
         }
 
-        if( $this->stock_quantity && $this->max_value > $this->stock_quantity ){
+        if( ! $this->backorders_status && $this->stock_quantity && $this->max_value > $this->stock_quantity ){
             $this->max_value = $this->stock_quantity;
         }
 
@@ -359,7 +364,7 @@ class Min_Max_Controller extends Base
             $this->input_args = [];
         }
 
-        // var_dump($this->input_args);
+
         $this->input_args = array(
             'min_quantity' => $this->min_value,
             'max_quantity' => $this->max_value,
@@ -370,7 +375,6 @@ class Min_Max_Controller extends Base
             'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
         );
-        
         return $this;
     }
 
