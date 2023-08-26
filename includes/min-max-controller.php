@@ -115,19 +115,76 @@ class Min_Max_Controller extends Base
     
     public function controlVariationsMinMax()
     {
-        if(!$this->is_pro) return;
-        remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
+        if( ! $this->is_pro) return;
         add_action('woocommerce_single_variation',[$this, 'testing']);
+        add_action('wpt_action_variation',[$this, 'testing']);
     }
     public function testing()
     {
         global $product;
         if(empty($this->variations_args)) return;
-        $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
-        var_dump($this->product_id);
         var_dump($this->variations_args);
+        remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
+        remove_action('wpt_action_variation','wcmmq_pro_js_for_variation_product');
+        $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
 
-        var_dump($this->options);
+        ?>
+<script  type='text/javascript'>
+(function($) {
+    'use strict';
+    $(document).ready(function($) {
+        var product_id = "<?php echo $product->get_id(); ?>";
+        var variation_data = '<?php echo $data; ?>';
+
+        variation_data = JSON.parse(variation_data);
+        var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
+        
+        $(document).on( 'found_variation', form_selector, function( event, variation ) {
+            // console.log(variation);
+        });
+  
+        $(document.body).on('change',form_selector + ' input.variation_id',function(){
+           
+            //$( form_selector + ' input.input-text.qty.text' ).triggerHandler( 'binodon');
+            var variation_id = $(form_selector + ' input.variation_id').val();
+            var qty_box = $(form_selector + ' input.input-text.qty.text');
+
+            if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
+                var min,max,step,basic;
+
+                min = variation_data[variation_id]['min_quantity'];
+                if(typeof min === 'undefined'){
+                    return false;
+                }
+
+                max = variation_data[variation_id]['max_quantity'];
+
+                basic = variation_data[variation_id]['default_quantity'];               
+                if(basic === '' || basic === false){
+                    basic = min;
+                }
+                var lateSome = setInterval(function(){
+
+                    qty_box.attr({
+                        min:min,
+                        max:max,
+                        step:step,
+                        value:basic
+                    });
+                    qty_box.val(basic).trigger('change');
+                    clearInterval(lateSome);
+                },500);
+
+            }
+            
+            
+        });
+
+    });
+})(jQuery);
+</script>        
+        <?php 
+
     }
     
     
