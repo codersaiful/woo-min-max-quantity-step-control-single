@@ -123,11 +123,11 @@ class Min_Max_Controller extends Base
     {
         global $product;
         if(empty($this->variations_args)) return;
-        var_dump($this->variations_args);
+        // var_dump($this->variations_args);
         remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
         remove_action('wpt_action_variation','wcmmq_pro_js_for_variation_product');
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
-
+        $data = wp_json_encode( $data );
         ?>
 <script  type='text/javascript'>
 (function($) {
@@ -158,18 +158,20 @@ class Min_Max_Controller extends Base
                 }
 
                 max = variation_data[variation_id]['max_quantity'];
+                step = variation_data[variation_id]['step_quantity'];
 
-                basic = variation_data[variation_id]['default_quantity'];               
-                if(basic === '' || basic === false){
-                    basic = min;
-                }
+                // basic = variation_data[variation_id]['default_quantity'];               
+                // if(basic === '' || basic === false){
+                //     basic = min;
+                // }
+                basic = min;
                 var lateSome = setInterval(function(){
-
+                    console.log(variation_id,min,max,step,basic);
                     qty_box.attr({
                         min:min,
                         max:max,
                         step:step,
-                        value:basic
+                        value:min
                     });
                     qty_box.val(basic).trigger('change');
                     clearInterval(lateSome);
