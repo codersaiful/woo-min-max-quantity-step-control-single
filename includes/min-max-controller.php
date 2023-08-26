@@ -55,6 +55,7 @@ class Min_Max_Controller extends Base
     public $is_args_organized = false;
 
     public $input_args = [];
+    public $variations_args = [];
 
     /**
      * Filter hook provided args,
@@ -109,8 +110,25 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
         add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
 
+        $this->controlVariationsMinMax();
     }
     
+    public function controlVariationsMinMax()
+    {
+        if(!$this->is_pro) return;
+        remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
+        add_action('woocommerce_single_variation',[$this, 'testing']);
+    }
+    public function testing()
+    {
+        global $product;
+        if(empty($this->variations_args)) return;
+        $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
+        var_dump($this->product_id);
+        var_dump($this->variations_args);
+
+        var_dump($this->options);
+    }
     
     
     /**
@@ -374,6 +392,12 @@ class Min_Max_Controller extends Base
             'product_name'=> $this->product_name,
             'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
+        );
+        $this->variations_args[$this->variation_id] = array(
+            'min_quantity' => $this->min_value,
+            'max_quantity' => $this->max_value,
+            'step_quantity' => $this->step_value,
+            // 'variation_name'=> $this->variation_name,
         );
         return $this;
     }
