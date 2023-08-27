@@ -750,13 +750,15 @@ class Min_Max_Controller extends Base
     /**
      * updated modulous 
      * Only we will check when our qty will getter then min and smaller then max
-     *
+     * 
+     *  If max value is empty then old php version return false of this statement ( $this->max_value < 0 )
+     *  So I (Fazle Bari) have add this statement ( empty($this->max_value ) also.
      * @param int|string $quantity
      * @return bool default value is true, if in condition, then it will check using filter hook
      */
     protected function getModulous( $quantity )
     {
-        if( $this->min_value <= $quantity && ( $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
+        if( $this->min_value <= $quantity && ( empty($this->max_value ) || $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
             return apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
         }
         return true;
