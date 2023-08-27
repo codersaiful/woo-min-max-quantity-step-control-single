@@ -113,19 +113,58 @@ class Min_Max_Controller extends Base
         $this->controlVariationsMinMax();
     }
     
+    /**
+     * Congrolling Min Max Step for All Variation
+     * without Premium constant 'WC_MMQ_PRO_VERSION'
+     * This method will not work.
+     * Obviously need 'WC_MMQ_PRO_VERSION' Constant
+     * 
+     * we will call action hook for woocommerce_single_variation
+     * and for wpt_action_variation
+     * 
+     * Compatible with Woo Product Table also
+     * 
+     * @since 4.9.0
+     *
+     * @return void
+     */
     public function controlVariationsMinMax()
     {
         if( ! $this->is_pro) return;
-        add_action('woocommerce_single_variation',[$this, 'testing']);
-        add_action('wpt_action_variation',[$this, 'testing']);
-    }
-    public function testing()
-    {
-        global $product;
-        if(empty($this->variations_args)) return;
-        // var_dump($this->variations_args);
+        add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
+        add_action('wpt_action_variation',[$this, 'single_variation_handle']);
+
+        /**
+         * Remove action should here
+         * actually first time, I input it at $this->single_variation_handle()
+         * but that's not work.
+         * So I added it at this method
+         * @since 4.9.1
+         */
         remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
         remove_action('wpt_action_variation','wcmmq_pro_js_for_variation_product');
+    }
+
+    /**
+     * Temporarily set Min Max and step 
+     * based on Custom Field
+     * 
+     * Actually requirement data only available on Pro version
+     * because: variation min max step setting only available on premium version
+     * That's why, we set a condition by 'WC_MMQ_PRO_VERSION' constant
+     * 
+     * @since 4.9.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     *
+     * @return void
+     */
+    public function single_variation_handle()
+    {
+        if( ! defined('WC_MMQ_PRO_VERSION') ) return;
+        global $product;
+        if( empty($this->variations_args) ) return;
+
+        
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
