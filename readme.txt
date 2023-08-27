@@ -232,6 +232,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 5.0 =
+* Variation min max Confliction with [Woo Product Table](https://wordpress.org/plugins/woo-product-table/) input box issue has beeen solved for variation product.
+* Bug Fixex.
+
 = 4.9 =
 * Backorder issue solved on variation
 * Backend Design update.

@@ -162,9 +162,20 @@ class Min_Max_Controller extends Base
     {
         if( ! defined('WC_MMQ_PRO_VERSION') ) return;
         global $product;
+        $this->product_id = $product->get_id();
+        $this->product = wc_get_product( $this->product_id );
+        $variables = $product->get_children();
+        if(empty($variables) && ! is_array( $variables )) return;
+        foreach( $variables as $variable_id){
+            
+            $this->variation_id = $variable_id;
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();   
+            $this->organizeAndFinalizeArgs();
+        }
+
         if( empty($this->variations_args) ) return;
 
-        
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
@@ -174,10 +185,8 @@ class Min_Max_Controller extends Base
     $(document).ready(function($) {
         var product_id = "<?php echo $product->get_id(); ?>";
         var variation_data = '<?php echo $data; ?>';
-
         variation_data = JSON.parse(variation_data);
         var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
-        
         $(document).on( 'found_variation', form_selector, function( event, variation ) {
             // console.log(variation);
         });
@@ -187,6 +196,7 @@ class Min_Max_Controller extends Base
             //$( form_selector + ' input.input-text.qty.text' ).triggerHandler( 'binodon');
             var variation_id = $(form_selector + ' input.variation_id').val();
             var qty_box = $(form_selector + ' input.input-text.qty.text');
+            var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
 
             if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
                 var min,max,step,basic;
@@ -205,8 +215,13 @@ class Min_Max_Controller extends Base
                 // }
                 basic = min;
                 var lateSome = setInterval(function(){
-                    console.log(variation_id,min,max,step,basic);
                     qty_box.attr({
+                        min:min,
+                        max:max,
+                        step:step,
+                        value:min
+                    });
+                    qty_boxWPT.attr({
                         min:min,
                         max:max,
                         step:step,
@@ -491,12 +506,15 @@ class Min_Max_Controller extends Base
             'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
         );
-        $this->variations_args[$this->variation_id] = array(
-            'min_quantity' => $this->min_value,
-            'max_quantity' => $this->max_value,
-            'step_quantity' => $this->step_value,
-            // 'variation_name'=> $this->variation_name,
-        );
+        if(!empty($this->variation_id)){
+            $this->variations_args[$this->variation_id] = array(
+                'min_quantity' => $this->min_value,
+                'max_quantity' => $this->max_value,
+                'step_quantity' => $this->step_value,
+                // 'variation_name'=> $this->variation_name,
+            );
+        }
+        
         return $this;
     }
 
