@@ -187,17 +187,24 @@ class Min_Max_Controller extends Base
         var variation_data = '<?php echo $data; ?>';
         variation_data = JSON.parse(variation_data);
         var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
-        $(document).on( 'found_variation', form_selector, function( event, variation ) {
-            // console.log(variation);
-        });
-  
-        $(document.body).on('change',form_selector + ' input.variation_id',function(){
-           
-            //$( form_selector + ' input.input-text.qty.text' ).triggerHandler( 'binodon');
-            var variation_id = $(form_selector + ' input.variation_id').val();
-            var qty_box = $(form_selector + ' input.input-text.qty.text');
-            var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
 
+        var qty_box = $(form_selector + ' input.input-text.qty.text');
+        var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
+
+        $(document.body).on('wpt_changed_variations',function(e, targetAttributeObject){
+            if(targetAttributeObject.status == false){
+                return false;
+            }
+            var variation_id = targetAttributeObject.variation_id;
+            distributeMinMax(variation_id);
+        });
+        $(document.body).on('change',form_selector + ' input.variation_id',function(){
+            var variation_id = $(form_selector + ' input.variation_id').val();
+            distributeMinMax(variation_id);
+            
+        });
+
+        function distributeMinMax(variation_id){
             if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
                 var min,max,step,basic;
 
@@ -228,13 +235,12 @@ class Min_Max_Controller extends Base
                         value:min
                     });
                     qty_box.val(basic).trigger('change');
+                    qty_boxWPT.val(basic).trigger('change');
                     clearInterval(lateSome);
                 },500);
 
             }
-            
-            
-        });
+        }
 
     });
 })(jQuery);
