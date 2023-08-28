@@ -19,7 +19,20 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
+use Automattic\WooCommerce\Utilities\OrderUtil;
+add_action( 'plugins_loaded',function(){
+    
 
+    
+
+    if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+        // HPOS usage is enabled.
+        var_dump(44444444);
+    } else {
+        var_dump(666666666666);
+        // Traditional CPT-based orders are in use.
+    }
+} );
 /**
  * Defining constant
  */
