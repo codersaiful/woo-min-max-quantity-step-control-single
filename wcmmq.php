@@ -26,8 +26,12 @@ add_action( 'plugins_loaded',function(){
     
 
     if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+
+        $order = wc_get_order( 20 );
         // HPOS usage is enabled.
-        var_dump(44444444);
+        // echo '<pre>';
+        // var_dump($order);
+        // echo '</pre>';
     } else {
         var_dump(666666666666);
         // Traditional CPT-based orders are in use.
