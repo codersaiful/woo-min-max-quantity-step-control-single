@@ -184,7 +184,7 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
+                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantity Box','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">

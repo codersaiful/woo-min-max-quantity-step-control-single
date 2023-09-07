@@ -179,7 +179,7 @@ function wcmmq_faq_page_details(){
                         -->
                         <tr>
                         <?php $quantiy_box_archive = isset( $saved_data['quantiy_box_archive' ] ) && $saved_data['quantiy_box_archive' ] == '1' ? 'checked' : false; ?>
-                        <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label></th>
+                        <th><label for="data[quantiy_box_archive]"><?php echo esc_html__('Archive Quantity Box','wcmmq');?></label></th>
                         <td>
                             <label class="switch">
                                 <input value="1" name="data[quantiy_box_archive]"
