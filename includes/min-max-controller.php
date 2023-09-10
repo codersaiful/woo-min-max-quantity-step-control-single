@@ -582,6 +582,7 @@ class Min_Max_Controller extends Base
      */
     public function quantity_input_step($qty, $product)
     {
+        if( ! is_object( $product ) ) return $qty;
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $product;
