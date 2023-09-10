@@ -193,9 +193,6 @@
         line-height: 1.6;
     }
 
-    a.get-addons-btn {
-        width: fit-content;
-    }
 </style>
 
 <div class="wrap wcmmq_wrap wcmmq-content">
@@ -228,10 +225,10 @@
                                 <div class="categories_guide_item wow fadeInUp">
                                     <img width="34" height="32" src="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png" class="attachment-full size-full wp-post-image" alt="" loading="lazy" srcset="https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1.png 34w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-16x16.png 16w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-18x18.png 18w, https://wooproducttable.com/wp-content/uploads/2022/06/briefcase-1-20x20.png 20w" sizes="(max-width: 34px) 100vw, 34px">
                                     <div class="doc_tag_title">
-                                        <h4>Comming Soon <i class="wcmmq-spin4 animate-spin"></i></h4>
+                                        <h4>Comming Soon <i class="wcmmq_icon-spin6 animate-spin"></i></h4>
                                     </div>
                                     <div class="wcmmq-addons-desc">
-                                        <p>More add-ons for <b>Woo Product Table</b> have been coming...<i class="wcmmq-spin5 animate-spin"></i></p>
+                                        <p>More add-ons for <b>Woo Product Table</b> have been coming...<i class="wcmmq_icon-spin5 animate-spin"></i></p>
                                     </div>
                                 </div>
                             </div>
