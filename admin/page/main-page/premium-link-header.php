@@ -1,3 +1,7 @@
+<?php
+$coupon_Code = 'CA60PERCENT';
+
+?>
 <div class="wrap wcmmq_wrap wcmmq-content">
 <h1 class="wp-heading "></h1>
 <div class="fieldwrap">
@@ -6,21 +10,21 @@
 		<div class="row" style="align-items: inherit;flex-wrap: wrap;margin:0;">
 			<div class="wcmmq-pic-col col-lg-8">
 				<div class="col-lg-2">
-					<a href="https://codeastrology.com/min-max-quantity/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore_logo&amp;partner=wordpress_org" target="_blank">
+					<a href="https://codeastrology.com/min-max-quantity/?discount=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore_logo&amp;partner=wordpress_org" target="_blank">
 						<i class="premium_adv"></i>
 					</a>
 				</div>
 				<div class="col-lg-4">
-					<h2>Running Discount</h2>
+					<h2>Coupon: <?php echo esc_html( $coupon_Code ); ?></h2>
 					<p>Enjoy all awesome feature.</p>
 				</div>
 				<div class="col-lg-6">
-					<a href="https://codeastrology.com/min-max-quantity/pricing/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Premium Offer</a>
+					<a href="https://codeastrology.com/min-max-quantity/pricing/?discount=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Discount</a>
 				</div>
 			</div>
 			<div class="wcmmq-sup-col col-lg-4">
 				<div class="half-containers money-back">
-					<a href="https://codeastrology.com/min-max-quantity/?utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
+					<a href="https://codeastrology.com/min-max-quantity/?discount=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
 						<span>Money Back Guarantee</span>
 					</a>
 					<p style="text-align: center;padding:15px;">100% No-Risk 30-Days Money Back Guarantee</p>
@@ -53,7 +57,7 @@ $white_logo = WC_MMQ_BASE_URL . 'assets/images/brand/header-logo-white-x.png';
         border: 5px solid #fff;
         text-align: center;
         background: #9C27B0;
-        background: linear-gradient(81deg,#9C27B0 0,#251641 100%);
+        background: linear-gradient(28deg,#eaffd3 0,#009688 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#df4c57",endColorstr="#f78c62",GradientType=1);
         padding: 25px 10px;
         color: #fff;
@@ -93,8 +97,8 @@ $white_logo = WC_MMQ_BASE_URL . 'assets/images/brand/header-logo-white-x.png';
         border: 5px solid #fff;
     }
     .wcmmq-premium-notice-panel .col-lg-4 .half-containers.money-back {
-        background: #2a1746;
-        color: #eaa8ff;
+        background: #d0f3cb;
+        color: #000000;
     }
     .wcmmq-premium-notice-panel .col-lg-4 .half-containers {
         -webkit-box-flex: 1;
@@ -131,7 +135,7 @@ $white_logo = WC_MMQ_BASE_URL . 'assets/images/brand/header-logo-white-x.png';
         text-transform: uppercase;
         letter-spacing: -0.025em;
         line-height: 1;
-        color: #c0f;
+        color: #000;
     }
     .wcmmq-premium-notice-panel .wcmmq-pic-col p {
         font-size: 16px;
