@@ -21,7 +21,7 @@ class Admin_Loader extends Base{
         // $settings = new Settings_Loader();
         // $settings->run();
 
-        add_action('admin_init', [$this, 'admin_init']);
+        // add_action('admin_init', [$this, 'admin_init']);
     }
 
     public function admin_init(){
