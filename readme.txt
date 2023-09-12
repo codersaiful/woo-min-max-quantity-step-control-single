@@ -232,6 +232,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 5.2 =
+* Fixed: Confliction with variation for Product table has been fixed.
+* Bug Fixed.
+
 = 5.1 =
 * Fixed: $product object checking issue fixed.
 * Bug Fixed.

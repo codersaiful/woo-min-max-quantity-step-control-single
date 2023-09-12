@@ -298,10 +298,9 @@ class Min_Max_Controller extends Base
         }
         $check_name = 'check_' . $this->product_id . '_' . $this->variation_id;
 
-        if( $this->$check_name ) return;
         $this->assignInputArg();
         $this->finalizeArgs();
-
+        if( $this->$check_name ) return;
         $this->$check_name = true;
     }
 
