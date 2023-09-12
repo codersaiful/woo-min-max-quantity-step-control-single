@@ -22,7 +22,7 @@ class Page_Loader extends Base
         $this->is_pro = defined( 'WC_MMQ_PRO_VERSION' );
         if($this->is_pro){
             $this->pro_version = WC_MMQ_PRO_VERSION;
-            $this->license = \WC_MMQ_PRO::$direct;
+            $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
@@ -35,17 +35,6 @@ class Page_Loader extends Base
     {
         add_action( 'admin_menu', [$this, 'admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'admin_enqueue_scripts'] );
-
-
-        add_action('wp_ajax_wcmmq_save_form', [$this, 'save_form']);
-        
-    }
-
-    public function save_form()
-    {
-        var_dump($_POST);
-
-        die();
     }
 
     
@@ -62,6 +51,9 @@ class Page_Loader extends Base
         
         $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
         include $this->topbar_file;
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
         include $this->module_controller->dir . '/module-page.php';
     }
     
@@ -70,7 +62,21 @@ class Page_Loader extends Base
         add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
         $this->topbar_sub_title = __( 'Browse our Plugins','wcmmq' );
         include $this->topbar_file;
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
         include $this->page_folder_dir . 'browse-plugins.php';
+    }
+
+    public function addons_list_html()
+    {
+        add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
+        $this->topbar_sub_title = __( 'Addons','wcmmq' );
+        include $this->topbar_file;
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
+        include $this->page_folder_dir . 'addons-list.php';
     }
     
 
@@ -103,6 +109,7 @@ class Page_Loader extends Base
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
         add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ),  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
+        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ),  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
 
         add_submenu_page($this->main_slug, 'Documentation', 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
         if($this->is_pro){

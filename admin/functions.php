@@ -136,18 +136,26 @@ function wcmmq_message_field_generator( $fields_arr, $saved_data, $section_title
 
 if( !function_exists( 'wcmmq_tawkto_code_header' ) ){
     /**
-     * set class for Admin Body tag
+     * Add Tawk.to live chat support box.
+     * for customer.
      * 
-     * @param type $classes
-     * @return String
+     * Added on/off option at Configure/Option page 
+     * 
+     * @return void
      */
-    function wcmmq_tawkto_code_header( $class_string ){
-        $disable_live_support = WC_MMQ::getOption( 'disable_live_support' );
-        if( $disable_live_support ) return;
+    function wcmmq_tawkto_code_header(){
         global $current_screen;
         $s_id = isset( $current_screen->id ) ? $current_screen->id : '';
-        
-        if( strpos( $s_id, 'wcmmq') !== false ){
+        if( strpos( $s_id, 'wcmmq') === false ) return;
+
+        $temp_permission = false;
+        $submitted = filter_input_array(INPUT_POST);
+        if( isset( $submitted['data'] ) ){
+            if(isset( $submitted['data']['disable_live_support'] )) return;
+            $temp_permission = true;
+        }
+        $disable_live_support = $temp_permission ? false : WC_MMQ::getOption( 'disable_live_support' );
+        if( $disable_live_support ) return;
         ?>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -163,8 +171,7 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->      
         <?php
-        }
-        
+
     }
 }
 add_filter( 'admin_head', 'wcmmq_tawkto_code_header', 999 );
@@ -215,13 +222,13 @@ function wcmmq_social_links(){
  * @author Fazle Bari [ fazlebarisn@gmail.com ]
  */
 function wcmmq_submit_issue_link(){
-    wcmmq_donate_button();
+
     ?>
     <p class="wpt-issue-submit">
 <?php
 $content_of_mail = __( 'I have found an issue with your Min Max and Step Control plugin. I will explain here with screenshot.Issues And Screenshots:', 'wcmmq' );
 ?>
-        <b>ISSUE SUBMIT:</b> If you founded any issue, Please inform us. That will be very helpful for us to Fix.
+        <b>ISSUE SUBMIT:</b> If you founded any issue, Please inform us. That will be very helpful for us to Fix.<br>
         <a href="https://github.com/codersaiful/woo-min-max-quantity-step-control-single/issues/new" target="_blank">SUBMIT ISSUE</a> or 
         <a href="mailto:contact@codeastrology.com">contact@codeastrology.com</a> or 
         <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&su=<?php echo urlencode("Found issue on your Min Max and Step Control Plugin, see screenshot of issue"); ?>&body=<?php echo esc_attr( $content_of_mail ); ?>&ui=2&tf=1&to=codersaiful@gmail.com,contact@codeastrology.com" target="_blank">Gmail Me</a> or

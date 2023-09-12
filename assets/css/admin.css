@@ -657,6 +657,7 @@ p.wpt-issue-submit {
     opacity: 1;
     padding-top: 2px;
     margin-top: 2px;
+    background-color: transparent !important;
 }
 
 p.wpt-issue-submit>b {
@@ -710,4 +711,63 @@ body.toplevel_page_wcmmq-min-max-control pre{
     font-weight: bold;
     color: black;
     margin: 10px 0;
+}
+output#wcmmq-tips-note-pro,
+output#wcmmq-tips-not {
+    color: white;
+    background: #F44336;
+    padding: 3px 10px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+output#wcmmq-tips-note-pro{
+    background-color: #3c973f;
+}
+p.wcmmq-input-decimal-msg-free,
+.wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro, .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-free {
+    color: #fffbfb;
+    background: #F44336;
+    padding: 3px 11px;
+    margin: 0;
+}
+.wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro{
+    color: black;
+    background: #ffeb3b57;
+}
+table.wcmmq-table tr.divider-row.wcmmq-free-pro-notice-message>td {
+    border-bottom: 1px solid rgba(219, 219, 219, 0.522);
+    border-top: 0 none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+tr.user_can_not_edit>td:first-child:before {
+    content: "Pro";
+    background: #f4433659;
+    color: black;
+    padding: 1px 5px;
+    border-radius: 6px;
+    z-index: 2;
+    font-size: 10px;
+    position: absolute;
+    left: 30px;
+    top: -7px;
+}
+
+tr.user_can_not_edit>td:after {
+    content: "";
+    background: #ffffffa6;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+tr.user_can_not_edit>td:last-child:after {
+    display: none;
+}
+tr.user_can_not_edit>td {
+    position: relative;
 }

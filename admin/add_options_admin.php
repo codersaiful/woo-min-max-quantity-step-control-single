@@ -8,6 +8,14 @@
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
  */
 function wcmmq_add_field_in_panel(){
+    $is_pro = defined('WC_MMQ_PRO_VERSION');
+    $data_type = 'decimal';
+    $tip_color = 'wcmmq-tips-note';
+    $message = "If you want to input Decimal value for minimum, maxium and step, Need pro version.";
+    if($is_pro){
+        $tip_color = 'wcmmq-tips-note-pro';
+        $message = "You able to add decimal value as your min max and step.";
+    }
     $args = array();
     $args[] = array(
         'id'        =>  WC_MMQ_PREFIX. 'min_quantity',
@@ -17,7 +25,7 @@ function wcmmq_add_field_in_panel(){
         'type'      =>  'text',
         'desc_tip'  =>  true,
         'description'=> __( 'Enter Minimum Quantity for this Product', 'wcmmq' ),
-        'data_type' => 'decimal'
+        'data_type' => $data_type
     );
     $default_qty = apply_filters( 'wcmmq_default_qty_option', false, get_the_ID() );
     if( $default_qty ){
@@ -29,7 +37,7 @@ function wcmmq_add_field_in_panel(){
             'type'      =>  'text',
             'desc_tip'  =>  true,
             'description'=> __( 'It is an optional Number, If do not set, Product default quantity will come from Minimum Quantity', 'wcmmq' ),
-            'data_type' => 'decimal'
+            'data_type' => $data_type
         );
     }    
     $args[] = array(
@@ -40,7 +48,7 @@ function wcmmq_add_field_in_panel(){
         'type'      =>  'text',
         'desc_tip'  =>  true,
         'description'=> __( 'Enter Maximum Quantity for this Product', 'wcmmq' ),
-        'data_type' => 'decimal'
+        'data_type' => $data_type
     );
     
     
@@ -53,9 +61,8 @@ function wcmmq_add_field_in_panel(){
         'type'      =>  'text',
         'desc_tip'  =>  true,
         'description'=> __( 'Enter quantity Step', 'wcmmq' ),
-        'data_type' => 'decimal'
+        'data_type' => $data_type
     );
-
     /**
      * @Hook wcmmq_field_args_in_panel 
      * Sample use of this hook:
@@ -74,6 +81,16 @@ add_filter('wcmmq_field_args_in_panel' , function($args){
     foreach($args as $arg){
         woocommerce_wp_text_input($arg);
     }
+    if( function_exists( 'woocommerce_wp_note' ) ){
+        woocommerce_wp_note([
+            'id'    => $tip_color,
+            'class' => $tip_color,
+            'message' => $message,
+            'label'     =>  __( 'Important:', 'wcmmq' ),
+    
+        ]);
+    }
+    
 }
 
 add_action('woocommerce_product_options_wcmmq_minmaxstep','wcmmq_add_field_in_panel'); //Our custom action, which we have created to product_panel.php file

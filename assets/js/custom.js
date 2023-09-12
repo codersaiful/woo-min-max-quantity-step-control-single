@@ -2,7 +2,6 @@
     'use strict';
     function addCustomInputBox(){
         var decimal_separator = WCMMQ_DATA.decimal_separator;
-        console.log(decimal_separator);
         if( decimal_separator != '.' ){
             $('input.input-text.qty.text').not('.wcmmq-second-input-box,.wcmmq-main-input-box').each(function(){
                 

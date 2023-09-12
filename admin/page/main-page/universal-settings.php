@@ -87,6 +87,32 @@
             </td>
         </tr>
 
+        <tr class="divider-row wcmmq-free-pro-notice-message">
+            <td>
+                <div class="wcmmq-form-control">
+                    <div class="form-label col-lg-6">
+                        Message for min,max,step
+                    </div>
+                    <div class="form-field col-lg-6">
+                        <?php if($this->is_pro){
+                            $class = 'wcmmq-input-decimal-msg-pro';
+                            $msgs = 'You able to add decimal value as your min max and step.';
+                        }else{
+                            $msgs = 'If you want Decimal value for minimum, maxium and step, Need pro version.';
+                            $class = 'wcmmq-input-decimal-msg-free';
+                        }
+                        ?>
+                        
+                        <p class="<?php echo esc_attr( $class ); ?>"><?php echo esc_html( $msgs ); ?></p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="wcmmq-form-info">
+                    <p>It's a notice for free or premium version.</p>
+                </div> 
+            </td>
+        </tr>
 
         <?php
         //At this moment, no need it
@@ -158,7 +184,7 @@
             <td>
                 <div class="wcmmq-form-control">
                     <div class="form-label col-lg-6">
-                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantiy box','wcmmq');?></label>
+                        <label for="_quantiy_box_archive"><?php echo esc_html__('Archive Quantity Box','wcmmq');?></label>
                     </div>
                     <div class="form-field col-lg-6">
                         <label class="switch">
@@ -173,10 +199,12 @@
             </td>
             <td>
                 <div class="wcmmq-form-info">
+
                     <?php wcmmq_doc_link('https://codeastrology.com/min-max-quantity/add-quantity-box-on-shop-page/'); ?>
+                    <p><b>Nee pro, if want qty box for variable product.</b></p>
                     <p>
                     For ajax add to cart, Enable from <strong>WooCommerce->Settings->Products->Add to cart behaviour</strong>.<br>
-                    For Variable product Quantity Box with Variation change box. Need premium version.<br>
+                    and use <code>add_filter('wcmmq_ajax_cart_single_page', '__return_true');</code> in your child theme bor by code snippet.
                     If you need Plus Minus Button for your Quantity Box install <a href="https://wordpress.org/plugins/wc-quantity-plus-minus-button/" target="_blank">Quantity Plus Minus Button for WooCommerce by CodeAstrology</a>
                     </p>
                 </div> 
@@ -207,7 +235,35 @@
                 </div> 
             </td>
         </tr>
-        
+        <?php if(!$this->is_pro){ ?>
+
+            <tr class="user_can_not_edit">
+                <td>
+                    <div class="wcmmq-form-control">
+                        <div class="form-label col-lg-6">
+                            <label for="data[_wcmmq_s_display_price_with_min]">
+                            Multiply Price By Quantity                        </label>
+                        </div>
+                        <div class="form-field col-lg-6">
+                            <label class="switch">
+                                <input value="1" name="data[display_price_with_min]" type="checkbox" id="_wcmmq_display_price_with_min">
+                                <div class="slider round">
+                                    <!--ADDED HTML -->
+                                    <span class="on">ON</span><span class="off">OFF</span><!--END-->
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="wcmmq-form-info">
+                        <a href="https://codeastrology.com/min-max-quantity/multiply-price-by-quantity/" target="_blank" class="wpt-doc-lick"><i class="wcmmq_icon-help-circled-alt"></i>Helper doc</a>
+                        <p>Product price will multiply by the quantity before being displayed on a single product page and will Increase or decrease in accordance with the quantity. </p>
+                    </div>
+                </td>
+            </tr>
+
+        <?php } ?>
         <?php
         /**
          * Obviously need tr and td here

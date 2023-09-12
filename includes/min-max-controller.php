@@ -30,6 +30,8 @@ class Min_Max_Controller extends Base
     public $max_value;
     public $step_value;
     public $stock_quantity;
+    public $backorders;
+    public $backorders_status = false;
     public $qty_inCart;
 
     //Important key
@@ -53,6 +55,7 @@ class Min_Max_Controller extends Base
     public $is_args_organized = false;
 
     public $input_args = [];
+    public $variations_args = [];
 
     /**
      * Filter hook provided args,
@@ -107,8 +110,144 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
         add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
 
+        $this->controlVariationsMinMax();
     }
     
+    /**
+     * Congrolling Min Max Step for All Variation
+     * without Premium constant 'WC_MMQ_PRO_VERSION'
+     * This method will not work.
+     * Obviously need 'WC_MMQ_PRO_VERSION' Constant
+     * 
+     * we will call action hook for woocommerce_single_variation
+     * and for wpt_action_variation
+     * 
+     * Compatible with Woo Product Table also
+     * 
+     * @since 4.9.0
+     *
+     * @return void
+     */
+    public function controlVariationsMinMax()
+    {
+        if( ! $this->is_pro) return;
+        add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
+        add_action('wpt_action_variation',[$this, 'single_variation_handle']);
+
+        /**
+         * Remove action should here
+         * actually first time, I input it at $this->single_variation_handle()
+         * but that's not work.
+         * So I added it at this method
+         * @since 4.9.1
+         */
+        remove_action('woocommerce_single_variation','wcmmq_pro_js_for_variation_product');
+        remove_action('wpt_action_variation','wcmmq_pro_js_for_variation_product');
+    }
+
+    /**
+     * Temporarily set Min Max and step 
+     * based on Custom Field
+     * 
+     * Actually requirement data only available on Pro version
+     * because: variation min max step setting only available on premium version
+     * That's why, we set a condition by 'WC_MMQ_PRO_VERSION' constant
+     * 
+     * @since 4.9.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     *
+     * @return void
+     */
+    public function single_variation_handle()
+    {
+        if( ! defined('WC_MMQ_PRO_VERSION') ) return;
+        global $product;
+        $this->product_id = $product->get_id();
+        $this->product = wc_get_product( $this->product_id );
+        $variables = $product->get_children();
+        if(empty($variables) && ! is_array( $variables )) return;
+        foreach( $variables as $variable_id){
+            
+            $this->variation_id = $variable_id;
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();   
+            $this->organizeAndFinalizeArgs();
+        }
+
+        if( empty($this->variations_args) ) return;
+
+        $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
+        $data = wp_json_encode( $data );
+        ?>
+<script  type='text/javascript'>
+(function($) {
+    'use strict';
+    $(document).ready(function($) {
+        var product_id = "<?php echo $product->get_id(); ?>";
+        var variation_data = '<?php echo $data; ?>';
+        variation_data = JSON.parse(variation_data);
+        var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
+
+        var qty_box = $(form_selector + ' input.input-text.qty.text');
+        var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
+
+        $(document.body).on('wpt_changed_variations',function(e, targetAttributeObject){
+            if(targetAttributeObject.status == false){
+                return false;
+            }
+            var variation_id = targetAttributeObject.variation_id;
+            distributeMinMax(variation_id);
+        });
+        $(document.body).on('change',form_selector + ' input.variation_id',function(){
+            var variation_id = $(form_selector + ' input.variation_id').val();
+            distributeMinMax(variation_id);
+            
+        });
+
+        function distributeMinMax(variation_id){
+            if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
+                var min,max,step,basic;
+
+                min = variation_data[variation_id]['min_quantity'];
+                if(typeof min === 'undefined'){
+                    return false;
+                }
+
+                max = variation_data[variation_id]['max_quantity'];
+                step = variation_data[variation_id]['step_quantity'];
+
+                // basic = variation_data[variation_id]['default_quantity'];               
+                // if(basic === '' || basic === false){
+                //     basic = min;
+                // }
+                basic = min;
+                var lateSome = setInterval(function(){
+                    qty_box.attr({
+                        min:min,
+                        max:max,
+                        step:step,
+                        value:min
+                    });
+                    qty_boxWPT.attr({
+                        min:min,
+                        max:max,
+                        step:step,
+                        value:min
+                    });
+                    qty_box.val(basic).trigger('change');
+                    qty_boxWPT.val(basic).trigger('change');
+                    clearInterval(lateSome);
+                },500);
+
+            }
+        }
+
+    });
+})(jQuery);
+</script>        
+        <?php 
+
+    }
     
     
     /**
@@ -144,16 +283,24 @@ class Min_Max_Controller extends Base
 
             $this->product_id = $this->product->get_parent_id();
             $this->product = wc_get_product( $this->product_id );
-        }else{
+        }elseif( ! $this->is_pro ){
+            /**
+             * Actually not available pro version
+             * Then we have do generate variation_ID null
+             * Otherwise it will not work
+             * 
+             * Checked for Variation
+             * 
+             * @since 4.5.11
+             */
             $this->variation_id = null;
             $this->variation_product = null;
         }
         $check_name = 'check_' . $this->product_id . '_' . $this->variation_id;
 
-        if( $this->$check_name ) return;
         $this->assignInputArg();
         $this->finalizeArgs();
-
+        if( $this->$check_name ) return;
         $this->$check_name = true;
     }
 
@@ -208,12 +355,15 @@ class Min_Max_Controller extends Base
 
         $this->is_args_organized = true;
         $this->stock_quantity = $this->product->get_stock_quantity();
+        $this->backorders = $this->product->get_backorders();
 
         if( $this->variation_id ){
             $this->variation_product = wc_get_product( $this->variation_id );
             $this->get_variation_type = $this->variation_product->get_type();
             $this->stock_quantity = $this->variation_product->get_stock_quantity();
+            $this->backorders = $this->variation_product->get_backorders();
         }
+        $this->backorders_status = $this->backorders !== 'no' ? true : false;
         // var_dump($this->variation_product);
         //First check from single product and if it on single page
         $this->min_value = $this->getMeta( $this->min_quantity );
@@ -334,7 +484,7 @@ class Min_Max_Controller extends Base
             $this->min_value = '1';
         }
 
-        if( empty( $this->max_value ) ){
+        if( empty( $this->max_value ) && ! $this->backorders_status ){
             $this->max_value = ! empty( $this->stock_quantity ) ? $this->stock_quantity : '';
         }
         
@@ -342,7 +492,7 @@ class Min_Max_Controller extends Base
             $this->step_value = '1';
         }
 
-        if( $this->stock_quantity && $this->max_value > $this->stock_quantity ){
+        if( ! $this->backorders_status && $this->stock_quantity && $this->max_value > $this->stock_quantity ){
             $this->max_value = $this->stock_quantity;
         }
 
@@ -350,7 +500,7 @@ class Min_Max_Controller extends Base
             $this->input_args = [];
         }
 
-        // var_dump($this->input_args);
+
         $this->input_args = array(
             'min_quantity' => $this->min_value,
             'max_quantity' => $this->max_value,
@@ -361,6 +511,14 @@ class Min_Max_Controller extends Base
             'variation_id'=> $this->variation_id,
             'variation_name'=> $this->variation_name,
         );
+        if(!empty($this->variation_id)){
+            $this->variations_args[$this->variation_id] = array(
+                'min_quantity' => $this->min_value,
+                'max_quantity' => $this->max_value,
+                'step_quantity' => $this->step_value,
+                // 'variation_name'=> $this->variation_name,
+            );
+        }
         
         return $this;
     }
@@ -405,10 +563,12 @@ class Min_Max_Controller extends Base
 
         if( ! empty( $args['quantity'] ) ){
             $args['input_value'] = $args['quantity'] ?? $this->min_value;
+            $args['quantity'] = $this->min_value;
         }
 
-        //loop module er kaj ekhane korte hobe, subidhao hobe plas sohoh o hobe        
-        $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
+        if(isset($args['attributes']['data-product_id']) || isset($args['attributes']['data-product_sku'])){
+            $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
+        }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
 
@@ -421,6 +581,8 @@ class Min_Max_Controller extends Base
      */
     public function quantity_input_step($qty, $product)
     {
+        if( ! is_object( $product ) ) return $qty;
+        if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $product;
         $this->product_id = $this->product->get_id();
@@ -440,6 +602,8 @@ class Min_Max_Controller extends Base
      */
     public function quantity_input_min($qty, $product)
     {
+        if( ! is_object( $product ) ) return $qty;
+        if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
         $this->product = $product;
         $this->product_id = $this->product->get_id();
@@ -593,13 +757,15 @@ class Min_Max_Controller extends Base
     /**
      * updated modulous 
      * Only we will check when our qty will getter then min and smaller then max
-     *
+     * 
+     *  If max value is empty then old php version return false of this statement ( $this->max_value < 0 )
+     *  So I (Fazle Bari) have add this statement ( empty($this->max_value ) also.
      * @param int|string $quantity
      * @return bool default value is true, if in condition, then it will check using filter hook
      */
     protected function getModulous( $quantity )
     {
-        if( $this->min_value <= $quantity && ( $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
+        if( $this->min_value <= $quantity && ( empty($this->max_value ) || $this->max_value < 0 || ( $this->max_value > 0 && $this->max_value >= $quantity ) ) ){
             return apply_filters( 'wcmmq_modulous_validation', false, $this->product_id, $this->variation_id, $quantity, $this->min_value, $this->step_value );
         }
         return true;

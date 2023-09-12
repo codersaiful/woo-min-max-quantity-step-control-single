@@ -66,6 +66,10 @@ $saved_data = WC_MMQ::getOptions();
 
 //TOPBAR INCLUDE HERE
 include $this->topbar_file;
+$is_pro = $this->is_pro;
+if( ! $is_pro ){
+    include 'main-page/premium-link-header.php'; 
+}
 ?>
 
 
@@ -73,16 +77,20 @@ include $this->topbar_file;
 
 
 <div class="wrap wcmmq_wrap wcmmq-content">
-    <?php 
-        $is_pro = $this->is_pro;
-        if( ! $is_pro ){
-            include 'main-page/premium-link-header.php'; 
-        }
-        // wcmmq_social_links();
-        // var_dump($this);
-    ?>
+
     <h1 class="wp-heading "></h1>
     <div class="fieldwrap">
+        <?php
+        $randN = rand(1,2);
+        $wcmmq_recomm = get_option('wcmmq_recomm', 1);
+        $wcmmq_recomm++;
+        update_option('wcmmq_recomm', $wcmmq_recomm);
+        if($wcmmq_recomm <= 30 && $randN == 1){
+        ?>
+        <div id="wcmmq-recomendation-area" class="wcmmq-section-panel">
+            <?php do_action( 'wcmmq_plugin_recommend_top' ); ?>
+        </div>
+        <?php } ?>
         <?php
             // do_action( 'wcmmq_before_form' );
         ?>
@@ -180,6 +188,13 @@ include $this->topbar_file;
             <div class="wcmmq-section-panel live-support" id="wcmmq-live-support-area">
                 <?php include 'main-page/live-support.php'; ?>
             </div>
+
+            <?php 
+            if( ! $this->is_pro ){
+                include 'main-page/premium-placeholder.php';
+            }
+            ?>
+
             <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
                 <button name="configure_submit" type="submit"
@@ -198,8 +213,49 @@ include $this->topbar_file;
                 
             </div>
 
+            
 
                     
         </form>
+        <div class="wcmmq-section-panel supported-terms wcmmq-recomendation-area" id="wcmmq-recomendation-area">
+            <table class="wcmmq-table universal-setting">
+                <thead>
+                    <tr>
+                        <th class="wcmmq-inside">
+                            <div class="wcmmq-table-header-inside">
+                                <h3><?php echo esc_html__('Recommendation Area', 'wpt'); ?> <small class="wcmmq-small-title">To increase Sale</small></h3>
+                            </div>
+
+                        </th>
+                        <th>
+                            <div class="wcmmq-table-header-right-side"></div>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="wcmmq-form-control">
+                            <div class="form-label col-lg-12">
+                            <?php do_action( 'wcmmq_plugin_recommend_here' ); ?>
+                            </div>
+                            <div class="form-label col-lg-12">
+                                <?php wcmmq_submit_issue_link(); ?>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="wqpmb-form-info">
+                            
+                            <?php wcmmq_social_links(); ?>
+                            <p>Highly Recommeded these plugin. Which will help you to increase your WooCommerce sale.</p>
+                        </div> 
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div> <!--/.wcmmq-recomendation-area -->
     </div>
 </div> 
