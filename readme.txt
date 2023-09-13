@@ -233,6 +233,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 5.3 =
+* Fixed: Min value Zero issue fixed for shop page.
 * Fixed: Confliction with variation for Product table has been fixed, when no enable third party plugin support.
 * Code Optimized.
 
