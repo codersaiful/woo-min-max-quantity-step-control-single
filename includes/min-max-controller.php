@@ -233,9 +233,18 @@ class Min_Max_Controller extends Base
 })(jQuery);
 </script>        
         <?php 
-
+        $this->setDefaultVal();
     }
     
+    public function setDefaultVal()
+    {
+        $this->product = null;
+        $this->product_id = null;
+        $this->variation_product = null;
+        $this->variation_id = null;
+        $this->input_args = [];
+        $this->variations_args = [];
+    }
     
     /**
      * both method's use at one method
