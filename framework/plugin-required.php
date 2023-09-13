@@ -53,7 +53,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
         {
 
                 //after 10 days, offer will closed | Today: 11 Sept, 2023
-                if(time() > 1694405996 + 864000) return;
+                if(time() > 1694587433 + 864000) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
                 $temp_numb = rand(1,5);
@@ -76,7 +76,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * Offer Hanndle
                  */
                 $coupon_Code = 'CA60PERCENT';
-                $target = 'https://codeastrology.com/coupons/?discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
+                $target = 'https://codeastrology.com/min-max-quantity/pricing/?discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
                 $my_message = '<b><i>COUPON CODE: ' . $coupon_Code . ' - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin';
                 $offerNc = new Notice('wcmmq_'.$coupon_Code.'_offer');
                 $offerNc->set_title( 'SPECIAL OFFER for 10 days' )
@@ -86,24 +86,24 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 ->set_img_target( $target )
                 ->set_message( $my_message )
                 ->add_button([
-                    'text' => 'Claim Discount',
+                    'text' => 'Full Pricing',
                     'type' => 'success',
                     'link' => $target,
                 ]);
                 $offerNc->add_button([
-                    'text' => 'Lifetime Access(Unlimited)',
+                    'text' => 'Unlimited Access(Lifetime)',
                     'type' => 'default',
                     'link' => 'https://codeastrology.com/checkout?edd_action=add_to_cart&download_id=6557&edd_options%5Bprice_id%5D=6&discount=' . $coupon_Code,
                 ]);
                 $offerNc->add_button([
-                    'text' => 'Lifetime Access(Yearly)',
+                    'text' => 'Unlimited Access(Yearly)',
                     'type' => 'offer',
                     'link' => 'https://codeastrology.com/checkout?edd_action=add_to_cart&download_id=6557&edd_options%5Bprice_id%5D=3&discount=' . $coupon_Code,
                 ]);
                 $offerNc->add_button([
-                    'text' => 'Full Pricing',
-                    'type' => 'offer',
-                    'link' => 'https://codeastrology.com/min-max-quantity/pricing/?discount=' . $coupon_Code,
+                    'text' => 'All Products',
+                    'type' => 'error',
+                    'link' => 'https://codeastrology.com/downloads//?discount=' . $coupon_Code,
                 ]);
                 if( method_exists($offerNc, 'set_location') ){
                     // $offerNc->set_location('wpt_offer_here'); //wpt_premium_image_bottom
