@@ -179,6 +179,7 @@ class Min_Max_Controller extends Base
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
+<div id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" data-variation_data="<?php echo esc_attr( $data ); ?>" style="display:none !important;"></div>
 <script  type='text/javascript'>
 (function($) {
     'use strict';
@@ -189,15 +190,7 @@ class Min_Max_Controller extends Base
         var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
 
         var qty_box = $(form_selector + ' input.input-text.qty.text');
-        var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
 
-        $(document.body).on('wpt_changed_variations',function(e, targetAttributeObject){
-            if(targetAttributeObject.status == false){
-                return false;
-            }
-            var variation_id = targetAttributeObject.variation_id;
-            distributeMinMax(variation_id);
-        });
         $(document.body).on('change',form_selector + ' input.variation_id',function(){
             var variation_id = $(form_selector + ' input.variation_id').val();
             distributeMinMax(variation_id);
@@ -228,14 +221,8 @@ class Min_Max_Controller extends Base
                         step:step,
                         value:min
                     });
-                    qty_boxWPT.attr({
-                        min:min,
-                        max:max,
-                        step:step,
-                        value:min
-                    });
+
                     qty_box.val(basic).trigger('change');
-                    qty_boxWPT.val(basic).trigger('change');
                     clearInterval(lateSome);
                 },500);
 
