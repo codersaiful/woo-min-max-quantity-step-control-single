@@ -176,6 +176,15 @@ class WC_MMQ {
      */
     public function __construct() {
         
+
+        // Declare compatibility with custom order tables for WooCommerce.
+        add_action( 'before_woocommerce_init', function(){
+                if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+                    \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+                }
+            }
+        );
+
         require_once __DIR__ . '/autoloader.php';
         
         
