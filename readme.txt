@@ -232,6 +232,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 5.5 =
+* Compatibility: Compabile with HPOS.
+* Bug Fixed.
+
 = 5.4 =
 * Fixed: Cart Page Min value Zero issue fixed when set min value 0.
 * Spelling fixed.
