@@ -23,6 +23,7 @@ class Page_Loader extends Base
         if($this->is_pro){
             $this->pro_version = WC_MMQ_PRO_VERSION;
             $this->license = property_exists('\WC_MMQ_PRO','direct') ? \WC_MMQ_PRO::$direct : null;
+            $this->handle_license_n_update();
         }
         $this->page_folder_dir = $this->base_dir . 'admin/page/';
         $this->topbar_file = $this->page_folder_dir . 'topbar.php';
@@ -283,5 +284,89 @@ class Page_Loader extends Base
         }
         
         return $res;
+    }
+
+    /**
+     * If will work, when only found pro version
+     * 
+     * @since 5.4.0
+     * @author Saiful Islam <codersaiful@gmail.com>
+     *
+     * @return void
+     */
+    public function handle_license_n_update()
+    {
+        
+        $this->license_key = get_option( 'wcmmq_license_key' );
+        if(empty($this->license_key)) return;
+        $this->license_data_key = 'wcmmq_license_data';
+        $this->license_status_key = 'wcmmq_license_status';
+        $this->license_status = get_option( $this->license_status_key );
+        $this->license_data = get_option($this->license_data_key);
+        
+        /**
+         * Actually if not found lisen data, we will return null here
+         * 
+         * @since 5.4.0
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        if( empty( $this->license_status ) || empty( $this->license_data ) ) return;
+
+        $expires = isset($this->license_data->expires) ? $this->license_data->expires : '';
+        $this->item_id = isset($this->license_data->item_id) ? $this->license_data->item_id : '';
+
+        if('lifetime' == $expires) return;
+        $exp_timestamp = strtotime($expires);
+        /**
+         * keno ami ei timestamp niyechi.
+         * asole expire a zodi faka ase, tahole ta 1 jan, 1970 as strtotime er output.
+         * 
+         * ar jehetu amora 2010 er por kaj suru korechi. tai sei expire date ba ager date asar kOnO karonoi nai.
+         * tai zodi 2012 er kom timestamp ase amora return null kore debo.
+         * za already diyechi: if( $exp_timestamp < $year2010_timestamp ) return; by this line. niche follow korun.
+         */
+        $year2010_timestamp = strtotime('2023-09-08 23:59:59');
+        if( $exp_timestamp < $year2010_timestamp ) return;
+
+        //ekhon amora bortoman date er sathe tulona korbo
+        if($exp_timestamp < time()){
+
+            $this->exp_timestamp = $exp_timestamp;
+            // var_dump($this->license_data);
+            if($this->license_status == 'valid'){
+                $this->invalid_status = 'invalid';
+                $this->license_data->license = $this->invalid_status;
+                update_option( $this->license_status_key, $this->invalid_status );
+                update_option( $this->license_data_key, $this->license_data );
+
+                
+            }
+            add_action( 'admin_notices', [$this, 'renew_license_notice'] );
+        }
+        
+
+    }
+
+    public function renew_license_notice()
+    {
+
+        if(empty($this->item_id)) return;
+        $wpt_logo = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
+        $expired_date = date( 'd M, Y', $this->exp_timestamp );
+        $link_label = __( 'Renew License', 'wpt_pro' );
+        $link = "https://codeastrology.com/checkout/?edd_license_key={$this->license_key}&download_id={$this->item_id}";
+		$message = esc_html__( ' Renew it to get latest update.', 'wpt_pro' ) . '</strong>';
+        ob_start();
+        ?>
+        <div class="error wpt-renew-license-notice">
+            <div class="wpt-license-notice-inside">
+            <img src="<?php echo esc_url( $wpt_logo ); ?>" class="wpt-license-brand-logo">
+                Your License of <strong>Min Max Control pro</strong> has been expired at <span style="color: #d00;font-weight:bold;"><?php echo esc_html( $expired_date ); ?></span>
+                %1$s <a href="%2$s" target="_blank">%3$s</a>
+            </div>
+        </div>
+        <?php
+        $full_message = ob_get_clean();
+        printf( $full_message, $message, $link, $link_label );
     }
 }
