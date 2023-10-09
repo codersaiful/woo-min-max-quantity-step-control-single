@@ -29,6 +29,46 @@
         
         addCustomInputBox();
 
+        
+        $(document.body).on('wpt_changed_variations',function(e, targetAttributeObject){
+
+            if(targetAttributeObject.status == false){
+                return false;
+            }
+            var product_id = targetAttributeObject.product_id;
+            var variation_id = targetAttributeObject.variation_id;
+            var variation_data = $('#wcmmq_variation_data_' + product_id).data('variation_data');
+            var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
+            distributeMinMax(variation_id,variation_data,qty_boxWPT);
+        });
+
+        function distributeMinMax(variation_id,variation_data,qty_boxWPT){
+            if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
+                var min,max,step,basic;
+
+                min = variation_data[variation_id]['min_quantity'];
+                if(typeof min === 'undefined'){
+                    return false;
+                }
+
+                max = variation_data[variation_id]['max_quantity'];
+                step = variation_data[variation_id]['step_quantity'];
+
+                basic = min;
+                var lateSome = setInterval(function(){
+
+                    qty_boxWPT.attr({
+                        min:min,
+                        max:max,
+                        step:step,
+                        value:min
+                    });
+                    qty_boxWPT.val(basic).trigger('change');
+                    clearInterval(lateSome);
+                },500);
+
+            }
+        }
         /**
              * It's our custom input box with text type
              * and we will transfer this text to main input(number) with convert comma to dot

@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.3
 Requires PHP: 5.4
-Stable tag: 5.2
+Stable tag: 5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,19 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 5.5 =
+* Compatibility: Compabile with HPOS.
+* Bug Fixed.
+
+= 5.4 =
+* Fixed: Cart Page Min value Zero issue fixed when set min value 0.
+* Spelling fixed.
+
+= 5.3 =
+* Fixed: Min value Zero issue fixed for shop page.
+* Fixed: Confliction with variation for Product table has been fixed, when no enable third party plugin support.
+* Code Optimized.
 
 = 5.2 =
 * Fixed: Confliction with variation for Product table has been fixed.

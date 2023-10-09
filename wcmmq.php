@@ -7,11 +7,11 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 5.2
+ * Version: 5.4
  * Requires at least:    4.0.0
  * Tested up to:         6.3.1
  * WC requires at least: 3.0.0
- * WC tested up to: 	 8.0.3
+ * WC tested up to: 	 8.1.1
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '5.2.0');
+define('WC_MMQ_VERSION', '5.4.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -176,6 +176,15 @@ class WC_MMQ {
      */
     public function __construct() {
         
+
+        // Declare compatibility with custom order tables for WooCommerce.
+        add_action( 'before_woocommerce_init', function(){
+                if (class_exists('\Automattic\WooCommerce\Utilities\FeaturesUtil')) {
+                    \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+                }
+            }
+        );
+
         require_once __DIR__ . '/autoloader.php';
         
         

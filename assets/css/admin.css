@@ -456,13 +456,13 @@ ul.wcmmq_each_terms_header small {
     clear: both;
     margin: 5px 0 10px 0;
 }
-.notice.ca-notice.notice-offer a.ca-logo-link img,
-.notice.ca-notice.notice-offer a.ca-logo-link img, .anywhere-notice.ca-notice.notice-offer .ca-logo img {
-    border-radius: 50%;
+.notice.ca-notice.notice-offer a.ca-logo-link img, .notice.ca-notice.notice-offer a.ca-logo-link img, .anywhere-notice.ca-notice.notice-offer .ca-logo img {
+    border-radius: 0;
     height: 75px;
     width: 75px;
     border: 3px solid #ffffff;
     box-shadow: 4px 4px 14px 9px #00000014;
+    width: auto !important;
 }
 .anywhere-notice.ca-notice .ca-notice-dismiss{display: none !important;}
 .notice.ca-notice.notice-offer .ca-msg-text p.ca-links-collection a {

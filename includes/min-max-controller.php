@@ -179,6 +179,7 @@ class Min_Max_Controller extends Base
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
+<div id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" data-variation_data="<?php echo esc_attr( $data ); ?>" style="display:none !important;"></div>
 <script  type='text/javascript'>
 (function($) {
     'use strict';
@@ -189,15 +190,7 @@ class Min_Max_Controller extends Base
         var form_selector = 'form.variations_form.cart[data-product_id="' + product_id + '"]';
 
         var qty_box = $(form_selector + ' input.input-text.qty.text');
-        var qty_boxWPT = $('.product_id_' + product_id + ' input.input-text.qty.text');
 
-        $(document.body).on('wpt_changed_variations',function(e, targetAttributeObject){
-            if(targetAttributeObject.status == false){
-                return false;
-            }
-            var variation_id = targetAttributeObject.variation_id;
-            distributeMinMax(variation_id);
-        });
         $(document.body).on('change',form_selector + ' input.variation_id',function(){
             var variation_id = $(form_selector + ' input.variation_id').val();
             distributeMinMax(variation_id);
@@ -228,14 +221,8 @@ class Min_Max_Controller extends Base
                         step:step,
                         value:min
                     });
-                    qty_boxWPT.attr({
-                        min:min,
-                        max:max,
-                        step:step,
-                        value:min
-                    });
+
                     qty_box.val(basic).trigger('change');
-                    qty_boxWPT.val(basic).trigger('change');
                     clearInterval(lateSome);
                 },500);
 
@@ -246,9 +233,18 @@ class Min_Max_Controller extends Base
 })(jQuery);
 </script>        
         <?php 
-
+        $this->setDefaultVal();
     }
     
+    public function setDefaultVal()
+    {
+        $this->product = null;
+        $this->product_id = null;
+        $this->variation_product = null;
+        $this->variation_id = null;
+        $this->input_args = [];
+        $this->variations_args = [];
+    }
     
     /**
      * both method's use at one method
@@ -568,6 +564,10 @@ class Min_Max_Controller extends Base
 
         if(isset($args['attributes']['data-product_id']) || isset($args['attributes']['data-product_sku'])){
             $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
+        }
+
+        if( ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
+            $args['input_value'] = $this->min_value;
         }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
     }
