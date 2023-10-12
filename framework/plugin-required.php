@@ -52,8 +52,8 @@ if( ! class_exists( 'Plugin_Required' ) ){
         public static function display_notice()
         {
 
-                //after 5 days, offer will closed | Today: 24 Sept, 2023
-                if(time() > 1695537764 + 432000) return;
+                //after 10 days, offer will closed | Today: 24 Sept, 2023
+                if(time() > 1697112571 + 864000) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
                 $temp_numb = rand(1,5);
@@ -75,18 +75,18 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 /**
                  * Offer Hanndle
                  */
-                $coupon_Code = 'CA60PERCENT';
-                $target = 'https://codeastrology.com/min-max-quantity/pricing/?discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
-                $my_message = '<b><i>COUPON CODE: ' . $coupon_Code . ' - up to 60% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin';
+                $coupon_Code = 'FreeTrial';
+                $target = 'https://codeastrology.com/min-max-quantity/pricing/?no_discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
+                $my_message = 'For the first time, Available <b><i>Free Trial for 7</i></b> days. <i>You can cancel or upgrade anytime easily.</i>';
                 $offerNc = new Notice('wcmmq_'.$coupon_Code.'_offer');
-                $offerNc->set_title( 'SPECIAL OFFER for 10 days' )
+                $offerNc->set_title( '7 Days Free Trial Offer' )
                 ->set_diff_limit(3)
                 ->set_type('offer')
                 ->set_img( WC_MMQ_BASE_URL. 'assets/images/min-max-logo.png')
                 ->set_img_target( $target )
                 ->set_message( $my_message )
                 ->add_button([
-                    'text' => 'Full Pricing',
+                    'text' => '7 days Free Trial',
                     'type' => 'success',
                     'link' => $target,
                 ]);

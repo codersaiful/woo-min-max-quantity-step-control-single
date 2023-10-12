@@ -15,11 +15,11 @@ $coupon_Code = 'CA60PERCENT';
 					</a>
 				</div>
 				<div class="col-lg-4">
-					<h2>Coupon: <?php echo esc_html( $coupon_Code ); ?></h2>
-					<p>Enjoy all awesome feature.</p>
+					<h2>Try our Premium</h2>
+					<p>For the first time, 7 days Free Trial Available.</p>
 				</div>
 				<div class="col-lg-6">
-					<a href="https://codeastrology.com/min-max-quantity/pricing/?discount=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Discount</a>
+					<a href="https://codeastrology.com/min-max-quantity/pricing/?utm_source=wordpress_org&amp;utm_campaign=Free_Trial&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Free Trial</a>
 				</div>
 			</div>
 			<div class="wcmmq-sup-col col-lg-4">
@@ -57,7 +57,7 @@ $white_logo = WC_MMQ_BASE_URL . 'assets/images/brand/header-logo-white-x.png';
         border: 5px solid #fff;
         text-align: center;
         background: #9C27B0;
-        background: linear-gradient(28deg,#eaffd3 0,#009688 100%);
+        background: linear-gradient(28deg,#F9A825 0,#FF9800 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#df4c57",endColorstr="#f78c62",GradientType=1);
         padding: 25px 10px;
         color: #fff;
