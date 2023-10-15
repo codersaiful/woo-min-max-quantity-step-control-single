@@ -3,9 +3,9 @@ Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.3
+Tested up to: 6.3.2
 Requires PHP: 5.4
-Stable tag: 5.5
+Stable tag: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 5.6 =
+* Compatibility: Compabile with HPOS.
+* Bug Fixed.
 
 = 5.5 =
 * Compatibility: Compabile with HPOS.
