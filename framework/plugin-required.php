@@ -56,7 +56,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 if(time() > (1697365177 + 1728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
-                $temp_numb = rand(1,5);
+                $temp_numb = rand(5,9);
                 /**
                  * small notice for pro plugin,
                  * charect:
@@ -76,30 +76,31 @@ if( ! class_exists( 'Plugin_Required' ) ){
                  * Offer Hanndle
                  */
                 $coupon_Code = 'CYBERSECURITY50';
-                $target = 'https://codeastrology.com/min-max-quantity/pricing/?no_discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
-                $my_message = 'For the first time, Available <b><i>Free Trial for 7</i></b> days. <i>You can cancel or upgrade anytime easily.</i>';
+                $target = 'https://codeastrology.com/coupons/?discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
+                $my_message = '<b><i>COUPON CODE: ' . $coupon_Code . ' - up to 50% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin';
                 $offerNc = new Notice('wcmmq_'.$coupon_Code.'_offer');
-                $offerNc->set_title( '7 Days Free Trial Offer' )
+                $offerNc->set_title( 'Cyber Security Month - 50% Discount' )
                 ->set_diff_limit(3)
                 ->set_type('offer')
                 ->set_img( WC_MMQ_BASE_URL. 'assets/images/min-max-logo.png')
                 ->set_img_target( $target )
                 ->set_message( $my_message )
                 ->add_button([
-                    'text' => '7 days Free Trial',
+                    'text' => 'Claim Coupon',
                     'type' => 'success',
                     'link' => $target,
+                ]);
+                $offerNc->add_button([
+                    'text' => 'Save Extra 35% on Bundle',
+                    'type' => 'offer',
+                    'link' => 'https://codeastrology.com/downloads/bundle-woo-product-table-min-max-step-control/?discount=' . $coupon_Code,
                 ]);
                 $offerNc->add_button([
                     'text' => 'Unlimited Access(Lifetime)',
                     'type' => 'default',
                     'link' => 'https://codeastrology.com/checkout?edd_action=add_to_cart&download_id=6557&edd_options%5Bprice_id%5D=6&discount=' . $coupon_Code,
                 ]);
-                $offerNc->add_button([
-                    'text' => 'Unlimited Access(Yearly)',
-                    'type' => 'offer',
-                    'link' => 'https://codeastrology.com/checkout?edd_action=add_to_cart&download_id=6557&edd_options%5Bprice_id%5D=3&discount=' . $coupon_Code,
-                ]);
+                
                 $offerNc->add_button([
                     'text' => 'All Products',
                     'type' => 'error',

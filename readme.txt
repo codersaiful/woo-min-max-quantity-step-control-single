@@ -233,7 +233,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 5.6 =
-* Compatibility: Compabile with HPOS.
+* Spelling fix. 
 * Bug Fixed.
 
 = 5.5 =
