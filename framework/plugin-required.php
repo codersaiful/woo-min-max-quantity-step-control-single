@@ -53,7 +53,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
         {
 
                 //after 10 days, offer will closed | Today: 24 Sept, 2023
-                if(time() > 1697112571 + 864000) return;
+                if(time() > (1697365177 + 1728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
                 $temp_numb = rand(1,5);
@@ -75,7 +75,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 /**
                  * Offer Hanndle
                  */
-                $coupon_Code = 'FreeTrial';
+                $coupon_Code = 'CYBERSECURITY50';
                 $target = 'https://codeastrology.com/min-max-quantity/pricing/?no_discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
                 $my_message = 'For the first time, Available <b><i>Free Trial for 7</i></b> days. <i>You can cancel or upgrade anytime easily.</i>';
                 $offerNc = new Notice('wcmmq_'.$coupon_Code.'_offer');
