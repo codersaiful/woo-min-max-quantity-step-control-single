@@ -1,5 +1,5 @@
 <?php
-$coupon_Code = 'CA60PERCENT';
+$coupon_Code = 'CYBERSECURITY50';
 
 ?>
 <div class="wrap wcmmq_wrap wcmmq-content">
@@ -15,16 +15,16 @@ $coupon_Code = 'CA60PERCENT';
 					</a>
 				</div>
 				<div class="col-lg-4">
-					<h2>Try our Premium</h2>
-					<p>For the first time, 7 days Free Trial Available.</p>
+					<h2>CYBER SECURITY MONTH</h2>
+					<p>Checkout our Offer.</p>
 				</div>
 				<div class="col-lg-6">
-					<a href="https://codeastrology.com/min-max-quantity/pricing/?utm_source=wordpress_org&amp;utm_campaign=Free_Trial&amp;utm_medium=organic&amp;utm_content=premium_explore&amp;partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Free Trial</a>
+					<a href="https://codeastrology.com/coupons/?discount=<?php echo esc_attr( $coupon_Code ); ?>&campaign=<?php echo esc_attr( $coupon_Code ); ?>&ref=1&utm_source=Default_Offer_LINK&partner=wordpress_org" class="wcmmq-btn white round" style="color:black;background-color:white;" target="_blank">Get Offer and Bundle</a>
 				</div>
 			</div>
 			<div class="wcmmq-sup-col col-lg-4">
 				<div class="half-containers money-back">
-					<a href="https://codeastrology.com/min-max-quantity/?discount=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
+					<a href="https://codeastrology.com/min-max-quantity/?discount=<?php echo esc_attr( $coupon_Code ); ?>&campaign=<?php echo esc_attr( $coupon_Code ); ?>&utm_source=wordpress_org&amp;utm_campaign=organic&amp;utm_medium=organic&amp;utm_content=money_back&amp;partner=wordpress_org" target="_blank">
 						<span>Money Back Guarantee</span>
 					</a>
 					<p style="text-align: center;padding:15px;">100% No-Risk 30-Days Money Back Guarantee</p>
