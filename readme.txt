@@ -1,5 +1,5 @@
 === Min Max Control - Min Max Quantity & Step Control for WooCommerce===
-Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
+Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
