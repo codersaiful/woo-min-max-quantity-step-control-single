@@ -28,8 +28,9 @@ You can set values for all products globally. The same values will apply to all 
 You can set values by category. In this case, min, max, and step values will apply only to the chosen categories.<br>
 Also, you can set values for each product individually. Product label values will override global and category values.
 
+**🚩🚩🚩🚩🚩[Cyber Security Month Offer - upto 65%](https://codeastrology.com/min-max-quantity/pricing/)🚩🚩🚩🚩🚩🚩🚩**
 
-*Go to Woocommerce -> Min Max Step Quantity*
+*Go to Dashboard -> Min Max Control* menu
 
 **Useful Links**
 
