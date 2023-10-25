@@ -179,7 +179,8 @@
         $(document.body).on('change',qty_box_selector,function(){
             qty_value = $(this).val();
             
-            if( decimal_separator != ',' ){
+            if( decimal_separator != '.' ){
+                console.log(decimal_separator);
                 qty_value = qty_value.replace(/\./g, decimal_separator);
             }
 
