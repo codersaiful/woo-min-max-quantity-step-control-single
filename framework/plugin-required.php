@@ -52,8 +52,8 @@ if( ! class_exists( 'Plugin_Required' ) ){
         public static function display_notice()
         {
             
-                //after 10 days, offer will closed | Today: 24 Sept, 2023
-                if(time() > (1697610263 + 1728000)) return;
+                //Today: 31.10.2023 - 1698724145 and added 20 days seccond - 1728000 (little change actually)
+                if(time() > (1698724145 + 2728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
                 $temp_numb = rand(5,9);
