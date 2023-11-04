@@ -9,7 +9,7 @@
  * 
  * Version: 5.6
  * Requires at least:    4.0.0
- * Tested up to:         6.3.2
+ * Tested up to:         6.4
  * WC requires at least: 3.0.0
  * WC tested up to: 	 8.2.0
  * 
