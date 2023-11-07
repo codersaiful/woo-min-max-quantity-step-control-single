@@ -95,10 +95,11 @@ class Page_Loader extends Base
         //THAT TO BE ENABLE AT THE END
         add_submenu_page( 'woocommerce', 'WC Min Max Step Quantity', 'Min Max Step Quantity', $capability, 'wcmmq_min_max_step', [$this,'redirect_to_new_page'] );
         
+        $proString = $this->is_pro ? esc_html__( ' Pro', 'wcmmq' ) : '';
         
         
         $min_max_img = $this->base_url . 'assets/images/min-max.png';
-        $page_title = "Min Max and Step Control Plugin";
+        $page_title = "Min Max and Step Control" . $proString;
         $menu_title = "Min Max Control"; 
         $menu_slug = $this->main_slug;
         $callback = [$this, 'main_page_html']; 
@@ -107,14 +108,14 @@ class Page_Loader extends Base
         add_menu_page($page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position);
 
         //Module page adding
-        add_submenu_page( $this->main_slug, $this->module_controller->menu_title, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
+        add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
-        add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ),  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
-        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ),  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
+        add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
+        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
 
-        add_submenu_page($this->main_slug, 'Documentation', 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
+        add_submenu_page($this->main_slug, 'Documentation' . $proString, 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
         if($this->is_pro){
-            add_submenu_page($this->main_slug, 'Support', 'Support', 'read','https://codeastrology.com/my-support');
+            add_submenu_page($this->main_slug, 'Support' . $proString, 'Support', 'read','https://codeastrology.com/my-support');
         }else{
             add_submenu_page($this->main_slug, 'Support & Buy', 'Support & Buy', 'read','https://codeastrology.com/downloads/min-max-step-control-wc/');
         }

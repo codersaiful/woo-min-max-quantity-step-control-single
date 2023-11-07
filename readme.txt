@@ -1,11 +1,11 @@
 === Min Max Control - Min Max Quantity & Step Control for WooCommerce===
-Contributors: codersaiful,codeastrology, unikforce, fazlebari, rafiul17
+Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul17
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.3
+Tested up to: 6.3.2
 Requires PHP: 5.4
-Stable tag: 5.4
+Stable tag: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,8 +28,9 @@ You can set values for all products globally. The same values will apply to all 
 You can set values by category. In this case, min, max, and step values will apply only to the chosen categories.<br>
 Also, you can set values for each product individually. Product label values will override global and category values.
 
+**🚩🚩🚩🚩🚩[Cyber Security Month Offer - upto 65%](https://codeastrology.com/min-max-quantity/pricing/)🚩🚩🚩🚩🚩🚩🚩**
 
-*Go to Woocommerce -> Min Max Step Quantity*
+*Go to Dashboard -> Min Max Control* menu
 
 **Useful Links**
 
@@ -181,6 +182,9 @@ Yes, it work with  variable, to learn click on this [tutorial link.](https://cod
 = Can I enable ajax add to cart on single product? =
 Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 
+= Can I disable ajax add to cart on archive/shop/taxonomy page? =
+Yes, Disable ajax add to cart from WooCommerce setting. uncheck [WooCommerce -> Products(Tab) -> Enable AJAX add to cart buttons on archives]
+
 = Can I set a minimum, maximum, default, or step for all products at once? =
 Yes, to learn more, please [click](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/) on this link.
 
@@ -231,6 +235,14 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 5.7 =
+* Ajax add to cart from shop/archive/taxonomy page has been fixed.
+* Bug Fixed.
+
+= 5.6 =
+* Spelling fix. 
+* Bug Fixed.
 
 = 5.5 =
 * Compatibility: Compabile with HPOS.
