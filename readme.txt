@@ -182,6 +182,9 @@ Yes, it work with  variable, to learn click on this [tutorial link.](https://cod
 = Can I enable ajax add to cart on single product? =
 Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 
+= Can I disable ajax add to cart on archive/shop/taxonomy page? =
+Yes, Disable ajax add to cart from WooCommerce setting. uncheck [WooCommerce -> Products(Tab) -> Enable AJAX add to cart buttons on archives]
+
 = Can I set a minimum, maximum, default, or step for all products at once? =
 Yes, to learn more, please [click](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/) on this link.
 
@@ -232,6 +235,10 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 5.7 =
+* Ajax add to cart from shop/archive/taxonomy page has been fixed.
+* Bug Fixed.
 
 = 5.6 =
 * Spelling fix. 
