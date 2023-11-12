@@ -71,6 +71,11 @@
          </ul> 
     <table id="term_table_<?php echo esc_attr( $id ); ?>">
         <tr>
+            <td colspan="2">
+                All field of taxonomy's section are optional. But if you set any one among min, max and step - Other value will like: min - 1, sptep -1, and max: -1.
+            </td>
+        </tr>
+        <tr>
             <th>
                 <label><?php echo esc_html__( 'Minimum Quantity', 'wcmmq' ); ?></label>
             </th>
