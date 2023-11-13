@@ -37,6 +37,13 @@ Also, you can set values for each product individually. Product label values wil
 * [Documentation](https://codeastrology.com/min-max-quantity/documentation/)
 * [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
 
+**Example Hook**
+`add_filter('wcmmq_single_product_min_max_condition','wcmmq_custom_handle_args', 10, 3);
+function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
+{
+    //You can control based on $product or $Min_Max_Controller or existing $args
+    return $args;
+}`
 
 🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
 🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
@@ -235,6 +242,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 5.7 =
+* Modified: filter hook `wcmmq_single_product_min_max_condition` modified. added third param the $Min_Max_Controller object. Now user handle more effectively.
 * Ajax add to cart from shop/archive/taxonomy page has been fixed.
 * Bug Fixed.
 

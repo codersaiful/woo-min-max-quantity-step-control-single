@@ -569,7 +569,7 @@ class Min_Max_Controller extends Base
         if( ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
             $args['input_value'] = $this->min_value;
         }
-        return apply_filters('wcmmq_single_product_min_max_condition', $args, $product);
+        return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
     }
 
     /**
