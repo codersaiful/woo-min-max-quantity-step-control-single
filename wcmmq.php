@@ -223,8 +223,7 @@ class WC_MMQ {
         include_once $dir . '/includes/enqueue.php';
         
         include_once $dir . '/includes/set_max_min_quantity.php';
-        $saful = new WC_MMQ\Includes\Min_Max_Controller();
-        // var_dump($saful);
+        new WC_MMQ\Includes\Min_Max_Controller();
     }
 
     /**
