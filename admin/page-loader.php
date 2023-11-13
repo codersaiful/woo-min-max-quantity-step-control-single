@@ -117,7 +117,7 @@ class Page_Loader extends Base
         if($this->is_pro){
             add_submenu_page($this->main_slug, 'Support' . $proString, 'Support', 'read','https://codeastrology.com/my-support');
         }else{
-            add_submenu_page($this->main_slug, 'Support & Buy', 'Support & Buy', 'read','https://codeastrology.com/downloads/min-max-step-control-wc/');
+            add_submenu_page($this->main_slug, 'Support & Buy', 'Support & Buy', 'read','https://codeastrology.com/min-max-quantity/pricing/');
         }
         
 
