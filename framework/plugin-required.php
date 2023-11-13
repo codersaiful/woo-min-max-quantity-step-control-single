@@ -56,7 +56,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 if(time() > (1698724145 + 2728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
-                $temp_numb = 5;// rand(5,9);
+                $temp_numb = rand(5,9);
                 /**
                  * small notice for pro plugin,
                  * charect:
