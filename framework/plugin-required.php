@@ -52,8 +52,8 @@ if( ! class_exists( 'Plugin_Required' ) ){
         public static function display_notice()
         {
             
-                //Today: 31.10.2023 - 1698724145 and added 20 days seccond - 1728000 (little change actually)
-                if(time() > (1698724145 + 2728000)) return;
+                //Today: 12.11.2023 - 1698724145 and added 20 days seccond - 1728000 (little change actually)
+                if(time() > (1699862697 + 2728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
                 $temp_numb = rand(5,9);
@@ -106,10 +106,12 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 //     'type' => 'error',
                 //     'link' => 'https://codeastrology.com/downloads//?discount=' . $coupon_Code,
                 // ]);
-                if( method_exists($offerNc, 'set_location') && $temp_numb == 8){
-                    $offerNc->set_location('wcmmq_form_panel_bottom'); //wpt_premium_image_bottom
-                    $offerNc->show();
-                }
+
+                //Somossa hocche tai muche dilam.
+                // if( method_exists($offerNc, 'set_location') && $temp_numb == 8){
+                //     $offerNc->set_location('wcmmq_form_panel_bottom'); //wpt_premium_image_bottom
+                //     $offerNc->show();
+                // }
                 if($temp_numb == 5) $offerNc->show();
                 
                 

@@ -793,3 +793,7 @@ tr.user_can_not_edit>td {
 .notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] .ca-msg-text p {
     padding-bottom: 5px;
 }
+
+.fieldwrap .anywhere-notice.ca-notice.notice-offer .ca-msg-text p.ca-links-collection {
+    display: none;
+}
