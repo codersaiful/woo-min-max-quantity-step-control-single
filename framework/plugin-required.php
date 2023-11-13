@@ -56,7 +56,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 if(time() > (1698724145 + 2728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;
                 
-                $temp_numb = rand(5,9);
+                $temp_numb = 5;// rand(5,9);
                 /**
                  * small notice for pro plugin,
                  * charect:
@@ -75,14 +75,14 @@ if( ! class_exists( 'Plugin_Required' ) ){
                 /**
                  * Offer Hanndle
                  */
-                $coupon_Code = 'CYBERSECURITY50';
+                $coupon_Code = 'BLACKFRIDAY2023';
                 $target = 'https://codeastrology.com/min-max-quantity/pricing/?discount=' . $coupon_Code . '&campaign=' . $coupon_Code . '&ref=1&utm_source=Default_Offer_LINK';
-                $my_message = '<b><i>COUPON CODE: ' . $coupon_Code . ' - up to 65% OFF</i></b> A coupon code for you for <b>Min Max Control</b> Plugin';
+                $my_message = '<b>COUPON CODE: <i>' . $coupon_Code . '</i> - up to 50% OFF</b> for <b>Min Max Control</b> Plugin';
                 $offerNc = new Notice('wcmmq_'.$coupon_Code.'_offer');
-                $offerNc->set_title( 'upto 65% Discount - Cyber Security Month' )
+                $offerNc->set_title( 'BLACK FRIDAY OFFER 🍋 🍌' )
                 ->set_diff_limit(3)
                 ->set_type('offer')
-                ->set_img( WC_MMQ_BASE_URL. 'assets/images/min-max-logo.png')
+                ->set_img( WC_MMQ_BASE_URL. 'assets/images/copoun-min-max.png')
                 ->set_img_target( $target )
                 ->set_message( $my_message )
                 ->add_button([
