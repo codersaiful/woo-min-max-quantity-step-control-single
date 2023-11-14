@@ -7,7 +7,7 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 5.6
+ * Version: 5.7
  * Requires at least:    4.0.0
  * Tested up to:         6.4
  * WC requires at least: 3.0.0
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '5.6.0');
+define('WC_MMQ_VERSION', '5.7.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -223,8 +223,7 @@ class WC_MMQ {
         include_once $dir . '/includes/enqueue.php';
         
         include_once $dir . '/includes/set_max_min_quantity.php';
-        $saful = new WC_MMQ\Includes\Min_Max_Controller();
-        // var_dump($saful);
+        new WC_MMQ\Includes\Min_Max_Controller();
     }
 
     /**
