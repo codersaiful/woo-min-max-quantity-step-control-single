@@ -533,6 +533,7 @@ class Min_Max_Controller extends Base
 
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
+        $this->variation_id = null;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
 
