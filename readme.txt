@@ -3,7 +3,7 @@ Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul1
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.3.2
+Tested up to: 6.4.2
 Requires PHP: 5.4
 Stable tag: 5.7
 License: GPLv2 or later
