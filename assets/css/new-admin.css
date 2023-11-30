@@ -37,7 +37,7 @@ body .wcmmq-header, body .wcmmq-content {
     }
 }
 .topbar-fixed-on-scroll-main-element{
-    margin-top: 250px;
+    margin-top: 150px;
 }
 .wcmmq-clearfix:before, .wcmmq-clearfix:after {
     display: table;

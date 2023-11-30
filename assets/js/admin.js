@@ -85,7 +85,7 @@
         }else{
             targetElement.removeClass('stick_on_scroll-on');
         }
-        if(scrollTop > 200){
+        if(scrollTop > 50){
             configFormElement.addClass('topbar-fixed-on-scroll-main-element');
             topbarElement.addClass('topbar-fixed-on-scroll');
         }else{
