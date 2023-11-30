@@ -104,7 +104,7 @@ if( ! $is_pro ){
         
         <form class="" action="" method="POST" id="wcmmq-main-configuration-form">
             
-            <div class="wpt-configure-tab-wrapper wpt-section-panel no-background"></div>
+            <div class="wcmmq-configure-tab-wrapper wcmmq-section-panel no-background"></div>
         
             <div class="wcmmq-section-panel universal-settings" id="wcmmq-universal-settings">
                 <?php include 'main-page/universal-settings.php'; ?>

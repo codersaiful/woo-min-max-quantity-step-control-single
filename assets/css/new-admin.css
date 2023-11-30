@@ -31,7 +31,7 @@ body .wcmmq-header, body .wcmmq-content {
     background: white;
     z-index: 999;
 }
-@media (max-width: 992px) {
+@media (max-width: 779px) {
     .wcmmq-header.wcmmq-clearfix.topbar-fixed-on-scroll {
         top: 0;
     }
