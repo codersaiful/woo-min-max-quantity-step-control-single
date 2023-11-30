@@ -103,18 +103,8 @@ if( ! $is_pro ){
         </div> -->
         
         <form class="" action="" method="POST" id="wcmmq-main-configuration-form">
-            <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
-                
-                <button name="configure_submit" type="submit"
-                    class="wcmmq-btn wcmmq-has-icon configure_submit">
-                    <span><i class="wcmmq_icon-floppy"></i></span>
-                    <strong class="form-submit-text">
-                    <?php echo esc_html__('Save Change','wcmmq');?>
-                    </strong>
-                </button>
-
-                
-            </div>
+            
+            <div class="wcmmq-configure-tab-wrapper wcmmq-section-panel no-background"></div>
         
             <div class="wcmmq-section-panel universal-settings" id="wcmmq-universal-settings">
                 <?php include 'main-page/universal-settings.php'; ?>

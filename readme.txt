@@ -243,6 +243,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 = 5.8 =
 * Cart page issue specially for Varition and simple product confliction on cart item has been solved.
+* Admin area organized and Optimized.
 
 = 5.7 =
 * Modified: filter hook `wcmmq_single_product_min_max_condition` modified. added third param the $Min_Max_Controller object. Now user handle more effectively.
