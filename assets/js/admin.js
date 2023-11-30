@@ -136,10 +136,10 @@
 
                 if(tabSerial !== 0){
                     $(this).hide();
-                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button'>" + tableTitle + "</a>"
+                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button link-" + tableId + "'>" + tableTitle + "</a>"
                 }else{
                     $(this).addClass('active');
-                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button active'>" + tableTitle + "</a>"
+                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button link-" + tableId + " active'>" + tableTitle + "</a>"
                 }
 
                 tabSerial++;
