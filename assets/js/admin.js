@@ -147,7 +147,11 @@
             }
             
         });
-        tabArea.html(tabHtml);
+        
+        if(tabSerial > 1){
+            tabArea.html(tabHtml);
+        }
+        
         console.log(tabArray);
         $(document.body).on('click','.wcmmq-configure-tab-wrapper a.tab-button',function(e){
             e.preventDefault();
