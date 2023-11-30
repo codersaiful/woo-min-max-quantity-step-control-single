@@ -103,7 +103,7 @@ if( ! $is_pro ){
         </div> -->
         
         <form class="" action="" method="POST" id="wcmmq-main-configuration-form">
-            <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
+            <!-- <div class="wcmmq-section-panel no-background wcmmq-full-form-submit-wrapper">
                 
                 <button name="configure_submit" type="submit"
                     class="wcmmq-btn wcmmq-has-icon configure_submit">
@@ -114,7 +114,7 @@ if( ! $is_pro ){
                 </button>
 
                 
-            </div>
+            </div> -->
         
             <div class="wcmmq-section-panel universal-settings" id="wcmmq-universal-settings">
                 <?php include 'main-page/universal-settings.php'; ?>

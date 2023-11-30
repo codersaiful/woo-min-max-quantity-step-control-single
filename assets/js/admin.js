@@ -94,4 +94,63 @@
         
 
     });
+
+
+    /**
+     * Tab Area Handle
+     */
+    configureTabAreaAdded('#wcmmq-main-configuration-form'); //Specially for Configure Page
+    
+    function configureTabAreaAdded( mainSelector = '#wcmmq-main-configuration-form' ){
+        var tabSerial = 0;
+        var tabArray = new Array();
+        var tabHtml = ""
+        var tabArea = $(mainSelector + ' .wcmmq-configure-tab-wrapper');
+        if(tabArea.length < 1){
+            $(mainSelector).prepend('<div class="wcmmq-configure-tab-wrapper wcmmq-section-panel no-background"></div>');
+            tabArea = $(mainSelector + ' .wcmmq-configure-tab-wrapper');
+        }
+        var sectionPanel = $(mainSelector + ' div.wcmmq-section-panel');
+        sectionPanel.each(function(index, content){
+            
+            let table = $(this).find('table');
+            let tableCount = table.length;
+            if(tableCount > 0){
+                
+                let firstTable = table.first();
+                let tableId = $(this).attr('id');
+
+                if(!tableId){
+                    tableId = 'section-panel-' + index;
+                    $(this).attr('id', tableId);
+                }
+                let tableTitle = firstTable.find('thead tr th:first-child h3').text();
+                tabArray[tableId] = tableTitle;
+
+                if(tabSerial !== 0){
+                    $(this).hide();
+                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button'>" + tableTitle + "</a>"
+                }else{
+                    $(this).addClass('active');
+                    tabHtml += "<a href='#" + tableId + "' class='tab-button wcmmq-button active'>" + tableTitle + "</a>"
+                }
+
+                tabSerial++;
+
+            }
+            
+        });
+        tabArea.html(tabHtml);
+        console.log(tabArray);
+        $(document.body).on('click','.wcmmq-configure-tab-wrapper a.tab-button',function(e){
+            e.preventDefault();
+            $('.wcmmq-configure-tab-wrapper a').removeClass('active');
+            $(mainSelector + ' div.wcmmq-section-panel.active').hide();
+            let target = $(this).attr('href');
+            $(mainSelector + ' ' + target).fadeIn().addClass('active');
+            $(this).addClass('active');
+        });
+    }
+
+
 })(jQuery);

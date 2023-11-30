@@ -652,7 +652,7 @@ button.add_terms_button.primary.button.button-primary:hover{
     background-size: auto 35px;
 }
 
-p.wpt-issue-submit {
+p.wcmmq-issue-submit {
     border-top: 1px solid #dddddd4a;
     opacity: 1;
     padding-top: 2px;
@@ -660,14 +660,14 @@ p.wpt-issue-submit {
     background-color: transparent !important;
 }
 
-p.wpt-issue-submit>b {
+p.wcmmq-issue-submit>b {
     background: #b54545;
     color: white;
     padding: 1px 5px;
     border-radius: 4px;
 }
 
-p.wpt-issue-submit a {
+p.wcmmq-issue-submit a {
     font-weight: 500;
     letter-spacing: 0;
     font-style: oblique;
@@ -675,7 +675,7 @@ p.wpt-issue-submit a {
     padding: 0 3px;
 }
 
-p.wpt-issue-submit a:hover {
+p.wcmmq-issue-submit a:hover {
     background: black;
     color: #4caf50;
 }
@@ -690,7 +690,7 @@ a.ca-social-link.ca-social-ticket.ca-title-available {
     background: #42b9cc;
     color: white;
 }
-a.wpt-doc-lick {
+a.wcmmq-doc-lick {
     text-decoration: none;
     padding: 5px;
     color: #42b9cc;
@@ -771,6 +771,27 @@ tr.user_can_not_edit>td:last-child:after {
 tr.user_can_not_edit>td {
     position: relative;
 }
+
+/********Configure Tab Area Start*********/
+.wcmmq-configure-tab-wrapper.wcmmq-section-panel a {
+    color: black;
+    background: white;
+    box-shadow: 1px 1px 8px 0 rgba(170, 157, 137, 0.14);
+    border: 1px solid white;
+    border-right-color: #cececea3;
+    text-transform: none;
+}
+.wcmmq-configure-tab-wrapper.wcmmq-section-panel a:last-child{
+    border-right-color: white;
+}
+.wcmmq-configure-tab-wrapper.wcmmq-section-panel a:hover,
+.wcmmq-configure-tab-wrapper.wcmmq-section-panel a.active {
+    background-color: #4caf50;
+    color: white;
+    border: 1px solid #4caf50 !important;
+}
+/********Configure Tab Area End*********/
+
 
 /* black Friday offer  */
 .notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] {background: black;color: #607D8B;}
