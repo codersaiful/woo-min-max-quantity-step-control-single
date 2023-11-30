@@ -535,7 +535,7 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     border-radius: unset;
     z-index: 99999;
     display: none;
-    top: 80px;
+    top: 145px;
     left: unset;
     margin: 0;
     opacity: 1;
@@ -772,6 +772,7 @@ tr.user_can_not_edit>td {
     position: relative;
 }
 
+
 /********Configure Tab Area Start*********/
 .wcmmq-configure-tab-wrapper.wcmmq-section-panel a {
     color: black;
@@ -780,6 +781,8 @@ tr.user_can_not_edit>td {
     border: 1px solid white;
     border-right-color: #cececea3;
     text-transform: none;
+    display: inline-block;
+    margin-bottom: 2px;
 }
 .wcmmq-configure-tab-wrapper.wcmmq-section-panel a:last-child{
     border-right-color: white;
@@ -789,6 +792,17 @@ tr.user_can_not_edit>td {
     background-color: #4caf50;
     color: white;
     border: 1px solid #4caf50 !important;
+}
+.topbar-fixed-on-scroll-main-element .wcmmq-configure-tab-wrapper.wcmmq-section-panel.backup {
+    position: fixed;
+    top: 130px;
+    z-index: 999;
+    background: white !important;
+    width: 87%;
+    display: inline-flex;
+    clear: both;
+    box-sizing: border-box;
+    box-shadow: 0px 9px 13px 0 #0000004a;
 }
 /********Configure Tab Area End*********/
 

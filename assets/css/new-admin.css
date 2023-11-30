@@ -25,6 +25,20 @@ body .wcmmq-header, body .wcmmq-content {
     display: flow-root;
     /* flex-basis: 100%; */
 }
+.wcmmq-header.wcmmq-clearfix.topbar-fixed-on-scroll {
+    position: fixed;
+    width: 100%;
+    background: white;
+    z-index: 999;
+}
+@media (max-width: 992px) {
+    .wcmmq-header.wcmmq-clearfix.topbar-fixed-on-scroll {
+        top: 0;
+    }
+}
+.topbar-fixed-on-scroll-main-element{
+    margin-top: 250px;
+}
 .wcmmq-clearfix:before, .wcmmq-clearfix:after {
     display: table;
     content: " ";
