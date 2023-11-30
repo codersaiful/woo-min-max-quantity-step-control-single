@@ -149,6 +149,7 @@
         });
         
         if(tabSerial > 1){
+            tabHtml += "<a href='#show-all' class='tab-button wcmmq-button'>Show All</a>";
             tabArea.html(tabHtml);
         }
         
@@ -156,10 +157,15 @@
         $(document.body).on('click','.wcmmq-configure-tab-wrapper a.tab-button',function(e){
             e.preventDefault();
             $('.wcmmq-configure-tab-wrapper a').removeClass('active');
+            $(this).addClass('active');
             $(mainSelector + ' div.wcmmq-section-panel.active').hide();
             let target = $(this).attr('href');
-            $(mainSelector + ' ' + target).fadeIn().addClass('active');
-            $(this).addClass('active');
+            if(target == '#show-all'){
+                sectionPanel.fadeIn();
+                return;
+            }
+            $(mainSelector + ' ' + target).fadeIn('fast').addClass('active');
+            
         });
     }
 
