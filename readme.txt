@@ -241,6 +241,9 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
+= 5.9 =
+* Compabile: Google Sheet Syncronize Feature Compatibility Added.
+
 = 5.8 =
 * Cart page issue specially for Varition and simple product confliction on cart item has been solved.
 * Admin area organized and Optimized.

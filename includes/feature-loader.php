@@ -3,6 +3,7 @@ namespace WC_MMQ\Includes;
 
 use WC_MMQ;
 use WC_MMQ\Includes\Features\Quantiy_Archive;
+use WC_MMQ\Includes\Features\Syncronize_Google_Sheet;
 
 class Feature_Loader
 {
@@ -16,5 +17,9 @@ class Feature_Loader
             $quantiy_archive_obj = new Quantiy_Archive();
             $quantiy_archive_obj->run();
         }
+
+        //Syncronize with Google Sheet
+        $sheet = new Syncronize_Google_Sheet();
+        $sheet->run();
     }
 }
