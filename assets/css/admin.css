@@ -727,7 +727,8 @@ p.wcmmq-input-decimal-msg-free,
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro, .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-free {
     color: #fffbfb;
     background: #F44336;
-    padding: 3px 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
     margin: 0;
 }
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro{
