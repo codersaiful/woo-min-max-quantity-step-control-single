@@ -535,7 +535,7 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     border-radius: unset;
     z-index: 99999;
     display: none;
-    top: 145px;
+    top: 450px;
     left: unset;
     margin: 0;
     opacity: 1;
@@ -731,6 +731,8 @@ p.wcmmq-input-decimal-msg-free,
     border-radius: 20px;
     margin: 0;
 }
+
+
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro{
     color: black;
     background: #ffeb3b57;
