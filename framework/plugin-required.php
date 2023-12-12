@@ -52,6 +52,7 @@ if( ! class_exists( 'Plugin_Required' ) ){
         public static function display_notice()
         {
             
+            return;
                 //Today: 12.11.2023 - 1698724145 and added 20 days seccond - 1728000 (little change actually)
                 if(time() > (1699862697 + 2728000)) return;
                 if( defined( 'WC_MMQ_PRO_VERSION' ) ) return;

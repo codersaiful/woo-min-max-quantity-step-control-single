@@ -15,7 +15,7 @@ $coupon_Code = 'BLACKFRIDAY2023';
 					</a>
 				</div>
 				<div class="col-lg-4">
-					<h2>BLACK FRIDAY</h2>
+					<h2>Incredible</h2>
 					<p>Checkout our Offer.</p>
 				</div>
 				<div class="col-lg-6">
