@@ -552,7 +552,7 @@ class Min_Max_Controller extends Base
         $args['min_value'] = $this->min_value;
         $args['max_value'] = $this->max_value;
         $args['step'] = $this->step_value;
-        $args['classes'][] = 'wcmmq-qty-input-box';
+        $args['classes'] = ['wcmmq-qty-input-box'];
 
         if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
             $args['input_value'] = $this->min_value;
