@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.4.2
 Requires PHP: 5.4
-Stable tag: 5.8
+Stable tag: 5.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -242,7 +242,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
-= 5.8 =
+= 5.8 & 5.9 =
 * Compabile: Google Sheet Syncronize Feature Compatibility Added.
 * Cart page issue specially for Varition and simple product confliction on cart item has been solved.
 * Admin area organized and Optimized.
