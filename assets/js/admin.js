@@ -15,7 +15,7 @@
         });
         
         $(document.body).on('click','.wcmmq-premium',function(){
-            // alert(45454);
+            
             var img_link = $(this).find('img').attr('src');
             var link = 'https://codeastrology.com/min-max-quantity/pricing/';
             window.open(img_link,'_blank');
@@ -153,7 +153,6 @@
             tabArea.html(tabHtml);
         }
         
-        console.log(tabArray);
         $(document.body).on('click','.wcmmq-configure-tab-wrapper a.tab-button',function(e){
             e.preventDefault();
             $('.wcmmq-configure-tab-wrapper a').removeClass('active');
