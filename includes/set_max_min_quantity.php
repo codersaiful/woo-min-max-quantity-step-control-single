@@ -86,7 +86,7 @@ function wcmmq_qty_validation_by_step_modulous( $modulous, $product_id, $variati
         $modulous = false; 
     }
 
-    $consnt_value = 1000000;
+    $consnt_value = 10000000000;
     $quantity_int = $quantity * $consnt_value;//intval($quantity * $consnt_value);
     $min_quantity_int = $min_quantity * $consnt_value;//intval($min_quantity * $consnt_value);
     $step_int = $step_quantity * $consnt_value;//intval($step_quantity * $consnt_value);
