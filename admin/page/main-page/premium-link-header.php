@@ -1,5 +1,5 @@
 <?php
-$coupon_Code = 'BLACKFRIDAY2023';
+$coupon_Code = 'CHRISTMAS2023';
 
 ?>
 <div class="wrap wcmmq_wrap wcmmq-content">
