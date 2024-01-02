@@ -58,6 +58,26 @@ class Page_Loader extends Base
         include $this->module_controller->dir . '/module-page.php';
     }
     
+    /**
+     * Connectivity with Product Stock Sync with Google Sheet for WooCommerce
+     *
+     * 
+     * @since 5.9.0
+     * @return void
+     * 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    public function product_quick_edit()
+    {
+        
+        $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
+        include $this->topbar_file;
+        if( ! $this->is_pro ){
+            include $this->page_folder_dir . 'main-page/premium-link-header.php';
+        }
+        include $this->module_controller->dir . '/module-page.php';
+    }
+    
     public function browse_plugins_html()
     {
         add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
@@ -110,6 +130,7 @@ class Page_Loader extends Base
         //Module page adding
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
+        add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'wcmmq' ) . $proString,  __( 'Min Max Bulk Edit', 'wcmmq' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
         add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
         add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
 
