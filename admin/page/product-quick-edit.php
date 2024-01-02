@@ -1,4 +1,5 @@
 <?php
+use WC_MMQ\Admin\Adm_Inc\Plugin_Installer;
 use Product_Stock_Sync\App\Handle\Quick_Table;
 
 ?>
@@ -13,6 +14,10 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
         $Quick_Table->display_table_full();
     }else{
     
+        
+        $Plugin_Installer = Plugin_Installer::init();
+
+
     /**
      * ekhane amra debo jate
      * install na thakle free version install dite pare
@@ -27,7 +32,7 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
                 <div class="plugin-install-wrapper">
                 <form method="post" action="">
                     <?php wp_nonce_field('pssg_install_plugin_nonce', 'pssg_install_plugin_nonce'); ?>
-                    <input type="submit" name="install_plugin" value="Install Required Plugin">
+                    <input type="submit" name="install_plugin" value="Install Required Plugin" class="wcmmq-btn"/>
                 </form>
                 </div>
                 <img src="<?php echo esc_attr( $image_url ); ?>" alt="Quick Edit Table Image">
