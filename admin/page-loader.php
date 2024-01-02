@@ -72,7 +72,7 @@ class Page_Loader extends Base
         
         $this->topbar_sub_title = __( 'Min Max Quick Edit','wcmmq' );
         include $this->topbar_file;
-        include $this->module_controller->dir . '/module-page.php';
+        include $this->page_folder_dir . '/product-quick-edit.php';
     }
     
     public function browse_plugins_html()
