@@ -70,11 +70,8 @@ class Page_Loader extends Base
     public function product_quick_edit()
     {
         
-        $this->topbar_sub_title = __( 'Manage Module','wcmmq' );
+        $this->topbar_sub_title = __( 'Min Max Quick Edit','wcmmq' );
         include $this->topbar_file;
-        if( ! $this->is_pro ){
-            include $this->page_folder_dir . 'main-page/premium-link-header.php';
-        }
         include $this->module_controller->dir . '/module-page.php';
     }
     
