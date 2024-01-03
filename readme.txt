@@ -22,6 +22,8 @@ Min Max Control plugin offers to set product's minimum, maximum quantity and ste
 🎉 Cart Page Quantity *(Premium)*<br>
 🎉 Category wise cart page Condition *(Premium)*<br>
 🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Stock Manage - Bulk Edit
+🎉 Min Max Step Manage - Bulk Edit
 🎉 Default Quantity [To enable: `add_filter('wcmmq_default_qty_option', '__return_true');` ]<br>
 
 You can set values for all products globally. The same values will apply to all products.
