@@ -779,7 +779,23 @@ tr.user_can_not_edit>td {
     color: #000000;
     font-size: 15px;
 }
+.free-plugin-install-info-wrapper {
+    padding: 20px;
+}
 
+.free-plugin-install-info-wrapper h3 {
+    color: #3F51B5;
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.free-plugin-install-info-wrapper p {
+    font-size: 16px;
+}
+
+.free-plugin-install-info-wrapper p b {
+    color: green;
+}
 .wcmmq-quick-table-header-topbar:hover{
     color: #ff09c1;
 }

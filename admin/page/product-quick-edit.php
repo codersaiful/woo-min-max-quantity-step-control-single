@@ -33,13 +33,22 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
         <div class="wcmmq-section-panel wcmmq-quick-edit-section" id="wcmmq-quick-edit-section" data-icon="wcmmq_icon-home">
 
             <div class="wcmmq-qes-wrapper">
-                <div class="plugin-install-wrapper">
-                <form method="post" action="">
-                    <?php wp_nonce_field('pssg_install_plugin_nonce', 'pssg_install_plugin_nonce'); ?>
-                    <input type="submit" name="install_plugin" value="Install Required Plugin" class="wcmmq-btn"/>
-                </form>
+                <div class="free-plugin-install-info-wrapper">
+                    <div style="float: left;">
+                        <h3>Need a plugin [Product Stock Sync with Google Sheet for WooCommerce]</h3>
+                        <p><b>Free Download</b>, Install and Activate to get following table. <a href="https://codeastrology.com/downloads/product-stock-sync-with-google-sheet-for-woocommerce/">https://codeastrology.com/downloads/product-stock-sync...</a></p>
+                        <p class="premium-version-wrapper">
+                            Get Premium Version. Just Click on - <a href="https://codeastrology.com/downloads/product-sync-master-sheet-premium/" target="_blank" class="wcmmq-btn wcmmq-btn small wcmmq-btn-small btn-small">Purchase Now</a>
+                        </p>
+                    </div>
+                    <iframe style="text-align: right;float:right;" width="560" height="315" 
+                    src="https://www.youtube-nocookie.com/embed/fJWAnMvpBQk?si=REPvxfE4UnElPLxD&amp;start=6" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen></iframe>
                 </div>
-                <img src="<?php echo esc_attr( $image_url ); ?>" alt="Quick Edit Table Image">
+                <img src="<?php echo esc_attr( $image_url ); ?>" alt="Quick Edit Table Image" style="opacity: 0.6;">
+                
             </div>
 
         </div>
