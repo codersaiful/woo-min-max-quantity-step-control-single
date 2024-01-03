@@ -1,5 +1,4 @@
 <?php
-use WC_MMQ\Admin\Adm_Inc\Plugin_Installer;
 use Product_Stock_Sync\App\Handle\Quick_Table;
 
 ?>
@@ -15,8 +14,6 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
     }else{
     
         
-        $Plugin_Installer = Plugin_Installer::init();
-
 
     /**
      * ekhane amra debo jate

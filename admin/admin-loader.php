@@ -5,7 +5,6 @@ use WC_MMQ;
 use WC_MMQ\Core\Base;
 use WC_MMQ\Admin\Page_Loader;
 use WC_MMQ\Admin\Tracker;
-use WC_MMQ\Admin\Adm_Inc\Plugin_Installer;
 use WC_MMQ\Admin\Adm_Inc\Settings\Settings_Loader;
 use WC_MMQ\Admin\Adm_Inc\Plugin_Deactive\Deactive_Form;
 
@@ -24,10 +23,6 @@ class Admin_Loader extends Base{
 
         // add_action('admin_init', [$this, 'admin_init']);
 
-        $Plugin_Installer = Plugin_Installer::init();
-        $Plugin_Installer->plugin_zip_url = 'https://example.com/test-path/to/your-plugin.zip';
-        $Plugin_Installer->run();
-        dd($Plugin_Installer);
     }
 
     public function admin_init(){
