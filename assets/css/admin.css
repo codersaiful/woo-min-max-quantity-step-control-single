@@ -461,7 +461,6 @@ ul.wcmmq_each_terms_header small {
     height: 75px;
     width: 75px;
     border: 3px solid #ffffff;
-    box-shadow: 4px 4px 14px 9px #00000014;
     width: auto !important;
 }
 .anywhere-notice.ca-notice .ca-notice-dismiss{display: none !important;}
@@ -535,7 +534,7 @@ form#wcmmq-main-configuration-form  #stick_on_scroll-on {
     border-radius: unset;
     z-index: 99999;
     display: none;
-    top: 145px;
+    top: 450px;
     left: unset;
     margin: 0;
     opacity: 1;
@@ -727,9 +726,12 @@ p.wcmmq-input-decimal-msg-free,
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro, .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-free {
     color: #fffbfb;
     background: #F44336;
-    padding: 3px 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
     margin: 0;
 }
+
+
 .wcmmq-free-pro-notice-message p.wcmmq-input-decimal-msg-pro{
     color: black;
     background: #ffeb3b57;
@@ -771,7 +773,41 @@ tr.user_can_not_edit>td:last-child:after {
 tr.user_can_not_edit>td {
     position: relative;
 }
+.wcmmq-quick-table-header-topbar{
+    margin-bottom: -30px;
+    margin-top: 30px;
+    color: #000000;
+    font-size: 15px;
+}
+.free-plugin-install-info-wrapper {
+    padding: 20px;
+}
 
+.free-plugin-install-info-wrapper h3 {
+    color: #3F51B5;
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.free-plugin-install-info-wrapper p {
+    font-size: 16px;
+}
+
+.free-plugin-install-info-wrapper p b {
+    color: green;
+}
+.wcmmq-quick-table-header-topbar:hover{
+    color: #ff09c1;
+}
+.wcmmq-quick-table-header-topbar a{
+    font-weight: bold;
+    text-decoration: none;
+}
+.wcmmq-quick-table-header-topbar:hover span,
+.wcmmq-quick-table-header-topbar span,
+.wcmmq-quick-table-header-topbar span:hover{
+    color: gray;
+}
 
 /********Configure Tab Area Start*********/
 .wcmmq-configure-tab-wrapper.wcmmq-section-panel a {
@@ -808,24 +844,28 @@ tr.user_can_not_edit>td {
 
 
 /* black Friday offer  */
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] {background: black;color: #607D8B;}
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] a.ca-logo-link img, 
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] a.ca-logo-link img,
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] img, 
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] a {
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] {
+    background: #ffffff8f;
+    color: #6e6e6e;
+    box-shadow: 1px -1px 30px #0000000a;
+}
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] a.ca-logo-link img, 
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] a.ca-logo-link img,
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] img, 
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] a {
     border: 0 none !important;
 }
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] .ca-msg-text h1 {
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] .ca-msg-text h1 {
     color: #ff0000;
     font-size: 19px;
 }
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] .ca-msg-text p>b:last-child {
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] .ca-msg-text p>b:last-child {
     color: red;
 }
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] .ca-msg-text p>b>i {
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] .ca-msg-text p>b>i {
     color: #4CAF50;
 }
-.notice.ca-notice.notice-offer[data-notice_id="wcmmq_BLACKFRIDAY2023_offer"] .ca-msg-text p {
+.notice.ca-notice.notice-offer[data-notice_id="wcmmq_CHRISTMAS2023_offer"] .ca-msg-text p {
     padding-bottom: 5px;
 }
 

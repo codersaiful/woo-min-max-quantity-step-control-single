@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.4.2
 Requires PHP: 5.4
-Stable tag: 5.7
+Stable tag: 5.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,8 @@ Min Max Control plugin offers to set product's minimum, maximum quantity and ste
 🎉 Cart Page Quantity *(Premium)*<br>
 🎉 Category wise cart page Condition *(Premium)*<br>
 🎉 Category wise cart page Condition *(Premium)*<br>
+🎉 Stock Manage - Bulk Edit
+🎉 Min Max Step Manage - Bulk Edit
 🎉 Default Quantity [To enable: `add_filter('wcmmq_default_qty_option', '__return_true');` ]<br>
 
 You can set values for all products globally. The same values will apply to all products.
@@ -165,6 +167,7 @@ function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
 * [codersaiful](https://github.com/codersaiful) (161 commits 22,681 ++ 5,794 -- And Pro: 50+ commits )
 * [unikforceit](https://github.com/unikforceit) (14 commits 315 ++ And Pro: 10+ commits )
 * [fazlebarisn](https://github.com/fazlebarisn) (9 commits 71 ++ And Pro: 10+ commits )
+* [mdibrahimk48](https://github.com/mdibrahimk48) (8 commits 20 ++ And Pro: 10+ commits )
 * [rafiul](https://github.com/rafiul) (7 commits 1,718 ++  )
 * [zbandhan](https://github.com/zbandhan) (1 commits  )
 * 👉 [You can join here](https://github.com/codersaiful/woo-min-max-quantity-step-control-single/fork)
@@ -241,9 +244,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
-= 5.8 =
+= 5.8 & 5.9 =
+* Compabile: Google Sheet Syncronize Feature Compatibility Added.
 * Cart page issue specially for Varition and simple product confliction on cart item has been solved.
 * Admin area organized and Optimized.
+* Removed: BlackFriday Offer notice has been removed.
 
 = 5.7 =
 * Modified: filter hook `wcmmq_single_product_min_max_condition` modified. added third param the $Min_Max_Controller object. Now user handle more effectively.

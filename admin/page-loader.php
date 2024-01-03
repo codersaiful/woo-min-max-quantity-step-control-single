@@ -3,6 +3,7 @@ namespace WC_MMQ\Admin;
 
 use WC_MMQ\Core\Base;
 use WC_MMQ\Modules\Module_Controller;
+use WC_MMQ\Includes\Min_Max_Controller;;
 
 class Page_Loader extends Base
 {
@@ -58,6 +59,40 @@ class Page_Loader extends Base
         include $this->module_controller->dir . '/module-page.php';
     }
     
+    /**
+     * Connectivity with Product Stock Sync with Google Sheet for WooCommerce
+     *
+     * 
+     * @since 5.9.0
+     * @return void
+     * 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     */
+    public function product_quick_edit()
+    {
+        add_filter( 'pssg_products_columns', [$this,'handle_columns'] );
+        $this->topbar_sub_title = __( 'Min Max Quick Edit','wcmmq' );
+        include $this->topbar_file;
+        include $this->page_folder_dir . '/product-quick-edit.php';
+    }
+    
+    public function handle_columns( $columns )
+    {
+        if( ! class_exists('PSSG_Init') ) $columns;
+
+        $new_columns = [];
+        $new_columns['title'] = $columns['title'];
+        
+
+        $controller = new Min_Max_Controller();
+        $new_columns[$controller->min_quantity] = $columns[$controller->min_quantity];
+        $new_columns[$controller->max_quantity] = $columns[$controller->max_quantity];
+        $new_columns[$controller->product_step] = $columns[$controller->product_step];
+
+        $new_columns['stock'] = $columns['stock'];
+        return $new_columns;
+    }
+
     public function browse_plugins_html()
     {
         add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
@@ -110,6 +145,7 @@ class Page_Loader extends Base
         //Module page adding
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
+        add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'wcmmq' ) . $proString,  __( 'Min Max Bulk Edit', 'wcmmq' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
         add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
         add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
 
