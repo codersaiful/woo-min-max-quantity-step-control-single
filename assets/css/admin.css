@@ -773,7 +773,25 @@ tr.user_can_not_edit>td:last-child:after {
 tr.user_can_not_edit>td {
     position: relative;
 }
+.wcmmq-quick-table-header-topbar{
+    margin-bottom: -30px;
+    margin-top: 30px;
+    color: #000000;
+    font-size: 15px;
+}
 
+.wcmmq-quick-table-header-topbar:hover{
+    color: #ff09c1;
+}
+.wcmmq-quick-table-header-topbar a{
+    font-weight: bold;
+    text-decoration: none;
+}
+.wcmmq-quick-table-header-topbar:hover span,
+.wcmmq-quick-table-header-topbar span,
+.wcmmq-quick-table-header-topbar span:hover{
+    color: gray;
+}
 
 /********Configure Tab Area Start*********/
 .wcmmq-configure-tab-wrapper.wcmmq-section-panel a {

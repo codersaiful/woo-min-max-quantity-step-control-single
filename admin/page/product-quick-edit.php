@@ -9,6 +9,13 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
 
     <?php
     if( class_exists( 'Product_Stock_Sync\App\Handle\Quick_Table' ) ){
+        ?>
+        <p class="wcmmq-quick-table-header-topbar">
+            To update All content. <a class="wcmmq-other-link" href="<?php echo esc_url( admin_url( 'admin.php?page=pssg-quick-edit' ) ); ?>" target="_blank">Click Here</a>
+            
+            <span>For min, max and step - Only able to edit/update for single product.</span>
+        </p>
+        <?php 
         $Quick_Table = Quick_Table::init();
         $Quick_Table->display_table_full();
     }else{
