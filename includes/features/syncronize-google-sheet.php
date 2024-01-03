@@ -19,15 +19,15 @@ class Syncronize_Google_Sheet{
         $controller = new Min_Max_Controller();
         $columns[$controller->min_quantity] = [
             'type' => 'cf',
-            'title' => 'Min Qty',
+            'title' => __( 'Min Qty', 'wcmmq' ),
         ];
         $columns[$controller->max_quantity] = [
             'type' => 'cf',
-            'title' => 'Max Qty',
+            'title' => __( 'Max Qty', 'wcmmq' ),
         ];
         $columns[$controller->product_step] = [
             'type' => 'cf',
-            'title' => 'Product Step',
+            'title' => __( 'Product Step', 'wcmmq' ),
         ];
 
         return $columns;

@@ -85,18 +85,9 @@ class Page_Loader extends Base
         
 
         $controller = new Min_Max_Controller();
-        $new_columns[$controller->min_quantity] = [
-            'type' => 'cf',
-            'title' => __( 'Minimum Quantity', 'wcmmq' ),
-        ];
-        $new_columns[$controller->max_quantity] = [
-            'type' => 'cf',
-            'title' => __( 'Maximum Quantity', 'wcmmq' ),
-        ];
-        $new_columns[$controller->product_step] = [
-            'type' => 'cf',
-            'title' => __( 'Product Step', 'wcmmq' ),
-        ];
+        $new_columns[$controller->min_quantity] = $columns[$controller->min_quantity];
+        $new_columns[$controller->max_quantity] = $columns[$controller->max_quantity];
+        $new_columns[$controller->product_step] = $columns[$controller->product_step];
 
         $new_columns['stock'] = $columns['stock'];
         return $new_columns;
