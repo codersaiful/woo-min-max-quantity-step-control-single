@@ -3,6 +3,7 @@ namespace WC_MMQ\Admin;
 
 use WC_MMQ\Core\Base;
 use WC_MMQ\Modules\Module_Controller;
+use WC_MMQ\Includes\Min_Max_Controller;;
 
 class Page_Loader extends Base
 {
@@ -69,12 +70,38 @@ class Page_Loader extends Base
      */
     public function product_quick_edit()
     {
-        
+        add_filter( 'pssg_products_columns', [$this,'handle_columns'] );
         $this->topbar_sub_title = __( 'Min Max Quick Edit','wcmmq' );
         include $this->topbar_file;
         include $this->page_folder_dir . '/product-quick-edit.php';
     }
     
+    public function handle_columns( $columns )
+    {
+        if( ! class_exists('PSSG_Init') ) $columns;
+
+        $new_columns = [];
+        $new_columns['title'] = $columns['title'];
+        
+
+        $controller = new Min_Max_Controller();
+        $new_columns[$controller->min_quantity] = [
+            'type' => 'cf',
+            'title' => __( 'Minimum Quantity', 'wcmmq' ),
+        ];
+        $new_columns[$controller->max_quantity] = [
+            'type' => 'cf',
+            'title' => __( 'Maximum Quantity', 'wcmmq' ),
+        ];
+        $new_columns[$controller->product_step] = [
+            'type' => 'cf',
+            'title' => __( 'Product Step', 'wcmmq' ),
+        ];
+
+        $new_columns['stock'] = $columns['stock'];
+        return $new_columns;
+    }
+
     public function browse_plugins_html()
     {
         add_filter( 'plugins_api_result', [$this, 'plugins_api_result'], 1, 3 );
