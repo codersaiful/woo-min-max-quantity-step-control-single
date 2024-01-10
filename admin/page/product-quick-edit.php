@@ -38,7 +38,8 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
                         <h3>Need a plugin [Product Stock Sync with Google Sheet for WooCommerce]</h3>
                         <p><b>Free Download</b>, Install and Activate to get following table. <a href="https://codeastrology.com/downloads/product-stock-sync-with-google-sheet-for-woocommerce/">https://codeastrology.com/downloads/product-stock-sync...</a></p>
                         <p class="premium-version-wrapper">
-                            Get Premium Version. Just Click on - <a href="https://codeastrology.com/downloads/product-sync-master-sheet-premium/" target="_blank" class="wcmmq-btn wcmmq-btn small wcmmq-btn-small btn-small">Purchase Now</a>
+                            <a href="https://codeastrology.com/downloads/product-stock-sync-with-google-sheet-for-woocommerce/" target="_blank" class="wcmmq-btn wcmmq-btn small wcmmq-btn-small btn-small">Free Download</a><br>
+                            Just Install and Activate. No need to integrate with Google Sheet for Min max Edit.
                         </p>
                     </div>
                     <iframe style="text-align: right;float:right;" width="560" height="315" 
