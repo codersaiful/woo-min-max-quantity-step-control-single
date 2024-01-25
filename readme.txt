@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.4.2
 Requires PHP: 5.4
-Stable tag: 5.9
+Stable tag: 6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -187,6 +187,9 @@ You are welcome to contribute  to this project. Join with us [Fork Github reposi
 = Does Min/Max Quantities work with variable products? =
 Yes, it work with  variable, to learn click on this [tutorial link.](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
 
+= Is it working on WooCommerce Cart/Checkout block? =
+Yes, it is. 
+
 = Can I enable ajax add to cart on single product? =
 Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 
@@ -243,6 +246,12 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.0 =
+* Fixed: min,max and step on WooCommerce Minicart Block issue has been fixed.
+* Fixed: Min,Max,Step issue on WooCommerce Cart Block has been fixed 
+* Fixed: Min,Max,Step issue on WooCommerce Checkout Block has been fixed 
+* Bug Fixed.
 
 = 5.8 & 5.9 =
 * Compabile: Google Sheet Syncronize Feature Compatibility Added.
