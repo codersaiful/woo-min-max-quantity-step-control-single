@@ -113,7 +113,7 @@ class Min_Max_Controller extends Base
          */
         add_filter( 'woocommerce_store_api_product_quantity_multiple_of', [$this, 'quantity_input_step'], 9999, 2 );
         add_filter( 'woocommerce_store_api_product_quantity_minimum', [$this, 'quantity_input_min'], 9999, 2 );
-        add_filter( 'woocommerce_store_api_product_quantity_maximum', [$this, 'quantity_input_max'], 9999, 2 );
+        add_filter( 'woocommerce_store_api_product_quantity_maximum', [$this, 'api_quantity_input_max'], 9999, 2 );
 
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
@@ -645,6 +645,13 @@ class Min_Max_Controller extends Base
         $this->organizeAndFinalizeArgs();
 
         return $this->max_value;
+    }
+    public function api_quantity_input_max($qty, $product)
+    {
+        $final_qty = $this->quantity_input_max($qty, $product);
+        if(empty($final_qty)) return PHP_INT_MAX;
+
+        return $final_qty;
     }
 
     /**
