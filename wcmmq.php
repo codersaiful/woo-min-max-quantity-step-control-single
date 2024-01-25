@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '6.0.0');
+define('WC_MMQ_VERSION', '6.1.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 

@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.4.2
 Requires PHP: 5.4
-Stable tag: 6.0
+Stable tag: 6.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -247,7 +247,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 == Changelog ==
 
-= 6.0 =
+= 6.0 & 6.1 =
 * Fixed: min,max and step on WooCommerce Minicart Block issue has been fixed.
 * Fixed: Min,Max,Step issue on WooCommerce Cart Block has been fixed 
 * Fixed: Min,Max,Step issue on WooCommerce Checkout Block has been fixed 

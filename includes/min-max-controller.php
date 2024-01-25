@@ -648,8 +648,9 @@ class Min_Max_Controller extends Base
     }
     public function api_quantity_input_max($qty, $product)
     {
+        
         $final_qty = $this->quantity_input_max($qty, $product);
-        if(empty($final_qty)) return PHP_INT_MAX;
+        if( empty($final_qty) || ! is_numeric( $final_qty ) ) return PHP_INT_MAX;
 
         return $final_qty;
     }
