@@ -42,9 +42,61 @@
             distributeMinMax(variation_id,variation_data,qty_boxWPT);
         });
 
+        /**
+         * Custom work
+         */
         $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', function() {
             this.setCustomValidity("Welcome to Dhaka");
         });
+
+        $(document.body).on('change','form.variations_form.cart input.variation_id',function(){
+            var min,max,step,basic;
+            var form = $(this).closest('form.variations_form.cart');
+            var qty_box = form.find('input.input-text.qty.text');
+            var variation_id = $(this).val();
+            variation_id = parseInt(variation_id);
+            var variation_pass = variation_id > 0;
+            if( ! variation_pass ){
+                return;
+            }
+            var product_variations = form.data('product_variations');
+            // if(variation_id )
+            // console.log(variation_id, typeof product_variations);
+            var gen_product_variations = new Array();
+            $.each(product_variations, function(index, eachVariation){
+                
+                var this_variation_id = eachVariation['variation_id'];
+                if( this_variation_id == variation_id){
+                    min = eachVariation['min_value'];
+                    max = eachVariation['max_value'];
+                    step = eachVariation['step'];
+                    basic = min;
+                    console.log(eachVariation);
+                }
+                // console.log(min,max,step,basic);
+                if(min){
+                    console.log(min,max,step,basic);
+
+                    var lateSome = setInterval(function(){
+                        qty_box.attr({
+                            min:min,
+                            max:max,
+                            step:step,
+                            value:min
+                        });
+    
+                        qty_box.val(basic).trigger('change');
+                        clearInterval(lateSome);
+                    },500);
+                }
+                
+                // gen_product_variations[eachVariation->variation_id]
+            });
+        });
+
+
+        //End of Custom Worl *******************/
+
         function distributeMinMax(variation_id,variation_data,qty_boxWPT){
             if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
                 var min,max,step,basic;
