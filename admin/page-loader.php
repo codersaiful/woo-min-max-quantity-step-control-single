@@ -395,9 +395,9 @@ class Page_Loader extends Base
 		$message = esc_html__( ' Renew it to get latest update.', 'wpt_pro' ) . '</strong>';
         ob_start();
         ?>
-        <div class="error wpt-renew-license-notice">
-            <div class="wpt-license-notice-inside">
-            <img src="<?php echo esc_url( $wpt_logo ); ?>" class="wpt-license-brand-logo">
+        <div class="error wcmmq-renew-license-notice">
+            <div class="wcmmq-license-notice-inside">
+            <img src="<?php echo esc_url( $wpt_logo ); ?>" class="wcmmq-license-brand-logo">
                 Your License of <strong>Min Max Control pro</strong> has been expired at <span style="color: #d00;font-weight:bold;"><?php echo esc_html( $expired_date ); ?></span>
                 %1$s <a href="%2$s" target="_blank">%3$s</a>
             </div>

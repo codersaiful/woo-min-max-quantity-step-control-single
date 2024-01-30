@@ -42,6 +42,9 @@
             distributeMinMax(variation_id,variation_data,qty_boxWPT);
         });
 
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', function() {
+            this.setCustomValidity("Welcome to Dhaka");
+        });
         function distributeMinMax(variation_id,variation_data,qty_boxWPT){
             if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
                 var min,max,step,basic;

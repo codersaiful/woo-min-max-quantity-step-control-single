@@ -91,6 +91,7 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
         add_filter('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
 
+        // add_action('woocommerce_before_quantity_input_field',[$this, 'hello_testing_function']);
         /**
          * You can ask, why need again value asign
          * indivisually where we already added at 
@@ -566,6 +567,10 @@ class Min_Max_Controller extends Base
             $args['classes'] = [];
         }
         $args['classes'][] = 'wcmmq-qty-input-box';
+        if(apply_filters('wcmmq_custom_validation_msg', true)){
+            $args['classes'][] = 'wcmmq-qty-custom-validation';
+        }
+        
 
         if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
             $args['input_value'] = $this->min_value;
@@ -586,6 +591,11 @@ class Min_Max_Controller extends Base
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
     }
 
+    public function hello_testing_function()
+    {
+        // dd($this->input_args);
+        echo 'Hello World';
+    }
     /**
      * Individule quantity setup using single filter
      *
