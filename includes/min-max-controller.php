@@ -76,6 +76,14 @@ class Min_Max_Controller extends Base
     protected $product;
     protected $variation_product;
 
+    /**
+     * New added for make instance
+     * 
+     * @since 6.1.1 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     *
+     * @var object|null
+     */
     public static $init;
 
     public function __construct()
