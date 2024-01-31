@@ -231,7 +231,6 @@ class Min_Max_Controller extends Base
         ?>
 <div 
 id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" 
-data-product_title =
 data-variation_data="<?php echo esc_attr( $data ); ?>" 
 style="display:none !important;"></div>
 <script  type='text/javascript'>
