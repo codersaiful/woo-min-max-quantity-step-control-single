@@ -175,9 +175,9 @@ class Min_Max_Controller extends Base
      */
     public function controlVariationsMinMax()
     {
-        // if( ! $this->is_pro) return;
+        if( ! $this->is_pro) return;
         // add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
-        // add_action('wpt_action_variation',[$this, 'single_variation_handle']);
+        add_action('wpt_action_variation',[$this, 'single_variation_handle']);
 
         /**
          * Remove action should here
