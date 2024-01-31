@@ -51,8 +51,9 @@
             var json_data = DataObject.data('wcmmq_json_data');
             // console.log(json_data);
             var step_validation_msg = DataObject.data('step_error_valiation');
-            var msg_min_limit = DataObject.data('msg_min_limit');
-            var msg_max_limit = DataObject.data('msg_max_limit');
+            var full_message = "";
+            var msg_min_limit = DataObject.data('msg_min_limit') + " ";
+            var msg_max_limit = DataObject.data('msg_max_limit') + " ";
 
             var product_name = "🎁 Product";
 
@@ -71,26 +72,24 @@
 
             console.log(min,max,inputValue);
             if( inputValue <  min){
-                step_validation_msg = msg_min_limit;
-                step_validation_msg = step_validation_msg.replace("[min_quantity]", min);
+                full_message += msg_min_limit.replace("[min_quantity]", min);
             }else if(inputValue > max && max > min){
-                step_validation_msg = msg_max_limit;
-                step_validation_msg = step_validation_msg.replace("[max_quantity]", max);
-            }else{
-                step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
-                step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+                full_message += msg_max_limit.replace("[max_quantity]", max);
             }
 
+            step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
+            step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+            full_message += step_validation_msg;
             
-            step_validation_msg = step_validation_msg.replace('"[product_name]"', product_name);
-            step_validation_msg = step_validation_msg.replace("[product_name]", product_name);
+            var final_full_message = full_message.replace('"[product_name]"', product_name);
+            final_full_message = final_full_message.replace("[product_name]", product_name);
 
             
 
             // Check if the input is within the valid range
             if (inputValue < min || inputValue > max || (inputValue - min) % step !== 0) {
                 // var step_validation_msg = 'Nearest valid values are ' + lowerNearest + ' and ' + upperNearest;
-                this.setCustomValidity(step_validation_msg);
+                this.setCustomValidity(final_full_message);
             } else {
                 // Clear custom validity message if input is valid
                 this.setCustomValidity('');
