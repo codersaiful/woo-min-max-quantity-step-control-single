@@ -175,9 +175,9 @@ class Min_Max_Controller extends Base
      */
     public function controlVariationsMinMax()
     {
-        // if( ! $this->is_pro) return;
-        // add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
-        // add_action('wpt_action_variation',[$this, 'single_variation_handle']);
+        if( ! $this->is_pro) return;
+        add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
+        add_action('wpt_action_variation',[$this, 'single_variation_handle']);
 
         /**
          * Remove action should here
@@ -590,7 +590,32 @@ class Min_Max_Controller extends Base
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
 
-        
+        /**
+         * Nicher ongso tuku niye pore kaj kobo, apatoto off rakhlam
+         * r ha
+         * nicher ongoso chalu hole custom.js  file a 
+         * $(document.body).on('change','offform.variations_form.cart input.variation_id',function(){
+         * eitao chalu hobe. ok?
+         * apatoto off kore rakha ache.
+         *
+        if($this->get_product_type == 'variable' && empty( $this->variables )){
+            // $this->product_id = $product->get_id();
+            // $this->product = wc_get_product( $this->product_id );
+            $this->variables = $this->product->get_children();
+            
+            if(empty($this->variables) && ! is_array( $this->variables )) return;
+            foreach( $this->variables as $variable_id){
+            
+                $this->variation_id = $variable_id;
+                $this->variation_product = wc_get_product( $this->variation_id );
+                $this->get_variation_type = $this->variation_product->get_type();   
+                $this->organizeAndFinalizeArgs();
+            }
+        }else{
+            //Need to set organize args and need to finalize
+            $this->organizeAndFinalizeArgs();
+        }
+        //*****************************/
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -634,10 +659,6 @@ class Min_Max_Controller extends Base
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
     }
 
-    public function hello_testing_function()
-    {
-        echo 'Hello World';
-    }
     /**
      * Individule quantity setup using single filter
      *
