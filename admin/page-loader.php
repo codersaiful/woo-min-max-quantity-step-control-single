@@ -84,7 +84,7 @@ class Page_Loader extends Base
         $new_columns['title'] = $columns['title'];
         
 
-        $controller = new Min_Max_Controller();
+        $controller = Min_Max_Controller::init();
         $new_columns[$controller->min_quantity] = $columns[$controller->min_quantity];
         $new_columns[$controller->max_quantity] = $columns[$controller->max_quantity];
         $new_columns[$controller->product_step] = $columns[$controller->product_step];

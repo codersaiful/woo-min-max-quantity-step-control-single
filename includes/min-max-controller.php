@@ -16,6 +16,7 @@ class Min_Max_Controller extends Base
     public $product_id;
     public $product_name;
     public $get_product_type;
+    public $testing;
     /**
      * It's need, only when cart page, otherwise it will null
      *
@@ -75,9 +76,13 @@ class Min_Max_Controller extends Base
     protected $product;
     protected $variation_product;
 
+    public static $init;
 
     public function __construct()
     {
+        //Make it as Standalone
+        if( self::$init && self::$init instanceof self ) return self::$init;
+
         $this->is_pro = defined('WC_MMQ_PRO_VERSION');
         $this->options = WC_MMQ::getOptions();
         $this->term_data = $this->options['terms'] ?? null;
@@ -119,10 +124,21 @@ class Min_Max_Controller extends Base
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
         add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
-
+        
         $this->controlVariationsMinMax();
+
+        self::$init = $this;
     }
     
+    public static function init()
+    {
+        if( self::$init && self::$init instanceof self ) return self::$init;
+
+        self::$init = new self();
+
+        return self::$init;
+    }
+
     /**
      * Congrolling Min Max Step for All Variation
      * without Premium constant 'WC_MMQ_PRO_VERSION'
@@ -767,7 +783,6 @@ class Min_Max_Controller extends Base
         if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
 
         $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);       
-
         //First Check modulous
         $modulous = $this->getModulous( $quantity );
         if( ! $modulous ) return false;
