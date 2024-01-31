@@ -6,6 +6,17 @@ use WC_MMQ\Core\Base;
 
 /**
  * Main Min_Max_Controller class
+ * ##########################################
+ * StandAlon Class|Object
+ * ###########################################
+ * 
+ * notice was showing multiple time,
+ * That's why, make it standalon
+ * Actually it was should create standalon at the begining.
+ * 
+ * Because It's called once time at the root file.
+ * Not used for any other purpose. actually
+ * ###########################################
  * 
  * @todo ekhono variation onujayi ze kaj hobe seta kora hoyni.
  * @author Saiful Islam <codersaiful@gmail.com>
