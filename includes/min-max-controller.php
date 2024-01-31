@@ -115,7 +115,6 @@ class Min_Max_Controller extends Base
         add_filter('woocommerce_quantity_input_args',[$this, 'set_input_args'], 9999, 2);
         add_filter('woocommerce_available_variation',[$this, 'set_input_args'], 9999, 2);
 
-        // add_action('woocommerce_before_quantity_input_field',[$this, 'hello_testing_function']);
         /**
          * You can ask, why need again value asign
          * indivisually where we already added at 
@@ -146,6 +145,7 @@ class Min_Max_Controller extends Base
         
         $this->controlVariationsMinMax();
 
+        add_action('wp_footer',[$this, 'footer_content']);
         self::$init = $this;
     }
     
@@ -918,6 +918,27 @@ class Min_Max_Controller extends Base
         $reslt = apply_filters('wcmmq_validation_message', $reslt, $this->product_id );
         return $reslt;
     }
+
+
+    public function footer_content()
+    {
+
+        $step_validn = $this->options['step_error_valiation'] ?? '';
+        $my_data = wp_json_encode(
+            [
+                'step_error_valiation' => $step_validn
+            ]
+        );
+        ?>
+        <div 
+        class="wcmmq-json-options-data" 
+        data-step_error_valiation="<?php echo esc_attr( $step_validn ); ?>"
+        data-wcmmq_json_data="<?php echo esc_attr( $my_data ); ?>"
+        style="display:none;visibility:hidden;opacity:0;"
+        ></div>
+        <?php
+    }
+
 
     /**
      * get_post_meta($this->product_id,$meta_key,true) 

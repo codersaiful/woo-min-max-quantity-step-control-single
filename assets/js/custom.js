@@ -46,7 +46,35 @@
          * Custom work
          */
         $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', function() {
-            this.setCustomValidity("Welcome to Dhaka");
+
+            var DataObject = $('.wcmmq-json-options-data');
+            var json_data = DataObject.data('wcmmq_json_data');
+            console.log(json_data);
+            var step_validation_msg = DataObject.data('step_error_valiation');
+            // var step_validation_msg = 'Please enter a valid value. The two nearest valid values are [should_min] and [should_next]';
+            // Parse input value as a float
+            var inputValue = parseFloat($(this).val());
+
+            // Get the min, max, and step attributes
+            var min = parseFloat($(this).attr('min'));
+            var max = parseFloat($(this).attr('max'));
+            var step = parseFloat($(this).attr('step'));
+
+            // Calculate the nearest valid values
+            var lowerNearest = Math.floor((inputValue - min) / step) * step + min;
+            var upperNearest = lowerNearest + step;
+
+            step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
+            step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+
+            // Check if the input is within the valid range
+            if (inputValue < min || inputValue > max || (inputValue - min) % step !== 0) {
+                // var step_validation_msg = 'Nearest valid values are ' + lowerNearest + ' and ' + upperNearest;
+                this.setCustomValidity(step_validation_msg);
+            } else {
+                // Clear custom validity message if input is valid
+                this.setCustomValidity('');
+            }
         });
 
         /**
@@ -69,8 +97,7 @@
                 return;
             }
             var product_variations = form.data('product_variations');
-            // if(variation_id )
-            // console.log(variation_id, typeof product_variations);
+
             var gen_product_variations = new Array();
             $.each(product_variations, function(index, eachVariation){
                 
