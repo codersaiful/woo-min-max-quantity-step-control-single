@@ -156,6 +156,11 @@ class Min_Max_Controller extends Base
     }
 
     /**
+     * ######################################
+     * Curently Not used this method. Actually
+     * We have handle variation's min max from assets/js/custom.js 
+     * ####################################### 
+     * 
      * Temporarily set Min Max and step 
      * based on Custom Field
      * 
@@ -518,6 +523,9 @@ class Min_Max_Controller extends Base
             'variation_name'=> $this->variation_name,
         );
         if(!empty($this->variation_id)){
+
+            // $this->variations_args is not used right now, Actually I have handled it from customjs file
+            //and that working better althouh
             $this->variations_args[$this->variation_id] = array(
                 'min_quantity' => $this->min_value,
                 'max_quantity' => $this->max_value,

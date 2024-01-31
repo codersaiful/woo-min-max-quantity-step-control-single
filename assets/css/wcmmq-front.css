@@ -55,3 +55,11 @@ input.input-text.qty.text.wcmmq-main-input-box {
 input.wcmmq-second-input-box{
     /* max-width: 94px; */
 }
+.wcmmq-custom-stock-msg {
+    font-size: 75%;
+}
+.wcmmq-custom-stock-msg p {
+    padding: 0px;
+    margin: 0px;
+    display: inline;
+}

@@ -49,9 +49,18 @@
             this.setCustomValidity("Welcome to Dhaka");
         });
 
+        /**
+         * New added 
+         * First time, It was handle from Min_Max_Controller::single_variation_handle()
+         * currently that method is not need.
+         * 
+         * We will handle it from javascript actually.
+         */
         $(document.body).on('change','form.variations_form.cart input.variation_id',function(){
             var min,max,step,basic;
+            var in_stock, stock_msg;
             var form = $(this).closest('form.variations_form.cart');
+            form.find('.wcmmq-custom-stock-msg').remove();
             var qty_box = form.find('input.input-text.qty.text');
             var variation_id = $(this).val();
             variation_id = parseInt(variation_id);
@@ -67,14 +76,26 @@
                 
                 var this_variation_id = eachVariation['variation_id'];
                 if( this_variation_id == variation_id){
+                    in_stock = eachVariation['is_in_stock'];
+                    stock_msg = eachVariation['availability_html'];
+                    
+                    console.log(eachVariation['is_in_stock']);
                     min = eachVariation['min_value'];
                     max = eachVariation['max_value'];
                     step = eachVariation['step'];
                     basic = min;
+
+                    if( ! in_stock){
+                        form.find('.single_variation_wrap').prepend('<div class="wcmmq-custom-stock-msg">' + stock_msg + '</div>');
+                        min = 0;
+                        max = 0;
+                        basic = 0;
+                        step = 0;
+                    }
                     console.log(eachVariation);
                 }
                 // console.log(min,max,step,basic);
-                if(min){
+                if(min || ! in_stock){
                     console.log(min,max,step,basic);
 
                     var lateSome = setInterval(function(){
