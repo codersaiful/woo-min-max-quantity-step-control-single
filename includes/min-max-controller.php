@@ -229,7 +229,11 @@ class Min_Max_Controller extends Base
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
-<div id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" data-variation_data="<?php echo esc_attr( $data ); ?>" style="display:none !important;"></div>
+<div 
+id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" 
+data-product_title =
+data-variation_data="<?php echo esc_attr( $data ); ?>" 
+style="display:none !important;"></div>
 <script  type='text/javascript'>
 (function($) {
     'use strict';
@@ -944,16 +948,22 @@ class Min_Max_Controller extends Base
     public function footer_content()
     {
 
-        $step_validn = $this->options['step_error_valiation'] ?? '';
-        $my_data = wp_json_encode(
-            [
-                'step_error_valiation' => $step_validn
-            ]
-        );
+        $step_validn = $this->getRawMsg('step_error_valiation');
+        $msg_min_limit = $this->getRawMsg('msg_min_limit');
+        $msg_max_limit = $this->getRawMsg('msg_max_limit');
+        $original_data = [
+            'step_error_valiation' => $this->getRawMsg('step_error_valiation'),
+            // 'msg_min_limit'         => $this->getRawMsg('msg_min_limit'),
+            // 'msg_max_limit'         => $this->getRawMsg('msg_max_limit')
+        ];
+
+        $my_data = wp_json_encode( $original_data );
         ?>
         <div 
         class="wcmmq-json-options-data" 
         data-step_error_valiation="<?php echo esc_attr( $step_validn ); ?>"
+        data-msg_min_limit="<?php echo esc_attr( $msg_min_limit ); ?>"
+        data-msg_max_limit="<?php echo esc_attr( $msg_max_limit ); ?>"
         data-wcmmq_json_data="<?php echo esc_attr( $my_data ); ?>"
         style="display:none;visibility:hidden;opacity:0;"
         ></div>

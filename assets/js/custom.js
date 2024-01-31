@@ -49,8 +49,13 @@
 
             var DataObject = $('.wcmmq-json-options-data');
             var json_data = DataObject.data('wcmmq_json_data');
-            console.log(json_data);
+            // console.log(json_data);
             var step_validation_msg = DataObject.data('step_error_valiation');
+            var msg_min_limit = DataObject.data('msg_min_limit');
+            var msg_max_limit = DataObject.data('msg_max_limit');
+
+            var product_name = "🎁 Product";
+
             // var step_validation_msg = 'Please enter a valid value. The two nearest valid values are [should_min] and [should_next]';
             // Parse input value as a float
             var inputValue = parseFloat($(this).val());
@@ -64,8 +69,23 @@
             var lowerNearest = Math.floor((inputValue - min) / step) * step + min;
             var upperNearest = lowerNearest + step;
 
-            step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
-            step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+            console.log(min,max,inputValue);
+            if( inputValue <  min){
+                step_validation_msg = msg_min_limit;
+                step_validation_msg = step_validation_msg.replace("[min_quantity]", min);
+            }else if(inputValue > max && max > min){
+                step_validation_msg = msg_max_limit;
+                step_validation_msg = step_validation_msg.replace("[max_quantity]", max);
+            }else{
+                step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
+                step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+            }
+
+            
+            step_validation_msg = step_validation_msg.replace('"[product_name]"', product_name);
+            step_validation_msg = step_validation_msg.replace("[product_name]", product_name);
+
+            
 
             // Check if the input is within the valid range
             if (inputValue < min || inputValue > max || (inputValue - min) % step !== 0) {
