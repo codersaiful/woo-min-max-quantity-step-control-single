@@ -175,9 +175,9 @@ class Min_Max_Controller extends Base
      */
     public function controlVariationsMinMax()
     {
-        if( ! $this->is_pro) return;
-        add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
-        add_action('wpt_action_variation',[$this, 'single_variation_handle']);
+        // if( ! $this->is_pro) return;
+        // add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
+        // add_action('wpt_action_variation',[$this, 'single_variation_handle']);
 
         /**
          * Remove action should here
@@ -587,12 +587,20 @@ style="display:none !important;"></div>
     public function set_input_args( $args, $product )
     {
         $this->temp_args = $args;
-
+        // dd($args);
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
         $this->variation_id = null;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
+
+        // dd($args['variation_id']??'nothing');
+        $variation_id = $args['variation_id'] ?? 0;
+        if($this->is_pro && $variation_id){
+            $this->variation_id = $variation_id;
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();  
+        }
 
         /**
          * Nicher ongso tuku niye pore kaj kobo, apatoto off rakhlam

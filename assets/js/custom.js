@@ -104,7 +104,7 @@
          * 
          * We will handle it from javascript actually.
          */
-        $(document.body).on('change','offform.variations_form.cart input.variation_id',function(){
+        $(document.body).on('change','form.variations_form.cart input.variation_id',function(){
             var min,max,step,basic;
             var in_stock, stock_msg;
             var form = $(this).closest('form.variations_form.cart');
