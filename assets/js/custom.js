@@ -45,7 +45,7 @@
         /**
          * Custom work
          */
-        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', function() {
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', function() {
 
             var DataObject = $('.wcmmq-json-options-data');
             var json_data = DataObject.data('wcmmq_json_data');
