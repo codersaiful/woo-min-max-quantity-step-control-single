@@ -145,6 +145,11 @@ class Min_Max_Controller extends Base
         
         $this->controlVariationsMinMax();
 
+        //Many theme, dont input available variation, that's why, We will do it manually and again
+        add_action('woocommerce_single_variation',[$this, 'insert_temp_product_variations'], 999);
+
+
+
         add_action('wp_footer',[$this, 'footer_content']);
         self::$init = $this;
     }
@@ -158,6 +163,34 @@ class Min_Max_Controller extends Base
         return self::$init;
     }
 
+    /**
+     * Specially for some Theme don't show product varatins in form wrapper, then we will
+     * use this actually.
+     * Otherwise, no need actually
+     * 
+     * asole ekta customer er site peyechi, 
+     * jekhane variations form a data-product_variations chilo na
+     * er jonno manually dhukaichi amra
+     * 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     * 
+     * @since 6.2.2
+     *
+     * @return void
+     */
+    public function insert_temp_product_variations(){
+        global $product;
+        $available_variations = $product->get_available_variations();
+        $variations_json = wp_json_encode( $available_variations );
+        $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
+        ?>
+        <div 
+        class="wcmmq-available-variaions"
+        data-product_variations="<?php echo $variations_attr; ?>"
+        style="display:none;opacity:hidden;visibility:hidden;">
+        </div>
+        <?php
+    }
     /**
      * Congrolling Min Max Step for All Variation
      * without Premium constant 'WC_MMQ_PRO_VERSION'

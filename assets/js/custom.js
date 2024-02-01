@@ -45,7 +45,10 @@
         /**
          * Custom work
          */
-        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', function() {
+        // $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', validatinMessageCustomize);
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', validatinMessageCustomize);
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('change', validatinMessageCustomize);
+        function validatinMessageCustomize() {
 
             var DataObject = $('.wcmmq-json-options-data');
             var json_data = DataObject.data('wcmmq_json_data');
@@ -94,7 +97,7 @@
                 // Clear custom validity message if input is valid
                 this.setCustomValidity('');
             }
-        });
+        }
 
         /**
          * New added 
@@ -116,6 +119,10 @@
                 return;
             }
             var product_variations = form.data('product_variations');
+            if( ! product_variations ){
+                //kept an another div using hook 'woocommerce_single_variation' at inc/min-max-controller.php file. if found empty at product variatins data
+				product_variations = form.find('.wcmmq-available-variaions').data('product_variations');
+			}
 
             var gen_product_variations = new Array();
             $.each(product_variations, function(index, eachVariation){
@@ -125,7 +132,6 @@
                     in_stock = eachVariation['is_in_stock'];
                     stock_msg = eachVariation['availability_html'];
                     
-                    console.log(eachVariation['is_in_stock']);
                     min = eachVariation['min_value'];
                     max = eachVariation['max_value'];
                     step = eachVariation['step'];
@@ -138,9 +144,7 @@
                         basic = 0;
                         step = 0;
                     }
-                    console.log(eachVariation);
                 }
-                // console.log(min,max,step,basic);
                 if(min || ! in_stock){
                     console.log(min,max,step,basic);
 
@@ -157,7 +161,6 @@
                     },500);
                 }
                 
-                // gen_product_variations[eachVariation->variation_id]
             });
         });
 
