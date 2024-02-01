@@ -45,7 +45,7 @@
         /**
          * Custom work
          */
-        // $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', validatinMessageCustomize);
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', validatinMessageCustomize);
         $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', validatinMessageCustomize);
         $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('change', validatinMessageCustomize);
         function validatinMessageCustomize() {
@@ -76,8 +76,12 @@
             console.log(min,max,inputValue);
             if( inputValue <  min){
                 full_message += msg_min_limit.replace("[min_quantity]", min);
+                lowerNearest = min;
+                upperNearest = lowerNearest + step;
             }else if(inputValue > max && max > min){
                 full_message += msg_max_limit.replace("[max_quantity]", max);
+                lowerNearest = max - step;
+                upperNearest = max;
             }
 
             step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);

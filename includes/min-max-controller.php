@@ -679,8 +679,23 @@ style="display:none !important;"></div>
             $args['classes'] = [];
         }
         $args['classes'][] = 'wcmmq-qty-input-box';
-        if(apply_filters('wcmmq_custom_validation_msg', true)){
-            $args['classes'][] = 'wcmmq-qty-custom-validation';
+
+        /**
+         * muloto jokhon message change hobe and
+         * filter er value tru thakbe, tokhoni sudhu 
+         * custom message kaj korbe
+         * 
+         * USE HOOK filter for custom validation 'wcmmq_custom_validation_msg'
+         * @Hook wcmmq_custom_validation_msg
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        if( apply_filters('wcmmq_custom_validation_msg', true, $this->product_id, $this->variation_id) ){
+            $dfault = WC_MMQ::getDefaults();
+            $keyword = $this->key_prefix . 'step_error_valiation';
+            $err_msg = $dfault[$keyword] ?? '';
+            $new_err_msg = $this->getRawMsg('step_error_valiation');
+
+            $args['classes'][] = $err_msg != $new_err_msg ? 'wcmmq-qty-custom-validation' : '';
         }
         
 
