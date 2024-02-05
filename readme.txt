@@ -248,11 +248,14 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 6.2 =
-* 
 * Added: Broser input's step validation message is customize from setting.
 * Fixed: Variable Product's input, min, max Optimized.
 * Fixed: Double error message issue fixed.
 * Load Speed Optimized.
+* Compatibility issue fix on [Product Stock sync with Google Sheet for WooCommerce](https://codeastrology.com/downloads/product-sync-master-sheet-premium/)
+* Fixed: min,max and step on WooCommerce Minicart Block issue has been fixed.
+* Fixed: Min,Max,Step issue on WooCommerce Cart Block has been fixed 
+* Fixed: Min,Max,Step issue on WooCommerce Checkout Block has been fixed 
 * Bug Fixed.
 
 = 6.0 & 6.1 =
