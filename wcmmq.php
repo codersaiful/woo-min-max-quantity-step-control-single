@@ -11,7 +11,7 @@
  * Requires at least:    4.0.0
  * Tested up to:         6.4.3
  * WC requires at least: 3.0.0
- * WC tested up to: 	 8.5.2
+ * WC tested up to: 	 8.5.3
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '6.1.0');
+define('WC_MMQ_VERSION', '6.2.3');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 

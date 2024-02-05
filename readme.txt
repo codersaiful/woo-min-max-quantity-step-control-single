@@ -248,6 +248,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 == Changelog ==
 
 = 6.2 =
+* 
 * Added: Broser input's step validation message is customize from setting.
 * Fixed: Variable Product's input, min, max Optimized.
 * Fixed: Double error message issue fixed.
