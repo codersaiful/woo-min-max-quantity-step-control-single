@@ -146,11 +146,7 @@ class Page_Loader extends Base
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
         add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'wcmmq' ) . $proString,  __( 'Min Max Bulk Edit', 'wcmmq' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
-        
-        
-        if( ! $this->is_pro ){
-            add_submenu_page( $this->main_slug, esc_html__( 'Temp Pro Demo', 'wcmmq' ),  esc_html__( 'Temp Pro Demo', 'wcmmq' ), 'read', 'https://codeastro.live/?site=wcmmq&utm=PluginDashboard' );
-        }
+        add_submenu_page( $this->main_slug, esc_html__( 'Temp Pro Demo', 'wcmmq' ),  esc_html__( 'Temp Pro Demo', 'wcmmq' ), 'read', 'https://codeastro.live/?site=wcmmq&utm=PluginDashboard' );
 
         
         add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), 'read', 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
