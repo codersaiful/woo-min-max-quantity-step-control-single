@@ -712,7 +712,12 @@ style="display:none !important;"></div>
             $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
         }
 
-        if( ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
+        /**
+         * Zero issue @hook 'wcmmq_zero_min_issue;
+         * @Hook wcmmq_zero_min_issue
+         * Sometime for some theme/plugin, it can be need actually. 
+         */
+        if( apply_filters( 'wcmmq_zero_min_issue', false ) && ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
             $args['input_value'] = $this->min_value;
         }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
