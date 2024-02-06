@@ -736,7 +736,7 @@ style="display:none !important;"></div>
     public function compatible_with_other_plugins($args)
     {
         //Compatible with better variation
-		if($this->variation_id && defined( 'WCBVP_PLUGIN_VERSION' )){
+		if( defined( 'WCBVP_PLUGIN_VERSION' ) && $this->variation_id){
 			$args['classes'][] = 'wcbvp-grid-quantity-field';
 		}
         return $args;
