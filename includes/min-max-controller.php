@@ -150,6 +150,16 @@ class Min_Max_Controller extends Base
 
 
 
+        /**
+         * Other Third-parti Plugin Compatible
+         * In this hook
+         * I will add some conditional code, If conflict with any plugin
+         * or theme
+         * 
+         * @since 6.2.3
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        add_filter('wcmmq_single_product_min_max_condition', [$this, 'compatible_with_other_plugins']);
         add_action('wp_footer',[$this, 'footer_content']);
         self::$init = $this;
     }
@@ -721,6 +731,15 @@ style="display:none !important;"></div>
             $args['input_value'] = $this->min_value;
         }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
+    }
+
+    public function compatible_with_other_plugins($args)
+    {
+        //Compatible with better variation
+		if($this->variation_id && defined( 'WCBVP_PLUGIN_VERSION' )){
+			$args['classes'][] = 'wcbvp-grid-quantity-field';
+		}
+        return $args;
     }
 
     /**
