@@ -708,8 +708,8 @@ style="display:none !important;"></div>
             $args['classes'][] = $err_msg != $new_err_msg ? 'wcmmq-qty-custom-validation' : '';
         }
         
-
-        if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
+        $input_name_quantity = ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity';
+        if( is_single() &&  $input_name_quantity ){
             $args['input_value'] = $this->min_value;
         }
 
@@ -729,6 +729,11 @@ style="display:none !important;"></div>
          */
         if( apply_filters( 'wcmmq_zero_min_issue', false ) && ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
             $args['input_value'] = $this->min_value;
+        }
+
+        //Final input_value fix
+        if( $input_name_quantity && isset( $args['min_value'] ) && isset( $args['input_value'] ) && $args['min_value'] >= $args['input_value']){
+            $args['input_value'] = $args['min_value'];
         }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
     }
