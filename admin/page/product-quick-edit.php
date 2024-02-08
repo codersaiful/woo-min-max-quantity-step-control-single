@@ -1,5 +1,5 @@
 <?php
-use Product_Stock_Sync\App\Handle\Quick_Table;
+use PSSG_Sync_Sheet\App\Handle\Quick_Table;
 
 ?>
 <div class="wrap wcmmq_wrap wcmmq-content">
@@ -8,7 +8,7 @@ use Product_Stock_Sync\App\Handle\Quick_Table;
     <div class="fieldwrap">
 
     <?php
-    if( class_exists( 'Product_Stock_Sync\App\Handle\Quick_Table' ) ){
+    if( class_exists( 'PSSG_Sync_Sheet\App\Handle\Quick_Table' ) ){
         ?>
         <p class="wcmmq-quick-table-header-topbar">
             To update All content. <a class="wcmmq-other-link" href="<?php echo esc_url( admin_url( 'admin.php?page=pssg-quick-edit' ) ); ?>" target="_blank">Click Here</a>
