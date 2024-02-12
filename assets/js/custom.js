@@ -149,8 +149,7 @@
                     }
                 }
                 if(min || ! in_stock){
-                    console.log(min,max,step,basic);
-
+                    
                     var lateSome = setInterval(function(){
                         qty_box.attr({
                             min:min,
