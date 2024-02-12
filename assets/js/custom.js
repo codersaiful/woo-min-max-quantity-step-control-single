@@ -73,7 +73,6 @@
             var lowerNearest = Math.floor((inputValue - min) / step) * step + min;
             var upperNearest = lowerNearest + step;
 
-            console.log(min,max,inputValue);
             if( inputValue <  min){
                 full_message += msg_min_limit.replace("[min_quantity]", min);
                 lowerNearest = min;
