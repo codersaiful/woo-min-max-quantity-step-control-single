@@ -39,6 +39,9 @@ Also, you can set values for each product individually. Product label values wil
 * [Documentation](https://codeastrology.com/min-max-quantity/documentation/)
 * [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
 
+**Useful Hook**
+`wcmmq_custom_validation_msg`: To modify custom validation for your browser, use `add_filter('wcmmq_custom_validation_msg', '__return_true');`
+
 **Example Hook**
 `add_filter('wcmmq_single_product_min_max_condition','wcmmq_custom_handle_args', 10, 3);
 function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )

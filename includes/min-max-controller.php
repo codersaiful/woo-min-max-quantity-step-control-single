@@ -699,7 +699,7 @@ style="display:none !important;"></div>
          * @Hook wcmmq_custom_validation_msg
          * @author Saiful Islam <codersaiful@gmail.com>
          */
-        if( apply_filters('wcmmq_custom_validation_msg', true, $this->product_id, $this->variation_id) ){
+        if( apply_filters('wcmmq_custom_validation_msg', false, $this->product_id, $this->variation_id) ){
             $dfault = WC_MMQ::getDefaults();
             $keyword = $this->key_prefix . 'step_error_valiation';
             $err_msg = $dfault[$keyword] ?? '';
