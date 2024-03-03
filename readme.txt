@@ -252,6 +252,7 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 = 6.2 =
 * filter hook `wcmmq_zero_min_issue` added 
+* Min Min Controller added for Downloadable product.
 
 = 6.2 =
 * Added: Broser input's step validation message is customize from setting.
