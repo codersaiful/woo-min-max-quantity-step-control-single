@@ -50,6 +50,9 @@ function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
     return $args;
 }`
 
+**Example for Custom Validation Message**
+`add_filter( 'wcmmq_custom_validation_msg', '__return_true' );`
+
 🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
 🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
 🔅 [Set Conditions To A Specific Category (Premium) ](https://codeastrology.com/min-max-quantity/set-conditions-to-a-specific-category/)
