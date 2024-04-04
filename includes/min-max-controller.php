@@ -694,6 +694,8 @@ style="display:none !important;"></div>
          * muloto jokhon message change hobe and
          * filter er value tru thakbe, tokhoni sudhu 
          * custom message kaj korbe
+         * Example:
+         * add_filter( 'wcmmq_custom_validation_msg', '__return_true' );
          * 
          * USE HOOK filter for custom validation 'wcmmq_custom_validation_msg'
          * @Hook wcmmq_custom_validation_msg
