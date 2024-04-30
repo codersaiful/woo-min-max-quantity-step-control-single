@@ -9,9 +9,9 @@
  * 
  * Version: 6.2
  * Requires at least:    4.0.0
- * Tested up to:         6.4.3
+ * Tested up to:         6.5.2
  * WC requires at least: 3.0.0
- * WC tested up to: 	 8.5.3
+ * WC tested up to: 	 8.8.3
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
