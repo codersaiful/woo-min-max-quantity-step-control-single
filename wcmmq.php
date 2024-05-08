@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: Min Max Quantity & Step Control for WooCommerce
+ * Requires Plugins: woocommerce
  * Plugin URI: https://codeastrology.com/min-max-quantity/
  * Description: [Min Max Quantity & Step Control for WooCommerce] offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled. for any issue: codersaiful@gmail.com
  * Author: CodeAstrology Team
