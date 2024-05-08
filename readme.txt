@@ -5,7 +5,7 @@ Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customiz
 Requires at least: 4.0.0
 Tested up to: 6.4.2
 Requires PHP: 5.4
-Stable tag: 6.2
+Stable tag: 6.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -252,6 +252,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.3 =
+* filter hook `wcmmq_zero_min_issue` optiomized 
+* Fixed: Code Optimized
+* Bug Fixed.
 
 = 6.2 =
 * filter hook `wcmmq_zero_min_issue` added 
