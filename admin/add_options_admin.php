@@ -8,6 +8,23 @@
  * @link https://docs.woocommerce.com/wc-apidocs/source-function-woocommerce_wp_text_input.html#14-79 Details of woocommerce_wp_text_input() from WooCommerce
  */
 function wcmmq_add_field_in_panel(){
+    $current_lang = apply_filters( 'wpml_current_language', NULL );
+    $lang = apply_filters('wpml_default_language', NULL );
+    if(!empty($current_lang) && !empty($lang) && $current_lang != $lang){
+        $message = __( 'You have to input Min max and step value in your default language product.', 'wcmmq' );
+        if( function_exists( 'woocommerce_wp_note' ) ){
+            woocommerce_wp_note([
+                'id'    => 'wcmmq_note_for_wpml',
+                'class' => 'wcmmq_note_for_wpml',
+                'message' => $message,
+                'type'  =>  'warning',
+                'label'     =>  __( 'Important:', 'wcmmq' ),
+        
+            ]);
+        }
+        return;
+    }
+
     $is_pro = defined('WC_MMQ_PRO_VERSION');
     $data_type = 'decimal';
     $tip_color = 'wcmmq-tips-note';

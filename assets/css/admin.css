@@ -896,6 +896,13 @@ img.wcmmq-license-brand-logo {
     box-sizing: border-box;
     box-shadow: 0px 9px 13px 0 #0000004a;
 }
+/* wpml note color/style  */
+output#wcmmq_note_for_wpml {
+    color: #bf0000;
+    font-size: 15px;
+    background: #ddd;
+    padding: 2px 10px;
+}
 /********Configure Tab Area End*********/
 
 
