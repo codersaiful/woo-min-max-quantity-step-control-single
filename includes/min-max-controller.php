@@ -265,6 +265,7 @@ class Min_Max_Controller extends Base
     {
         if( ! defined('WC_MMQ_PRO_VERSION') ) return;
         global $product;
+        $product = $this->purefy_product( $product );
         $this->product_id = $product->get_id();
         $this->product = wc_get_product( $this->product_id );
         $variables = $product->get_children();
@@ -1117,7 +1118,7 @@ style="display:none !important;"></div>
     {
         if($this->wpml_bool){
             $this->variation_id = apply_filters('wpml_object_id', $this->variation_id, 'product', false, $this->wpml_default_lang);
-            $this->variation = wc_get_product( $this->variation_id ); 
+
         }
 
         $value = get_post_meta($this->variation_id,$meta_key,true);
