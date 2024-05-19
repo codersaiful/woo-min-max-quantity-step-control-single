@@ -87,6 +87,11 @@ class Min_Max_Controller extends Base
     protected $product;
     protected $variation_product;
 
+    //Special for WPML
+    protected $wpml_lang;
+    protected $wpml_default_lang;
+    protected $wpml_bool;
+
     /**
      * New added for make instance
      * 
@@ -105,6 +110,11 @@ class Min_Max_Controller extends Base
         $this->is_pro = defined('WC_MMQ_PRO_VERSION');
         $this->options = WC_MMQ::getOptions();
         $this->term_data = $this->options['terms'] ?? null;
+
+        //Special for WPML
+        $this->wpml_lang = apply_filters( 'wpml_current_language', NULL );
+        $this->wpml_default_lang = apply_filters('wpml_default_language', NULL );
+        $this->wpml_bool = $this->wpml_lang == $this->wpml_default_lang ? false : true;
 
         if( ! empty( $this->term_data ) ){
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
@@ -632,6 +642,10 @@ style="display:none !important;"></div>
         // dd($args);
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
+        if( $this->wpml_bool ){
+            $default_product_id = apply_filters('wpml_object_id', $this->product->get_id(), 'product', false, $this->wpml_default_lang);
+            $this->product = wc_get_product( $default_product_id );
+        }
         $this->variation_id = null;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
