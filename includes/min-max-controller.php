@@ -1103,6 +1103,11 @@ style="display:none !important;"></div>
      */
     private function getMeta($meta_key)
     {
+        if($this->wpml_bool){
+            $this->product_id = apply_filters('wpml_object_id', $this->product_id, 'product', false, $this->wpml_default_lang);
+            $this->product = wc_get_product( $this->product_id ); 
+        }
+        
         $value = get_post_meta($this->product_id,$meta_key,true);
         if( is_numeric( $value ) ) return $value;
         return '';
@@ -1110,7 +1115,13 @@ style="display:none !important;"></div>
 
     private function getMetaVariation($meta_key)
     {
+        if($this->wpml_bool){
+            $this->variation_id = apply_filters('wpml_object_id', $this->variation_id, 'product', false, $this->wpml_default_lang);
+            $this->variation = wc_get_product( $this->variation_id ); 
+        }
+
         $value = get_post_meta($this->variation_id,$meta_key,true);
+        
         if( is_numeric( $value ) ) return $value;
         return '';
     }
