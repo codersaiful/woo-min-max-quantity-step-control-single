@@ -764,6 +764,25 @@ style="display:none !important;"></div>
     }
 
     /**
+     * Specially made for WPML
+     * But we can use it for defferent perpose.
+     * 
+     * Returns the default product if WPML is enabled, otherwise returns the original product.
+     *
+     * @param mixed $product The original product object.
+     * @return mixed The default product object if WPML is enabled, otherwise the original product object.
+     */
+    public function purefy_product( $product )
+    {
+        if( $this->wpml_bool ){
+            $default_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', false, $this->wpml_default_lang);
+            return wc_get_product( $default_product_id );
+        }
+        return $product;
+    }
+
+
+    /**
      * Individule quantity setup using single filter
      *
      * @param int|string $qty
@@ -775,7 +794,8 @@ style="display:none !important;"></div>
         if( ! is_object( $product ) ) return $qty;
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
+
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -796,7 +816,7 @@ style="display:none !important;"></div>
         if( ! is_object( $product ) ) return $qty;
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -815,7 +835,7 @@ style="display:none !important;"></div>
     public function quantity_input_max($qty, $product)
     {
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -825,7 +845,7 @@ style="display:none !important;"></div>
     }
     public function api_quantity_input_max($qty, $product)
     {
-        
+        $product = $this->purefy_product( $product );
         $final_qty = $this->quantity_input_max($qty, $product);
         if( empty($final_qty) || ! is_numeric( $final_qty ) ) return PHP_INT_MAX;
 
