@@ -98,7 +98,8 @@ $term_lists = array_filter($term_lists,function($kkk){
     return empty(strpos($parenttt, 'attributes'));
 });
 $supported_terms = isset( $saved_data['supported_terms'] ) ?$saved_data['supported_terms'] : array( 'product_cat' );
-$ourTermList = $select_option = false;
+$select_option = false;
+$ourTermList = [];
 if( is_array( $term_lists ) && count( $term_lists ) > 0 ){
     foreach( $term_lists as $trm_key => $trm_object ){
         // var_dump($trm_object->labels->back_to_items);

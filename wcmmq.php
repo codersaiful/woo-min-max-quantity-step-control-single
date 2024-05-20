@@ -1,17 +1,18 @@
 <?php
 /**
  * Plugin Name: Min Max Quantity & Step Control for WooCommerce
+ * Requires Plugins: woocommerce
  * Plugin URI: https://codeastrology.com/min-max-quantity/
  * Description: [Min Max Quantity & Step Control for WooCommerce] offers to display specific products with minimum, maximum quantity. As well as by this plugin you will be able to set the increment or decrement step as much as you want. In a word: Minimum Quantity, Maximum Quantity and Step can be controlled. for any issue: codersaiful@gmail.com
  * Author: CodeAstrology Team
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 5.9
+ * Version: 6.3
  * Requires at least:    4.0.0
- * Tested up to:         6.4.2
+ * Tested up to:         6.5.2
  * WC requires at least: 3.0.0
- * WC tested up to: 	 8.4.0
+ * WC tested up to: 	 8.8.3
  * 
  * Text Domain: wcmmq
  * Domain Path: /languages/
@@ -25,7 +26,7 @@ if (!defined('ABSPATH')) {
  */
 
 define('WC_MMQ__FILE__', __FILE__);
-define('WC_MMQ_VERSION', '5.9.1');
+define('WC_MMQ_VERSION', '6.3.0');
 define('WC_MMQ_PATH', plugin_dir_path(WC_MMQ__FILE__));
 define('WC_MMQ_URL', plugins_url(DIRECTORY_SEPARATOR, WC_MMQ__FILE__));
 //for Modules and 
@@ -223,7 +224,7 @@ class WC_MMQ {
         include_once $dir . '/includes/enqueue.php';
         
         include_once $dir . '/includes/set_max_min_quantity.php';
-        new WC_MMQ\Includes\Min_Max_Controller();
+        WC_MMQ\Includes\Min_Max_Controller::init();
     }
 
     /**

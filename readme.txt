@@ -3,9 +3,9 @@ Contributors: codersaiful,codeastrology,mdibrahimk48,unikforce,fazlebari,rafiul1
 Donate link: https://donate.stripe.com/6oE9E33TD92Xav66or
 Tags: min max, minimum quantity, maximum quantity, woocommrce quantity, customize woocommerce quantity, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
 Requires at least: 4.0.0
-Tested up to: 6.4.2
+Tested up to: 6.5.2
 Requires PHP: 5.4
-Stable tag: 5.9
+Stable tag: 6.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ Also, you can set values for each product individually. Product label values wil
 * [Documentation](https://codeastrology.com/min-max-quantity/documentation/)
 * [Purchase Premium Version](https://codeastrology.com/min-max-quantity/pricing/)  
 
+**Useful Hook**
+`wcmmq_custom_validation_msg`: To modify custom validation for your browser, use `add_filter('wcmmq_custom_validation_msg', '__return_true');`
+
 **Example Hook**
 `add_filter('wcmmq_single_product_min_max_condition','wcmmq_custom_handle_args', 10, 3);
 function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
@@ -46,6 +49,9 @@ function wcmmq_custom_handle_args( $args, $product, $Min_Max_Controller )
     //You can control based on $product or $Min_Max_Controller or existing $args
     return $args;
 }`
+
+**Example for Custom Validation Message**
+`add_filter( 'wcmmq_custom_validation_msg', '__return_true' );`
 
 🔅 [Set Global Condition on Whole Shop](https://codeastrology.com/min-max-quantity/set-global-condition-on-whole-shop/)
 🔅 [Global Condition On Categories](https://codeastrology.com/min-max-quantity/global-condition-on-categories/)
@@ -187,6 +193,12 @@ You are welcome to contribute  to this project. Join with us [Fork Github reposi
 = Does Min/Max Quantities work with variable products? =
 Yes, it work with  variable, to learn click on this [tutorial link.](https://codeastrology.com/min-max-quantity/set-values-on-each-variation/)
 
+= Is it working on WooCommerce Cart/Checkout block? =
+Yes, it is. 
+
+= Is it Compabile with WPML? =
+Yes, it is. Min max step need to set only to main product.
+
 = Can I enable ajax add to cart on single product? =
 Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 
@@ -243,6 +255,37 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.4 =
+* Fully Compabile with wpml.
+* Fixed: Code Optimized
+* Bug Fixed.
+
+= 6.3 =
+* filter hook `wcmmq_zero_min_issue` optiomized 
+* Fixed: Code Optimized
+* Bug Fixed.
+
+= 6.2 =
+* filter hook `wcmmq_zero_min_issue` added 
+* Min Min Controller added for Downloadable product.
+
+= 6.2 =
+* Added: Broser input's step validation message is customize from setting.
+* Fixed: Variable Product's input, min, max Optimized.
+* Fixed: Double error message issue fixed.
+* Load Speed Optimized.
+* Compatibility issue fix on [Product Stock sync with Google Sheet for WooCommerce](https://codeastrology.com/downloads/product-sync-master-sheet-premium/)
+* Fixed: min,max and step on WooCommerce Minicart Block issue has been fixed.
+* Fixed: Min,Max,Step issue on WooCommerce Cart Block has been fixed 
+* Fixed: Min,Max,Step issue on WooCommerce Checkout Block has been fixed 
+* Bug Fixed.
+
+= 6.0 & 6.1 =
+* Fixed: min,max and step on WooCommerce Minicart Block issue has been fixed.
+* Fixed: Min,Max,Step issue on WooCommerce Cart Block has been fixed 
+* Fixed: Min,Max,Step issue on WooCommerce Checkout Block has been fixed 
+* Bug Fixed.
 
 = 5.8 & 5.9 =
 * Compabile: Google Sheet Syncronize Feature Compatibility Added.

@@ -42,6 +42,133 @@
             distributeMinMax(variation_id,variation_data,qty_boxWPT);
         });
 
+        /**
+         * Custom work
+         */
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('keyup', validatinMessageCustomize);
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('invalid', validatinMessageCustomize);
+        $('input.input-text.qty.text.wcmmq-qty-custom-validation').on('change', validatinMessageCustomize);
+        function validatinMessageCustomize() {
+
+            var DataObject = $('.wcmmq-json-options-data');
+            var json_data = DataObject.data('wcmmq_json_data');
+            // console.log(json_data);
+            var step_validation_msg = DataObject.data('step_error_valiation');
+            var full_message = "";
+            var msg_min_limit = DataObject.data('msg_min_limit') + " ";
+            var msg_max_limit = DataObject.data('msg_max_limit') + " ";
+
+            var product_name = "🎁 Product";
+
+            // var step_validation_msg = 'Please enter a valid value. The two nearest valid values are [should_min] and [should_next]';
+            // Parse input value as a float
+            var inputValue = parseFloat($(this).val());
+
+            // Get the min, max, and step attributes
+            var min = parseFloat($(this).attr('min'));
+            var max = parseFloat($(this).attr('max'));
+            var step = parseFloat($(this).attr('step'));
+
+            // Calculate the nearest valid values
+            var lowerNearest = Math.floor((inputValue - min) / step) * step + min;
+            var upperNearest = lowerNearest + step;
+
+            if( inputValue <  min){
+                full_message += msg_min_limit.replace("[min_quantity]", min);
+                lowerNearest = min;
+                upperNearest = lowerNearest + step;
+            }else if(inputValue > max && max > min){
+                full_message += msg_max_limit.replace("[max_quantity]", max);
+                lowerNearest = max - step;
+                upperNearest = max;
+            }
+
+            step_validation_msg = step_validation_msg.replace("[should_min]", lowerNearest);
+            step_validation_msg = step_validation_msg.replace("[should_next]", upperNearest);
+            full_message += step_validation_msg;
+            
+            var final_full_message = full_message.replace('"[product_name]"', product_name);
+            final_full_message = final_full_message.replace("[product_name]", product_name);
+
+            
+
+            // Check if the input is within the valid range
+            if (inputValue < min || inputValue > max || (inputValue - min) % step !== 0) {
+                // var step_validation_msg = 'Nearest valid values are ' + lowerNearest + ' and ' + upperNearest;
+                this.setCustomValidity(final_full_message);
+            } else {
+                // Clear custom validity message if input is valid
+                this.setCustomValidity('');
+            }
+        }
+
+        /**
+         * New added 
+         * First time, It was handle from Min_Max_Controller::single_variation_handle()
+         * currently that method is not need.
+         * 
+         * We will handle it from javascript actually.
+         */
+        $(document.body).on('change','form.variations_form.cart input.variation_id',function(){
+            var min,max,step,basic;
+            var in_stock, stock_msg;
+            var form = $(this).closest('form.variations_form.cart');
+            form.find('.wcmmq-custom-stock-msg').remove();
+            var qty_box = form.find('input.input-text.qty.text');
+            var variation_id = $(this).val();
+            variation_id = parseInt(variation_id);
+            var variation_pass = variation_id > 0;
+            if( ! variation_pass ){
+                return;
+            }
+            var product_variations = form.data('product_variations');
+            if( ! product_variations ){
+                //kept an another div using hook 'woocommerce_single_variation' at inc/min-max-controller.php file. if found empty at product variatins data
+				product_variations = form.find('.wcmmq-available-variaions').data('product_variations');
+			}
+
+            var gen_product_variations = new Array();
+            $.each(product_variations, function(index, eachVariation){
+                
+                var this_variation_id = eachVariation['variation_id'];
+                if( this_variation_id == variation_id){
+                    in_stock = eachVariation['is_in_stock'];
+                    stock_msg = eachVariation['availability_html'];
+                    
+                    min = eachVariation['min_value'];
+                    max = eachVariation['max_value'];
+                    step = eachVariation['step'];
+                    basic = min;
+
+                    if( ! in_stock){
+                        form.find('.single_variation_wrap').prepend('<div class="wcmmq-custom-stock-msg">' + stock_msg + '</div>');
+                        min = 0;
+                        max = 0;
+                        basic = 0;
+                        step = 0;
+                    }
+                }
+                if(min || ! in_stock){
+                    
+                    var lateSome = setInterval(function(){
+                        qty_box.attr({
+                            min:min,
+                            max:max,
+                            step:step,
+                            value:min
+                        });
+    
+                        qty_box.val(basic).trigger('change');
+                        clearInterval(lateSome);
+                    },500);
+                }
+                
+            });
+        });
+
+
+        //End of Custom Worl *******************/
+
         function distributeMinMax(variation_id,variation_data,qty_boxWPT){
             if(typeof variation_id !== 'undefined' && variation_id !== ''  && variation_id !== ' '){
                 var min,max,step,basic;

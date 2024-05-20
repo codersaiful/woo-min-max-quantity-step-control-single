@@ -6,6 +6,17 @@ use WC_MMQ\Core\Base;
 
 /**
  * Main Min_Max_Controller class
+ * ##########################################
+ * StandAlon Class|Object
+ * ###########################################
+ * 
+ * notice was showing multiple time,
+ * That's why, make it standalon
+ * Actually it was should create standalon at the begining.
+ * 
+ * Because It's called once time at the root file.
+ * Not used for any other purpose. actually
+ * ###########################################
  * 
  * @todo ekhono variation onujayi ze kaj hobe seta kora hoyni.
  * @author Saiful Islam <codersaiful@gmail.com>
@@ -16,6 +27,7 @@ class Min_Max_Controller extends Base
     public $product_id;
     public $product_name;
     public $get_product_type;
+    public $testing;
     /**
      * It's need, only when cart page, otherwise it will null
      *
@@ -75,12 +87,34 @@ class Min_Max_Controller extends Base
     protected $product;
     protected $variation_product;
 
+    //Special for WPML
+    protected $wpml_lang;
+    protected $wpml_default_lang;
+    protected $wpml_bool;
+
+    /**
+     * New added for make instance
+     * 
+     * @since 6.1.1 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     *
+     * @var object|null
+     */
+    public static $init;
 
     public function __construct()
     {
+        //Make it as Standalone
+        if( self::$init && self::$init instanceof self ) return self::$init;
+
         $this->is_pro = defined('WC_MMQ_PRO_VERSION');
         $this->options = WC_MMQ::getOptions();
         $this->term_data = $this->options['terms'] ?? null;
+
+        //Special for WPML
+        $this->wpml_lang = apply_filters( 'wpml_current_language', NULL );
+        $this->wpml_default_lang = apply_filters('wpml_default_language', NULL );
+        $this->wpml_bool = $this->wpml_lang == $this->wpml_default_lang ? false : true;
 
         if( ! empty( $this->term_data ) ){
             $this->term_data = wcmmq_tems_based_wpml( $this->term_data );
@@ -106,13 +140,77 @@ class Min_Max_Controller extends Base
         add_filter( 'woocommerce_quantity_input_min', [$this, 'quantity_input_min'], 9999, 2 );
         add_filter( 'woocommerce_quantity_input_max', [$this, 'quantity_input_max'], 9999, 2 );
 
+        /**
+         * For latest WooCommerce Block
+         * We have added following filter,
+         * Which is similar like woocommerce_quantity_input_step, woocommerce_quantity_input_min and woocommerce_quantity_input_max
+         */
+        add_filter( 'woocommerce_store_api_product_quantity_multiple_of', [$this, 'quantity_input_step'], 9999, 2 );
+        add_filter( 'woocommerce_store_api_product_quantity_minimum', [$this, 'quantity_input_min'], 9999, 2 );
+        add_filter( 'woocommerce_store_api_product_quantity_maximum', [$this, 'api_quantity_input_max'], 9999, 2 );
+
         //validation setup
         add_filter('woocommerce_add_to_cart_validation', [$this, 'add_to_cart_validation'], 10, 5);
         add_filter('woocommerce_update_cart_validation', [$this, 'update_cart_validation'], 10, 4);
-
+        
         $this->controlVariationsMinMax();
+
+        //Many theme, dont input available variation, that's why, We will do it manually and again
+        add_action('woocommerce_single_variation',[$this, 'insert_temp_product_variations'], 999);
+
+
+
+        /**
+         * Other Third-parti Plugin Compatible
+         * In this hook
+         * I will add some conditional code, If conflict with any plugin
+         * or theme
+         * 
+         * @since 6.2.3
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        add_filter('wcmmq_single_product_min_max_condition', [$this, 'compatible_with_other_plugins']);
+        add_action('wp_footer',[$this, 'footer_content']);
+        self::$init = $this;
     }
     
+    public static function init()
+    {
+        if( self::$init && self::$init instanceof self ) return self::$init;
+
+        self::$init = new self();
+
+        return self::$init;
+    }
+
+    /**
+     * Specially for some Theme don't show product varatins in form wrapper, then we will
+     * use this actually.
+     * Otherwise, no need actually
+     * 
+     * asole ekta customer er site peyechi, 
+     * jekhane variations form a data-product_variations chilo na
+     * er jonno manually dhukaichi amra
+     * 
+     * @author Saiful Islam <codersaiful@gmail.com>
+     * 
+     * @since 6.2.2
+     *
+     * @return void
+     */
+    public function insert_temp_product_variations(){
+        global $product;
+        $available_variations = $product->get_available_variations();
+        $variations_json = wp_json_encode( $available_variations );
+        $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
+        ?>
+        <div 
+        class="wcmmq-available-variaions"
+        data-product_variations="<?php echo $variations_attr; ?>"
+        style="display:none;opacity:hidden;visibility:hidden;">
+        </div>
+        <?php
+    }
     /**
      * Congrolling Min Max Step for All Variation
      * without Premium constant 'WC_MMQ_PRO_VERSION'
@@ -131,7 +229,7 @@ class Min_Max_Controller extends Base
     public function controlVariationsMinMax()
     {
         if( ! $this->is_pro) return;
-        add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
+        // add_action('woocommerce_single_variation',[$this, 'single_variation_handle']);
         add_action('wpt_action_variation',[$this, 'single_variation_handle']);
 
         /**
@@ -146,6 +244,11 @@ class Min_Max_Controller extends Base
     }
 
     /**
+     * ######################################
+     * Curently Not used this method. Actually
+     * We have handle variation's min max from assets/js/custom.js 
+     * ####################################### 
+     * 
      * Temporarily set Min Max and step 
      * based on Custom Field
      * 
@@ -162,6 +265,7 @@ class Min_Max_Controller extends Base
     {
         if( ! defined('WC_MMQ_PRO_VERSION') ) return;
         global $product;
+        $product = $this->purefy_product( $product );
         $this->product_id = $product->get_id();
         $this->product = wc_get_product( $this->product_id );
         $variables = $product->get_children();
@@ -179,7 +283,10 @@ class Min_Max_Controller extends Base
         $data = apply_filters( 'wcmmq_variation_data_for_json', $this->variations_args, $product );
         $data = wp_json_encode( $data );
         ?>
-<div id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" data-variation_data="<?php echo esc_attr( $data ); ?>" style="display:none !important;"></div>
+<div 
+id="wcmmq_variation_data_<?php echo esc_attr( $this->product_id ); ?>" 
+data-variation_data="<?php echo esc_attr( $data ); ?>" 
+style="display:none !important;"></div>
 <script  type='text/javascript'>
 (function($) {
     'use strict';
@@ -508,6 +615,9 @@ class Min_Max_Controller extends Base
             'variation_name'=> $this->variation_name,
         );
         if(!empty($this->variation_id)){
+
+            // $this->variations_args is not used right now, Actually I have handled it from customjs file
+            //and that working better althouh
             $this->variations_args[$this->variation_id] = array(
                 'min_quantity' => $this->min_value,
                 'max_quantity' => $this->max_value,
@@ -530,14 +640,51 @@ class Min_Max_Controller extends Base
     public function set_input_args( $args, $product )
     {
         $this->temp_args = $args;
-
+        // dd($args);
         if( $product->is_sold_individually() ) return $args;
         $this->product = $product;
+        if( $this->wpml_bool ){
+            $default_product_id = apply_filters('wpml_object_id', $this->product->get_id(), 'product', false, $this->wpml_default_lang);
+            $this->product = wc_get_product( $default_product_id );
+        }
         $this->variation_id = null;
         $this->product_id = $this->product->get_id();
         $this->get_product_type = $this->product->get_type();
 
-        
+        // dd($args['variation_id']??'nothing');
+        $variation_id = $args['variation_id'] ?? 0;
+        if($this->is_pro && $variation_id){
+            $this->variation_id = $variation_id;
+            $this->variation_product = wc_get_product( $this->variation_id );
+            $this->get_variation_type = $this->variation_product->get_type();  
+        }
+
+        /**
+         * Nicher ongso tuku niye pore kaj kobo, apatoto off rakhlam
+         * r ha
+         * nicher ongoso chalu hole custom.js  file a 
+         * $(document.body).on('change','offform.variations_form.cart input.variation_id',function(){
+         * eitao chalu hobe. ok?
+         * apatoto off kore rakha ache.
+         *
+        if($this->get_product_type == 'variable' && empty( $this->variables )){
+            // $this->product_id = $product->get_id();
+            // $this->product = wc_get_product( $this->product_id );
+            $this->variables = $this->product->get_children();
+            
+            if(empty($this->variables) && ! is_array( $this->variables )) return;
+            foreach( $this->variables as $variable_id){
+            
+                $this->variation_id = $variable_id;
+                $this->variation_product = wc_get_product( $this->variation_id );
+                $this->get_variation_type = $this->variation_product->get_type();   
+                $this->organizeAndFinalizeArgs();
+            }
+        }else{
+            //Need to set organize args and need to finalize
+            $this->organizeAndFinalizeArgs();
+        }
+        //*****************************/
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
@@ -558,7 +705,28 @@ class Min_Max_Controller extends Base
         }
         $args['classes'][] = 'wcmmq-qty-input-box';
 
-        if( is_single() && ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity'  ){
+        /**
+         * muloto jokhon message change hobe and
+         * filter er value tru thakbe, tokhoni sudhu 
+         * custom message kaj korbe
+         * Example:
+         * add_filter( 'wcmmq_custom_validation_msg', '__return_true' );
+         * 
+         * USE HOOK filter for custom validation 'wcmmq_custom_validation_msg'
+         * @Hook wcmmq_custom_validation_msg
+         * @author Saiful Islam <codersaiful@gmail.com>
+         */
+        if( apply_filters('wcmmq_custom_validation_msg', false, $this->product_id, $this->variation_id) ){
+            $dfault = WC_MMQ::getDefaults();
+            $keyword = $this->key_prefix . 'step_error_valiation';
+            $err_msg = $dfault[$keyword] ?? '';
+            $new_err_msg = $this->getRawMsg('step_error_valiation');
+
+            $args['classes'][] = $err_msg != $new_err_msg ? 'wcmmq-qty-custom-validation' : '';
+        }
+        
+        $input_name_quantity = ! empty( $args['input_name'] ) && $args['input_name'] === 'quantity';
+        if( is_single() &&  $input_name_quantity ){
             $args['input_value'] = $this->min_value;
         }
 
@@ -571,11 +739,49 @@ class Min_Max_Controller extends Base
             $args['attributes']['title'] = $this->options[$this->key_prefix . 'min_qty_msg_in_loop'] . ' ' . $this->min_value;
         }
 
-        if( ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
+        /**
+         * Zero issue @hook 'wcmmq_zero_min_issue;
+         * @Hook wcmmq_zero_min_issue
+         * Sometime for some theme/plugin, it can be need actually. 
+         */
+        if( apply_filters( 'wcmmq_zero_min_issue', false ) && ($this->min_value == '0' || $this->min_value == 0 ) && ! is_cart() ){
             $args['input_value'] = $this->min_value;
+        }
+
+        //Final input_value fix
+        if( $input_name_quantity && isset( $args['min_value'] ) && isset( $args['input_value'] ) && $args['min_value'] >= $args['input_value']){
+            $args['input_value'] = $args['min_value'];
         }
         return apply_filters('wcmmq_single_product_min_max_condition', $args, $product, $this);
     }
+
+    public function compatible_with_other_plugins($args)
+    {
+        //Compatible with better variation
+		if( defined( 'WCBVP_PLUGIN_VERSION' ) && $this->variation_id){
+			$args['classes'][] = 'wcbvp-grid-quantity-field';
+		}
+        return $args;
+    }
+
+    /**
+     * Specially made for WPML
+     * But we can use it for defferent perpose.
+     * 
+     * Returns the default product if WPML is enabled, otherwise returns the original product.
+     *
+     * @param mixed $product The original product object.
+     * @return mixed The default product object if WPML is enabled, otherwise the original product object.
+     */
+    public function purefy_product( $product )
+    {
+        if( $this->wpml_bool ){
+            $default_product_id = apply_filters('wpml_object_id', $product->get_id(), 'product', false, $this->wpml_default_lang);
+            return wc_get_product( $default_product_id );
+        }
+        return $product;
+    }
+
 
     /**
      * Individule quantity setup using single filter
@@ -589,7 +795,8 @@ class Min_Max_Controller extends Base
         if( ! is_object( $product ) ) return $qty;
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
+
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -610,7 +817,7 @@ class Min_Max_Controller extends Base
         if( ! is_object( $product ) ) return $qty;
         if( ! method_exists($product, 'is_sold_individually') ) return $qty;
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
@@ -629,13 +836,21 @@ class Min_Max_Controller extends Base
     public function quantity_input_max($qty, $product)
     {
         if( $product->is_sold_individually() ) return $qty;
-        $this->product = $product;
+        $this->product = $this->purefy_product( $product );
         $this->product_id = $this->product->get_id();
 
         //Need to set organize args and need to finalize
         $this->organizeAndFinalizeArgs();
 
         return $this->max_value;
+    }
+    public function api_quantity_input_max($qty, $product)
+    {
+        $product = $this->purefy_product( $product );
+        $final_qty = $this->quantity_input_max($qty, $product);
+        if( empty($final_qty) || ! is_numeric( $final_qty ) ) return PHP_INT_MAX;
+
+        return $final_qty;
     }
 
     /**
@@ -733,7 +948,6 @@ class Min_Max_Controller extends Base
         if( method_exists( $this->product, 'is_sold_individually' ) && $this->product->is_sold_individually() ) return $bool;
 
         $this->OrganizeValidPropertyAndOrganize( $product_id, $variation_id, $quantity);       
-
         //First Check modulous
         $modulous = $this->getModulous( $quantity );
         if( ! $modulous ) return false;
@@ -851,6 +1065,33 @@ class Min_Max_Controller extends Base
         return $reslt;
     }
 
+
+    public function footer_content()
+    {
+
+        $step_validn = $this->getRawMsg('step_error_valiation');
+        $msg_min_limit = $this->getRawMsg('msg_min_limit');
+        $msg_max_limit = $this->getRawMsg('msg_max_limit');
+        $original_data = [
+            'step_error_valiation' => $this->getRawMsg('step_error_valiation'),
+            // 'msg_min_limit'         => $this->getRawMsg('msg_min_limit'),
+            // 'msg_max_limit'         => $this->getRawMsg('msg_max_limit')
+        ];
+
+        $my_data = wp_json_encode( $original_data );
+        ?>
+        <div 
+        class="wcmmq-json-options-data" 
+        data-step_error_valiation="<?php echo esc_attr( $step_validn ); ?>"
+        data-msg_min_limit="<?php echo esc_attr( $msg_min_limit ); ?>"
+        data-msg_max_limit="<?php echo esc_attr( $msg_max_limit ); ?>"
+        data-wcmmq_json_data="<?php echo esc_attr( $my_data ); ?>"
+        style="display:none;visibility:hidden;opacity:0;"
+        ></div>
+        <?php
+    }
+
+
     /**
      * get_post_meta($this->product_id,$meta_key,true) 
      * Get post meta using wp function get_post_meta()
@@ -863,6 +1104,11 @@ class Min_Max_Controller extends Base
      */
     private function getMeta($meta_key)
     {
+        if($this->wpml_bool){
+            $this->product_id = apply_filters('wpml_object_id', $this->product_id, 'product', false, $this->wpml_default_lang);
+            $this->product = wc_get_product( $this->product_id ); 
+        }
+        
         $value = get_post_meta($this->product_id,$meta_key,true);
         if( is_numeric( $value ) ) return $value;
         return '';
@@ -870,7 +1116,13 @@ class Min_Max_Controller extends Base
 
     private function getMetaVariation($meta_key)
     {
+        if($this->wpml_bool){
+            $this->variation_id = apply_filters('wpml_object_id', $this->variation_id, 'product', false, $this->wpml_default_lang);
+
+        }
+
         $value = get_post_meta($this->variation_id,$meta_key,true);
+        
         if( is_numeric( $value ) ) return $value;
         return '';
     }

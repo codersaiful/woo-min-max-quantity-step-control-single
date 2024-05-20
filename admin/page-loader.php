@@ -84,7 +84,7 @@ class Page_Loader extends Base
         $new_columns['title'] = $columns['title'];
         
 
-        $controller = new Min_Max_Controller();
+        $controller = Min_Max_Controller::init();
         $new_columns[$controller->min_quantity] = $columns[$controller->min_quantity];
         $new_columns[$controller->max_quantity] = $columns[$controller->max_quantity];
         $new_columns[$controller->product_step] = $columns[$controller->product_step];
@@ -146,8 +146,11 @@ class Page_Loader extends Base
         add_submenu_page( $this->main_slug, $this->module_controller->menu_title . $proString, $this->module_controller->menu_title, $capability, 'wcmmq_modules', [$this, 'module_page_html'] );
 
         add_submenu_page( $this->main_slug, esc_html__( 'Min Max Bulk Edit', 'wcmmq' ) . $proString,  __( 'Min Max Bulk Edit', 'wcmmq' ), $capability, 'wcmmq-product-quick-edit', [$this, 'product_quick_edit'] );
-        add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), $capability, 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
-        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), $capability, 'wcmmq-addons-list', [$this, 'addons_list_html'] );
+        add_submenu_page( $this->main_slug, esc_html__( 'Temp Pro Demo', 'wcmmq' ),  esc_html__( 'Temp Pro Demo', 'wcmmq' ), 'read', 'https://codeastro.live/?site=wcmmq&utm=PluginDashboard' );
+
+        
+        add_submenu_page( $this->main_slug, esc_html__( 'Browse Plugins', 'wcmmq' ) . $proString,  __( 'Browse Plugins', 'wcmmq' ), 'read', 'wcmmq-browse-plugins', [$this, 'browse_plugins_html'] );
+        add_submenu_page( $this->main_slug, esc_html__( 'Addons', 'wcmmq' ) . $proString,  __( 'Addons', 'wcmmq' ), 'read', 'wcmmq-addons-list', [$this, 'addons_list_html'] );
 
         add_submenu_page($this->main_slug, 'Documentation' . $proString, 'Documentation', 'read','https://codeastrology.com/min-max-quantity/documentation/');
         if($this->is_pro){
@@ -163,6 +166,45 @@ class Page_Loader extends Base
         }
     }
 
+    /**
+     * This is specially for WPML page
+     * 
+     * Redirects the user to the default language version of the current URL if the 'lang' parameter is not set or is different from the default language.
+     *
+     * @return void
+     */
+    public function redirect_wpml() {
+        $default_lang = apply_filters('wpml_default_language', NULL);
+        if ( empty( $default_lang ) ) return;
+        // Get the current URL
+        $current_url = $_SERVER['REQUEST_URI'];
+        
+        // Parse the URL to get its components
+        $parsed_url = parse_url($current_url);
+        
+        // Parse the query string into an associative array
+        $query_params = [];
+        if (isset($parsed_url['query'])) {
+            parse_str($parsed_url['query'], $query_params);
+        }
+        
+        // Check if the 'lang' parameter is set
+        if (!isset($query_params['lang']) || ( isset($query_params['lang'] ) && $query_params['lang'] != $default_lang ) ) {
+            // If not set, add the 'lang' parameter with 'en' as its value
+            $query_params['lang'] = $default_lang;
+            
+            // Build the new query string
+            $new_query_string = http_build_query($query_params);
+            
+            // Construct the new URL
+            $new_url = $parsed_url['path'] . '?' . $new_query_string;
+            
+            // Redirect to the new URL
+            wp_redirect($new_url);
+            exit;
+        }
+        return;
+    }
     public function admin_enqueue_scripts()
     {
         global $current_screen;
@@ -395,9 +437,9 @@ class Page_Loader extends Base
 		$message = esc_html__( ' Renew it to get latest update.', 'wpt_pro' ) . '</strong>';
         ob_start();
         ?>
-        <div class="error wpt-renew-license-notice">
-            <div class="wpt-license-notice-inside">
-            <img src="<?php echo esc_url( $wpt_logo ); ?>" class="wpt-license-brand-logo">
+        <div class="error wcmmq-renew-license-notice">
+            <div class="wcmmq-license-notice-inside">
+            <img src="<?php echo esc_url( $wpt_logo ); ?>" class="wcmmq-license-brand-logo">
                 Your License of <strong>Min Max Control pro</strong> has been expired at <span style="color: #d00;font-weight:bold;"><?php echo esc_html( $expired_date ); ?></span>
                 %1$s <a href="%2$s" target="_blank">%3$s</a>
             </div>

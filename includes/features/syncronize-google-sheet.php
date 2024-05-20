@@ -16,7 +16,7 @@ class Syncronize_Google_Sheet{
     public function add_columns_on_sheet( $columns )
     {
 
-        $controller = new Min_Max_Controller();
+        $controller = Min_Max_Controller::init();
         $columns[$controller->min_quantity] = [
             'type' => 'cf',
             'title' => __( 'Min Qty', 'wcmmq' ),
