@@ -8,9 +8,9 @@
  * Author URI: https://codeastrology.com
  * Tags: WooCommerce, minimum quantity, maximum quantity, woocommrce quantity, input step control for WC, customize wc quantity, wc qt, max qt, min qt, maximum qt, minimum qt
  * 
- * Version: 6.3
+ * Version: 6.4
  * Requires at least:    4.0.0
- * Tested up to:         6.5.2
+ * Tested up to:         6.5.3
  * WC requires at least: 3.0.0
  * WC tested up to: 	 8.8.3
  * 
