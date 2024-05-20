@@ -166,6 +166,45 @@ class Page_Loader extends Base
         }
     }
 
+    /**
+     * This is specially for WPML page
+     * 
+     * Redirects the user to the default language version of the current URL if the 'lang' parameter is not set or is different from the default language.
+     *
+     * @return void
+     */
+    public function redirect_wpml() {
+        $default_lang = apply_filters('wpml_default_language', NULL);
+        if ( empty( $default_lang ) ) return;
+        // Get the current URL
+        $current_url = $_SERVER['REQUEST_URI'];
+        
+        // Parse the URL to get its components
+        $parsed_url = parse_url($current_url);
+        
+        // Parse the query string into an associative array
+        $query_params = [];
+        if (isset($parsed_url['query'])) {
+            parse_str($parsed_url['query'], $query_params);
+        }
+        
+        // Check if the 'lang' parameter is set
+        if (!isset($query_params['lang']) || ( isset($query_params['lang'] ) && $query_params['lang'] != $default_lang ) ) {
+            // If not set, add the 'lang' parameter with 'en' as its value
+            $query_params['lang'] = $default_lang;
+            
+            // Build the new query string
+            $new_query_string = http_build_query($query_params);
+            
+            // Construct the new URL
+            $new_url = $parsed_url['path'] . '?' . $new_query_string;
+            
+            // Redirect to the new URL
+            wp_redirect($new_url);
+            exit;
+        }
+        return;
+    }
     public function admin_enqueue_scripts()
     {
         global $current_screen;

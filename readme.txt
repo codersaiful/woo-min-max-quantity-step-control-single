@@ -196,6 +196,9 @@ Yes, it work with  variable, to learn click on this [tutorial link.](https://cod
 = Is it working on WooCommerce Cart/Checkout block? =
 Yes, it is. 
 
+= Is it Compabile with WPML? =
+Yes, it is. Min max step need to set only to main product.
+
 = Can I enable ajax add to cart on single product? =
 Yes, use `add_filter('wcmmq_ajax_cart_single_page', '__return_true');` for enable ajax add to cart on single page.
 
@@ -252,6 +255,11 @@ We’ll provide support via [support ticket](https://codeastrology.com/my-suppor
 
 
 == Changelog ==
+
+= 6.4 =
+* Fully Compabile with wpml.
+* Fixed: Code Optimized
+* Bug Fixed.
 
 = 6.3 =
 * filter hook `wcmmq_zero_min_issue` optiomized 
