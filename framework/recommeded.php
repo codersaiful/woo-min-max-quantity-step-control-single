@@ -10,6 +10,30 @@ class Recommeded
 {
     public static function check()
     {
+
+        $this_plugin = __( 'Min Max Control', 'wcmmq' );
+        $mmp_req_slug = 'product-sync-master-sheet/product-sync-master-sheet.php';
+        $mmp_tar_slug = WC_MMQ_PLUGIN_BASE_FILE;
+        $req_sync = new Require_Control($mmp_req_slug,$mmp_tar_slug);
+        $req_sync->set_args( ['Name' => __( 'Product Stock Sync with Google Sheet for WooCommerce', 'wcmmq' ) ] )
+        ->set_download_link('https://wordpress.org/plugins/product-sync-master-sheet/')
+        ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
+        $mmp_message = __('%s Easily manage and synchronize your WooCommerce product stock with the power of Google Sheets using our plugin – Product Stock Sync with Google Sheet for WooCommerce. This intuitive solution empowers you to streamline your inventory management effortlessly.','wcmmq');
+        $wpt_link = "<a href='https://codeastrology.com/downloads/product-sync-master-sheet-premium/' target='_blank'>(Product Sync with Google Sheet)</a>";
+        $mmp_message = sprintf($mmp_message, $wpt_link);
+        $req_sync->set_message($mmp_message);
+        $req_sync->get_full_this_plugin_name($this_plugin);
+        // var_dump(method_exists($req_mmp, 'set_location'),$req_mmp);
+        // ->set_required();
+        if( method_exists($req_sync, 'set_location') ){
+            $req_sync->set_location('wcmmq_plugin_recommend_top'); //wpt_premium_image_bottom
+            $req_sync->run();
+            $req_sync->set_location('wcmmq_quick_edit_table_free_version'); //wpt_premium_image_bottom
+            $req_sync->run();
+
+            $req_sync->set_location('wcmmq_plugin_recommend_here'); //wpt_premium_image_bottom
+            $req_sync->run();
+        }
         $this_plugin = __( 'Min Max Control', 'wpt_pro' );
         
         $mmp_req_slug = 'woo-product-table/woo-product-table.php';

@@ -36,20 +36,20 @@ use PSSG_Sync_Sheet\App\Handle\Quick_Table;
                 <div class="free-plugin-install-info-wrapper">
                     <div style="float: left;">
                         <h3>Need a plugin [Product Stock Sync with Google Sheet for WooCommerce]</h3>
-                        <p><b>Free Download</b>, Install and Activate to get following table. <a href="https://codeastrology.com/downloads/product-stock-sync-with-google-sheet-for-woocommerce/">https://codeastrology.com/downloads/product-stock-sync...</a></p>
+                        <p><b>Free Download</b>, Install and Activate to get following table.</p>
                         <p class="premium-version-wrapper">
-                            <a href="https://codeastrology.com/downloads/product-stock-sync-with-google-sheet-for-woocommerce/" target="_blank" class="wcmmq-btn wcmmq-btn small wcmmq-btn-small btn-small">Free Download</a><br>
-                            Just Install and Activate. No need to integrate with Google Sheet for Min max Edit.
+                            
+                            <?php do_action( 'wcmmq_quick_edit_table_free_version' ); ?>
                         </p>
                     </div>
-                    <iframe style="text-align: right;float:right;" width="560" height="315" 
-                    src="https://www.youtube-nocookie.com/embed/fJWAnMvpBQk?si=REPvxfE4UnElPLxD&amp;start=6" 
+                    
+                </div>
+                <img src="<?php echo esc_attr( $image_url ); ?>" alt="Quick Edit Table Image" style="opacity: 0.6;">
+                <iframe width="560" height="315" 
+                    src="https://www.youtube-nocookie.com/embed/q77kh59pc-M?si=REPvxfE4UnElPLxD&amp;start=6" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowfullscreen></iframe>
-                </div>
-                <img src="<?php echo esc_attr( $image_url ); ?>" alt="Quick Edit Table Image" style="opacity: 0.6;">
-                
             </div>
 
         </div>
