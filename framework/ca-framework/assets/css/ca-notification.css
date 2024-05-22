@@ -129,11 +129,11 @@ p.ca-require-plugin-msg strong, p.ca-require-plugin-msg b, p.ca-require-plugin-m
     border-color: #E91E63;
 }
 .ca-reuire-plugin-notice.activate a.ca-button {
-    background: #179ec1;
-    border-color: #007694;
+    background: #4CAF50;
+    border-color: #4CAF50;
 }
 .anwwhere-notice.anywhere-required-plugin a.ca-button {
-    padding: 3px 5px;
+    padding: 7px 12px;
     text-transform: capitalize;
 }
 .anwwhere-notice.anywhere-required-plugin>p {

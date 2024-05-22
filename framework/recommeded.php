@@ -18,8 +18,8 @@ class Recommeded
         $req_sync->set_args( ['Name' => __( 'Product Stock Sync with Google Sheet for WooCommerce', 'wcmmq' ) ] )
         ->set_download_link('https://wordpress.org/plugins/product-sync-master-sheet/')
         ->set_this_download_link('https://wordpress.org/plugins/woo-min-max-quantity-step-control-single/');
-        $mmp_message = __('%s Easily manage and synchronize your WooCommerce product stock with the power of Google Sheets using our plugin – Product Stock Sync with Google Sheet for WooCommerce. This intuitive solution empowers you to streamline your inventory management effortlessly.','wcmmq');
-        $wpt_link = "<a href='https://wordpress.org/plugins/product-sync-master-sheet/' target='_blank'>(Product Sync with Google Sheet)</a>";
+        $mmp_message = __('Easily manage and synchronize your WooCommerce product stock with the power of Google Sheets using our plugin – Product Stock Sync with Google Sheet for WooCommerce. This intuitive solution empowers you to streamline your inventory management effortlessly.','wcmmq');
+        $wpt_link = "";
         $mmp_message = sprintf($mmp_message, $wpt_link);
         $req_sync->set_message($mmp_message);
         $req_sync->get_full_this_plugin_name($this_plugin);
