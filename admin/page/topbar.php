@@ -3,7 +3,7 @@ $min_max_img = WC_MMQ_BASE_URL . 'assets/images/brand/social/min-max.png';
 
 //If only found method for WPML
 if(method_exists($this, 'redirect_wpml')){
-    $this->redirect_wpml();    
+    // $this->redirect_wpml();    
 }
 
 /**
